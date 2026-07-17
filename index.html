@@ -1,4 +1,5 @@
 <div class="wrap">
+  <button id="themeBtn" class="theme-btn" aria-label="Ganti tema terang/gelap" title="Terang / Gelap">🌙</button>
   <header class="head">
     <div class="titleblock">
       <h1>IDX Swing Watchlist</h1>
@@ -1341,10 +1342,20 @@ tr[data-band="E"]{border-left-color:var(--avoid);opacity:.82}
 .accum-sec #accum tr{border-left:3px solid var(--buy)}
 .accum-sec #accum .c-score .badge{background:var(--buy);color:#fff;border-color:transparent;font-weight:800}
 .hidden{display:none}
-@media(max-width:640px){.stats{grid-template-columns:repeat(4,1fr)}.head{align-items:flex-start}.regime{min-width:0;width:100%}}
+.theme-btn{position:fixed;top:12px;right:14px;z-index:20;font:inherit;font-size:1.05rem;line-height:1;padding:8px 11px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:.15s}
+.theme-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+@media(max-width:640px){.stats{grid-template-columns:repeat(4,1fr)}.head{align-items:flex-start}.regime{min-width:0;width:100%}.theme-btn{top:8px;right:8px}}
 </style>
 
 <script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  function setTheme(t){ root.setAttribute('data-theme',t); try{localStorage.setItem('idxwl-theme',t)}catch(e){} if(btn)btn.textContent=(t==='dark')?'☀️':'🌙'; }
+  var saved=null; try{saved=localStorage.getItem('idxwl-theme')}catch(e){}
+  var init=saved||((window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
+  setTheme(init);
+  if(btn) btn.addEventListener('click',function(){ setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
+})();
 (function(){
   var tbody=document.querySelector('#wl tbody');
   var rows=[].slice.call(tbody.querySelectorAll('tr'));
