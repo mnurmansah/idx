@@ -336,21 +336,8 @@
   <td class="c-num">1:2.5</td>
   <td class="c-tag"><span class="tag t-mf">MF+</span></td>
   <td class="c-bm">07-16 C645 (-0.77%): MF+182.0jt, NetF-74.2jt, FF+9.1B, FPart28.64, LPM+175jt — MF+ tapi asing jual</td>
-</tr><tr data-band="C" data-bucket="watch" data-sec="infra" data-sym="DATA" data-score="55">
-  <td class="c-rank">23</td>
-  <td class="c-sym"><span class="sym">DATA</span></td>
-  <td class="c-score"><span class="badge b-C">55<em>C</em></span></td>
-  <td class="c-sec"><span class="chip sec">infra</span></td>
-  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
-  <td class="c-num c-close">2210</td>
-  <td class="c-num">2470</td>
-  <td class="c-num">2250</td>
-  <td class="c-num">2900/3400</td>
-  <td class="c-num">~1:2</td>
-  <td class="c-tag"><span class="tag t-held">HELD</span></td>
-  <td class="c-bm">07-16 C2210 (-10.16%): MF-14.6jt, NetF-597.6jt, FF-49.2B, FPart9.92, LPM+349jt — uang keluar (MF-/NetF-)</td>
 </tr><tr data-band="C" data-bucket="watch" data-sec="basic" data-sym="INCO" data-score="55">
-  <td class="c-rank">24</td>
+  <td class="c-rank">23</td>
   <td class="c-sym"><span class="sym">INCO</span></td>
   <td class="c-score"><span class="badge b-C">55<em>C</em></span></td>
   <td class="c-sec"><span class="chip sec">basic</span></td>
@@ -363,7 +350,7 @@
   <td class="c-tag"><span class="tag t-mf">MF+</span></td>
   <td class="c-bm">07-16 C4960 (+0.61%): MF+124.9jt, NetF-17.8B, FF+2518.5B, FPart27.14, LPM+5jt — MF+ tapi asing jual</td>
 </tr><tr data-band="C" data-bucket="watch" data-sec="energy" data-sym="TOBA" data-score="53">
-  <td class="c-rank">25</td>
+  <td class="c-rank">24</td>
   <td class="c-sym"><span class="sym">TOBA</span></td>
   <td class="c-score"><span class="badge b-C">53<em>C</em></span></td>
   <td class="c-sec"><span class="chip sec">energy</span></td>
@@ -375,6 +362,19 @@
   <td class="c-num">1:3.85</td>
   <td class="c-tag"><span class="tag t-gorengan">GORENGAN</span></td>
   <td class="c-bm">07-16 C462 (+0.43%): MF-55.6jt, NetF+8.3jt, FF-85.4B, FPart9.13, LPM+4jt — MF- tapi asing beli</td>
+</tr><tr data-band="C" data-bucket="watch" data-sec="infra" data-sym="DATA" data-score="52">
+  <td class="c-rank">25</td>
+  <td class="c-sym"><span class="sym">DATA</span></td>
+  <td class="c-score"><span class="badge b-C">52<em>C</em></span></td>
+  <td class="c-sec"><span class="chip sec">infra</span></td>
+  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
+  <td class="c-num c-close">2210</td>
+  <td class="c-num">HELD 2470 (−10.5%) — SL keras 2150, LPM+↑ 1 kesempatan</td>
+  <td class="c-num">2150</td>
+  <td class="c-num">2600/2900</td>
+  <td class="c-num">~1:1.8</td>
+  <td class="c-tag"><span class="tag t-held">HELD</span></td>
+  <td class="c-bm">07-16 C2210 (-10.16%): MF-14.6jt, NetF-597.6jt, FF-49.2B, FPart9.92, LPM+349jt — uang keluar (MF-/NetF-)</td>
 </tr><tr data-band="C" data-bucket="watch" data-sec="cyclic" data-sym="DOOH" data-score="51">
   <td class="c-rank">26</td>
   <td class="c-sym"><span class="sym">DOOH</span></td>
@@ -564,10 +564,10 @@
   <td class="c-sec"><span class="chip sec">cyclic</span></td>
   <td class="c-ma"><span class="chip ma ma-PO">PO</span></td>
   <td class="c-num c-close">200</td>
-  <td class="c-num">148-152</td>
-  <td class="c-num">135</td>
+  <td class="c-num">sudah jalan +11% — TRAIL, SL naik 180, jangan tambah</td>
   <td class="c-num">180</td>
-  <td class="c-num">1:2</td>
+  <td class="c-num">225/245</td>
+  <td class="c-num">~1:2</td>
   <td class="c-tag"><span class="tag t-gorengan">GORENGAN</span></td>
   <td class="c-bm">07-16 C200 (-2.91%): MF-13.3jt, NetF+60.4jt, FF+2.8B, FPart19.42, LPM+52jt — MF- tapi asing beli</td>
 </tr><tr data-band="E" data-bucket="avoid" data-sec="infra" data-sym="PPRE" data-score="38">
@@ -1334,10 +1334,12 @@ tr[data-band="E"]{border-left-color:var(--avoid);opacity:.82}
 .contra-badge{background:var(--info)!important}
 .contra-sec table{min-width:900px}
 .contra-sec #contra tr{border-left:3px solid var(--info)}
+.contra-sec #contra .c-score .badge{background:var(--info);color:#fff;border-color:transparent;font-weight:800}
 .accum-sec{margin-top:22px}
 .accum-badge{background:var(--buy)!important}
 .accum-sec table{min-width:860px}
 .accum-sec #accum tr{border-left:3px solid var(--buy)}
+.accum-sec #accum .c-score .badge{background:var(--buy);color:#fff;border-color:transparent;font-weight:800}
 .hidden{display:none}
 @media(max-width:640px){.stats{grid-template-columns:repeat(4,1fr)}.head{align-items:flex-start}.regime{min-width:0;width:100%}}
 </style>
