@@ -30,6 +30,7 @@
       <button class="tab" data-f="avoid">🔴 Hindari (E)</button>
     </div>
     <div class="filters">
+      <button class="cg-btn" type="button" id="densBtn" title="Kepadatan baris">⇕ Padat</button>
       <select id="secsel" aria-label="Filter sektor">
         <option value="">Semua sektor</option>
         <option value="basic">basic</option><option value="cyclic">cyclic</option><option value="energy">energy</option><option value="finance">finance</option><option value="health">health</option><option value="indust">indust</option><option value="infra">infra</option><option value="noncyc">noncyc</option><option value="propert">propert</option><option value="techno">techno</option>
@@ -451,9 +452,9 @@
     </table>
   </div>
 
-  <section class="fca-sec">
+  <details class="fca-sec sec-collap">
+    <summary class="sec-sum">⚡ FCA — Papan Pemantauan Khusus <span class="fca-badge">Full Call Auction</span></summary>
     <div class="fca-head">
-      <h2>⚡ FCA — Papan Pemantauan Khusus <span class="fca-badge">Full Call Auction</span></h2>
       <p class="fca-note">Bobot BEDA dari komposit biasa: <b>BM 45%</b> · <b>Vol/Momentum 30%</b> · <b>Catalyst 15%</b> · <b>R/R 10%</b> + <b>gate likuiditas</b> (volRatio≥1.2). Struktur MA diabaikan. High-risk lelang berkala — size sangat kecil, stop lebar/mental.</p>
     </div>
     <div class="tablewrap">
@@ -560,11 +561,11 @@
 </tr></tbody>
       </table>
     </div>
-  </section>
+  </details>
 
-  <section class="contra-sec">
+  <details class="contra-sec sec-collap">
+    <summary class="sec-sum">⚡ Kontrarian — mover lawan arah <span class="fca-badge contra-badge">market campur · median 0.0% · naik 43%</span></summary>
     <div class="fca-head">
-      <h2>⚡ Kontrarian — mover lawan arah <span class="fca-badge contra-badge">market campur · median 0.0% · naik 43%</span></h2>
       <p class="fca-note">Saham <b>naik hari ini</b> dengan dukungan nyata (volume surge + <b>close-kuat</b> + struktur), disaring dari dead-cat (MF−/upper-wick). <b>Catatan: market tidak merah hari ini</b> — screen ini paling relevan saat median negatif. Entry di <b>pullback / continuation hari-2</b>, JANGAN kejar candle vertikal. Time-stop 5 hari. <b>BM?</b> = perlu screenshot BM untuk konfirmasi markup vs distribusi.</p>
     </div>
     <div class="tablewrap">
@@ -743,11 +744,11 @@
 </tr></tbody>
       </table>
     </div>
-  </section>
+  </details>
 
-  <section class="accum-sec">
+  <details class="accum-sec sec-collap">
+    <summary class="sec-sum">🔥 Akumulasi — gorengan pre-markup <span class="fca-badge accum-badge">coiling + volume-akumulasi (SEBELUM naik)</span></summary>
     <div class="fca-head">
-      <h2>🔥 Akumulasi — gorengan pre-markup <span class="fca-badge accum-badge">coiling + volume-akumulasi (SEBELUM naik)</span></h2>
       <p class="fca-note">Saham yang sedang <b>diakumulasi diam-diam SEBELUM markup</b>: kompresi volatilitas + volume hari-naik dominan + belum extended + coiling di bawah resistance. <b>compR</b>&lt;0.75=kompresi kuat · <b>adV</b>&gt;0.55=akumulasi · <b>coil</b>~1.0=nempel resistance. <b>ENTRY = saat BREAKOUT &gt; trigger + volume</b>, BUKAN saat masih coiling. 🔥=profil gorengan · <b>BM?</b>=kirim screenshot untuk cek LPM divergensi (konfirmasi bandar loading).</p>
     </div>
     <div class="tablewrap">
@@ -953,10 +954,10 @@
 </tr></tbody>
       </table>
     </div>
-  </section>
+  </details>
 
-  <section class="conglo-sec">
-    <div class="sec-head"><h2>🏛️ Konglomerasi <span class="fca-badge conglo-badge">TEKNIKAL saja · tanpa BM</span></h2></div>
+  <details class="conglo-sec sec-collap">
+    <summary class="sec-sum">🏛️ Konglomerasi <span class="fca-badge conglo-badge">TEKNIKAL saja · tanpa BM</span></summary>
     <p class="fca-note">Kekuatan teknikal per grup konglomerat (breakout + MA-stage + momentum + volume + close-strength). Klik kartu untuk buka/tutup anggota. Bar = skor 0–100, warna ikut band. ⚠️ Skor tinggi ≠ konfirmasi bandar — volume tipis + tren turun = pop distribusi. Cek BM sebelum entry.</p>
     <div class="cg-ctrls">
       <button type="button" class="cg-btn" onclick="document.querySelectorAll('.cg-card').forEach(function(d){d.open=true})">⊕ Buka semua</button>
@@ -2105,7 +2106,7 @@
         </div>
       </details>
     </div>
-  </section>
+  </details>
 
   <footer class="foot">
     <div class="legend">
@@ -2170,10 +2171,23 @@ thead th{position:sticky;top:0;background:var(--panel2);text-align:left;padding:
 th.sortable{cursor:pointer;color:var(--ink)}
 tbody td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 tbody tr:nth-child(even){background:color-mix(in srgb,var(--panel2) 30%,transparent)}
-tbody td{padding:8px 10px;vertical-align:middle}
+tbody td{padding:4px 10px;vertical-align:middle}
+:root[data-density="cozy"] tbody td{padding:9px 10px}
 tbody tr:hover{background:var(--panel2)}
+.badge{min-width:40px !important;padding:1px 7px !important;font-size:.82rem !important}
+:root[data-density="cozy"] .badge{padding:3px 9px !important;font-size:.9rem !important}
+.c-sym .sym{font-size:.82rem}
 .c-bm{font-size:.72rem;color:var(--muted);line-height:1.4;max-width:360px;white-space:normal}
 .fca-head h2,.sec-head h2{border-left:3px solid var(--accent);padding-left:9px;line-height:1.15}
+.sec-collap{margin-top:20px}
+.sec-collap>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-weight:800;font-size:.98rem;color:var(--ink);padding:11px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.sec-collap>summary::-webkit-details-marker{display:none}
+.sec-collap>summary::marker{content:""}
+.sec-collap>summary::before{content:"▸";color:var(--accent);font-weight:900;transition:transform .15s;display:inline-block}
+.sec-collap[open]>summary::before{transform:rotate(90deg)}
+.sec-collap[open]>summary{border-radius:12px 12px 0 0}
+.sec-collap>.fca-head{padding-top:10px}
+.sec-collap .fca-note{margin-top:0}
 tbody tr{border-left:3px solid transparent}
 tr[data-band="A+"],tr[data-band="A"]{border-left-color:var(--buy)}
 tr[data-band="B"]{border-left-color:var(--accent)}
@@ -2290,6 +2304,11 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
   var init=saved||((window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
   setTheme(init);
   if(btn) btn.addEventListener('click',function(){ setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
+  var dbtn=document.getElementById('densBtn');
+  function setDens(d){ root.setAttribute('data-density',d); try{localStorage.setItem('idxwl-dens',d)}catch(e){} if(dbtn)dbtn.textContent=(d==='cozy')?'⇕ Longgar':'⇕ Padat'; }
+  var sd='compact'; try{sd=localStorage.getItem('idxwl-dens')||'compact'}catch(e){}
+  setDens(sd);
+  if(dbtn) dbtn.addEventListener('click',function(){ setDens(root.getAttribute('data-density')==='cozy'?'compact':'cozy'); });
 })();
 (function(){
   var tbody=document.querySelector('#wl tbody');
