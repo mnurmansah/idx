@@ -39,6 +39,8 @@
     </div>
   </section>
 
+  <details class="wl-sec sec-collap" open>
+    <summary class="sec-sum">📊 Komposit — tabel utama <span class="fca-badge wl-badge">30 nama · skor komposit</span></summary>
   <div class="tablewrap">
     <table id="wl">
       <thead>
@@ -393,6 +395,7 @@
 </tr></tbody>
     </table>
   </div>
+  </details>
 
   <details class="fca-sec sec-collap">
     <summary class="sec-sum">⚡ FCA — Papan Pemantauan Khusus <span class="fca-badge">Full Call Auction</span></summary>
@@ -3102,6 +3105,15 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
 .accum-sec #accum tr{border-left:3px solid var(--buy)}
 .accum-sec #accum .c-score .badge{--bar:var(--buy);border-color:color-mix(in srgb,var(--buy) 45%,transparent);font-weight:800}
 .hidden{display:none}
+.pg-hidden{display:none}
+.wl-sec{margin-top:14px}
+.wl-badge{background:var(--accent)!important;color:#fff}
+.pager{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 12px;margin-top:-1px;background:var(--panel);border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;font-size:.76rem}
+.pg-btn{cursor:pointer;font:inherit;font-weight:700;color:var(--ink);background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:4px 12px}
+.pg-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.pg-btn:disabled{opacity:.4;cursor:default}
+.pg-pages{font-weight:800;color:var(--ink)}
+.pg-info{color:var(--muted);margin-left:auto}
 .theme-btn{position:fixed;top:12px;right:14px;z-index:20;font:inherit;font-size:1.05rem;line-height:1;padding:8px 11px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:.15s}
 .theme-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
 @media(max-width:640px){.stats{grid-template-columns:repeat(4,1fr)}.head{align-items:flex-start}.regime{min-width:0;width:100%}.theme-btn{top:8px;right:8px}}
@@ -3132,6 +3144,7 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
         && (!curQ||r.dataset.sym.toLowerCase().indexOf(curQ)>-1);
       r.classList.toggle('hidden',!ok);
     });
+    if(window.__pagers&&window.__pagers.wl)window.__pagers.wl.refresh(true);
   }
   function sortBy(k){
     if(sortKey===k){sortDir*=-1}else{sortKey=k;sortDir=(k==='score')?-1:1}
@@ -3144,6 +3157,7 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
       return (va-vb)*sortDir;
     });
     vis.forEach(function(r){tbody.appendChild(r)});
+    if(window.__pagers&&window.__pagers.wl)window.__pagers.wl.refresh(true);
   }
   document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
     document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
@@ -3157,5 +3171,36 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
       th.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();sortBy(th.dataset.k)}});
     }
   });
+})();
+(function(){
+  var PER=20;
+  function makePager(table){
+    var wrap=table.closest('.tablewrap'); if(!wrap) return null;
+    var tbody=table.tBodies[0]; var page=1;
+    var pager=document.createElement('div'); pager.className='pager';
+    wrap.parentNode.insertBefore(pager, wrap.nextSibling);
+    function eligible(){ return [].slice.call(tbody.rows).filter(function(r){return !r.classList.contains('hidden');}); }
+    function render(){
+      var el=eligible(), pages=Math.max(1,Math.ceil(el.length/PER));
+      if(page>pages)page=pages; if(page<1)page=1;
+      [].slice.call(tbody.rows).forEach(function(r){r.classList.add('pg-hidden');});
+      var start=(page-1)*PER;
+      el.slice(start,start+PER).forEach(function(r){r.classList.remove('pg-hidden');});
+      if(el.length<=PER){ pager.innerHTML=''; pager.style.display='none'; return; }
+      pager.style.display='';
+      pager.innerHTML='<button class="pg-btn" data-d="-1"'+(page<=1?' disabled':'')+'>&lsaquo; Prev</button>'+
+        '<span class="pg-pages">Hal '+page+' / '+pages+'</span>'+
+        '<button class="pg-btn" data-d="1"'+(page>=pages?' disabled':'')+'>Next &rsaquo;</button>'+
+        '<span class="pg-info">'+(start+1)+'–'+Math.min(start+PER,el.length)+' dari '+el.length+'</span>';
+      [].slice.call(pager.querySelectorAll('.pg-btn')).forEach(function(b){ b.onclick=function(){ page+=(+b.dataset.d); render(); wrap.scrollIntoView({block:'nearest'}); }; });
+    }
+    render();
+    return { refresh:function(reset){ if(reset)page=1; render(); } };
+  }
+  var pagers={};
+  [].slice.call(document.querySelectorAll('.tablewrap > table')).forEach(function(t){
+    if(t.tBodies[0] && t.tBodies[0].rows.length){ var p=makePager(t); if(p&&t.id)pagers[t.id]=p; }
+  });
+  window.__pagers=pagers;
 })();
 </script>
