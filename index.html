@@ -17,6 +17,12 @@
     </div>
   </header>
 
+  <section class="secstrip">
+    <span class="ss-lbl">SEKTOR (Jump Model):</span>
+    <span class="ss-chip ss-off" title="Energy · sejak 2026-01-28 · Sharpe(is) 1.97">🔴 Energy <b>+12.1%</b></span><span class="ss-chip ss-off" title="Property · sejak 2026-01-28 · Sharpe(is) 2.04">🔴 Property <b>+12%</b></span><span class="ss-chip ss-off" title="Industrials · sejak 2026-01-21 · Sharpe(is) 3.64">🔴 Industrials <b>+8.4%</b></span><span class="ss-chip ss-off" title="Technology · sejak 2025-10-17 · Sharpe(is) 1.06">🔴 Technology <b>+7.2%</b></span><span class="ss-chip ss-off" title="Basic Mat · sejak 2026-02-02 · Sharpe(is) 1.52">🔴 Basic Mat <b>+6%</b></span><span class="ss-chip ss-off" title="Consumer Cyclic · sejak 2026-01-29 · Sharpe(is) 2.42">🔴 Consumer Cyclic <b>+4.8%</b></span><span class="ss-chip ss-off" title="Consumer NonCyc · sejak 2026-01-28 · Sharpe(is) 1.5">🔴 Consumer NonCyc <b>+3.9%</b></span><span class="ss-chip ss-off" title="Finance · sejak 2026-01-28 · Sharpe(is) 0.28">🔴 Finance <b>+3.7%</b></span><span class="ss-chip ss-off" title="Infrastructure · sejak 2026-01-28 · Sharpe(is) 2.18">🔴 Infrastructure <b>+2.7%</b></span><span class="ss-chip ss-off" title="Transport&amp;Log · sejak 2026-01-28 · Sharpe(is) 1.55">🔴 Transport&amp;Log <b>+1.5%</b></span><span class="ss-chip ss-off" title="Healthcare · sejak 2026-01-28 · Sharpe(is) 2.33">🔴 Healthcare <b>-2.1%</b></span>
+    <span class="ss-note">semua risk-off — bounce = tactical, defensif</span>
+  </section>
+
   <section class="stats">
     <div class="stat s-ap"><b>0</b><span>A+</span></div>
     <div class="stat s-a"><b>1</b><span>A</span></div>
@@ -2958,6 +2964,13 @@ h1{font-size:1.5rem;letter-spacing:-.02em;margin:0;font-weight:700}
 .jm-regime.jm-on .rval{color:var(--buy)}
 .jm-regime.jm-off{border-left-color:var(--avoid)}
 .jm-regime.jm-off .rval{color:var(--avoid)}
+.secstrip{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:14px 0 4px;padding:9px 12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+.ss-lbl{font-size:.64rem;letter-spacing:.1em;color:var(--muted);font-weight:800;text-transform:uppercase}
+.ss-chip{font-size:.72rem;padding:3px 9px;border-radius:20px;border:1px solid var(--line);white-space:nowrap}
+.ss-chip b{font-variant-numeric:tabular-nums}
+.ss-on{border-color:color-mix(in srgb,var(--buy) 55%,transparent);color:var(--buy)}
+.ss-off{border-color:color-mix(in srgb,var(--avoid) 40%,transparent);color:var(--muted)}
+.ss-note{font-size:.66rem;color:var(--muted);margin-left:auto;font-style:italic}
 .stats{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px}
 .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center;box-shadow:var(--shadow)}
 .stat b{display:block;font-size:1.25rem;font-variant-numeric:tabular-nums;line-height:1}
