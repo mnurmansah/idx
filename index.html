@@ -6,9 +6,14 @@
       <p class="sub">Skor komposit regime-conditional (bear) · Tech-breakout 35 · BM 35 (gate) · MA 20 · R/R 10 ·<span class="mono">2026-07-23</span></p>
     </div>
     <div class="regime jm-regime jm-off">
-      <span class="rlabel">JUMP MODEL · IHSG</span>
+      <span class="rlabel">JM · STRUKTURAL <small>(3-feat/slow)</small></span>
       <span class="rval">🔴 RISK-OFF</span>
       <span class="rmeta">λ10 · Sharpe OOS 1.61 · 2026-07-23 @ 6315 — defensif: size kecil, cash lebih banyak</span>
+    </div>
+    <div class="regime jm-regime jm-fast jm-on">
+      <span class="rlabel">JM · TAKTIS <small>(2-feat/fast · 5d)</small></span>
+      <span class="rval">🟢 RISK-ON</span>
+      <span class="rmeta">λ5 · sejak 2026-07-13 @ 6315 · ⚠ beda dgn struktural = zona transisi</span>
     </div>
     <div class="regime regime-def">
       <span class="rlabel">REGIME (breadth)</span>
@@ -3174,6 +3179,8 @@ h1{font-size:1.5rem;letter-spacing:-.02em;margin:0;font-weight:700}
 .jm-regime.jm-on .rval{color:var(--buy)}
 .jm-regime.jm-off{border-left-color:var(--avoid)}
 .jm-regime.jm-off .rval{color:var(--avoid)}
+.jm-regime.jm-fast{border-left-style:dashed}
+.jm-regime .rlabel small{opacity:.6;font-weight:400}
 .secstrip{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:14px 0 4px;padding:9px 12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
 .ss-lbl{font-size:.64rem;letter-spacing:.1em;color:var(--muted);font-weight:800;text-transform:uppercase}
 .ss-chip{font-size:.72rem;padding:3px 9px;border-radius:20px;border:1px solid var(--line);white-space:nowrap}
