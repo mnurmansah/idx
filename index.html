@@ -5,8 +5,13 @@
       <h1>IDX Swing Watchlist</h1>
       <p class="sub">Skor komposit regime-conditional (bear) · Tech-breakout 35 · BM 35 (gate) · MA 20 · R/R 10 ·<span class="mono">2026-07-23</span></p>
     </div>
+    <div class="regime jm-regime jm-off">
+      <span class="rlabel">JUMP MODEL · IHSG</span>
+      <span class="rval">🔴 RISK-OFF</span>
+      <span class="rmeta">λ10 · Sharpe OOS 1.61 · 2026-07-23 @ 6315 — defensif: size kecil, cash lebih banyak</span>
+    </div>
     <div class="regime regime-def">
-      <span class="rlabel">REGIME</span>
+      <span class="rlabel">REGIME (breadth)</span>
       <span class="rval">EARLY-REVERSAL / DEFENSIF</span>
       <span class="rmeta">&gt;MA200 22% · perfect-order 63 · gkReversal 43</span>
     </div>
@@ -2948,6 +2953,11 @@ h1{font-size:1.5rem;letter-spacing:-.02em;margin:0;font-weight:700}
 .rlabel{font-size:.62rem;letter-spacing:.14em;color:var(--muted)}
 .rval{font-weight:700;color:var(--avoid);font-size:.92rem}
 .rmeta{font-size:.68rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.jm-regime{border-left-width:4px}
+.jm-regime.jm-on{border-left-color:var(--buy)}
+.jm-regime.jm-on .rval{color:var(--buy)}
+.jm-regime.jm-off{border-left-color:var(--avoid)}
+.jm-regime.jm-off .rval{color:var(--avoid)}
 .stats{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px}
 .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center;box-shadow:var(--shadow)}
 .stat b{display:block;font-size:1.25rem;font-variant-numeric:tabular-nums;line-height:1}
