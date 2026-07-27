@@ -3,29 +3,35 @@
   <header class="head">
     <div class="titleblock">
       <h1>IDX Swing Watchlist</h1>
-      <p class="sub">Skor komposit regime-conditional (bear) · Tech-breakout 35 · BM 35 (gate) · MA 20 · R/R 10 ·<span class="mono">2026-07-27</span></p>
+      <p class="sub" title="Skor gabungan: Teknikal-breakout 35% + Bandar/Money-flow 35% + posisi MA 20% + Risk/Reward 10%, disesuaikan kondisi pasar (bear)">Skor gabungan teknikal + aliran uang bandar · <span class="mono">2026-07-27</span> <span class="sub-hint">(delay ~15–20 mnt · edukatif)</span></p>
     </div>
-    <div class="regime jm-regime jm-off">
-      <span class="rlabel">JM · STRUKTURAL <small>(3-feat/slow)</small></span>
+    <div class="mkt mk-trans">
+      <div class="mkt-head"><span class="mkt-ic">🟡</span><span class="mkt-title">KONDISI PASAR: TRANSISI — Hati-hati</span><span class="mkt-px">IHSG 6174</span></div>
+      <p class="mkt-msg">Tren besar masih lemah, tapi jangka pendek mulai pulih. Main kecil & cepat, TP disiplin, stop ketat — jangan bangun posisi besar dulu.</p>
+    </div>
+    <div class="regime-row">
+    <div class="regime jm-regime jm-off" title="Jump Model struktural (3 fitur, lambat) · λ30 · Sharpe OOS 1.4">
+      <span class="rlabel">TREN BESAR <small>(lambat)</small></span>
       <span class="rval">🔴 RISK-OFF</span>
-      <span class="rmeta">λ30 · Sharpe OOS 1.4 · 2026-07-27 @ 6174 — defensif: size kecil, cash lebih banyak</span>
+      <span class="rmeta">arah tren utama · per 2026-07-27 — defensif</span>
     </div>
-    <div class="regime jm-regime jm-fast jm-on">
-      <span class="rlabel">JM · TAKTIS <small>(2-feat/fast · 5d)</small></span>
+    <div class="regime jm-regime jm-fast jm-on" title="Jump Model taktis (2 fitur, cepat) · λ5">
+      <span class="rlabel">JANGKA PENDEK <small>(cepat · 5 hari)</small></span>
       <span class="rval">🟢 RISK-ON</span>
-      <span class="rmeta">λ5 · sejak 2026-07-13 @ 6174 · ⚠ beda dgn struktural = zona transisi</span>
+      <span class="rmeta">sinyal cepat · sejak 2026-07-13 · ⚠ beda dari tren besar</span>
     </div>
-    <div class="regime regime-def">
-      <span class="rlabel">REGIME (breadth)</span>
+    <div class="regime regime-def" title="Breadth: % saham di atas MA200 = 21% · perfect-order 61 · gkReversal 23">
+      <span class="rlabel">LEBAR PASAR <small>(berapa banyak saham naik)</small></span>
       <span class="rval">EARLY-REVERSAL / DEFENSIF</span>
-      <span class="rmeta">&gt;MA200 21% · perfect-order 61 · gkReversal 23</span>
+      <span class="rmeta">cuma 21% saham di atas rata-rata 200 hari</span>
+    </div>
     </div>
   </header>
 
   <section class="secstrip">
-    <span class="ss-lbl">SEKTOR (Jump Model):</span>
+    <span class="ss-lbl" title="🔴/🟢 = status tren sektor (Jump Model) · angka = kinerja 20 hari terakhir. Bisa beda arah: status merah tapi angka hijau = lagi bounce di dalam tren turun.">SEKTOR <small>(🔴/🟢 status tren · angka = 20 hari)</small>:</span>
     <span class="ss-chip ss-off" title="Property · sejak 2026-01-28 · Sharpe(is) 2.15">🔴 Property <b>+13.3%</b></span><span class="ss-chip ss-off" title="Energy · sejak 2026-01-28 · Sharpe(is) 2.08">🔴 Energy <b>+12%</b></span><span class="ss-chip ss-off" title="Industrials · sejak 2026-01-21 · Sharpe(is) 3.84">🔴 Industrials <b>+11.1%</b></span><span class="ss-chip ss-off" title="Technology · sejak 2025-12-22 · Sharpe(is) 1.02">🔴 Technology <b>+9.1%</b></span><span class="ss-chip ss-off" title="Basic Mat · sejak 2026-02-02 · Sharpe(is) 1.6">🔴 Basic Mat <b>+8.3%</b></span><span class="ss-chip ss-off" title="Consumer Cyclic · sejak 2026-01-29 · Sharpe(is) 2.55">🔴 Consumer Cyclic <b>+4.7%</b></span><span class="ss-chip ss-off" title="Consumer NonCyc · sejak 2026-01-28 · Sharpe(is) 1.58">🔴 Consumer NonCyc <b>+3.6%</b></span><span class="ss-chip ss-off" title="Infrastructure · sejak 2026-01-28 · Sharpe(is) 2.26">🔴 Infrastructure <b>+2.5%</b></span><span class="ss-chip ss-off" title="Finance · sejak 2026-01-28 · Sharpe(is) 0.46">🔴 Finance <b>+1.6%</b></span><span class="ss-chip ss-off" title="Transport&amp;Log · sejak 2026-01-28 · Sharpe(is) 1.64">🔴 Transport&amp;Log <b>+0.9%</b></span><span class="ss-chip ss-off" title="Healthcare · sejak 2026-01-28 · Sharpe(is) 2.46">🔴 Healthcare <b>-1.9%</b></span>
-    <span class="ss-note">semua risk-off — bounce = tactical, defensif</span>
+    <span class="ss-note">semua sektor tren turun — kenaikan = pantulan sementara, tetap defensif</span>
   </section>
 
   <details class="best-sec sec-collap" open>
@@ -226,6 +232,22 @@
       <li><span class="es es-extended">⏸ extended</span> sudah +30%/parabolik → <b>disaring, jangan kejar</b></li>
       <li><span class="es es-avoid">⛔ avoid</span> MF− / struktur rusak → <b>disaring</b></li>
     </ul>
+    <details class="glos"><summary>ℹ️ Arti singkatan &amp; skor</summary>
+      <div class="glos-grid">
+        <span><b>Skor A/B</b> kuat · <b>C/D</b> pantau · <b>E</b> hindari</span>
+        <span><b>chg1d / chg5d</b> = perubahan harga 1 / 5 hari</span>
+        <span><b>volR</b> = volume vs rata-rata 20 hari (&gt;2× = lonjakan)</span>
+        <span><b>Close-kuat</b> = tutup dekat high (1,0 = paling kuat)</span>
+        <span><b>MF</b> = Money Flow (aliran uang) · + = masuk</span>
+        <span><b>NetF</b> = Net asing · + = asing beli bersih</span>
+        <span><b>LPM</b> = tekanan likuiditas bandar</span>
+        <span><b>BO</b> breakout · <b>gkRev</b> reversal · <b>PO</b> tren rapi naik</span>
+        <span><b>Fase</b> = Akumulasi→Markup→Distribusi (siklus bandar)</span>
+        <span><b>Likuid "M"</b> = miliar rupiah/hari · <b>jt</b> = juta</span>
+        <span><b>⭐AUTO</b> = mover otomatis (bukan watchlist kurasi)</span>
+        <span><b>🔥</b> = likuiditas tipis (gorengan, size kecil)</span>
+      </div>
+    </details>
   </div>
   <div class="tablewrap">
     <table id="wl">
@@ -247,7 +269,7 @@
         <th data-k="ma">MA</th>
         <th title="Harga × Money Flow: Akumulasi / Markup / Distribusi / Markdown">Fase (BM)</th>
         <th class="c-bm">Catatan BM</th>
-        <th class="grp">chg1d</th><th>chg5d</th><th>volR</th><th>Close-kuat</th><th>Struktur</th><th>vs MA20</th>
+        <th class="grp" title="Perubahan harga hari ini (%)">chg1d</th><th title="Perubahan harga 5 hari (%)">chg5d</th><th title="Volume hari ini ÷ rata-rata 20 hari. >2× = lonjakan">volR</th><th title="Seberapa dekat harga tutup ke titik tertinggi hari itu (1,0 = tutup di paling atas = kuat)">Close-kuat</th><th title="BO = breakout · gkRev = pola reversal · PO = perfect-order (semua MA sejajar naik)">Struktur</th><th title="Jarak harga dari rata-rata 20 hari (%)">vs MA20</th>
       </tr></thead>
       <tbody><tr data-band="B" data-bucket="buy" data-entry="trend" data-sec="techno" data-sym="UVCR" data-score="66">
   <td class="c-rank">1</td>
@@ -2755,7 +2777,7 @@
       <table id="accum">
         <thead>
         <tr class="grp-labels"><th colspan="4">SIAPA &amp; VERDICT</th><th colspan="5" class="grp">SINYAL AKUMULASI</th><th colspan="4" class="grp">KONTEKS</th><th colspan="6" class="grp">SINYAL HARGA</th></tr>
-        <tr><th>#</th><th>Sym</th><th>Skor</th><th>Gor</th><th class="grp">compR</th><th>adV</th><th>coil</th><th>chg20</th><th>Trigger</th><th class="grp">Close</th><th>Sektor</th><th>BM/LPM</th><th>Fase (BM)</th><th class="grp">chg1d</th><th>chg5d</th><th>volR</th><th>Close-kuat</th><th>Struktur</th><th>vs MA20</th></tr></thead>
+        <tr><th>#</th><th>Sym</th><th>Skor</th><th>Gor</th><th class="grp">compR</th><th>adV</th><th>coil</th><th>chg20</th><th>Trigger</th><th class="grp">Close</th><th>Sektor</th><th>BM/LPM</th><th>Fase (BM)</th><th class="grp" title="Perubahan harga hari ini (%)">chg1d</th><th title="Perubahan harga 5 hari (%)">chg5d</th><th title="Volume hari ini ÷ rata-rata 20 hari. >2× = lonjakan">volR</th><th title="Seberapa dekat harga tutup ke titik tertinggi hari itu (1,0 = tutup di paling atas = kuat)">Close-kuat</th><th title="BO = breakout · gkRev = pola reversal · PO = perfect-order (semua MA sejajar naik)">Struktur</th><th title="Jarak harga dari rata-rata 20 hari (%)">vs MA20</th></tr></thead>
         <tbody><tr>
   <td class="c-rank">1</td>
   <td class="c-sym"><span class="sym">TLDN</span></td>
@@ -3459,6 +3481,24 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
 .es-legend ul{margin:6px 0 0;padding-left:2px;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px 16px}
 .es-legend li{display:flex;align-items:center;gap:7px}
 .es-legend b{color:var(--ink)}
+.glos{margin-top:8px}
+.glos summary{cursor:pointer;font-size:.72rem;color:var(--accent);font-weight:700}
+.glos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:3px 16px;margin-top:6px;font-size:.72rem;color:var(--muted)}
+.glos-grid b{color:var(--ink)}
+/* Kondisi Pasar banner */
+.mkt{flex:1 1 100%;border-radius:12px;padding:12px 16px;margin:2px 0 6px;border:1px solid var(--line);border-left-width:5px}
+.mkt-on{border-left-color:var(--buy);background:color-mix(in srgb,var(--buy) 8%,transparent)}
+.mkt-off{border-left-color:var(--avoid);background:color-mix(in srgb,var(--avoid) 8%,transparent)}
+.mkt-trans{border-left-color:var(--watch);background:color-mix(in srgb,var(--watch) 10%,transparent)}
+.mkt-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.mkt-ic{font-size:1.1rem}
+.mkt-title{font-size:1rem;font-weight:800;letter-spacing:.01em}
+.mkt-px{margin-left:auto;font-size:.8rem;color:var(--muted);font-weight:700}
+.mkt-msg{margin:5px 0 0;font-size:.82rem;line-height:1.5;color:var(--ink)}
+.regime-row{display:flex;gap:10px;flex-wrap:wrap;flex:1 1 100%}
+.regime-row .regime{flex:1 1 200px}
+.sub-hint{color:var(--muted);font-weight:400}
+.jm-regime .rlabel small,.regime-def .rlabel small{opacity:.6;font-weight:400}
 .wl-sec{margin-top:14px}
 .wl-badge{background:var(--accent)!important;color:#fff}
 .pager{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 12px;margin-top:-1px;background:var(--panel);border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;font-size:.76rem}
