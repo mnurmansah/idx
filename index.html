@@ -217,6 +217,16 @@
 
   <details class="wl-sec sec-collap" open>
     <summary class="sec-sum">📊 Komposit — tabel utama <span class="fca-badge wl-badge">38 nama · skor komposit</span></summary>
+  <div class="es-legend">
+    <b>Sinyal Entry</b> — default tab <b>🎯 Layak Entry</b> hanya tampilkan yang bisa dimasuki (klik <b>Semua</b> untuk lihat semua):
+    <ul>
+      <li><span class="es es-trend">🟢 trend</span> naik sehat + close kuat + MF/breakout → <b>masuk on strength</b></li>
+      <li><span class="es es-pullback">🔵 pullback</span> uptrend tapi dip tipis ke MA + MF+ → <b>beli kelemahan</b></li>
+      <li><span class="es es-accum">🟡 akum</span> MF+ &amp; NetF+ tapi harga belum gerak → <b>watch trigger</b></li>
+      <li><span class="es es-extended">⏸ extended</span> sudah +30%/parabolik → <b>disaring, jangan kejar</b></li>
+      <li><span class="es es-avoid">⛔ avoid</span> MF− / struktur rusak → <b>disaring</b></li>
+    </ul>
+  </div>
   <div class="tablewrap">
     <table id="wl">
       <thead>
@@ -3445,6 +3455,10 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
 .es-extended{background:color-mix(in srgb,var(--muted) 16%,transparent);color:var(--muted)}
 .es-avoid{background:color-mix(in srgb,var(--avoid) 15%,transparent);color:var(--avoid)}
 .es-neutral{color:var(--muted)}
+.es-legend{margin:6px 2px 10px;font-size:.74rem;color:var(--muted);line-height:1.5}
+.es-legend ul{margin:6px 0 0;padding-left:2px;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4px 16px}
+.es-legend li{display:flex;align-items:center;gap:7px}
+.es-legend b{color:var(--ink)}
 .wl-sec{margin-top:14px}
 .wl-badge{background:var(--accent)!important;color:#fff}
 .pager{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 12px;margin-top:-1px;background:var(--panel);border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;font-size:.76rem}
