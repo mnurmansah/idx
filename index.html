@@ -362,12 +362,12 @@
 
   <section class="stats">
     <div class="stat s-ap"><b>0</b><span>A+</span></div>
-    <div class="stat s-a"><b>0</b><span>A</span></div>
-    <div class="stat s-b"><b>0</b><span>B</span></div>
-    <div class="stat s-c"><b>1</b><span>C</span></div>
-    <div class="stat s-d"><b>5</b><span>D</span></div>
-    <div class="stat s-e"><b>26</b><span>E</span></div>
-    <div class="stat s-tot"><b>32</b><span>total</span></div>
+    <div class="stat s-a"><b>3</b><span>A</span></div>
+    <div class="stat s-b"><b>2</b><span>B</span></div>
+    <div class="stat s-c"><b>5</b><span>C</span></div>
+    <div class="stat s-d"><b>11</b><span>D</span></div>
+    <div class="stat s-e"><b>33</b><span>E</span></div>
+    <div class="stat s-tot"><b>54</b><span>total</span></div>
   </section>
 
   <section class="controls">
@@ -382,14 +382,17 @@
       <button class="cg-btn" type="button" id="densBtn" title="Kepadatan baris">⇕ Padat</button>
       <select id="secsel" aria-label="Filter sektor">
         <option value="">Semua sektor</option>
-        <option value="basic">basic</option><option value="cyclic">cyclic</option><option value="energy">energy</option><option value="finance">finance</option><option value="health">health</option><option value="indust">indust</option><option value="infra">infra</option><option value="noncyc">noncyc</option><option value="propert">propert</option><option value="techno">techno</option>
+        <option value="basic">basic</option><option value="cyclic">cyclic</option><option value="energy">energy</option><option value="finance">finance</option><option value="health">health</option><option value="indust">indust</option><option value="infra">infra</option><option value="noncyc">noncyc</option><option value="propert">propert</option><option value="techno">techno</option><option value="trans">trans</option>
       </select>
       <input id="q" type="search" placeholder="Cari kode…" aria-label="Cari kode saham" />
     </div>
   </section>
 
   <details class="wl-sec sec-collap" open>
-    <summary class="sec-sum">📊 Komposit — tabel utama <span class="fca-badge wl-badge">32 nama · skor komposit</span></summary>
+    <summary class="sec-sum">📊 Komposit — tabel utama <span class="fca-badge wl-badge">54 nama · skor komposit</span><span class="fca-badge best-badge">+31 kandidat baru</span><span class="fca-badge">−9 dibuang</span></summary>
+    <p class="fca-note"><b>Daftar ini DINAMIS</b> — nama yang price action-nya mati dibuang, kandidat baru ditarik dari ⭐Konsensus dan mover teknikal di scan. 21 dari 30 nama kurasi bertahan · 2 promote-BM · <b>31 kandidat baru</b> (tag ⭐KONSENSUS / ⭐TEKNIKAL, level entry/SL/TP dihitung otomatis dari bars — verifikasi live sebelum entry). Nama ber-tier <b>HELD tidak pernah dibuang</b> walau jelek — posisi terbuka justru harus terlihat supaya bisa diputuskan cut.
+    <b>Dibuang hari ini (9):</b> <span class="rd-why" title="WATCH-AKUMULASI · close 1650 · chg1d 0% · chg5d 2.8% · volR 0.09× · tutup-kuat 0.43 — tak satu pun kondisi price action menyala">SSIA</span> <span class="rd-why" title="GREEN-base · close 2380 · chg1d 1.71% · chg5d -8.81% · volR 0.42× · tutup-kuat 0.38 — tak satu pun kondisi price action menyala">INDY</span> <span class="rd-why" title="GORENGAN-GO · close 492 · chg1d 0% · chg5d 2.5% · volR 0.09× · tutup-kuat 0.67 — tak satu pun kondisi price action menyala">NRCA</span> <span class="rd-why" title="GORENGAN-GO · close 460 · chg1d 1.77% · chg5d 0% · volR 0.22× · tutup-kuat 0.57 — tak satu pun kondisi price action menyala">TOBA</span> <span class="rd-why" title="GREEN · close 2880 · chg1d 0.35% · chg5d -0.35% · volR 0.18× · tutup-kuat 0 — tak satu pun kondisi price action menyala">ANTM</span> <span class="rd-why" title="WATCH-AKUMULASI · close 260 · chg1d 0.78% · chg5d -0.76% · volR 0.22× · tutup-kuat 0.5 — tak satu pun kondisi price action menyala">PWON</span> <span class="rd-why" title="GREEN · close 127 · chg1d 0.79% · chg5d -0.78% · volR 0.09× · tutup-kuat 0.67 — tak satu pun kondisi price action menyala">DGIK</span> <span class="rd-why" title="WATCH-NEW · close 3270 · chg1d -0.3% · chg5d 1.55% · volR 0.08× · tutup-kuat 0.67 — tak satu pun kondisi price action menyala">CITA</span> <span class="rd-why" title="WATCH-NEW · close 316 · chg1d 0% · chg5d -1.25% · volR 0.25× · tutup-kuat 0.5 — tak satu pun kondisi price action menyala">SMRA</span> — hover untuk angkanya. Bukan hilang: kalau price action-nya hidup lagi, otomatis masuk kembali.
+    <b style="color:var(--accent)">⚠ Bar hari ini belum tutup</b> (~22% volume masuk) — penilaian "price action mati" masih <b>sementara</b>. Volume sudah dinormalkan ke pace, tapi tutup-kuat/breakout/momentum baru final setelah closing. Jalankan ulang dekat penutupan untuk keputusan buang yang sah.</p>
   <div class="es-legend">
     <b>Sinyal Entry</b> — default tab <b>🎯 Layak Entry</b> hanya tampilkan yang bisa dimasuki (klik <b>Semua</b> untuk lihat semua):
     <ul>
@@ -438,8 +441,68 @@
         <th class="c-bm">Catatan BM</th>
         <th class="grp" title="Perubahan harga hari ini (%)">chg1d</th><th title="Perubahan harga 5 hari (%)">chg5d</th><th title="Volume hari ini ÷ rata-rata 20 hari. >2× = lonjakan">volR</th><th title="Seberapa dekat harga tutup ke titik tertinggi hari itu (1,0 = tutup di paling atas = kuat)">Close-kuat</th><th title="BO = breakout · gkRev = pola reversal · PO = perfect-order (semua MA sejajar naik)">Struktur</th><th title="Jarak harga dari rata-rata 20 hari (%)">vs MA20</th>
       </tr></thead>
-      <tbody><tr data-band="C" data-bucket="watch" data-entry="trend" data-sec="basic" data-sym="INCO" data-score="57">
+      <tbody><tr data-band="A" data-bucket="buy" data-entry="trend" data-sec="energy" data-sym="SOCI" data-score="78">
   <td class="c-rank">1</td>
+  <td class="c-sym"><span class="sym">SOCI</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-A" style="--v:78%">78<em>A</em></span></td>
+  <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">422</td><td class="c-num cs-s">446</td><td class="c-num c-close">456</td><td class="c-num cs-r">470</td><td class="c-num cs-r">516</td><td class="c-num cs-sl">440</td><td class="c-num">1:0.9</td><td class="c-setup">auto: core ~456 / SL 420</td>
+  <td class="c-sec grp"><span class="chip sec">energy</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+7.0</td><td class="c-num pos">+7.5</td><td class="c-num">0.7×</td><td class="c-num">0.78</td><td class="c-num"><span class="chip">gkRev BO</span></td><td class="c-num pos">+16%</td>
+</tr><tr data-band="A" data-bucket="buy" data-entry="extended" data-sec="indust" data-sym="PADA" data-score="78">
+  <td class="c-rank">2</td>
+  <td class="c-sym"><span class="sym">PADA</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-A" style="--v:78%">78<em>A</em></span></td>
+  <td class="c-entry"><span class="es es-extended">⏸ extended</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">143</td><td class="c-num cs-s">158</td><td class="c-num c-close">170</td><td class="c-num cs-r">197</td><td class="c-num cs-r">218</td><td class="c-num cs-sl">156</td><td class="c-num">1:1.9</td><td class="c-setup">auto: core ~170 / SL 148</td>
+  <td class="c-sec grp"><span class="chip sec">indust</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM berbalik-turun, tanda-lpm) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +465.67 · asing diabaikan (corr belum dicatat, FP 9.01% kurang tinggi) — belum ada: Intensity, VolRot, CorrF">arah?°</span></td>
+  <td class="c-bm">28/07: LPM - · MF +465.67 · NetF -0.17 · FP 9.01% — MF+ (asing net jual)</td>
+  <td class="c-num grp pos">+14.1</td><td class="c-num pos">+44.1</td><td class="c-num" style="color:var(--accent);font-weight:700">3.6×</td><td class="c-num">0.50</td><td class="c-num"><span class="chip">gkRev BO</span></td><td class="c-num pos">+38%</td>
+</tr><tr data-band="A" data-bucket="buy" data-entry="trend" data-sec="propert" data-sym="CSIS" data-score="76">
+  <td class="c-rank">3</td>
+  <td class="c-sym"><span class="sym">CSIS</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-A" style="--v:76%">76<em>A</em></span></td>
+  <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">190</td><td class="c-num cs-s">198</td><td class="c-num c-close">204</td><td class="c-num cs-r">216</td><td class="c-num cs-r">230</td><td class="c-num cs-sl">195</td><td class="c-num">1:1.3</td><td class="c-setup">auto: core ~204 / SL 185</td>
+  <td class="c-sec grp"><span class="chip sec">propert</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+10.3</td><td class="c-num pos">+17.2</td><td class="c-num" style="color:var(--accent);font-weight:700">4.3×</td><td class="c-num">0.68</td><td class="c-num"><span class="chip">BO</span></td><td class="c-num pos">+18%</td>
+</tr><tr data-band="B" data-bucket="buy" data-entry="trend" data-sec="cyclic" data-sym="ERAA" data-score="67">
+  <td class="c-rank">4</td>
+  <td class="c-sym"><span class="sym">ERAA</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-B" style="--v:67%">67<em>B</em></span></td>
+  <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">408</td><td class="c-num cs-s">424</td><td class="c-num c-close">436</td><td class="c-num cs-r">446</td><td class="c-num cs-r">-</td><td class="c-num cs-sl">418</td><td class="c-num">1:0.6</td><td class="c-setup">auto: core ~436 / SL 401</td>
+  <td class="c-sec grp"><span class="chip sec">cyclic</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+2.4</td><td class="c-num pos">+12.9</td><td class="c-num">0.8×</td><td class="c-num">0.50</td><td class="c-num"><span class="chip">gkRev BO</span></td><td class="c-num pos">+14%</td>
+</tr><tr data-band="B" data-bucket="buy" data-entry="trend" data-sec="health" data-sym="LABS" data-score="61">
+  <td class="c-rank">5</td>
+  <td class="c-sym"><span class="sym">LABS</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-B" style="--v:61%">61<em>B</em></span></td>
+  <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">149</td><td class="c-num cs-s">152</td><td class="c-num c-close">155</td><td class="c-num cs-r">159</td><td class="c-num cs-r">166</td><td class="c-num cs-sl">150</td><td class="c-num">1:0.8</td><td class="c-setup">auto: core ~155 / SL 143</td>
+  <td class="c-sec grp"><span class="chip sec">health</span></td>
+  <td class="c-ma"><span class="chip ma ma-aboveMA">aboveMA200</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+1.3</td><td class="c-num pos">+3.3</td><td class="c-num">0.0×</td><td class="c-num">1.00</td><td class="c-num"><span class="chip">BO</span></td><td class="c-num pos">+4%</td>
+</tr><tr data-band="C" data-bucket="watch" data-entry="trend" data-sec="basic" data-sym="INCO" data-score="57">
+  <td class="c-rank">6</td>
   <td class="c-sym"><span class="sym">INCO</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
   <td class="c-score"><span class="badge b-C" style="--v:57%">57<em>C</em></span></td>
   <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
@@ -450,8 +513,80 @@
   <td class="c-fase"><span class="tag f-markup" title="arah: akumulasi (LPM naik-landai, chart) — LPM naik &amp; harga ikut naik — kenaikan sehat selama rotasi masih efisien; pantau pergeseran warna — uang (pendukung): dukung · MF +127.57 · NetF +40">Markup ✅</span></td>
   <td class="c-bm">31/07: LPM - · MF +127.57 · NetF +40 · FP 41.58% — MF+ NetBuyF+ akumulasi</td>
   <td class="c-num grp pos">+3.4</td><td class="c-num pos">+13.2</td><td class="c-num">0.2×</td><td class="c-num">1.00</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+10%</td>
+</tr><tr data-band="C" data-bucket="watch" data-entry="avoid" data-sec="energy" data-sym="BULL" data-score="54">
+  <td class="c-rank">7</td>
+  <td class="c-sym"><span class="sym">BULL</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-C" style="--v:54%">54<em>C</em></span></td>
+  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
+  <td class="c-num grp cs-s">386</td><td class="c-num cs-s">426</td><td class="c-num c-close">442</td><td class="c-num cs-r">448</td><td class="c-num cs-r">546</td><td class="c-num cs-sl">420</td><td class="c-num">1:0.3</td><td class="c-setup">auto: core ~442 / SL 397</td>
+  <td class="c-sec grp"><span class="chip sec">energy</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-distrib" title="arah: akumulasi (LPM naik-landai, chart) — LPM masih naik tapi perpindahan tidak efisien DI HARGA TINGGI — akumulasi belum habis, tetap rawan jangka pendek — uang (pendukung): hati-hati-lemah · MF -1.44 · asing diabaikan (asing tak relevan (FP 17.31% · corr 0.481))">Panas</span></td>
+  <td class="c-bm">31/07: LPM - · MF -1.44 · NetF - · FP 17.31% — MF- (asing tidak tercatat)</td>
+  <td class="c-num grp pos">+3.3</td><td class="c-num pos">+7.8</td><td class="c-num">0.5×</td><td class="c-num">0.91</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+14%</td>
+</tr><tr data-band="C" data-bucket="watch" data-entry="avoid" data-sec="energy" data-sym="IATA" data-score="54">
+  <td class="c-rank">8</td>
+  <td class="c-sym"><span class="sym">IATA</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-C" style="--v:54%">54<em>C</em></span></td>
+  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
+  <td class="c-num grp cs-s">83</td><td class="c-num cs-s">85</td><td class="c-num c-close">90</td><td class="c-num cs-r">92</td><td class="c-num cs-r">93</td><td class="c-num cs-sl">84</td><td class="c-num">1:0.3</td><td class="c-setup">auto: core ~90 / SL 81</td>
+  <td class="c-sec grp"><span class="chip sec">energy</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-distrib" title="arah: akumulasi (LPM menanjak-matang, chart) — LPM masih naik tapi perpindahan tidak efisien DI HARGA TINGGI — akumulasi belum habis, tetap rawan jangka pendek — uang (pendukung): hati-hati-lemah · MF -1.47 · asing diabaikan (asing tak relevan (FP 17.88% · corr 0.886))">Panas</span></td>
+  <td class="c-bm">31/07: LPM - · MF -1.47 · NetF - · FP 17.88% — MF- (asing tidak tercatat)</td>
+  <td class="c-num grp neg">-1.1</td><td class="c-num pos">+55.2</td><td class="c-num">1.4×</td><td class="c-num">0.60</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+43%</td>
+</tr><tr data-band="C" data-bucket="watch" data-entry="pullback" data-sec="health" data-sym="PEVE" data-score="53">
+  <td class="c-rank">9</td>
+  <td class="c-sym"><span class="sym">PEVE</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-C" style="--v:53%">53<em>C</em></span></td>
+  <td class="c-entry"><span class="es es-pullback">🔵 pullback</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">322</td><td class="c-num cs-s">326</td><td class="c-num c-close">340</td><td class="c-num cs-r">342</td><td class="c-num cs-r">364</td><td class="c-num cs-sl">322</td><td class="c-num">1:0.1</td><td class="c-setup">auto: core ~340 / SL 313</td>
+  <td class="c-sec grp"><span class="chip sec">health</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM naik-landai, tanda-lpm) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +906.23 · asing diabaikan (corr belum dicatat, FP 2.41% kurang tinggi) — belum ada: Intensity, VolRot, CorrF">arah?°</span></td>
+  <td class="c-bm">27/07: LPM 203.47 · MF +906.23 · NetF -5.76 · FP 2.41% — MF+ (asing net jual)</td>
+  <td class="c-num grp pos">+0.0</td><td class="c-num pos">+5.6</td><td class="c-num">0.5×</td><td class="c-num">1.00</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+6%</td>
+</tr><tr data-band="C" data-bucket="watch" data-entry="accum" data-sec="indust" data-sym="KOBX" data-score="52">
+  <td class="c-rank">10</td>
+  <td class="c-sym"><span class="sym">KOBX</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-C" style="--v:52%">52<em>C</em></span></td>
+  <td class="c-entry"><span class="es es-accum">🟡 akum</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">168</td><td class="c-num cs-s">173</td><td class="c-num c-close">176</td><td class="c-num cs-r">179</td><td class="c-num cs-r">186</td><td class="c-num cs-sl">170</td><td class="c-num">1:0.5</td><td class="c-setup">auto: core ~176 / SL 154</td>
+  <td class="c-sec grp"><span class="chip sec">indust</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +4.51 · asing diabaikan (corr belum dicatat, FP 3.84% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
+  <td class="c-bm">28/07: LPM - · MF +4.51 · NetF -129.39 · FP 3.84% — MF+ (asing net jual)</td>
+  <td class="c-num grp pos">+9.3</td><td class="c-num neg">-11.1</td><td class="c-num" style="color:var(--accent);font-weight:700">3.2×</td><td class="c-num">0.44</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+15%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="accum" data-sec="noncyc" data-sym="TAPG" data-score="47">
+  <td class="c-rank">11</td>
+  <td class="c-sym"><span class="sym">TAPG</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:47%">47<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-accum">🟡 akum</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF+</span></td>
+  <td class="c-num grp cs-s">1685</td><td class="c-num cs-s">1770</td><td class="c-num c-close">1800</td><td class="c-num cs-r">1910</td><td class="c-num cs-r">1940</td><td class="c-num cs-sl">1745</td><td class="c-num">1:2.0</td><td class="c-setup">auto: core ~1800 / SL 1656</td>
+  <td class="c-sec grp"><span class="chip sec">noncyc</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-markup" title="arah: akumulasi (LPM naik-landai, chart) — LPM naik &amp; harga ikut naik — kenaikan sehat selama rotasi masih efisien; pantau pergeseran warna — uang (pendukung): dukung-lemah · MF +12.16 · asing diabaikan (asing tak relevan (FP 37.14% · corr 0.213)) — belum ada: Intensity, VolRot">Markup ✅°</span></td>
+  <td class="c-bm">29/07: LPM - · MF +12.16 · NetF +632.55 · FP 37.14% — MF+ NetBuyF+ akumulasi</td>
+  <td class="c-num grp neg">-2.2</td><td class="c-num pos">+2.6</td><td class="c-num">0.5×</td><td class="c-num">0.07</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+9%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="neutral" data-sec="propert" data-sym="ARGO" data-score="47">
+  <td class="c-rank">12</td>
+  <td class="c-sym"><span class="sym">ARGO</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:47%">47<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">1055</td><td class="c-num cs-s">1090</td><td class="c-num c-close">1190</td><td class="c-num cs-r">1235</td><td class="c-num cs-r">1360</td><td class="c-num cs-sl">1075</td><td class="c-num">1:0.4</td><td class="c-setup">auto: core ~1190 / SL 1095</td>
+  <td class="c-sec grp"><span class="chip sec">propert</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+0.0</td><td class="c-num pos">+2.1</td><td class="c-num">1.5×</td><td class="c-num">0.60</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+9%</td>
 </tr><tr data-band="D" data-bucket="watch" data-entry="trend" data-sec="noncyc" data-sym="AALI" data-score="46">
-  <td class="c-rank">2</td>
+  <td class="c-rank">13</td>
   <td class="c-sym"><span class="sym">AALI</span></td>
   <td class="c-score"><span class="badge b-D" style="--v:46%">46<em>D</em></span></td>
   <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
@@ -462,8 +597,56 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +4.69 · NetF -1.79 — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 264.5 · MF +4.69 · NetF -1.79 · FP 43.91% — MF+ (asing net jual)</td>
   <td class="c-num grp pos">+1.1</td><td class="c-num pos">+8.8</td><td class="c-num">0.4×</td><td class="c-num">0.71</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+9%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="extended" data-sec="infra" data-sym="JKON" data-score="46">
+  <td class="c-rank">14</td>
+  <td class="c-sym"><span class="sym">JKON</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:46%">46<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-extended">⏸ extended</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">82</td><td class="c-num cs-s">84</td><td class="c-num c-close">86</td><td class="c-num cs-r">102</td><td class="c-num cs-r">-</td><td class="c-num cs-sl">83</td><td class="c-num">1:5.3</td><td class="c-setup">auto: core ~86 / SL 79</td>
+  <td class="c-sec grp"><span class="chip sec">infra</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp neg">-3.4</td><td class="c-num pos">+30.3</td><td class="c-num" style="color:var(--accent);font-weight:700">10.7×</td><td class="c-num">0.00</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+25%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="neutral" data-sec="cyclic" data-sym="YELO" data-score="45">
+  <td class="c-rank">15</td>
+  <td class="c-sym"><span class="sym">YELO</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:45%">45<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">89</td><td class="c-num cs-s">91</td><td class="c-num c-close">94</td><td class="c-num cs-r">97</td><td class="c-num cs-r">106</td><td class="c-num cs-sl">90</td><td class="c-num">1:0.8</td><td class="c-setup">auto: core ~94 / SL 84</td>
+  <td class="c-sec grp"><span class="chip sec">cyclic</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+8.1</td><td class="c-num pos">+23.7</td><td class="c-num" style="color:var(--accent);font-weight:700">2.5×</td><td class="c-num">0.50</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+21%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="avoid" data-sec="techno" data-sym="IRSX" data-score="45">
+  <td class="c-rank">16</td>
+  <td class="c-sym"><span class="sym">IRSX</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:45%">45<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
+  <td class="c-num grp cs-s">318</td><td class="c-num cs-s">342</td><td class="c-num c-close">372</td><td class="c-num cs-r">382</td><td class="c-num cs-r">392</td><td class="c-num cs-sl">336</td><td class="c-num">1:0.3</td><td class="c-setup">auto: core ~372 / SL 337</td>
+  <td class="c-sec grp"><span class="chip sec">techno</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-markup" title="arah: akumulasi (LPM menanjak-matang, chart) — LPM naik &amp; harga ikut naik — kenaikan sehat selama rotasi masih efisien; pantau pergeseran warna ⚠️ Vol Rotation belum hijau — perpindahan barang belum efisien, risiko jangka pendek nyata — uang (pendukung): hati-hati-lemah · MF -129.74 · asing diabaikan (asing tak relevan (FP 11.65% · corr -0.152))">Markup ✅</span></td>
+  <td class="c-bm">31/07: LPM - · MF -129.74 · NetF - · FP 11.65% — MF- (asing tidak tercatat)</td>
+  <td class="c-num grp pos">+2.2</td><td class="c-num pos">+22.4</td><td class="c-num">0.2×</td><td class="c-num">0.80</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+24%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="avoid" data-sec="noncyc" data-sym="BWPT" data-score="45">
+  <td class="c-rank">17</td>
+  <td class="c-sym"><span class="sym">BWPT</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:45%">45<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
+  <td class="c-num grp cs-s">81</td><td class="c-num cs-s">84</td><td class="c-num c-close">90</td><td class="c-num cs-r">107</td><td class="c-num cs-r">111</td><td class="c-num cs-sl">83</td><td class="c-num">1:2.4</td><td class="c-setup">auto: core ~90 / SL 83</td>
+  <td class="c-sec grp"><span class="chip sec">noncyc</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-markup" title="arah: akumulasi (LPM menanjak-matang, chart) — LPM naik &amp; harga ikut naik — kenaikan sehat selama rotasi masih efisien; pantau pergeseran warna ⚠️ Vol Rotation belum hijau — perpindahan barang belum efisien, risiko jangka pendek nyata — uang (pendukung): hati-hati-lemah · MF -323.07 · asing diabaikan (asing tak relevan (FP 14.48% · corr 0.787))">Markup ✅</span></td>
+  <td class="c-bm">31/07: LPM - · MF -323.07 · NetF - · FP 14.48% — MF- (asing tidak tercatat)</td>
+  <td class="c-num grp pos">+2.3</td><td class="c-num pos">+15.4</td><td class="c-num">0.2×</td><td class="c-num">1.00</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+14%</td>
 </tr><tr data-band="D" data-bucket="watch" data-entry="avoid" data-sec="propert" data-sym="PANI" data-score="43">
-  <td class="c-rank">3</td>
+  <td class="c-rank">18</td>
   <td class="c-sym"><span class="sym">PANI</span></td>
   <td class="c-score"><span class="badge b-D" style="--v:43%">43<em>D</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -474,32 +657,8 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -15.69 · asing diabaikan (corr belum dicatat, FP 16.22% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 578.8 · MF -15.69 · NetF +2.18 · FP 16.22% — MF- (asing net beli)</td>
   <td class="c-num grp pos">+3.2</td><td class="c-num pos">+7.1</td><td class="c-num">0.4×</td><td class="c-num">0.89</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+4%</td>
-</tr><tr data-band="D" data-bucket="watch" data-entry="avoid" data-sec="infra" data-sym="NRCA" data-score="41">
-  <td class="c-rank">4</td>
-  <td class="c-sym"><span class="sym">NRCA</span></td>
-  <td class="c-score"><span class="badge b-D" style="--v:41%">41<em>D</em></span></td>
-  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
-  <td class="c-tag"><span class="tag t-gorengan">GORENGAN</span></td>
-  <td class="c-num grp cs-s">474</td><td class="c-num cs-s">484</td><td class="c-num c-close">492</td><td class="c-num cs-r">510</td><td class="c-num cs-r">540</td><td class="c-num cs-sl">476</td><td class="c-num">1:1.1</td><td class="c-setup">435-450</td>
-  <td class="c-sec grp"><span class="chip sec">infra</span></td>
-  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -58.32 · asing diabaikan (corr belum dicatat, FP 14.79% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">17/07: LPM 196.59 · MF -58.32 · NetF -248.83 · FP 14.79% — MF- NetSell distribusi</td>
-  <td class="c-num grp pos">+0.0</td><td class="c-num pos">+2.5</td><td class="c-num">0.1×</td><td class="c-num">0.67</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+2%</td>
-</tr><tr data-band="D" data-bucket="watch" data-entry="avoid" data-sec="basic" data-sym="CITA" data-score="41">
-  <td class="c-rank">5</td>
-  <td class="c-sym"><span class="sym">CITA</span></td>
-  <td class="c-score"><span class="badge b-D" style="--v:41%">41<em>D</em></span></td>
-  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
-  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
-  <td class="c-num grp cs-s">3100</td><td class="c-num cs-s">3200</td><td class="c-num c-close">3270</td><td class="c-num cs-r">3400</td><td class="c-num cs-r">3480</td><td class="c-num cs-sl">3150</td><td class="c-num">1:1.1</td><td class="c-setup">pullback ~3094-3190</td>
-  <td class="c-sec grp"><span class="chip sec">basic</span></td>
-  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -5.34 · asing diabaikan (corr belum dicatat, FP 14.28% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">17/07: LPM 223.33 · MF -5.34 · NetF -18.83 · FP 14.28% — MF- NetSell distribusi</td>
-  <td class="c-num grp neg">-0.3</td><td class="c-num pos">+1.6</td><td class="c-num">0.1×</td><td class="c-num">0.67</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+2%</td>
 </tr><tr data-band="D" data-bucket="watch" data-entry="accum" data-sec="basic" data-sym="TINS" data-score="40">
-  <td class="c-rank">6</td>
+  <td class="c-rank">19</td>
   <td class="c-sym"><span class="sym">TINS</span></td>
   <td class="c-score"><span class="badge b-D" style="--v:40%">40<em>D</em></span></td>
   <td class="c-entry"><span class="es es-accum">🟡 akum</span></td>
@@ -510,8 +669,32 @@
   <td class="c-fase"><span class="tag f-markup" title="arah: akumulasi (LPM naik-landai, chart) — LPM naik &amp; harga ikut naik — kenaikan sehat selama rotasi masih efisien; pantau pergeseran warna — uang (pendukung): dukung-lemah · MF +83.6 · asing diabaikan (asing tak relevan (FP 23.46% · corr -0.209))">Markup ✅</span></td>
   <td class="c-bm">31/07: LPM - · MF +83.6 · NetF +150 · FP 23.46% — MF+ NetBuyF+ akumulasi</td>
   <td class="c-num grp pos">+1.6</td><td class="c-num pos">+10.1</td><td class="c-num">0.5×</td><td class="c-num">0.30</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+8%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="neutral" data-sec="infra" data-sym="KETR" data-score="40">
+  <td class="c-rank">20</td>
+  <td class="c-sym"><span class="sym">KETR</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:40%">40<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">548</td><td class="c-num cs-s">576</td><td class="c-num c-close">580</td><td class="c-num cs-r">610</td><td class="c-num cs-r">626</td><td class="c-num cs-sl">568</td><td class="c-num">1:2.5</td><td class="c-setup">auto: core ~580 / SL 534</td>
+  <td class="c-sec grp"><span class="chip sec">infra</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+5.5</td><td class="c-num pos">+5.5</td><td class="c-num">0.7×</td><td class="c-num">0.60</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+6%</td>
+</tr><tr data-band="D" data-bucket="watch" data-entry="neutral" data-sec="basic" data-sym="AYLS" data-score="40">
+  <td class="c-rank">21</td>
+  <td class="c-sym"><span class="sym">AYLS</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-D" style="--v:40%">40<em>D</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">155</td><td class="c-num cs-s">157</td><td class="c-num c-close">165</td><td class="c-num cs-r">170</td><td class="c-num cs-r">174</td><td class="c-num cs-sl">155</td><td class="c-num">1:0.5</td><td class="c-setup">auto: core ~165 / SL 152</td>
+  <td class="c-sec grp"><span class="chip sec">basic</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp neg">-1.8</td><td class="c-num pos">+10.0</td><td class="c-num">0.5×</td><td class="c-num">0.33</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+9%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="pullback" data-sec="energy" data-sym="AADI" data-score="39">
-  <td class="c-rank">7</td>
+  <td class="c-rank">22</td>
   <td class="c-sym"><span class="sym">AADI</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:39%">39<em>E</em></span></td>
   <td class="c-entry"><span class="es es-pullback">🔵 pullback</span></td>
@@ -522,8 +705,20 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +45.52 · NetF -5.72 — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 510.8 · MF +45.52 · NetF -5.72 · FP 32.82% — MF+ (asing net jual)</td>
   <td class="c-num grp pos">+0.3</td><td class="c-num pos">+3.4</td><td class="c-num">0.1×</td><td class="c-num">0.67</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+4%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="neutral" data-sec="cyclic" data-sym="MAPA" data-score="39">
+  <td class="c-rank">23</td>
+  <td class="c-sym"><span class="sym">MAPA</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:39%">39<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">652</td><td class="c-num cs-s">666</td><td class="c-num c-close">670</td><td class="c-num cs-r">680</td><td class="c-num cs-r">728</td><td class="c-num cs-sl">656</td><td class="c-num">1:0.7</td><td class="c-setup">auto: core ~670 / SL 616</td>
+  <td class="c-sec grp"><span class="chip sec">cyclic</span></td>
+  <td class="c-ma"><span class="chip ma ma-gkReversal">gkReversal</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp neg">-0.7</td><td class="c-num pos">+12.6</td><td class="c-num">0.7×</td><td class="c-num">0.20</td><td class="c-num"><span class="chip">gkRev</span></td><td class="c-num pos">+8%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="basic" data-sym="HRUM" data-score="38">
-  <td class="c-rank">8</td>
+  <td class="c-rank">24</td>
   <td class="c-sym"><span class="sym">HRUM</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:38%">38<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -535,7 +730,7 @@
   <td class="c-bm">17/07: LPM 221.49 · MF -115.58 · NetF -540.39 · FP 18.23% — MF- NetSell distribusi</td>
   <td class="c-num grp neg">-0.6</td><td class="c-num pos">+10.0</td><td class="c-num">0.7×</td><td class="c-num">0.25</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+9%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="basic" data-sym="AMMN" data-score="37">
-  <td class="c-rank">9</td>
+  <td class="c-rank">25</td>
   <td class="c-sym"><span class="sym">AMMN</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:37%">37<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -546,8 +741,20 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati · MF -0.69 · NetF -34.42 — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 172.9 · MF -0.69 · NetF -34.42 · FP 47.64% — MF- NetSell distribusi</td>
   <td class="c-num grp neg">-1.2</td><td class="c-num pos">+5.5</td><td class="c-num">0.2×</td><td class="c-num">0.08</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+8%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="noncyc" data-sym="UNSP" data-score="37">
+  <td class="c-rank">26</td>
+  <td class="c-sym"><span class="sym">UNSP</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:37%">37<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-avoid">⛔ lemah</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">191</td><td class="c-num cs-s">204</td><td class="c-num c-close">206</td><td class="c-num cs-r">216</td><td class="c-num cs-r">240</td><td class="c-num cs-sl">200</td><td class="c-num">1:1.7</td><td class="c-setup">auto: core ~206 / SL 185</td>
+  <td class="c-sec grp"><span class="chip sec">noncyc</span></td>
+  <td class="c-ma"><span class="chip ma ma-below">below</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM naik-landai, tanda-lpm) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +13.42 · asing diabaikan (corr belum dicatat, FP 2.18% kurang tinggi) — belum ada: Intensity, VolRot, CorrF">arah?°</span></td>
+  <td class="c-bm">28/07: LPM - · MF +13.42 · NetF +0 · FP 2.18% — MF+ (asing net jual)</td>
+  <td class="c-num grp pos">+4.0</td><td class="c-num neg">-4.6</td><td class="c-num" style="color:var(--accent);font-weight:700">2.3×</td><td class="c-num">1.00</td><td class="c-num"><span class="chip">-</span></td><td class="c-num neg">-4%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="health" data-sym="MERK" data-score="36">
-  <td class="c-rank">10</td>
+  <td class="c-rank">27</td>
   <td class="c-sym"><span class="sym">MERK</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:36%">36<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -558,8 +765,20 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -39.63 · asing diabaikan (corr belum dicatat, FP 8.32% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 104.4 · MF -39.63 · NetF +132.93 · FP 8.32% — MF- (asing net beli)</td>
   <td class="c-num grp pos">+0.8</td><td class="c-num pos">+1.0</td><td class="c-num">0.5×</td><td class="c-num">0.70</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+2%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="neutral" data-sec="cyclic" data-sym="FUTR" data-score="36">
+  <td class="c-rank">28</td>
+  <td class="c-sym"><span class="sym">FUTR</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:36%">36<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">290</td><td class="c-num cs-s">300</td><td class="c-num c-close">312</td><td class="c-num cs-r">316</td><td class="c-num cs-r">410</td><td class="c-num cs-sl">296</td><td class="c-num">1:0.3</td><td class="c-setup">auto: core ~312 / SL 267</td>
+  <td class="c-sec grp"><span class="chip sec">cyclic</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp neg">-5.5</td><td class="c-num pos">+15.6</td><td class="c-num">0.9×</td><td class="c-num">0.24</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+22%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="techno" data-sym="WIFI" data-score="35">
-  <td class="c-rank">11</td>
+  <td class="c-rank">29</td>
   <td class="c-sym"><span class="sym">WIFI</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:35%">35<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -571,7 +790,7 @@
   <td class="c-bm">17/07: LPM -456.1 · MF -255.29 · NetF -11.62 · FP 19.46% — MF- NetSell distribusi</td>
   <td class="c-num grp pos">+1.3</td><td class="c-num neg">-0.8</td><td class="c-num">0.1×</td><td class="c-num">0.75</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+4%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="noncyc" data-sym="SMAR" data-score="34">
-  <td class="c-rank">12</td>
+  <td class="c-rank">30</td>
   <td class="c-sym"><span class="sym">SMAR</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:34%">34<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -583,7 +802,7 @@
   <td class="c-bm">17/07: LPM 147.89 · MF -344.53 · NetF -25.63 · FP 10.6% — MF- NetSell distribusi</td>
   <td class="c-num grp pos">+0.8</td><td class="c-num pos">+7.7</td><td class="c-num">0.5×</td><td class="c-num">0.83</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+8%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="accum" data-sec="techno" data-sym="WGSH" data-score="34">
-  <td class="c-rank">13</td>
+  <td class="c-rank">31</td>
   <td class="c-sym"><span class="sym">WGSH</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:34%">34<em>E</em></span></td>
   <td class="c-entry"><span class="es es-accum">🟡 akum</span></td>
@@ -595,7 +814,7 @@
   <td class="c-bm">31/07: LPM -16.99 · MF +9.99 · NetF +310.7 · FP 3.25% — MF+ NetBuyF+ akumulasi</td>
   <td class="c-num grp neg">-4.5</td><td class="c-num pos">+2.7</td><td class="c-num">0.1×</td><td class="c-num">0.22</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+6%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="cyclic" data-sym="AUTO" data-score="33">
-  <td class="c-rank">14</td>
+  <td class="c-rank">32</td>
   <td class="c-sym"><span class="sym">AUTO</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:33%">33<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -607,7 +826,7 @@
   <td class="c-bm">29/07: LPM - · MF -52.34 · NetF +696.05 · FP 33.41% — MF- (asing net beli)</td>
   <td class="c-num grp pos">+0.0</td><td class="c-num pos">+2.6</td><td class="c-num">0.1×</td><td class="c-num">0.33</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+6%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="noncyc" data-sym="SSMS" data-score="33">
-  <td class="c-rank">15</td>
+  <td class="c-rank">33</td>
   <td class="c-sym"><span class="sym">SSMS</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:33%">33<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -618,20 +837,44 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -21.98 · asing diabaikan (corr belum dicatat, FP 18.8% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 383.51 · MF -21.98 · NetF -1.58 · FP 18.8% — MF- NetSell distribusi</td>
   <td class="c-num grp neg">-0.5</td><td class="c-num pos">+5.3</td><td class="c-num">0.5×</td><td class="c-num">0.50</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+7%</td>
-</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="infra" data-sym="DGIK" data-score="33">
-  <td class="c-rank">16</td>
-  <td class="c-sym"><span class="sym">DGIK</span></td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="pullback" data-sec="cyclic" data-sym="SMSM" data-score="33">
+  <td class="c-rank">34</td>
+  <td class="c-sym"><span class="sym">SMSM</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:33%">33<em>E</em></span></td>
-  <td class="c-entry"><span class="es es-avoid">⛔ lemah</span></td>
-  <td class="c-tag"><span class="tag t-mf">MF+</span></td>
-  <td class="c-num grp cs-s">114</td><td class="c-num cs-s">121</td><td class="c-num c-close">127</td><td class="c-num cs-r">130</td><td class="c-num cs-r">134</td><td class="c-num cs-sl">119</td><td class="c-num">1:0.4</td><td class="c-setup">125-132</td>
-  <td class="c-sec grp"><span class="chip sec">infra</span></td>
-  <td class="c-ma"><span class="chip ma ma-below">below</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +22.4 · asing diabaikan (corr belum dicatat, FP 11.11% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">17/07: LPM 19.5 · MF +22.4 · NetF +72.2 · FP 11.11% — MF+ NetBuyF+ akumulasi</td>
-  <td class="c-num grp pos">+0.8</td><td class="c-num neg">-0.8</td><td class="c-num">0.1×</td><td class="c-num">0.67</td><td class="c-num"><span class="chip">-</span></td><td class="c-num neg">-2%</td>
+  <td class="c-entry"><span class="es es-pullback">🔵 pullback</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">1700</td><td class="c-num cs-s">1765</td><td class="c-num c-close">1795</td><td class="c-num cs-r">1815</td><td class="c-num cs-r">1845</td><td class="c-num cs-sl">1740</td><td class="c-num">1:0.4</td><td class="c-setup">auto: core ~1795 / SL 1651</td>
+  <td class="c-sec grp"><span class="chip sec">cyclic</span></td>
+  <td class="c-ma"><span class="chip ma ma-aboveMA">aboveMA200</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp neg">-0.3</td><td class="c-num pos">+3.5</td><td class="c-num">0.7×</td><td class="c-num">0.67</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+3%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="accum" data-sec="basic" data-sym="ISSP" data-score="33">
+  <td class="c-rank">35</td>
+  <td class="c-sym"><span class="sym">ISSP</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:33%">33<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-accum">🟡 akum</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">418</td><td class="c-num cs-s">430</td><td class="c-num c-close">438</td><td class="c-num cs-r">460</td><td class="c-num cs-r">470</td><td class="c-num cs-sl">424</td><td class="c-num">1:1.6</td><td class="c-setup">auto: core ~438 / SL 403</td>
+  <td class="c-sec grp"><span class="chip sec">basic</span></td>
+  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +27.09 · asing diabaikan (corr belum dicatat, FP 3.67% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
+  <td class="c-bm">16/07: LPM -55.1 · MF +27.09 · NetF -0.016 · FP 3.67% — MF+ (asing net jual)</td>
+  <td class="c-num grp pos">+0.0</td><td class="c-num pos">+2.3</td><td class="c-num">0.1×</td><td class="c-num">0.29</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+7%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="neutral" data-sec="energy" data-sym="APEX" data-score="32">
+  <td class="c-rank">36</td>
+  <td class="c-sym"><span class="sym">APEX</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:32%">32<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">161</td><td class="c-num cs-s">165</td><td class="c-num c-close">167</td><td class="c-num cs-r">183</td><td class="c-num cs-r">187</td><td class="c-num cs-sl">163</td><td class="c-num">1:4.0</td><td class="c-setup">auto: core ~167 / SL 153</td>
+  <td class="c-sec grp"><span class="chip sec">energy</span></td>
+  <td class="c-ma"><span class="chip ma ma-early">early</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+1.2</td><td class="c-num pos">+17.6</td><td class="c-num">0.6×</td><td class="c-num">0.43</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+16%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="pullback" data-sec="finance" data-sym="BDMN" data-score="31">
-  <td class="c-rank">17</td>
+  <td class="c-rank">37</td>
   <td class="c-sym"><span class="sym">BDMN</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:31%">31<em>E</em></span></td>
   <td class="c-entry"><span class="es es-pullback">🔵 pullback</span></td>
@@ -642,20 +885,32 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM naik-landai, tanda-lpm) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +20.1 · asing diabaikan (corr belum dicatat, FP 21.61% kurang tinggi) — belum ada: Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">27/07: LPM 452.1 · MF +20.1 · NetF -970.62 · FP 21.61% — MF+ (asing net jual)</td>
   <td class="c-num grp pos">+0.0</td><td class="c-num pos">+2.7</td><td class="c-num">0.1×</td><td class="c-num">0.00</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+1%</td>
-</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="energy" data-sym="TOBA" data-score="31">
-  <td class="c-rank">18</td>
-  <td class="c-sym"><span class="sym">TOBA</span></td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="noncyc" data-sym="AYAM" data-score="31">
+  <td class="c-rank">38</td>
+  <td class="c-sym"><span class="sym">AYAM</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:31%">31<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
-  <td class="c-tag"><span class="tag t-gorengan">GORENGAN</span></td>
-  <td class="c-num grp cs-s">438</td><td class="c-num cs-s">452</td><td class="c-num c-close">460</td><td class="c-num cs-r">500</td><td class="c-num cs-r">516</td><td class="c-num cs-sl">446</td><td class="c-num">1:2.9</td><td class="c-setup">448-464</td>
-  <td class="c-sec grp"><span class="chip sec">energy</span></td>
-  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -60.26 · asing diabaikan (corr belum dicatat, FP 14.06% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">28/07: LPM - · MF -60.26 · NetF +77.45 · FP 14.06% — MF- (asing net beli)</td>
-  <td class="c-num grp pos">+1.8</td><td class="c-num pos">+0.0</td><td class="c-num">0.2×</td><td class="c-num">0.57</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+2%</td>
+  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
+  <td class="c-num grp cs-s">388</td><td class="c-num cs-s">410</td><td class="c-num c-close">458</td><td class="c-num cs-r">472</td><td class="c-num cs-r">-</td><td class="c-num cs-sl">404</td><td class="c-num">1:0.3</td><td class="c-setup">auto: core ~458 / SL 421</td>
+  <td class="c-sec grp"><span class="chip sec">noncyc</span></td>
+  <td class="c-ma"><span class="chip ma ma-perfectOrder">perfectOrder</span></td>
+  <td class="c-fase"><span class="tag f-distrib" title="arah: akumulasi (LPM menanjak-matang, chart) — LPM masih naik tapi perpindahan tidak efisien DI HARGA TINGGI — akumulasi belum habis, tetap rawan jangka pendek — uang (pendukung): hati-hati-lemah · MF -43.02 · asing diabaikan (asing tak relevan (FP 11.62% · corr 0.801))">Panas</span></td>
+  <td class="c-bm">31/07: LPM - · MF -43.02 · NetF - · FP 11.62% — MF- (asing tidak tercatat)</td>
+  <td class="c-num grp pos">+2.2</td><td class="c-num pos">+15.1</td><td class="c-num">0.6×</td><td class="c-num">0.63</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+18%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="trend" data-sec="trans" data-sym="HATM" data-score="31">
+  <td class="c-rank">39</td>
+  <td class="c-sym"><span class="sym">HATM</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:31%">31<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF+</span></td>
+  <td class="c-num grp cs-s">462</td><td class="c-num cs-s">470</td><td class="c-num c-close">550</td><td class="c-num cs-r">596</td><td class="c-num cs-r">-</td><td class="c-num cs-sl">462</td><td class="c-num">1:0.5</td><td class="c-setup">auto: core ~550 / SL 487</td>
+  <td class="c-sec grp"><span class="chip sec">trans</span></td>
+  <td class="c-ma"><span class="chip ma ma-perfectOrder">perfectOrder</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +2.53 · asing diabaikan (corr belum dicatat, FP 9.31% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
+  <td class="c-bm">28/07: LPM - · MF +2.53 · NetF +88.85 · FP 9.31% — MF+ NetBuyF+ akumulasi</td>
+  <td class="c-num grp pos">+4.8</td><td class="c-num pos">+13.6</td><td class="c-num">0.8×</td><td class="c-num">0.75</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+17%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="trend" data-sec="noncyc" data-sym="GGRM" data-score="30">
-  <td class="c-rank">19</td>
+  <td class="c-rank">40</td>
   <td class="c-sym"><span class="sym">GGRM</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:30%">30<em>E</em></span></td>
   <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
@@ -667,7 +922,7 @@
   <td class="c-bm">29/07: LPM - · MF +5.86 · NetF -3.22 · FP 31.94% — MF+ (asing net jual)</td>
   <td class="c-num grp pos">+1.1</td><td class="c-num pos">+7.5</td><td class="c-num">0.5×</td><td class="c-num">0.54</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+12%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="pullback" data-sec="energy" data-sym="ITMG" data-score="30">
-  <td class="c-rank">20</td>
+  <td class="c-rank">41</td>
   <td class="c-sym"><span class="sym">ITMG</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:30%">30<em>E</em></span></td>
   <td class="c-entry"><span class="es es-pullback">🔵 pullback</span></td>
@@ -678,8 +933,56 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +1.23 · NetF -19.52 — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 88 · MF +1.23 · NetF -19.52 · FP 40.29% — MF+ (asing net jual)</td>
   <td class="c-num grp neg">-0.2</td><td class="c-num pos">+1.4</td><td class="c-num">0.1×</td><td class="c-num">0.00</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+2%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="trend" data-sec="cyclic" data-sym="KOTA" data-score="30">
+  <td class="c-rank">42</td>
+  <td class="c-sym"><span class="sym">KOTA</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:30%">30<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-trend">🟢 trend</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF+</span></td>
+  <td class="c-num grp cs-s">115</td><td class="c-num cs-s">124</td><td class="c-num c-close">158</td><td class="c-num cs-r">173</td><td class="c-num cs-r">185</td><td class="c-num cs-sl">122</td><td class="c-num">1:0.4</td><td class="c-setup">auto: core ~158 / SL 131</td>
+  <td class="c-sec grp"><span class="chip sec">cyclic</span></td>
+  <td class="c-ma"><span class="chip ma ma-perfectOrder">perfectOrder</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: jeda (LPM mendatar, chart) — LPM mendatar di harga tinggi — akumulasi berhenti bertambah; butuh Vol Rotation utk memastikan — uang (pendukung): dukung-lemah · MF +329.11 · asing diabaikan (asing tak relevan (FP 15.77% · corr 0.169)) — belum ada: Intensity, VolRot">Panas/jeda°</span></td>
+  <td class="c-bm">28/07: LPM - · MF +329.11 · NetF +1.24 · FP 15.77% — MF+ NetBuyF+ akumulasi</td>
+  <td class="c-num grp pos">+4.0</td><td class="c-num pos">+23.4</td><td class="c-num">0.9×</td><td class="c-num">0.67</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+39%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="pullback" data-sec="energy" data-sym="ELSA" data-score="29">
+  <td class="c-rank">43</td>
+  <td class="c-sym"><span class="sym">ELSA</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:29%">29<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-pullback">🔵 pullback</span></td>
+  <td class="c-tag"><span class="tag t-konsensuskuat">⭐KONSENSUS-KUAT</span></td>
+  <td class="c-num grp cs-s">652</td><td class="c-num cs-s">672</td><td class="c-num c-close">700</td><td class="c-num cs-r">706</td><td class="c-num cs-r">756</td><td class="c-num cs-sl">662</td><td class="c-num">1:0.2</td><td class="c-setup">auto: core ~700 / SL 644</td>
+  <td class="c-sec grp"><span class="chip sec">energy</span></td>
+  <td class="c-ma"><span class="chip ma ma-aboveMA">aboveMA200</span></td>
+  <td class="c-fase"><span class="tag f-markup" title="arah: akumulasi (LPM menanjak-matang, chart) — LPM naik &amp; harga ikut naik — kenaikan sehat selama rotasi masih efisien; pantau pergeseran warna — uang (pendukung): dukung-lemah · MF +184.52 · asing diabaikan (asing tak relevan (FP 21.04% · corr -0.326)) — belum ada: Intensity, VolRot">Markup ✅°</span></td>
+  <td class="c-bm">29/07: LPM - · MF +184.52 · NetF -3.1 · FP 21.04% — MF+ (asing net jual)</td>
+  <td class="c-num grp pos">+0.0</td><td class="c-num pos">+2.2</td><td class="c-num">0.2×</td><td class="c-num">0.20</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+5%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="energy" data-sym="BSSR" data-score="29">
+  <td class="c-rank">44</td>
+  <td class="c-sym"><span class="sym">BSSR</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:29%">29<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
+  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
+  <td class="c-num grp cs-s">4135</td><td class="c-num cs-s">4225</td><td class="c-num c-close">4320</td><td class="c-num cs-r">4570</td><td class="c-num cs-r">-</td><td class="c-num cs-sl">4160</td><td class="c-num">1:1.6</td><td class="c-setup">auto: core ~4320 / SL 3974</td>
+  <td class="c-sec grp"><span class="chip sec">energy</span></td>
+  <td class="c-ma"><span class="chip ma ma-perfectOrder">perfectOrder</span></td>
+  <td class="c-fase"><span class="tag f-akum" title="arah: akumulasi (LPM menanjak-matang, chart) — LPM sudah matang tapi Intensity belum spike — fase gerak belum tiba, sabar — uang (pendukung): hati-hati-lemah · MF -1.24 · asing diabaikan (asing tak relevan (FP 12.3% · corr 0.509))">Persiapan</span></td>
+  <td class="c-bm">31/07: LPM - · MF -1.24 · NetF +0.8 · FP 12.3% — MF- (asing net beli)</td>
+  <td class="c-num grp pos">+0.2</td><td class="c-num pos">+1.9</td><td class="c-num">0.2×</td><td class="c-num">0.50</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+2%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="neutral" data-sec="indust" data-sym="HYGN" data-score="29">
+  <td class="c-rank">45</td>
+  <td class="c-sym"><span class="sym">HYGN</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:29%">29<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-neutral">· netral</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">162</td><td class="c-num cs-s">167</td><td class="c-num c-close">169</td><td class="c-num cs-r">173</td><td class="c-num cs-r">194</td><td class="c-num cs-sl">164</td><td class="c-num">1:0.8</td><td class="c-setup">auto: core ~169 / SL 155</td>
+  <td class="c-sec grp"><span class="chip sec">indust</span></td>
+  <td class="c-ma"><span class="chip ma ma-aboveMA">aboveMA200</span></td>
+  <td class="c-fase"><span class="tag f-net">BM?</span></td>
+  <td class="c-bm">-</td>
+  <td class="c-num grp pos">+2.4</td><td class="c-num pos">+5.6</td><td class="c-num">1.0×</td><td class="c-num">0.80</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+6%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="indust" data-sym="MARK" data-score="28">
-  <td class="c-rank">21</td>
+  <td class="c-rank">46</td>
   <td class="c-sym"><span class="sym">MARK</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:28%">28<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -690,56 +993,20 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -26.49 · asing diabaikan (corr belum dicatat, FP 17.54% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">17/07: LPM 149.99 · MF -26.49 · NetF -1.6 · FP 17.54% — MF- NetSell distribusi</td>
   <td class="c-num grp pos">+0.9</td><td class="c-num pos">+13.0</td><td class="c-num">0.3×</td><td class="c-num">0.40</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+5%</td>
-</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="infra" data-sym="SSIA" data-score="27">
-  <td class="c-rank">22</td>
-  <td class="c-sym"><span class="sym">SSIA</span></td>
-  <td class="c-score"><span class="badge b-E" style="--v:27%">27<em>E</em></span></td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="propert" data-sym="DMAS" data-score="28">
+  <td class="c-rank">47</td>
+  <td class="c-sym"><span class="sym">DMAS</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:28%">28<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
   <td class="c-tag"><span class="tag t-mf">MF-</span></td>
-  <td class="c-num grp cs-s">1595</td><td class="c-num cs-s">1620</td><td class="c-num c-close">1650</td><td class="c-num cs-r">1740</td><td class="c-num cs-r">1765</td><td class="c-num cs-sl">1595</td><td class="c-num">1:1.6</td><td class="c-setup">trigger MF flip / break 1660</td>
-  <td class="c-sec grp"><span class="chip sec">infra</span></td>
-  <td class="c-ma"><span class="chip ma ma-aboveMA">aboveMA200</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -133.92 · asing diabaikan (corr belum dicatat, FP 18.39% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">17/07: LPM 1.49 · MF -133.92 · NetF -5.46 · FP 18.39% — MF- NetSell distribusi</td>
-  <td class="c-num grp pos">+0.0</td><td class="c-num pos">+2.8</td><td class="c-num">0.1×</td><td class="c-num">0.43</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+1%</td>
-</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="propert" data-sym="SMRA" data-score="27">
-  <td class="c-rank">23</td>
-  <td class="c-sym"><span class="sym">SMRA</span></td>
-  <td class="c-score"><span class="badge b-E" style="--v:27%">27<em>E</em></span></td>
-  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
-  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
-  <td class="c-num grp cs-s">310</td><td class="c-num cs-s">314</td><td class="c-num c-close">316</td><td class="c-num cs-r">324</td><td class="c-num cs-r">330</td><td class="c-num cs-sl">310</td><td class="c-num">1:1.3</td><td class="c-setup">pullback ~289-298</td>
+  <td class="c-num grp cs-s">141</td><td class="c-num cs-s">143</td><td class="c-num c-close">146</td><td class="c-num cs-r">159</td><td class="c-num cs-r">162</td><td class="c-num cs-sl">141</td><td class="c-num">1:2.6</td><td class="c-setup">auto: core ~146 / SL 134</td>
   <td class="c-sec grp"><span class="chip sec">propert</span></td>
-  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -318.63 · asing diabaikan (corr belum dicatat, FP 19.37% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">17/07: LPM 330.38 · MF -318.63 · NetF -371.49 · FP 19.37% — MF- NetSell distribusi</td>
-  <td class="c-num grp pos">+0.0</td><td class="c-num neg">-1.3</td><td class="c-num">0.3×</td><td class="c-num">0.50</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+2%</td>
-</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="energy" data-sym="INDY" data-score="26">
-  <td class="c-rank">24</td>
-  <td class="c-sym"><span class="sym">INDY</span></td>
-  <td class="c-score"><span class="badge b-E" style="--v:26%">26<em>E</em></span></td>
-  <td class="c-entry"><span class="es es-avoid">⛔ lemah</span></td>
-  <td class="c-tag"><span class="tag t-greenbase">GREEN-base</span></td>
-  <td class="c-num grp cs-s">1915</td><td class="c-num cs-s">2150</td><td class="c-num c-close">2380</td><td class="c-num cs-r">2520</td><td class="c-num cs-r">2725</td><td class="c-num cs-sl">2120</td><td class="c-num">1:0.5</td><td class="c-setup">2200-2240</td>
-  <td class="c-sec grp"><span class="chip sec">energy</span></td>
-  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM berbalik-turun, tanda-lpm) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +30.18 · asing diabaikan (corr belum dicatat, FP 26.45% kurang tinggi) — belum ada: Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">28/07: LPM - · MF +30.18 · NetF -31.79 · FP 26.45% — MF+ (asing net jual)</td>
-  <td class="c-num grp pos">+1.7</td><td class="c-num neg">-8.8</td><td class="c-num">0.4×</td><td class="c-num">0.38</td><td class="c-num"><span class="chip">-</span></td><td class="c-num pos">+0%</td>
-</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="basic" data-sym="ANTM" data-score="26">
-  <td class="c-rank">25</td>
-  <td class="c-sym"><span class="sym">ANTM</span></td>
-  <td class="c-score"><span class="badge b-E" style="--v:26%">26<em>E</em></span></td>
-  <td class="c-entry"><span class="es es-avoid">⛔ lemah</span></td>
-  <td class="c-tag"><span class="tag t-mf">MF+</span></td>
-  <td class="c-num grp cs-s">2740</td><td class="c-num cs-s">2800</td><td class="c-num c-close">2880</td><td class="c-num cs-r">2950</td><td class="c-num cs-r">3000</td><td class="c-num cs-sl">2760</td><td class="c-num">1:0.6</td><td class="c-setup">3040-3080</td>
-  <td class="c-sec grp"><span class="chip sec">basic</span></td>
-  <td class="c-ma"><span class="chip ma ma-mid">mid</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung · MF +465.02 · NetF +10.94 — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">17/07: LPM -81.9 · MF +465.02 · NetF +10.94 · FP 37.02% — MF+ NetBuyF+ akumulasi</td>
-  <td class="c-num grp pos">+0.3</td><td class="c-num neg">-0.3</td><td class="c-num">0.2×</td><td class="c-num">0.00</td><td class="c-num"><span class="chip">-</span></td><td class="c-num neg">-2%</td>
+  <td class="c-ma"><span class="chip ma ma-perfectOrder">perfectOrder</span></td>
+  <td class="c-fase"><span class="tag f-markup" title="arah: akumulasi (LPM naik-landai, chart) — LPM naik &amp; harga ikut naik — kenaikan sehat selama rotasi masih efisien; pantau pergeseran warna — uang (pendukung): hati-hati-lemah · MF -250.71 · asing diabaikan (asing tak relevan (FP 21.25% · corr 0.484))">Markup ✅</span></td>
+  <td class="c-bm">31/07: LPM - · MF -250.71 · NetF +8 · FP 21.25% — MF- (asing net beli)</td>
+  <td class="c-num grp neg">-0.7</td><td class="c-num pos">+5.0</td><td class="c-num">0.5×</td><td class="c-num">0.33</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+4%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="cyclic" data-sym="VERN" data-score="24">
-  <td class="c-rank">26</td>
+  <td class="c-rank">48</td>
   <td class="c-sym"><span class="sym">VERN</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:24%">24<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -750,8 +1017,20 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -13.31 · asing diabaikan (corr belum dicatat, FP 8.1% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">28/07: LPM - · MF -13.31 · NetF -143.74 · FP 8.1% — MF- NetSell distribusi</td>
   <td class="c-num grp pos">+1.0</td><td class="c-num pos">+1.5</td><td class="c-num">0.1×</td><td class="c-num">0.25</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+6%</td>
+</tr><tr data-band="E" data-bucket="avoid" data-entry="accum" data-sec="cyclic" data-sym="GJTL" data-score="24">
+  <td class="c-rank">49</td>
+  <td class="c-sym"><span class="sym">GJTL</span><span class="auto-tag" title="auto-promote: mover scan money-confirmed (bukan greenlist kurasi)">⭐AUTO</span></td>
+  <td class="c-score"><span class="badge b-E" style="--v:24%">24<em>E</em></span></td>
+  <td class="c-entry"><span class="es es-accum">🟡 akum</span></td>
+  <td class="c-tag"><span class="tag t-konsensus">⭐KONSENSUS</span></td>
+  <td class="c-num grp cs-s">1235</td><td class="c-num cs-s">1260</td><td class="c-num c-close">1325</td><td class="c-num cs-r">1345</td><td class="c-num cs-r">-</td><td class="c-num cs-sl">1240</td><td class="c-num">1:0.2</td><td class="c-setup">auto: core ~1325 / SL 1219</td>
+  <td class="c-sec grp"><span class="chip sec">cyclic</span></td>
+  <td class="c-ma"><span class="chip ma ma-perfectOrder">perfectOrder</span></td>
+  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM naik-landai, tanda-lpm) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): dukung-lemah · MF +2.57 · asing diabaikan (corr belum dicatat, FP 22.11% kurang tinggi) — belum ada: Intensity, VolRot, CorrF">arah?°</span></td>
+  <td class="c-bm">27/07: LPM 118.1 · MF +2.57 · NetF -2.04 · FP 22.11% — MF+ (asing net jual)</td>
+  <td class="c-num grp pos">+1.1</td><td class="c-num pos">+10.4</td><td class="c-num">0.3×</td><td class="c-num">0.43</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+14%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="noncyc" data-sym="GULA" data-score="21">
-  <td class="c-rank">27</td>
+  <td class="c-rank">50</td>
   <td class="c-sym"><span class="sym">GULA</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:21%">21<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -763,7 +1042,7 @@
   <td class="c-bm">17/07: LPM 282.27 · MF -51.22 · NetF -3.88 · FP 15.18% — MF- NetSell distribusi</td>
   <td class="c-num grp pos">+0.6</td><td class="c-num pos">+5.8</td><td class="c-num">0.3×</td><td class="c-num">0.40</td><td class="c-num"><span class="chip">PO</span></td><td class="c-num pos">+11%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="accum" data-sec="finance" data-sym="BTPN" data-score="21">
-  <td class="c-rank">28</td>
+  <td class="c-rank">51</td>
   <td class="c-sym"><span class="sym">BTPN</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:21%">21<em>E</em></span></td>
   <td class="c-entry"><span class="es es-accum">🟡 akum</span></td>
@@ -775,7 +1054,7 @@
   <td class="c-bm">17/07: LPM -108.58 · MF +162.73 · NetF -11 · FP 6.64% — MF+ (asing net jual)</td>
   <td class="c-num grp neg">-0.9</td><td class="c-num pos">+0.0</td><td class="c-num">0.9×</td><td class="c-num">0.29</td><td class="c-num"><span class="chip">-</span></td><td class="c-num neg">-2%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="finance" data-sym="SRTG" data-score="18">
-  <td class="c-rank">29</td>
+  <td class="c-rank">52</td>
   <td class="c-sym"><span class="sym">SRTG</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:18%">18<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -786,20 +1065,8 @@
   <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati-lemah · MF -19.5 · asing diabaikan (corr belum dicatat, FP 20.77% kurang tinggi) — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
   <td class="c-bm">28/07: LPM - · MF -19.5 · NetF +336.17 · FP 20.77% — MF- (asing net beli)</td>
   <td class="c-num grp neg">-3.1</td><td class="c-num neg">-2.0</td><td class="c-num">0.7×</td><td class="c-num">0.30</td><td class="c-num"><span class="chip">-</span></td><td class="c-num neg">-0%</td>
-</tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="propert" data-sym="PWON" data-score="18">
-  <td class="c-rank">30</td>
-  <td class="c-sym"><span class="sym">PWON</span></td>
-  <td class="c-score"><span class="badge b-E" style="--v:18%">18<em>E</em></span></td>
-  <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
-  <td class="c-tag"><span class="tag t-mf">MF-</span></td>
-  <td class="c-num grp cs-s">238</td><td class="c-num cs-s">240</td><td class="c-num c-close">260</td><td class="c-num cs-r">264</td><td class="c-num cs-r">272</td><td class="c-num cs-sl">236</td><td class="c-num">1:0.2</td><td class="c-setup">trigger MF flip / break 270</td>
-  <td class="c-sec grp"><span class="chip sec">propert</span></td>
-  <td class="c-ma"><span class="chip ma ma-below">below</span></td>
-  <td class="c-fase"><span class="tag f-net" title="arah: tak-diketahui (LPM ?) — kemiringan LPM belum diketahui — minta LPM dari chart — uang (pendukung): hati-hati · MF -599.84 · NetF -4.94 — belum ada: LPM-arah, Intensity, VolRot, CorrF">arah?°</span></td>
-  <td class="c-bm">17/07: LPM 105.87 · MF -599.84 · NetF -4.94 · FP 34.92% — MF- NetSell distribusi</td>
-  <td class="c-num grp pos">+0.8</td><td class="c-num neg">-0.8</td><td class="c-num">0.2×</td><td class="c-num">0.50</td><td class="c-num"><span class="chip">-</span></td><td class="c-num neg">-1%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="infra" data-sym="PPRE" data-score="18">
-  <td class="c-rank">31</td>
+  <td class="c-rank">53</td>
   <td class="c-sym"><span class="sym">PPRE</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:18%">18<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ MF−</span></td>
@@ -811,7 +1078,7 @@
   <td class="c-bm">17/07: LPM 60.73 · MF -83.97 · NetF -419.56 · FP 15.18% — MF- NetSell distribusi</td>
   <td class="c-num grp pos">+2.9</td><td class="c-num pos">+0.0</td><td class="c-num">0.8×</td><td class="c-num">0.22</td><td class="c-num"><span class="chip">-</span></td><td class="c-num neg">-2%</td>
 </tr><tr data-band="E" data-bucket="avoid" data-entry="avoid" data-sec="propert" data-sym="RBMS" data-score="17">
-  <td class="c-rank">32</td>
+  <td class="c-rank">54</td>
   <td class="c-sym"><span class="sym">RBMS</span></td>
   <td class="c-score"><span class="badge b-E" style="--v:17%">17<em>E</em></span></td>
   <td class="c-entry"><span class="es es-avoid">⛔ lemah</span></td>
@@ -828,7 +1095,7 @@
   </details>
 
   <details class="rsw-sec sec-collap" open>
-    <summary class="sec-sum">📡 Radar Scan — mover di luar daftar pantauan <span class="fca-badge rsw-badge">132 nama · langsung dari scan</span></summary>
+    <summary class="sec-sum">📡 Radar Scan — mover di luar daftar pantauan <span class="fca-badge rsw-badge">120 nama · langsung dari scan</span></summary>
     <p class="fca-note"><b>Aturannya: price action dulu — kalau menarik, TIDAK difilter.</b> Seleksinya bukan ambang skor, tapi <b>gabungan-ATAU kondisi price action</b> (volume pace · breakout · nempel trigger · tutup kuat · GK reversal · perfect order · momentum 5h · reversal dari base · higher-lows). <b>Satu alasan menarik sudah cukup untuk tampil</b>, dan alasannya ditulis di kolom <b>Kenapa menarik</b> supaya bisa diulas bareng. Satu-satunya yang dibuang: likuiditas di bawah 300 jt/hari (benar-benar tak bisa masuk/keluar).
     Section lain bersumber dari <code>greenlist.json</code> (kurasi manual) atau <code>riskoff_output</code>, jadi nama yang <b>belum pernah dikurasi tidak bisa muncul di mana pun</b> — section ini membaca <b>langsung dari scan</b> untuk menutup lubang itu.
     <b>Cacat = badge, bukan penyaring:</b> <b>⚠</b> ARA-chase (chg1d&gt;20% atau chg5d&gt;40% — jangan kejar, tunggu pullback) · <b>📉</b> tutup lemah = indikasi distribusi · <b>⏳</b> history pendek = flag MA/chg20 tak bisa dipercaya · <b>🔥</b> likuiditas tipis (hover untuk pagu ukuran). Semua <b>teknikal saja, belum ada konfirmasi BM</b> → maksimum ½ size.
@@ -873,24 +1140,6 @@
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
         <td class="c-rank">3</td>
-        <td class="c-sym"><span class="sym">CSIS</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
-        <td class="c-score"><span class="badge" style="--v:86%">86</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Breakout + Volume"><span class="rd-why">volume 19.3× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">momentum 5h +17%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--buy)">+10.3%</td>
-        <td class="c-num" style="color:var(--buy)">+17.2%</td>
-        <td class="c-num grp">+32%</td>
-        <td class="c-num">4.32×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">19.3×</td>
-        <td class="c-num" style="color:var(--ink)">0.68</td>
-        <td class="c-num grp">200</td>
-        <td class="c-num">173</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">204</td>
-        <td class="c-num">675 jt</td>
-        <td>—</td>
-        <td style="font-size:.82rem">propert</td>
-      </tr><tr>
-        <td class="c-rank">4</td>
         <td class="c-sym"><span class="sym">BAJA</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:84%">84</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Breakout + Volume"><span class="rd-why">volume 22.1× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -908,25 +1157,7 @@
         <td><span title="ARA-chase — jangan kejar, tunggu pullback/day-2">⚠</span></td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">5</td>
-        <td class="c-sym"><span class="sym">PADA</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
-        <td class="c-score"><span class="badge" style="--v:83%">83</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="GK Reversal Downtrend"><span class="rd-why">volume 16.3× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--buy)">+14.1%</td>
-        <td class="c-num" style="color:var(--buy)">+44.1%</td>
-        <td class="c-num grp">+55%</td>
-        <td class="c-num">3.65×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">16.3×</td>
-        <td class="c-num" style="color:var(--ink)">0.50</td>
-        <td class="c-num grp">163</td>
-        <td class="c-num">123</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">170</td>
-        <td class="c-num">8.0 M</td>
-        <td><span title="ARA-chase — jangan kejar, tunggu pullback/day-2">⚠</span></td>
-        <td style="font-size:.82rem">indust</td>
-      </tr><tr>
-        <td class="c-rank">6</td>
+        <td class="c-rank">4</td>
         <td class="c-sym"><span class="sym">KOCI</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:83%">83</span></td>
         <td style="font-size:.82rem;max-width:270px" title="GK Reversal Downtrend"><span class="rd-why">volume 50.2× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -944,25 +1175,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">propert</td>
       </tr><tr>
-        <td class="c-rank">7</td>
-        <td class="c-sym"><span class="sym">JKON</span><span title="likuiditas tipis">🔥</span></td>
-        <td class="c-score"><span class="badge" style="--v:73%">73</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="GK Reversal Downtrend"><span class="rd-why">volume 47.6× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--avoid)">-3.4%</td>
-        <td class="c-num" style="color:var(--buy)">+30.3%</td>
-        <td class="c-num grp">+28%</td>
-        <td class="c-num">10.65×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">47.6×</td>
-        <td class="c-num" style="color:var(--avoid)">0.00</td>
-        <td class="c-num grp">89</td>
-        <td class="c-num">69</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">86</td>
-        <td class="c-num">2.7 M</td>
-        <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
-        <td style="font-size:.82rem">infra</td>
-      </tr><tr>
-        <td class="c-rank">8</td>
+        <td class="c-rank">5</td>
         <td class="c-sym"><span class="sym">MSIE</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Akselerasi — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:68%">68</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 10.6× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +10%</span></td>
@@ -980,7 +1193,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">propert</td>
       </tr><tr>
-        <td class="c-rank">9</td>
+        <td class="c-rank">6</td>
         <td class="c-sym"><span class="sym">RGAS</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:71%">71</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 4.2× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -998,7 +1211,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">10</td>
+        <td class="c-rank">7</td>
         <td class="c-sym"><span class="sym">TMPO</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:55%">55</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 13.3× pace</span> <span class="rd-why">momentum 5h +22%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1016,7 +1229,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">11</td>
+        <td class="c-rank">8</td>
         <td class="c-sym"><span class="sym">CNMA</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:55%">55</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 11.0× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1034,7 +1247,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">12</td>
+        <td class="c-rank">9</td>
         <td class="c-sym"><span class="sym">IKAI</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:62%">62</span></td>
         <td style="font-size:.82rem;max-width:270px" title="GK Reversal Downtrend"><span class="rd-why">volume 6.3× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
@@ -1052,7 +1265,7 @@
         <td>—</td>
         <td style="font-size:.82rem">indust</td>
       </tr><tr>
-        <td class="c-rank">13</td>
+        <td class="c-rank">10</td>
         <td class="c-sym"><span class="sym">AWAN</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 17.5× pace</span></td>
@@ -1070,7 +1283,7 @@
         <td>—</td>
         <td style="font-size:.82rem">techno</td>
       </tr><tr>
-        <td class="c-rank">14</td>
+        <td class="c-rank">11</td>
         <td class="c-sym"><span class="sym">PRDL</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Base + Volume spike"><span class="rd-why">volume 31.7× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +12%</span></td>
@@ -1088,7 +1301,7 @@
         <td><span title="history 19 bar — chg20 &amp; flag MA tidak bisa dipercaya">⏳</span></td>
         <td style="font-size:.82rem">health</td>
       </tr><tr>
-        <td class="c-rank">15</td>
+        <td class="c-rank">12</td>
         <td class="c-sym"><span class="sym">PTMR</span><span title="likuiditas tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:55%">55</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Breakout + Volume"><span class="rd-why">volume 8.3× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1106,7 +1319,7 @@
         <td><span title="ARA-chase — jangan kejar, tunggu pullback/day-2">⚠</span> <span title="history 163 bar — MA200 belum bisa dihitung, 'di bawah MA200' bukan kesimpulan">⏳</span></td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">16</td>
+        <td class="c-rank">13</td>
         <td class="c-sym"><span class="sym">MITI</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:51%">51</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 18.6× pace</span> <span class="rd-why">momentum 5h +29%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1124,43 +1337,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">trans</td>
       </tr><tr>
-        <td class="c-rank">17</td>
-        <td class="c-sym"><span class="sym">HATM</span></td>
-        <td class="c-score"><span class="badge" style="--v:63%">63</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 3.4× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +14%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--buy)">+4.8%</td>
-        <td class="c-num" style="color:var(--buy)">+13.6%</td>
-        <td class="c-num grp">+27%</td>
-        <td class="c-num">0.77×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">3.4×</td>
-        <td class="c-num" style="color:var(--buy)">0.75</td>
-        <td class="c-num grp">595</td>
-        <td class="c-num">471</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">550</td>
-        <td class="c-num">14 M</td>
-        <td>—</td>
-        <td style="font-size:.82rem">trans</td>
-      </tr><tr>
-        <td class="c-rank">18</td>
-        <td class="c-sym"><span class="sym">ERAA</span></td>
-        <td class="c-score"><span class="badge" style="--v:57%">57</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.4× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--buy)">+2.4%</td>
-        <td class="c-num" style="color:var(--buy)">+12.9%</td>
-        <td class="c-num grp">+19%</td>
-        <td class="c-num">0.75×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">3.4×</td>
-        <td class="c-num" style="color:var(--ink)">0.50</td>
-        <td class="c-num grp">432</td>
-        <td class="c-num">381</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">436</td>
-        <td class="c-num">30 M</td>
-        <td>—</td>
-        <td style="font-size:.82rem">cyclic</td>
-      </tr><tr>
-        <td class="c-rank">19</td>
+        <td class="c-rank">14</td>
         <td class="c-sym"><span class="sym">KLAS</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:49%">49</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1178,7 +1355,7 @@
         <td>—</td>
         <td style="font-size:.82rem">trans</td>
       </tr><tr>
-        <td class="c-rank">20</td>
+        <td class="c-rank">15</td>
         <td class="c-sym"><span class="sym">RANS</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:33%">33</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 10.9× pace</span></td>
@@ -1196,7 +1373,7 @@
         <td><span title="history 18 bar — chg20 &amp; flag MA tidak bisa dipercaya">⏳</span></td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">21</td>
+        <td class="c-rank">16</td>
         <td class="c-sym"><span class="sym">ULTJ</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:48%">48</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +12%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1214,7 +1391,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">22</td>
+        <td class="c-rank">17</td>
         <td class="c-sym"><span class="sym">ABMM</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:49%">49</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.5× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1232,7 +1409,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">23</td>
+        <td class="c-rank">18</td>
         <td class="c-sym"><span class="sym">PRIM</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1250,7 +1427,7 @@
         <td>—</td>
         <td style="font-size:.82rem">health</td>
       </tr><tr>
-        <td class="c-rank">24</td>
+        <td class="c-rank">19</td>
         <td class="c-sym"><span class="sym">JELI</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:29%">29</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Base + Volume spike"><span class="rd-why">volume 8.9× pace</span> <span class="rd-why">momentum 5h +11%</span></td>
@@ -1268,7 +1445,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span> <span title="history 21 bar — MA200 belum bisa dihitung, 'di bawah MA200' bukan kesimpulan">⏳</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">25</td>
+        <td class="c-rank">20</td>
         <td class="c-sym"><span class="sym">NEST</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +19%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1286,7 +1463,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">26</td>
+        <td class="c-rank">21</td>
         <td class="c-sym"><span class="sym">TAMA</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:49%">49</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +9%</span></td>
@@ -1304,7 +1481,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">27</td>
+        <td class="c-rank">22</td>
         <td class="c-sym"><span class="sym">MLBI</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1322,7 +1499,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">28</td>
+        <td class="c-rank">23</td>
         <td class="c-sym"><span class="sym">MDKA</span></td>
         <td class="c-score"><span class="badge" style="--v:41%">41</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.8× pace</span> <span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +8%</span></td>
@@ -1340,7 +1517,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">29</td>
+        <td class="c-rank">24</td>
         <td class="c-sym"><span class="sym">SGER</span></td>
         <td class="c-score"><span class="badge" style="--v:41%">41</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.5× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">momentum 5h +16%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1358,25 +1535,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">30</td>
-        <td class="c-sym"><span class="sym">MAPA</span></td>
-        <td class="c-score"><span class="badge" style="--v:42%">42</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.1× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--avoid)">-0.7%</td>
-        <td class="c-num" style="color:var(--buy)">+12.6%</td>
-        <td class="c-num grp">+11%</td>
-        <td class="c-num">0.69×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">3.1×</td>
-        <td class="c-num" style="color:var(--avoid)">0.20</td>
-        <td class="c-num grp">705</td>
-        <td class="c-num">619</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">670</td>
-        <td class="c-num">16 M</td>
-        <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
-        <td style="font-size:.82rem">cyclic</td>
-      </tr><tr>
-        <td class="c-rank">31</td>
+        <td class="c-rank">25</td>
         <td class="c-sym"><span class="sym">NPGF</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.9× pace</span></td>
@@ -1394,7 +1553,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">32</td>
+        <td class="c-rank">26</td>
         <td class="c-sym"><span class="sym">SMBR</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:32%">32</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.9× pace</span> <span class="rd-why">nempel trigger (97%)</span></td>
@@ -1412,7 +1571,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">33</td>
+        <td class="c-rank">27</td>
         <td class="c-sym"><span class="sym">EMAS</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:47%">47</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1430,7 +1589,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">34</td>
+        <td class="c-rank">28</td>
         <td class="c-sym"><span class="sym">MAPI</span></td>
         <td class="c-score"><span class="badge" style="--v:47%">47</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +24%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1448,7 +1607,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">35</td>
+        <td class="c-rank">29</td>
         <td class="c-sym"><span class="sym">BDKR</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:39%">39</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.1× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1466,7 +1625,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">36</td>
+        <td class="c-rank">30</td>
         <td class="c-sym"><span class="sym">GPSO</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:32%">32</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.2× pace</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1484,7 +1643,7 @@
         <td>—</td>
         <td style="font-size:.82rem">indust</td>
       </tr><tr>
-        <td class="c-rank">37</td>
+        <td class="c-rank">31</td>
         <td class="c-sym"><span class="sym">PKPK</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:45%">45</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
@@ -1502,7 +1661,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">38</td>
+        <td class="c-rank">32</td>
         <td class="c-sym"><span class="sym">LEAD</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:37%">37</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.4× pace</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1520,7 +1679,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">39</td>
+        <td class="c-rank">33</td>
         <td class="c-sym"><span class="sym">MINE</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:33%">33</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 4.4× pace</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1538,7 +1697,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">40</td>
+        <td class="c-rank">34</td>
         <td class="c-sym"><span class="sym">BAIK</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:37%">37</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 3.0× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
@@ -1556,7 +1715,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">41</td>
+        <td class="c-rank">35</td>
         <td class="c-sym"><span class="sym">MDIA</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:40%">40</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1574,7 +1733,7 @@
         <td><span title="ARA-chase — jangan kejar, tunggu pullback/day-2">⚠</span></td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">42</td>
+        <td class="c-rank">36</td>
         <td class="c-sym"><span class="sym">TRIO</span><span title="likuiditas tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:32%">32</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 4.4× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1592,7 +1751,7 @@
         <td><span title="ARA-chase — jangan kejar, tunggu pullback/day-2">⚠</span></td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">43</td>
+        <td class="c-rank">37</td>
         <td class="c-sym"><span class="sym">BFIN</span></td>
         <td class="c-score"><span class="badge" style="--v:45%">45</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +8%</span></td>
@@ -1610,7 +1769,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">44</td>
+        <td class="c-rank">38</td>
         <td class="c-sym"><span class="sym">NOBU</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:39%">39</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1628,7 +1787,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">45</td>
+        <td class="c-rank">39</td>
         <td class="c-sym"><span class="sym">EDGE</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:33%">33</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 3.8× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
@@ -1646,7 +1805,7 @@
         <td>—</td>
         <td style="font-size:.82rem">techno</td>
       </tr><tr>
-        <td class="c-rank">46</td>
+        <td class="c-rank">40</td>
         <td class="c-sym"><span class="sym">META</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:35%">35</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
@@ -1664,7 +1823,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">47</td>
+        <td class="c-rank">41</td>
         <td class="c-sym"><span class="sym">BLES</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:35%">35</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +10%</span></td>
@@ -1682,7 +1841,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">48</td>
+        <td class="c-rank">42</td>
         <td class="c-sym"><span class="sym">MSJA</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:20%">20</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.9× pace</span> <span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -1700,7 +1859,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">49</td>
+        <td class="c-rank">43</td>
         <td class="c-sym"><span class="sym">ADMF</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:39%">39</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1718,7 +1877,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">50</td>
+        <td class="c-rank">44</td>
         <td class="c-sym"><span class="sym">GTSI</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 2.9× pace</span> <span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +14%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1736,25 +1895,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">51</td>
-        <td class="c-sym"><span class="sym">UNSP</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
-        <td class="c-score"><span class="badge" style="--v:11%">11</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Reversal + Volume"><span class="rd-why">volume 10.1× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">reversal dari base + volume</span></td>
-        <td class="c-num" style="color:var(--buy)">+4.0%</td>
-        <td class="c-num" style="color:var(--avoid)">-4.6%</td>
-        <td class="c-num grp">-35%</td>
-        <td class="c-num">2.26×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">10.1×</td>
-        <td class="c-num" style="color:var(--buy)">1.00</td>
-        <td class="c-num grp">238</td>
-        <td class="c-num">215</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">206</td>
-        <td class="c-num">739 jt</td>
-        <td>—</td>
-        <td style="font-size:.82rem">noncyc</td>
-      </tr><tr>
-        <td class="c-rank">52</td>
+        <td class="c-rank">45</td>
         <td class="c-sym"><span class="sym">MBMA</span></td>
         <td class="c-score"><span class="badge" style="--v:25%">25</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1772,7 +1913,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">53</td>
+        <td class="c-rank">46</td>
         <td class="c-sym"><span class="sym">HUMI</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +10%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1790,7 +1931,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">54</td>
+        <td class="c-rank">47</td>
         <td class="c-sym"><span class="sym">LSIP</span></td>
         <td class="c-score"><span class="badge" style="--v:34%">34</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
@@ -1808,25 +1949,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">55</td>
-        <td class="c-sym"><span class="sym">KETR</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
-        <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 2.9× pace</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--buy)">+5.5%</td>
-        <td class="c-num" style="color:var(--buy)">+5.5%</td>
-        <td class="c-num grp">+13%</td>
-        <td class="c-num">0.65×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">2.9×</td>
-        <td class="c-num" style="color:var(--ink)">0.60</td>
-        <td class="c-num grp">610</td>
-        <td class="c-num">545</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">580</td>
-        <td class="c-num">9.6 M</td>
-        <td>—</td>
-        <td style="font-size:.82rem">infra</td>
-      </tr><tr>
-        <td class="c-rank">56</td>
+        <td class="c-rank">48</td>
         <td class="c-sym"><span class="sym">INDO</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1844,7 +1967,7 @@
         <td>—</td>
         <td style="font-size:.82rem">propert</td>
       </tr><tr>
-        <td class="c-rank">57</td>
+        <td class="c-rank">49</td>
         <td class="c-sym"><span class="sym">TKIM</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">momentum 5h +18%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1862,7 +1985,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">58</td>
+        <td class="c-rank">50</td>
         <td class="c-sym"><span class="sym">NASI</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">GK reversal (reclaim MA200)</span></td>
@@ -1880,7 +2003,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">59</td>
+        <td class="c-rank">51</td>
         <td class="c-sym"><span class="sym">TOSK</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
@@ -1898,7 +2021,7 @@
         <td>—</td>
         <td style="font-size:.82rem">techno</td>
       </tr><tr>
-        <td class="c-rank">60</td>
+        <td class="c-rank">52</td>
         <td class="c-sym"><span class="sym">WIKA</span><span title="likuiditas tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:20%">20</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.9× pace</span> <span class="rd-why">reversal dari base + volume</span></td>
@@ -1916,7 +2039,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">61</td>
+        <td class="c-rank">53</td>
         <td class="c-sym"><span class="sym">BBYB</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1934,7 +2057,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">62</td>
+        <td class="c-rank">54</td>
         <td class="c-sym"><span class="sym">WMPP</span><span title="likuiditas tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:29%">29</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -1952,25 +2075,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">63</td>
-        <td class="c-sym"><span class="sym">SMSM</span><span title="likuiditas tipis">🔥</span></td>
-        <td class="c-score"><span class="badge" style="--v:25%">25</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.2× pace</span> <span class="rd-why">nempel trigger (98%)</span></td>
-        <td class="c-num" style="color:var(--avoid)">-0.3%</td>
-        <td class="c-num" style="color:var(--buy)">+3.5%</td>
-        <td class="c-num grp">+8%</td>
-        <td class="c-num">0.71×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--accent)">3.2×</td>
-        <td class="c-num" style="color:var(--ink)">0.67</td>
-        <td class="c-num grp">1830</td>
-        <td class="c-num">1742</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">1795</td>
-        <td class="c-num">2.4 M</td>
-        <td>—</td>
-        <td style="font-size:.82rem">cyclic</td>
-      </tr><tr>
-        <td class="c-rank">64</td>
+        <td class="c-rank">55</td>
         <td class="c-sym"><span class="sym">DPUM</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:21%">21</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.4× pace</span></td>
@@ -1988,7 +2093,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">65</td>
+        <td class="c-rank">56</td>
         <td class="c-sym"><span class="sym">WIRG</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2006,7 +2111,7 @@
         <td>—</td>
         <td style="font-size:.82rem">techno</td>
       </tr><tr>
-        <td class="c-rank">66</td>
+        <td class="c-rank">57</td>
         <td class="c-sym"><span class="sym">UCID</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">momentum 5h +10%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2024,25 +2129,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">67</td>
-        <td class="c-sym"><span class="sym">AYLS</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
-        <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +10%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--avoid)">-1.8%</td>
-        <td class="c-num" style="color:var(--buy)">+10.0%</td>
-        <td class="c-num grp">+6%</td>
-        <td class="c-num">0.47×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--ink)">2.1×</td>
-        <td class="c-num" style="color:var(--ink)">0.33</td>
-        <td class="c-num grp">190</td>
-        <td class="c-num">152</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">165</td>
-        <td class="c-num">716 jt</td>
-        <td>—</td>
-        <td style="font-size:.82rem">basic</td>
-      </tr><tr>
-        <td class="c-rank">68</td>
+        <td class="c-rank">58</td>
         <td class="c-sym"><span class="sym">ERTX</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +15%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2060,25 +2147,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">69</td>
-        <td class="c-sym"><span class="sym">PEVE</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
-        <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--buy)">+0.0%</td>
-        <td class="c-num" style="color:var(--buy)">+5.6%</td>
-        <td class="c-num grp">+8%</td>
-        <td class="c-num">0.45×</td>
-        <td class="c-num grp" style="font-weight:700;color:var(--ink)">2.0×</td>
-        <td class="c-num" style="color:var(--buy)">1.00</td>
-        <td class="c-num grp">350</td>
-        <td class="c-num">322</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">340</td>
-        <td class="c-num">303 jt</td>
-        <td>—</td>
-        <td style="font-size:.82rem">health</td>
-      </tr><tr>
-        <td class="c-rank">70</td>
+        <td class="c-rank">59</td>
         <td class="c-sym"><span class="sym">WIIM</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
@@ -2096,7 +2165,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">71</td>
+        <td class="c-rank">60</td>
         <td class="c-sym"><span class="sym">TOTL</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +8%</span></td>
@@ -2114,7 +2183,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">72</td>
+        <td class="c-rank">61</td>
         <td class="c-sym"><span class="sym">DKHH</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:14%">14</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.0× pace</span></td>
@@ -2132,7 +2201,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">health</td>
       </tr><tr>
-        <td class="c-rank">73</td>
+        <td class="c-rank">62</td>
         <td class="c-sym"><span class="sym">ADES</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:12%">12</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.6× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
@@ -2150,7 +2219,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">74</td>
+        <td class="c-rank">63</td>
         <td class="c-sym"><span class="sym">INPC</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2168,7 +2237,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">75</td>
+        <td class="c-rank">64</td>
         <td class="c-sym"><span class="sym">ICBP</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2186,25 +2255,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">76</td>
-        <td class="c-sym"><span class="sym">ISSP</span><span title="likuiditas sangat tipis">🔥</span></td>
-        <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
-        <td class="c-num" style="color:var(--buy)">+0.0%</td>
-        <td class="c-num" style="color:var(--buy)">+2.3%</td>
-        <td class="c-num grp">+13%</td>
-        <td class="c-num">0.14×</td>
-        <td class="c-num grp" style="font-weight:400;color:var(--ink)">0.6×</td>
-        <td class="c-num" style="color:var(--avoid)">0.29</td>
-        <td class="c-num grp">444</td>
-        <td class="c-num">409</td>
-        <td class="c-num" style="font-weight:700">½ size</td>
-        <td class="c-num grp">438</td>
-        <td class="c-num">524 jt</td>
-        <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
-        <td style="font-size:.82rem">basic</td>
-      </tr><tr>
-        <td class="c-rank">77</td>
+        <td class="c-rank">65</td>
         <td class="c-sym"><span class="sym">INDF</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2222,7 +2273,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">78</td>
+        <td class="c-rank">66</td>
         <td class="c-sym"><span class="sym">ALII</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:23%">23</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
@@ -2240,7 +2291,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">79</td>
+        <td class="c-rank">67</td>
         <td class="c-sym"><span class="sym">DIVA</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2258,7 +2309,7 @@
         <td>—</td>
         <td style="font-size:.82rem">techno</td>
       </tr><tr>
-        <td class="c-rank">80</td>
+        <td class="c-rank">68</td>
         <td class="c-sym"><span class="sym">HMSP</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2276,7 +2327,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">81</td>
+        <td class="c-rank">69</td>
         <td class="c-sym"><span class="sym">GZCO</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +17%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2294,7 +2345,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">82</td>
+        <td class="c-rank">70</td>
         <td class="c-sym"><span class="sym">SILO</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +14%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2312,7 +2363,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">health</td>
       </tr><tr>
-        <td class="c-rank">83</td>
+        <td class="c-rank">71</td>
         <td class="c-sym"><span class="sym">WOWS</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:13%">13</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.5× pace</span></td>
@@ -2330,7 +2381,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">84</td>
+        <td class="c-rank">72</td>
         <td class="c-sym"><span class="sym">RSCH</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2348,7 +2399,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">health</td>
       </tr><tr>
-        <td class="c-rank">85</td>
+        <td class="c-rank">73</td>
         <td class="c-sym"><span class="sym">BSML</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:29%">29</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
@@ -2366,7 +2417,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">86</td>
+        <td class="c-rank">74</td>
         <td class="c-sym"><span class="sym">IMJS</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2384,7 +2435,7 @@
         <td>—</td>
         <td style="font-size:.82rem">trans</td>
       </tr><tr>
-        <td class="c-rank">87</td>
+        <td class="c-rank">75</td>
         <td class="c-sym"><span class="sym">SMGR</span></td>
         <td class="c-score"><span class="badge" style="--v:23%">23</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -2402,7 +2453,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">88</td>
+        <td class="c-rank">76</td>
         <td class="c-sym"><span class="sym">SUNI</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2420,7 +2471,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">89</td>
+        <td class="c-rank">77</td>
         <td class="c-sym"><span class="sym">WMUU</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.1× pace</span></td>
@@ -2438,7 +2489,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">90</td>
+        <td class="c-rank">78</td>
         <td class="c-sym"><span class="sym">KING</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Akselerasi — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:13%">13</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.9× pace</span></td>
@@ -2456,7 +2507,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">indust</td>
       </tr><tr>
-        <td class="c-rank">91</td>
+        <td class="c-rank">79</td>
         <td class="c-sym"><span class="sym">BACA</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2474,7 +2525,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">92</td>
+        <td class="c-rank">80</td>
         <td class="c-sym"><span class="sym">ISEA</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2492,7 +2543,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">93</td>
+        <td class="c-rank">81</td>
         <td class="c-sym"><span class="sym">MPOW</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2510,7 +2561,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">94</td>
+        <td class="c-rank">82</td>
         <td class="c-sym"><span class="sym">DOOH</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.7× pace</span> <span class="rd-why">momentum 5h +23%</span></td>
@@ -2528,7 +2579,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">95</td>
+        <td class="c-rank">83</td>
         <td class="c-sym"><span class="sym">AHAP</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:17%">17</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.3× pace</span></td>
@@ -2546,7 +2597,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">96</td>
+        <td class="c-rank">84</td>
         <td class="c-sym"><span class="sym">MBTO</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2564,7 +2615,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">97</td>
+        <td class="c-rank">85</td>
         <td class="c-sym"><span class="sym">LUCK</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:21%">21</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">GK reversal (reclaim MA200)</span></td>
@@ -2582,7 +2633,7 @@
         <td>—</td>
         <td style="font-size:.82rem">techno</td>
       </tr><tr>
-        <td class="c-rank">98</td>
+        <td class="c-rank">86</td>
         <td class="c-sym"><span class="sym">ALKA</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:22%">22</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2600,7 +2651,7 @@
         <td><span title="ARA-chase — jangan kejar, tunggu pullback/day-2">⚠</span></td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">99</td>
+        <td class="c-rank">87</td>
         <td class="c-sym"><span class="sym">TAXI</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">momentum 5h +25%</span></td>
@@ -2618,7 +2669,7 @@
         <td>—</td>
         <td style="font-size:.82rem">trans</td>
       </tr><tr>
-        <td class="c-rank">100</td>
+        <td class="c-rank">88</td>
         <td class="c-sym"><span class="sym">TPMA</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -2636,7 +2687,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">101</td>
+        <td class="c-rank">89</td>
         <td class="c-sym"><span class="sym">ELTY</span><span title="likuiditas tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:15%">15</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.2× pace</span></td>
@@ -2654,7 +2705,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">propert</td>
       </tr><tr>
-        <td class="c-rank">102</td>
+        <td class="c-rank">90</td>
         <td class="c-sym"><span class="sym">DGWG</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:22%">22</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2672,7 +2723,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">103</td>
+        <td class="c-rank">91</td>
         <td class="c-sym"><span class="sym">BBNI</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -2690,7 +2741,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">104</td>
+        <td class="c-rank">92</td>
         <td class="c-sym"><span class="sym">SGRO</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:21%">21</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +29%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2708,7 +2759,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">105</td>
+        <td class="c-rank">93</td>
         <td class="c-sym"><span class="sym">PSAB</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -2726,7 +2777,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">106</td>
+        <td class="c-rank">94</td>
         <td class="c-sym"><span class="sym">SOFA</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Akselerasi — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2744,7 +2795,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">107</td>
+        <td class="c-rank">95</td>
         <td class="c-sym"><span class="sym">CBDK</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +10%</span></td>
@@ -2762,7 +2813,7 @@
         <td>—</td>
         <td style="font-size:.82rem">propert</td>
       </tr><tr>
-        <td class="c-rank">108</td>
+        <td class="c-rank">96</td>
         <td class="c-sym"><span class="sym">KJEN</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +15%</span></td>
@@ -2780,7 +2831,7 @@
         <td>—</td>
         <td style="font-size:.82rem">trans</td>
       </tr><tr>
-        <td class="c-rank">109</td>
+        <td class="c-rank">97</td>
         <td class="c-sym"><span class="sym">MGNA</span><span title="likuiditas tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:17%">17</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">momentum 5h +27%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2798,7 +2849,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">110</td>
+        <td class="c-rank">98</td>
         <td class="c-sym"><span class="sym">SMLE</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:17%">17</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
@@ -2816,7 +2867,7 @@
         <td>—</td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">111</td>
+        <td class="c-rank">99</td>
         <td class="c-sym"><span class="sym">FPNI</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:9%">9</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.6× pace</span> <span class="rd-why">momentum 5h +29%</span></td>
@@ -2834,7 +2885,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">basic</td>
       </tr><tr>
-        <td class="c-rank">112</td>
+        <td class="c-rank">100</td>
         <td class="c-sym"><span class="sym">FLMC</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Akselerasi — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:9%">9</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">reversal dari base + volume</span></td>
@@ -2852,7 +2903,7 @@
         <td>—</td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">113</td>
+        <td class="c-rank">101</td>
         <td class="c-sym"><span class="sym">KDTN</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:3%">3</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.7× pace</span></td>
@@ -2870,7 +2921,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">114</td>
+        <td class="c-rank">102</td>
         <td class="c-sym"><span class="sym">CYBR</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-1%">-1</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.7× pace</span> <span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -2888,7 +2939,7 @@
         <td>—</td>
         <td style="font-size:.82rem">techno</td>
       </tr><tr>
-        <td class="c-rank">115</td>
+        <td class="c-rank">103</td>
         <td class="c-sym"><span class="sym">DILD</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:9%">9</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -2906,7 +2957,7 @@
         <td>—</td>
         <td style="font-size:.82rem">propert</td>
       </tr><tr>
-        <td class="c-rank">116</td>
+        <td class="c-rank">104</td>
         <td class="c-sym"><span class="sym">MKAP</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:7%">7</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
@@ -2924,7 +2975,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">117</td>
+        <td class="c-rank">105</td>
         <td class="c-sym"><span class="sym">TRUE</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-14%">-14</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.3× pace</span></td>
@@ -2942,7 +2993,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">propert</td>
       </tr><tr>
-        <td class="c-rank">118</td>
+        <td class="c-rank">106</td>
         <td class="c-sym"><span class="sym">GOLF</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:-3%">-3</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">reversal dari base + volume</span></td>
@@ -2960,7 +3011,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">119</td>
+        <td class="c-rank">107</td>
         <td class="c-sym"><span class="sym">BJTM</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:1%">1</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -2978,7 +3029,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">120</td>
+        <td class="c-rank">108</td>
         <td class="c-sym"><span class="sym">WSKT</span><span title="likuiditas tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-12%">-12</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.3× pace</span></td>
@@ -2996,7 +3047,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">121</td>
+        <td class="c-rank">109</td>
         <td class="c-sym"><span class="sym">PTDU</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-1%">-1</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +13%</span></td>
@@ -3014,7 +3065,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">122</td>
+        <td class="c-rank">110</td>
         <td class="c-sym"><span class="sym">TUGU</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:-1%">-1</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -3032,7 +3083,7 @@
         <td>—</td>
         <td style="font-size:.82rem">finance</td>
       </tr><tr>
-        <td class="c-rank">123</td>
+        <td class="c-rank">111</td>
         <td class="c-sym"><span class="sym">ADHI</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:-15%">-15</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.9× pace</span></td>
@@ -3050,7 +3101,7 @@
         <td>—</td>
         <td style="font-size:.82rem">infra</td>
       </tr><tr>
-        <td class="c-rank">124</td>
+        <td class="c-rank">112</td>
         <td class="c-sym"><span class="sym">BUVA</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-15%">-15</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.4× pace</span></td>
@@ -3068,7 +3119,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">125</td>
+        <td class="c-rank">113</td>
         <td class="c-sym"><span class="sym">MTFN</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-15%">-15</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.1× pace</span></td>
@@ -3086,7 +3137,7 @@
         <td>—</td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">126</td>
+        <td class="c-rank">114</td>
         <td class="c-sym"><span class="sym">RALS</span><span title="likuiditas tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:-11%">-11</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -3104,7 +3155,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">127</td>
+        <td class="c-rank">115</td>
         <td class="c-sym"><span class="sym">BTEK</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.2× pace</span></td>
@@ -3122,7 +3173,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">128</td>
+        <td class="c-rank">116</td>
         <td class="c-sym"><span class="sym">SAME</span><span title="likuiditas sangat tipis">🔥</span></td>
         <td class="c-score"><span class="badge" style="--v:-11%">-11</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
@@ -3140,7 +3191,7 @@
         <td>—</td>
         <td style="font-size:.82rem">health</td>
       </tr><tr>
-        <td class="c-rank">129</td>
+        <td class="c-rank">117</td>
         <td class="c-sym"><span class="sym">LUCY</span><span title="likuiditas tipis">🔥</span><span title="papan Akselerasi — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.0× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">reversal dari base + volume</span></td>
@@ -3158,7 +3209,7 @@
         <td>—</td>
         <td style="font-size:.82rem">cyclic</td>
       </tr><tr>
-        <td class="c-rank">130</td>
+        <td class="c-rank">118</td>
         <td class="c-sym"><span class="sym">MPPA</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.9× pace</span></td>
@@ -3176,7 +3227,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">noncyc</td>
       </tr><tr>
-        <td class="c-rank">131</td>
+        <td class="c-rank">119</td>
         <td class="c-sym"><span class="sym">RMKE</span></td>
         <td class="c-score"><span class="badge" style="--v:-18%">-18</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">reversal dari base + volume</span></td>
@@ -3194,7 +3245,7 @@
         <td><span title="tutup di bawah 30% range — indikasi distribusi, bukan akumulasi">📉</span></td>
         <td style="font-size:.82rem">energy</td>
       </tr><tr>
-        <td class="c-rank">132</td>
+        <td class="c-rank">120</td>
         <td class="c-sym"><span class="sym">BEER</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
         <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.5× pace</span></td>
