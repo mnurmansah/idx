@@ -422,6 +422,10 @@
 
   <details id="s-komposit" class="wl-sec sec-collap" open>
     <summary class="sec-sum">📊 Komposit — tabel utama <span class="fca-badge wl-badge">54 nama · skor komposit</span><span class="fca-badge best-badge">+31 kandidat baru</span><span class="fca-badge">−9 dibuang</span></summary>
+    <!-- WAJIB dibungkus div.fca-head seperti Konsensus. Kalau .howto jadi anak LANGSUNG <details>,
+         ia kena aturan .sec-collap[open]>summary~*{border-left/right} sekaligus border miliknya
+         sendiri + margin 15px -> border ganda yang melebar ke tepi kartu (bug tampilan 2026-08-04). -->
+    <div class="fca-head">
     <p class="fca-note"><b>Daftar DINAMIS</b> — price action mati dibuang, kandidat baru ditarik dari ⭐Konsensus &amp; mover teknikal. 21/30 nama kurasi bertahan · 2 promote-BM · 31 kandidat baru · 9 dibuang. <b class="warnline">Bar belum tutup (~22% volume)</b> — penilaian "mati" masih sementara.</p>
     <details class="howto"><summary>Aturan daftar dinamis, nama yang dibuang &amp; arti sinyal</summary>
       <div class="howto-body">
@@ -433,6 +437,7 @@
         <p><b>Level:</b> <span class="cs-s">hijau = support</span> · <span class="cs-r">biru = resistance/target</span> · <span class="cs-sl">merah = stop-loss</span>.</p>
       </div>
     </details>
+    </div><!-- /.fca-head -->
   <!-- legenda Sinyal Entry + glosarium dipindah ke dalam <details class="howto"> di atas
        (2026-08-04): dulu keduanya terbuka permanen dan menyisakan ~450px teks sebelum tabel. -->
   <div class="tablewrap">
