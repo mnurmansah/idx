@@ -1117,17 +1117,24 @@
 
   <details id="s-radar" class="rsw-sec sec-collap" open>
     <summary class="sec-sum">📡 Radar Scan — mover di luar daftar pantauan <span class="fca-badge rsw-badge">120 nama · langsung dari scan</span></summary>
-    <p class="fca-note"><b>Aturannya: price action dulu — kalau menarik, TIDAK difilter.</b> Seleksinya bukan ambang skor, tapi <b>gabungan-ATAU kondisi price action</b> (volume pace · breakout · nempel trigger · tutup kuat · GK reversal · perfect order · momentum 5h · reversal dari base · higher-lows). <b>Satu alasan menarik sudah cukup untuk tampil</b>, dan alasannya ditulis di kolom <b>Kenapa menarik</b> supaya bisa diulas bareng. Satu-satunya yang dibuang: likuiditas di bawah 300 jt/hari (benar-benar tak bisa masuk/keluar).
-    Section lain bersumber dari <code>greenlist.json</code> (kurasi manual) atau <code>riskoff_output</code>, jadi nama yang <b>belum pernah dikurasi tidak bisa muncul di mana pun</b> — section ini membaca <b>langsung dari scan</b> untuk menutup lubang itu.
-    <b>Cacat = badge, bukan penyaring:</b> <b>⚠</b> ARA-chase (chg1d&gt;20% atau chg5d&gt;40% — jangan kejar, tunggu pullback) · <b>📉</b> tutup lemah = indikasi distribusi · <b>⏳</b> history pendek = flag MA/chg20 tak bisa dipercaya · <b>🔥</b> likuiditas tipis (hover untuk pagu ukuran). Semua <b>teknikal saja, belum ada konfirmasi BM</b> → maksimum ½ size.
-    <b style="color:var(--accent)">⚡ Bar hari ini belum tutup</b> — baru ~22% volume harian masuk. Kolom <b>volR</b> menampilkan angka mentah, <b>pace</b> = estimasi setara hari-penuh (volR ÷ 0.22) dan <b>itu yang dipakai menilai</b>, supaya nama ramai tidak tenggelam hanya karena scan dijalankan pagi. Pace = estimasi, bukan angka final.</p>
+    <div class="fca-head">
+    <p class="fca-note"><b>Price action dulu — kalau menarik, TIDAK difilter.</b> Seleksinya gabungan-ATAU kondisi price action, bukan ambang skor; alasannya ditulis di kolom <b>Kenapa menarik</b> supaya bisa diulas bareng. Semua teknikal saja, belum ada konfirmasi BM → <b>maksimum ½ size</b>. <b class="warnline">Bar belum tutup (~22% volume)</b> — kolom <b>pace</b> = estimasi setara hari-penuh, dan itu yang dipakai menilai.</p>
+    <details class="howto"><summary>Kenapa section ini ada, arti badge Catatan &amp; batas yang dipakai</summary>
+      <div class="howto-body">
+        <p><b>Kenapa ada:</b> section lain bersumber dari <code>greenlist.json</code> (kurasi manual) atau <code>riskoff_output</code>, jadi nama yang belum pernah dikurasi <b>tidak bisa muncul di mana pun</b>. Section ini membaca <b>langsung dari scan</b> untuk menutup lubang itu.</p>
+        <p><b>Badge kolom Catatan</b> — cacat dilaporkan, bukan dipakai membuang: <span class="rd-flag rf-bad">ARA</span> chg1d&gt;20% atau chg5d&gt;40%, jangan kejar, tunggu pullback · <span class="rd-flag rf-bad">tutup lemah</span> tutup di bawah 30% range = indikasi distribusi · <span class="rd-flag rf-warn">history pendek</span> flag MA/chg20 tak bisa dipercaya · <span class="rd-flag rf-thin">tipis</span> <span class="rd-flag rf-thin">sangat tipis</span> likuiditas menentukan <b>pagu ukuran</b>, bukan kelayakan.</p>
+        <p><b>Satu-satunya yang dibuang:</b> likuiditas di bawah 300 jt/hari — benar-benar tak bisa masuk/keluar tanpa slippage parah. Selebihnya ditampilkan dan dilabeli.</p>
+        <p><b>Seleksi:</b> satu alasan <i>kuat</i> (volume pace ≥2,5× · breakout · GK reversal · reversal+volume) sudah cukup untuk tampil; alasan lemah butuh minimal dua. Tanpa aturan itu 307 nama lolos = sepertiga pasar, terlalu encer untuk diulas.</p>
+      </div>
+    </details>
+    </div><!-- /.fca-head -->
     <div class="tablewrap"><table id="radar">
       <thead><tr><th>#</th><th>Sym</th><th>Skor</th><th title="Alasan price-action kenapa nama ini ditampilkan">Kenapa menarik</th><th>chg1d</th><th>chg5d</th><th class="grp" title="null = history <21 bar, TIDAK sama dengan 0%">chg20</th><th title="Angka mentah hari ini (bar belum tutup)">volR</th><th class="grp" title="Estimasi volR setara hari-penuh — ini yang dipakai menilai">pace</th><th title="Posisi close dalam range hari">Close-kuat</th><th class="grp" title="10-day high">Trigger</th><th>MA20</th><th>Size</th><th class="grp">Close</th><th>Likuid</th><th>Catatan</th><th>Sektor</th></tr></thead>
       <tbody><tr>
         <td class="c-rank">1</td>
-        <td class="c-sym"><span class="sym">GRIA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">GRIA</span></td>
         <td class="c-score"><span class="badge" style="--v:100%">113</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="GK Reversal Downtrend"><span class="rd-why">volume 6.9× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +22%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="GK Reversal Downtrend"><span class="rd-why">volume 6.9× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +22%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.4%</td>
         <td class="c-num" style="color:var(--buy)">+21.6%</td>
         <td class="c-num grp">+31%</td>
@@ -1143,9 +1150,9 @@
         <td class="rd-sec">propert</td>
       </tr><tr>
         <td class="c-rank">2</td>
-        <td class="c-sym"><span class="sym">TGUK</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">TGUK</span></td>
         <td class="c-score"><span class="badge" style="--v:94%">94</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Breakout"><span class="rd-why">volume 22.4× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Perfect-Order Breakout"><span class="rd-why">volume 22.4× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--buy)">+34.3%</td>
         <td class="c-num" style="color:var(--buy)">+30.5%</td>
         <td class="c-num grp">+132%</td>
@@ -1161,9 +1168,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">3</td>
-        <td class="c-sym"><span class="sym">BAJA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">BAJA</span></td>
         <td class="c-score"><span class="badge" style="--v:84%">84</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Breakout + Volume"><span class="rd-why">volume 22.1× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Breakout + Volume"><span class="rd-why">volume 22.1× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+24.6%</td>
         <td class="c-num" style="color:var(--buy)">+36.9%</td>
         <td class="c-num grp">+89%</td>
@@ -1179,9 +1186,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">4</td>
-        <td class="c-sym"><span class="sym">KOCI</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">KOCI</span></td>
         <td class="c-score"><span class="badge" style="--v:83%">83</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="GK Reversal Downtrend"><span class="rd-why">volume 50.2× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="GK Reversal Downtrend"><span class="rd-why">volume 50.2× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-6.0%</td>
         <td class="c-num" style="color:var(--buy)">+11.1%</td>
         <td class="c-num grp">+8%</td>
@@ -1197,9 +1204,9 @@
         <td class="rd-sec">propert</td>
       </tr><tr>
         <td class="c-rank">5</td>
-        <td class="c-sym"><span class="sym">MSIE</span><span class="rd-flag rf-warn" title="papan Akselerasi — bukan papan utama">akselerasi</span></td>
+        <td class="c-sym"><span class="sym">MSIE</span></td>
         <td class="c-score"><span class="badge" style="--v:68%">68</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 10.6× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +10%</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">volume 10.6× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +10%</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+10.5%</td>
         <td class="c-num grp">+2%</td>
@@ -1215,9 +1222,9 @@
         <td class="rd-sec">propert</td>
       </tr><tr>
         <td class="c-rank">6</td>
-        <td class="c-sym"><span class="sym">RGAS</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">RGAS</span></td>
         <td class="c-score"><span class="badge" style="--v:71%">71</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 4.2× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">volume 4.2× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+10.0%</td>
         <td class="c-num" style="color:var(--buy)">+13.1%</td>
         <td class="c-num grp">+57%</td>
@@ -1233,9 +1240,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">7</td>
-        <td class="c-sym"><span class="sym">TMPO</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">TMPO</span></td>
         <td class="c-score"><span class="badge" style="--v:55%">55</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 13.3× pace</span> <span class="rd-why">momentum 5h +22%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 13.3× pace</span> <span class="rd-why">momentum 5h +22%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-13.8%</td>
         <td class="c-num" style="color:var(--buy)">+22.4%</td>
         <td class="c-num grp">+30%</td>
@@ -1251,9 +1258,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">8</td>
-        <td class="c-sym"><span class="sym">CNMA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">CNMA</span></td>
         <td class="c-score"><span class="badge" style="--v:55%">55</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 11.0× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 11.0× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+3.2%</td>
         <td class="c-num" style="color:var(--buy)">+5.5%</td>
         <td class="c-num grp">+10%</td>
@@ -1269,9 +1276,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">9</td>
-        <td class="c-sym"><span class="sym">IKAI</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">IKAI</span></td>
         <td class="c-score"><span class="badge" style="--v:62%">62</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="GK Reversal Downtrend"><span class="rd-why">volume 6.3× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
+        <td class="rd-whycell" title="GK Reversal Downtrend"><span class="rd-why">volume 6.3× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
         <td class="c-num" style="color:var(--buy)">+10.0%</td>
         <td class="c-num" style="color:var(--buy)">+4.8%</td>
         <td class="c-num grp">+29%</td>
@@ -1287,9 +1294,9 @@
         <td class="rd-sec">indust</td>
       </tr><tr>
         <td class="c-rank">10</td>
-        <td class="c-sym"><span class="sym">AWAN</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">AWAN</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 17.5× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 17.5× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-5.5%</td>
         <td class="c-num" style="color:var(--buy)">+2.6%</td>
         <td class="c-num grp">+8%</td>
@@ -1305,9 +1312,9 @@
         <td class="rd-sec">techno</td>
       </tr><tr>
         <td class="c-rank">11</td>
-        <td class="c-sym"><span class="sym">PRDL</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">PRDL</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Base + Volume spike"><span class="rd-why">volume 31.7× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +12%</span></td>
+        <td class="rd-whycell" title="Base + Volume spike"><span class="rd-why">volume 31.7× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +12%</span></td>
         <td class="c-num" style="color:var(--buy)">+18.2%</td>
         <td class="c-num" style="color:var(--buy)">+12.2%</td>
         <td class="c-num grp"><span title="history &lt;21 bar — perubahan 20 hari tidak bisa dihitung; JANGAN dianggap flat">?</span></td>
@@ -1323,9 +1330,9 @@
         <td class="rd-sec">health</td>
       </tr><tr>
         <td class="c-rank">12</td>
-        <td class="c-sym"><span class="sym">PTMR</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">PTMR</span></td>
         <td class="c-score"><span class="badge" style="--v:55%">55</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Breakout + Volume"><span class="rd-why">volume 8.3× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Breakout + Volume"><span class="rd-why">volume 8.3× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+24.7%</td>
         <td class="c-num" style="color:var(--buy)">+152.7%</td>
         <td class="c-num grp">+175%</td>
@@ -1341,9 +1348,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">13</td>
-        <td class="c-sym"><span class="sym">MITI</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">MITI</span></td>
         <td class="c-score"><span class="badge" style="--v:51%">51</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 18.6× pace</span> <span class="rd-why">momentum 5h +29%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 18.6× pace</span> <span class="rd-why">momentum 5h +29%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-3.7%</td>
         <td class="c-num" style="color:var(--buy)">+28.8%</td>
         <td class="c-num grp">+24%</td>
@@ -1359,9 +1366,9 @@
         <td class="rd-sec">trans</td>
       </tr><tr>
         <td class="c-rank">14</td>
-        <td class="c-sym"><span class="sym">KLAS</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">KLAS</span></td>
         <td class="c-score"><span class="badge" style="--v:49%">49</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+5.3%</td>
         <td class="c-num" style="color:var(--buy)">+5.3%</td>
         <td class="c-num grp">+16%</td>
@@ -1377,9 +1384,9 @@
         <td class="rd-sec">trans</td>
       </tr><tr>
         <td class="c-rank">15</td>
-        <td class="c-sym"><span class="sym">RANS</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">RANS</span></td>
         <td class="c-score"><span class="badge" style="--v:33%">33</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 10.9× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 10.9× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+5.8%</td>
         <td class="c-num" style="color:var(--avoid)">-2.7%</td>
         <td class="c-num grp"><span title="history &lt;21 bar — perubahan 20 hari tidak bisa dihitung; JANGAN dianggap flat">?</span></td>
@@ -1397,7 +1404,7 @@
         <td class="c-rank">16</td>
         <td class="c-sym"><span class="sym">ULTJ</span></td>
         <td class="c-score"><span class="badge" style="--v:48%">48</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +12%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +12%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num" style="color:var(--buy)">+11.8%</td>
         <td class="c-num grp">+11%</td>
@@ -1415,7 +1422,7 @@
         <td class="c-rank">17</td>
         <td class="c-sym"><span class="sym">ABMM</span></td>
         <td class="c-score"><span class="badge" style="--v:49%">49</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.5× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 3.5× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+3.5%</td>
         <td class="c-num" style="color:var(--buy)">+5.2%</td>
         <td class="c-num grp">+15%</td>
@@ -1431,9 +1438,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">18</td>
-        <td class="c-sym"><span class="sym">PRIM</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">PRIM</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.9%</td>
         <td class="c-num" style="color:var(--buy)">+6.9%</td>
         <td class="c-num grp">+16%</td>
@@ -1449,9 +1456,9 @@
         <td class="rd-sec">health</td>
       </tr><tr>
         <td class="c-rank">19</td>
-        <td class="c-sym"><span class="sym">JELI</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">JELI</span></td>
         <td class="c-score"><span class="badge" style="--v:29%">29</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Base + Volume spike"><span class="rd-why">volume 8.9× pace</span> <span class="rd-why">momentum 5h +11%</span></td>
+        <td class="rd-whycell" title="Base + Volume spike"><span class="rd-why">volume 8.9× pace</span> <span class="rd-why">momentum 5h +11%</span></td>
         <td class="c-num" style="color:var(--avoid)">-6.4%</td>
         <td class="c-num" style="color:var(--buy)">+10.5%</td>
         <td class="c-num grp">-35%</td>
@@ -1467,9 +1474,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">20</td>
-        <td class="c-sym"><span class="sym">NEST</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">NEST</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +19%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +19%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-5.2%</td>
         <td class="c-num" style="color:var(--buy)">+18.6%</td>
         <td class="c-num grp">+16%</td>
@@ -1485,9 +1492,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">21</td>
-        <td class="c-sym"><span class="sym">TAMA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">TAMA</span></td>
         <td class="c-score"><span class="badge" style="--v:49%">49</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +9%</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +9%</span></td>
         <td class="c-num" style="color:var(--buy)">+3.3%</td>
         <td class="c-num" style="color:var(--buy)">+8.8%</td>
         <td class="c-num grp">+61%</td>
@@ -1505,7 +1512,7 @@
         <td class="c-rank">22</td>
         <td class="c-sym"><span class="sym">MLBI</span></td>
         <td class="c-score"><span class="badge" style="--v:53%">53</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+8.6%</td>
         <td class="c-num grp">+10%</td>
@@ -1523,7 +1530,7 @@
         <td class="c-rank">23</td>
         <td class="c-sym"><span class="sym">MDKA</span></td>
         <td class="c-score"><span class="badge" style="--v:41%">41</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.8× pace</span> <span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +8%</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 3.8× pace</span> <span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +8%</span></td>
         <td class="c-num" style="color:var(--buy)">+4.8%</td>
         <td class="c-num" style="color:var(--buy)">+8.4%</td>
         <td class="c-num grp">+5%</td>
@@ -1541,7 +1548,7 @@
         <td class="c-rank">24</td>
         <td class="c-sym"><span class="sym">SGER</span></td>
         <td class="c-score"><span class="badge" style="--v:41%">41</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.5× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">momentum 5h +16%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 3.5× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">momentum 5h +16%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.2%</td>
         <td class="c-num" style="color:var(--buy)">+16.3%</td>
         <td class="c-num grp">+18%</td>
@@ -1557,9 +1564,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">25</td>
-        <td class="c-sym"><span class="sym">NPGF</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">NPGF</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.9× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 6.9× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+1.7%</td>
         <td class="c-num" style="color:var(--avoid)">-3.3%</td>
         <td class="c-num grp">+4%</td>
@@ -1577,7 +1584,7 @@
         <td class="c-rank">26</td>
         <td class="c-sym"><span class="sym">SMBR</span></td>
         <td class="c-score"><span class="badge" style="--v:32%">32</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.9× pace</span> <span class="rd-why">nempel trigger (97%)</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 5.9× pace</span> <span class="rd-why">nempel trigger (97%)</span></td>
         <td class="c-num" style="color:var(--buy)">+3.1%</td>
         <td class="c-num" style="color:var(--buy)">+3.1%</td>
         <td class="c-num grp">+5%</td>
@@ -1593,9 +1600,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">27</td>
-        <td class="c-sym"><span class="sym">EMAS</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">EMAS</span></td>
         <td class="c-score"><span class="badge" style="--v:47%">47</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.5%</td>
         <td class="c-num" style="color:var(--buy)">+11.4%</td>
         <td class="c-num grp">+20%</td>
@@ -1613,7 +1620,7 @@
         <td class="c-rank">28</td>
         <td class="c-sym"><span class="sym">MAPI</span></td>
         <td class="c-score"><span class="badge" style="--v:47%">47</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +24%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +24%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-6.6%</td>
         <td class="c-num" style="color:var(--buy)">+23.8%</td>
         <td class="c-num grp">+15%</td>
@@ -1631,7 +1638,7 @@
         <td class="c-rank">29</td>
         <td class="c-sym"><span class="sym">BDKR</span></td>
         <td class="c-score"><span class="badge" style="--v:39%">39</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.1× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 3.1× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.6%</td>
         <td class="c-num" style="color:var(--buy)">+8.6%</td>
         <td class="c-num grp">+12%</td>
@@ -1647,9 +1654,9 @@
         <td class="rd-sec">infra</td>
       </tr><tr>
         <td class="c-rank">30</td>
-        <td class="c-sym"><span class="sym">GPSO</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">GPSO</span></td>
         <td class="c-score"><span class="badge" style="--v:32%">32</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.2× pace</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 5.2× pace</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num" style="color:var(--buy)">+11.4%</td>
         <td class="c-num grp">+12%</td>
@@ -1665,9 +1672,9 @@
         <td class="rd-sec">indust</td>
       </tr><tr>
         <td class="c-rank">31</td>
-        <td class="c-sym"><span class="sym">PKPK</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">PKPK</span></td>
         <td class="c-score"><span class="badge" style="--v:45%">45</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--buy)">+0.8%</td>
         <td class="c-num" style="color:var(--buy)">+4.7%</td>
         <td class="c-num grp">+21%</td>
@@ -1683,9 +1690,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">32</td>
-        <td class="c-sym"><span class="sym">LEAD</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">LEAD</span></td>
         <td class="c-score"><span class="badge" style="--v:37%">37</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 3.4× pace</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 3.4× pace</span> <span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+5.7%</td>
         <td class="c-num" style="color:var(--buy)">+10.9%</td>
         <td class="c-num grp">+17%</td>
@@ -1701,9 +1708,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">33</td>
-        <td class="c-sym"><span class="sym">MINE</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">MINE</span></td>
         <td class="c-score"><span class="badge" style="--v:33%">33</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 4.4× pace</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 4.4× pace</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+5.3%</td>
         <td class="c-num" style="color:var(--buy)">+9.1%</td>
         <td class="c-num grp">+7%</td>
@@ -1719,9 +1726,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">34</td>
-        <td class="c-sym"><span class="sym">BAIK</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">BAIK</span></td>
         <td class="c-score"><span class="badge" style="--v:37%">37</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 3.0× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">volume 3.0× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--avoid)">-1.3%</td>
         <td class="c-num" style="color:var(--buy)">+2.7%</td>
         <td class="c-num grp">+16%</td>
@@ -1737,9 +1744,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">35</td>
-        <td class="c-sym"><span class="sym">MDIA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">MDIA</span></td>
         <td class="c-score"><span class="badge" style="--v:40%">40</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+7.9%</td>
         <td class="c-num" style="color:var(--buy)">+66.4%</td>
         <td class="c-num grp">+199%</td>
@@ -1755,9 +1762,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">36</td>
-        <td class="c-sym"><span class="sym">TRIO</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">TRIO</span></td>
         <td class="c-score"><span class="badge" style="--v:32%">32</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 4.4× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 4.4× pace</span> <span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+24.6%</td>
         <td class="c-num" style="color:var(--buy)">+252.1%</td>
         <td class="c-num grp">+752%</td>
@@ -1775,7 +1782,7 @@
         <td class="c-rank">37</td>
         <td class="c-sym"><span class="sym">BFIN</span></td>
         <td class="c-score"><span class="badge" style="--v:45%">45</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +8%</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span> <span class="rd-why">momentum 5h +8%</span></td>
         <td class="c-num" style="color:var(--buy)">+1.7%</td>
         <td class="c-num" style="color:var(--buy)">+8.3%</td>
         <td class="c-num grp">+18%</td>
@@ -1793,7 +1800,7 @@
         <td class="c-rank">38</td>
         <td class="c-sym"><span class="sym">NOBU</span></td>
         <td class="c-score"><span class="badge" style="--v:39%">39</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">momentum 5h +13%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.6%</td>
         <td class="c-num" style="color:var(--buy)">+12.7%</td>
         <td class="c-num grp">+15%</td>
@@ -1809,9 +1816,9 @@
         <td class="rd-sec">finance</td>
       </tr><tr>
         <td class="c-rank">39</td>
-        <td class="c-sym"><span class="sym">EDGE</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">EDGE</span></td>
         <td class="c-score"><span class="badge" style="--v:33%">33</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 3.8× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">volume 3.8× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--avoid)">-2.0%</td>
         <td class="c-num" style="color:var(--avoid)">-7.9%</td>
         <td class="c-num grp">+6%</td>
@@ -1827,9 +1834,9 @@
         <td class="rd-sec">techno</td>
       </tr><tr>
         <td class="c-rank">40</td>
-        <td class="c-sym"><span class="sym">META</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">META</span></td>
         <td class="c-score"><span class="badge" style="--v:35%">35</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+1.7%</td>
         <td class="c-num grp">+10%</td>
@@ -1845,9 +1852,9 @@
         <td class="rd-sec">infra</td>
       </tr><tr>
         <td class="c-rank">41</td>
-        <td class="c-sym"><span class="sym">BLES</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">BLES</span></td>
         <td class="c-score"><span class="badge" style="--v:35%">35</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +10%</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">momentum 5h +10%</span></td>
         <td class="c-num" style="color:var(--buy)">+3.7%</td>
         <td class="c-num" style="color:var(--buy)">+9.6%</td>
         <td class="c-num grp">+39%</td>
@@ -1863,9 +1870,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">42</td>
-        <td class="c-sym"><span class="sym">MSJA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">MSJA</span></td>
         <td class="c-score"><span class="badge" style="--v:20%">20</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.9× pace</span> <span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 6.9× pace</span> <span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+0.5%</td>
         <td class="c-num" style="color:var(--buy)">+2.0%</td>
         <td class="c-num grp">-1%</td>
@@ -1881,9 +1888,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">43</td>
-        <td class="c-sym"><span class="sym">ADMF</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">ADMF</span></td>
         <td class="c-score"><span class="badge" style="--v:39%">39</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-0.3%</td>
         <td class="c-num" style="color:var(--buy)">+6.4%</td>
         <td class="c-num grp">+10%</td>
@@ -1899,9 +1906,9 @@
         <td class="rd-sec">finance</td>
       </tr><tr>
         <td class="c-rank">44</td>
-        <td class="c-sym"><span class="sym">GTSI</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">GTSI</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 2.9× pace</span> <span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +14%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 2.9× pace</span> <span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +14%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+6.5%</td>
         <td class="c-num" style="color:var(--buy)">+14.0%</td>
         <td class="c-num grp">+26%</td>
@@ -1919,7 +1926,7 @@
         <td class="c-rank">45</td>
         <td class="c-sym"><span class="sym">MBMA</span></td>
         <td class="c-score"><span class="badge" style="--v:25%">25</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.9× pace</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+2.9%</td>
         <td class="c-num" style="color:var(--buy)">+6.8%</td>
         <td class="c-num grp">+4%</td>
@@ -1935,9 +1942,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">46</td>
-        <td class="c-sym"><span class="sym">HUMI</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">HUMI</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +10%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +10%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+4.3%</td>
         <td class="c-num" style="color:var(--buy)">+9.9%</td>
         <td class="c-num grp">+23%</td>
@@ -1955,7 +1962,7 @@
         <td class="c-rank">47</td>
         <td class="c-sym"><span class="sym">LSIP</span></td>
         <td class="c-score"><span class="badge" style="--v:34%">34</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+4.7%</td>
         <td class="c-num grp">+16%</td>
@@ -1971,9 +1978,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">48</td>
-        <td class="c-sym"><span class="sym">INDO</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">INDO</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.7%</td>
         <td class="c-num" style="color:var(--buy)">+2.9%</td>
         <td class="c-num grp">+6%</td>
@@ -1991,7 +1998,7 @@
         <td class="c-rank">49</td>
         <td class="c-sym"><span class="sym">TKIM</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">momentum 5h +18%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">momentum 5h +18%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.7%</td>
         <td class="c-num" style="color:var(--buy)">+18.0%</td>
         <td class="c-num grp">+26%</td>
@@ -2007,9 +2014,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">50</td>
-        <td class="c-sym"><span class="sym">NASI</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">NASI</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">GK reversal (reclaim MA200)</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">GK reversal (reclaim MA200)</span></td>
         <td class="c-num" style="color:var(--buy)">+4.0%</td>
         <td class="c-num" style="color:var(--buy)">+2.3%</td>
         <td class="c-num grp">+18%</td>
@@ -2025,9 +2032,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">51</td>
-        <td class="c-sym"><span class="sym">TOSK</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">TOSK</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
         <td class="c-num" style="color:var(--buy)">+1.5%</td>
         <td class="c-num" style="color:var(--buy)">+3.0%</td>
         <td class="c-num grp">+15%</td>
@@ -2043,9 +2050,9 @@
         <td class="rd-sec">techno</td>
       </tr><tr>
         <td class="c-rank">52</td>
-        <td class="c-sym"><span class="sym">WIKA</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">WIKA</span></td>
         <td class="c-score"><span class="badge" style="--v:20%">20</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.9× pace</span> <span class="rd-why">reversal dari base + volume</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 4.9× pace</span> <span class="rd-why">reversal dari base + volume</span></td>
         <td class="c-num" style="color:var(--buy)">+3.5%</td>
         <td class="c-num" style="color:var(--buy)">+5.7%</td>
         <td class="c-num grp">-16%</td>
@@ -2063,7 +2070,7 @@
         <td class="c-rank">53</td>
         <td class="c-sym"><span class="sym">BBYB</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+3.2%</td>
         <td class="c-num" style="color:var(--buy)">+9.2%</td>
         <td class="c-num grp">+17%</td>
@@ -2079,9 +2086,9 @@
         <td class="rd-sec">finance</td>
       </tr><tr>
         <td class="c-rank">54</td>
-        <td class="c-sym"><span class="sym">WMPP</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">WMPP</span></td>
         <td class="c-score"><span class="badge" style="--v:29%">29</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+8.0%</td>
         <td class="c-num" style="color:var(--buy)">+35.0%</td>
         <td class="c-num grp">+35%</td>
@@ -2097,9 +2104,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">55</td>
-        <td class="c-sym"><span class="sym">DPUM</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">DPUM</span></td>
         <td class="c-score"><span class="badge" style="--v:21%">21</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.4× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 4.4× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+4.1%</td>
         <td class="c-num" style="color:var(--buy)">+5.2%</td>
         <td class="c-num grp">+2%</td>
@@ -2115,9 +2122,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">56</td>
-        <td class="c-sym"><span class="sym">WIRG</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">WIRG</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+3.5%</td>
         <td class="c-num" style="color:var(--buy)">+5.3%</td>
         <td class="c-num grp">+13%</td>
@@ -2135,7 +2142,7 @@
         <td class="c-rank">57</td>
         <td class="c-sym"><span class="sym">UCID</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">momentum 5h +10%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">momentum 5h +10%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-1.0%</td>
         <td class="c-num" style="color:var(--buy)">+9.6%</td>
         <td class="c-num grp">+11%</td>
@@ -2151,9 +2158,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">58</td>
-        <td class="c-sym"><span class="sym">ERTX</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">ERTX</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +15%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">momentum 5h +15%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.5%</td>
         <td class="c-num" style="color:var(--buy)">+15.5%</td>
         <td class="c-num grp">+28%</td>
@@ -2171,7 +2178,7 @@
         <td class="c-rank">59</td>
         <td class="c-sym"><span class="sym">WIIM</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
         <td class="c-num" style="color:var(--buy)">+0.6%</td>
         <td class="c-num" style="color:var(--buy)">+3.9%</td>
         <td class="c-num grp">+10%</td>
@@ -2189,7 +2196,7 @@
         <td class="c-rank">60</td>
         <td class="c-sym"><span class="sym">TOTL</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +8%</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +8%</span></td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num" style="color:var(--buy)">+8.4%</td>
         <td class="c-num grp">+10%</td>
@@ -2205,9 +2212,9 @@
         <td class="rd-sec">infra</td>
       </tr><tr>
         <td class="c-rank">61</td>
-        <td class="c-sym"><span class="sym">DKHH</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">DKHH</span></td>
         <td class="c-score"><span class="badge" style="--v:14%">14</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.0× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 6.0× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+3.2%</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num grp">+7%</td>
@@ -2225,7 +2232,7 @@
         <td class="c-rank">62</td>
         <td class="c-sym"><span class="sym">ADES</span></td>
         <td class="c-score"><span class="badge" style="--v:12%">12</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 6.6× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 6.6× pace</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--avoid)">-8.8%</td>
         <td class="c-num" style="color:var(--avoid)">-20.2%</td>
         <td class="c-num grp">-5%</td>
@@ -2243,7 +2250,7 @@
         <td class="c-rank">63</td>
         <td class="c-sym"><span class="sym">INPC</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+2.9%</td>
         <td class="c-num" style="color:var(--buy)">+5.2%</td>
         <td class="c-num grp">+11%</td>
@@ -2261,7 +2268,7 @@
         <td class="c-rank">64</td>
         <td class="c-sym"><span class="sym">ICBP</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-0.3%</td>
         <td class="c-num" style="color:var(--buy)">+3.2%</td>
         <td class="c-num grp">+7%</td>
@@ -2279,7 +2286,7 @@
         <td class="c-rank">65</td>
         <td class="c-sym"><span class="sym">INDF</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-1.1%</td>
         <td class="c-num" style="color:var(--buy)">+2.2%</td>
         <td class="c-num grp">+5%</td>
@@ -2297,7 +2304,7 @@
         <td class="c-rank">66</td>
         <td class="c-sym"><span class="sym">ALII</span></td>
         <td class="c-score"><span class="badge" style="--v:23%">23</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 2.8× pace</span> <span class="rd-why">GK reversal (reclaim MA200)</span></td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num" style="color:var(--buy)">+4.8%</td>
         <td class="c-num grp">+9%</td>
@@ -2313,9 +2320,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">67</td>
-        <td class="c-sym"><span class="sym">DIVA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">DIVA</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+3.7%</td>
         <td class="c-num" style="color:var(--buy)">+11.2%</td>
         <td class="c-num grp">+29%</td>
@@ -2333,7 +2340,7 @@
         <td class="c-rank">68</td>
         <td class="c-sym"><span class="sym">HMSP</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.7%</td>
         <td class="c-num" style="color:var(--buy)">+2.8%</td>
         <td class="c-num grp">+9%</td>
@@ -2351,7 +2358,7 @@
         <td class="c-rank">69</td>
         <td class="c-sym"><span class="sym">GZCO</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +17%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">momentum 5h +17%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+17.3%</td>
         <td class="c-num grp">+25%</td>
@@ -2369,7 +2376,7 @@
         <td class="c-rank">70</td>
         <td class="c-sym"><span class="sym">SILO</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +14%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">momentum 5h +14%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-2.5%</td>
         <td class="c-num" style="color:var(--buy)">+13.9%</td>
         <td class="c-num grp">+7%</td>
@@ -2385,9 +2392,9 @@
         <td class="rd-sec">health</td>
       </tr><tr>
         <td class="c-rank">71</td>
-        <td class="c-sym"><span class="sym">WOWS</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">WOWS</span></td>
         <td class="c-score"><span class="badge" style="--v:13%">13</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.5× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 5.5× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+1.7%</td>
         <td class="c-num grp">+0%</td>
@@ -2403,9 +2410,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">72</td>
-        <td class="c-sym"><span class="sym">RSCH</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">RSCH</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">momentum 5h +11%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-2.4%</td>
         <td class="c-num" style="color:var(--buy)">+10.9%</td>
         <td class="c-num grp">+10%</td>
@@ -2421,9 +2428,9 @@
         <td class="rd-sec">health</td>
       </tr><tr>
         <td class="c-rank">73</td>
-        <td class="c-sym"><span class="sym">BSML</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">BSML</span></td>
         <td class="c-score"><span class="badge" style="--v:29%">29</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Perfect-Order Uptrend"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+2.9%</td>
         <td class="c-num grp">+0%</td>
@@ -2439,9 +2446,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">74</td>
-        <td class="c-sym"><span class="sym">IMJS</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">IMJS</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">momentum 5h +9%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+9.5%</td>
         <td class="c-num grp">+17%</td>
@@ -2459,7 +2466,7 @@
         <td class="c-rank">75</td>
         <td class="c-sym"><span class="sym">SMGR</span></td>
         <td class="c-score"><span class="badge" style="--v:23%">23</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+2.0%</td>
         <td class="c-num" style="color:var(--buy)">+2.0%</td>
         <td class="c-num grp">-1%</td>
@@ -2477,7 +2484,7 @@
         <td class="c-rank">76</td>
         <td class="c-sym"><span class="sym">SUNI</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.7%</td>
         <td class="c-num" style="color:var(--buy)">+5.8%</td>
         <td class="c-num grp">+20%</td>
@@ -2493,9 +2500,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">77</td>
-        <td class="c-sym"><span class="sym">WMUU</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">WMUU</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.1× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.1× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+3.8%</td>
         <td class="c-num" style="color:var(--buy)">+5.8%</td>
         <td class="c-num grp">+10%</td>
@@ -2511,9 +2518,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">78</td>
-        <td class="c-sym"><span class="sym">KING</span><span class="rd-flag rf-warn" title="papan Akselerasi — bukan papan utama">akselerasi</span></td>
+        <td class="c-sym"><span class="sym">KING</span></td>
         <td class="c-score"><span class="badge" style="--v:13%">13</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.9× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 4.9× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-3.5%</td>
         <td class="c-num" style="color:var(--buy)">+5.3%</td>
         <td class="c-num grp">-11%</td>
@@ -2531,7 +2538,7 @@
         <td class="c-rank">79</td>
         <td class="c-sym"><span class="sym">BACA</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.7%</td>
         <td class="c-num" style="color:var(--buy)">+3.5%</td>
         <td class="c-num grp">+13%</td>
@@ -2547,9 +2554,9 @@
         <td class="rd-sec">finance</td>
       </tr><tr>
         <td class="c-rank">80</td>
-        <td class="c-sym"><span class="sym">ISEA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">ISEA</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.2%</td>
         <td class="c-num" style="color:var(--buy)">+2.5%</td>
         <td class="c-num grp">+26%</td>
@@ -2565,9 +2572,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">81</td>
-        <td class="c-sym"><span class="sym">MPOW</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">MPOW</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.9%</td>
         <td class="c-num" style="color:var(--buy)">+3.9%</td>
         <td class="c-num grp">+16%</td>
@@ -2583,9 +2590,9 @@
         <td class="rd-sec">infra</td>
       </tr><tr>
         <td class="c-rank">82</td>
-        <td class="c-sym"><span class="sym">DOOH</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">DOOH</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.7× pace</span> <span class="rd-why">momentum 5h +23%</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 2.7× pace</span> <span class="rd-why">momentum 5h +23%</span></td>
         <td class="c-num" style="color:var(--avoid)">-3.0%</td>
         <td class="c-num" style="color:var(--buy)">+23.3%</td>
         <td class="c-num grp">+117%</td>
@@ -2601,9 +2608,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">83</td>
-        <td class="c-sym"><span class="sym">AHAP</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">AHAP</span></td>
         <td class="c-score"><span class="badge" style="--v:17%">17</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.3× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.3× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+4.3%</td>
         <td class="c-num" style="color:var(--buy)">+4.3%</td>
         <td class="c-num grp">+3%</td>
@@ -2619,9 +2626,9 @@
         <td class="rd-sec">finance</td>
       </tr><tr>
         <td class="c-rank">84</td>
-        <td class="c-sym"><span class="sym">MBTO</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">MBTO</span></td>
         <td class="c-score"><span class="badge" style="--v:27%">27</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.6%</td>
         <td class="c-num" style="color:var(--buy)">+2.5%</td>
         <td class="c-num grp">+17%</td>
@@ -2637,9 +2644,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">85</td>
-        <td class="c-sym"><span class="sym">LUCK</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">LUCK</span></td>
         <td class="c-score"><span class="badge" style="--v:21%">21</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">GK reversal (reclaim MA200)</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">GK reversal (reclaim MA200)</span></td>
         <td class="c-num" style="color:var(--buy)">+3.6%</td>
         <td class="c-num" style="color:var(--buy)">+1.8%</td>
         <td class="c-num grp">+21%</td>
@@ -2655,9 +2662,9 @@
         <td class="rd-sec">techno</td>
       </tr><tr>
         <td class="c-rank">86</td>
-        <td class="c-sym"><span class="sym">ALKA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">ALKA</span></td>
         <td class="c-score"><span class="badge" style="--v:22%">22</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">breakout 10d-high</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+24.7%</td>
         <td class="c-num" style="color:var(--buy)">+146.8%</td>
         <td class="c-num grp">+236%</td>
@@ -2673,9 +2680,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">87</td>
-        <td class="c-sym"><span class="sym">TAXI</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">TAXI</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">momentum 5h +25%</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">momentum 5h +25%</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+25.0%</td>
         <td class="c-num grp">+15%</td>
@@ -2693,7 +2700,7 @@
         <td class="c-rank">88</td>
         <td class="c-sym"><span class="sym">TPMA</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+0.4%</td>
         <td class="c-num" style="color:var(--buy)">+5.0%</td>
         <td class="c-num grp">+4%</td>
@@ -2709,9 +2716,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">89</td>
-        <td class="c-sym"><span class="sym">ELTY</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">ELTY</span></td>
         <td class="c-score"><span class="badge" style="--v:15%">15</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.2× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.2× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-3.1%</td>
         <td class="c-num" style="color:var(--avoid)">-11.4%</td>
         <td class="c-num grp">+41%</td>
@@ -2729,7 +2736,7 @@
         <td class="c-rank">90</td>
         <td class="c-sym"><span class="sym">DGWG</span></td>
         <td class="c-score"><span class="badge" style="--v:22%">22</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--avoid)">-1.4%</td>
         <td class="c-num" style="color:var(--buy)">+2.1%</td>
         <td class="c-num grp">-4%</td>
@@ -2747,7 +2754,7 @@
         <td class="c-rank">91</td>
         <td class="c-sym"><span class="sym">BBNI</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+1.7%</td>
         <td class="c-num" style="color:var(--buy)">+2.9%</td>
         <td class="c-num grp">+3%</td>
@@ -2765,7 +2772,7 @@
         <td class="c-rank">92</td>
         <td class="c-sym"><span class="sym">SGRO</span></td>
         <td class="c-score"><span class="badge" style="--v:21%">21</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +29%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +29%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+2.2%</td>
         <td class="c-num" style="color:var(--buy)">+28.6%</td>
         <td class="c-num grp">+42%</td>
@@ -2781,9 +2788,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">93</td>
-        <td class="c-sym"><span class="sym">PSAB</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">PSAB</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+1.4%</td>
         <td class="c-num" style="color:var(--buy)">+2.4%</td>
         <td class="c-num grp">+7%</td>
@@ -2799,9 +2806,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">94</td>
-        <td class="c-sym"><span class="sym">SOFA</span><span class="rd-flag rf-warn" title="papan Akselerasi — bukan papan utama">akselerasi</span></td>
+        <td class="c-sym"><span class="sym">SOFA</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+1.8%</td>
         <td class="c-num" style="color:var(--buy)">+7.5%</td>
         <td class="c-num grp">-1%</td>
@@ -2819,7 +2826,7 @@
         <td class="c-rank">95</td>
         <td class="c-sym"><span class="sym">CBDK</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +10%</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +10%</span></td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num" style="color:var(--buy)">+10.1%</td>
         <td class="c-num grp">+11%</td>
@@ -2835,9 +2842,9 @@
         <td class="rd-sec">propert</td>
       </tr><tr>
         <td class="c-rank">96</td>
-        <td class="c-sym"><span class="sym">KJEN</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">KJEN</span></td>
         <td class="c-score"><span class="badge" style="--v:19%">19</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +15%</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +15%</span></td>
         <td class="c-num" style="color:var(--buy)">+1.4%</td>
         <td class="c-num" style="color:var(--buy)">+15.1%</td>
         <td class="c-num grp">+31%</td>
@@ -2853,9 +2860,9 @@
         <td class="rd-sec">trans</td>
       </tr><tr>
         <td class="c-rank">97</td>
-        <td class="c-sym"><span class="sym">MGNA</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">MGNA</span></td>
         <td class="c-score"><span class="badge" style="--v:17%">17</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">momentum 5h +27%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">momentum 5h +27%</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+26.7%</td>
         <td class="c-num grp">+25%</td>
@@ -2871,9 +2878,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">98</td>
-        <td class="c-sym"><span class="sym">SMLE</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">SMLE</span></td>
         <td class="c-score"><span class="badge" style="--v:17%">17</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">higher-lows di atas MA20</span></td>
         <td class="c-num" style="color:var(--buy)">+0.6%</td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num grp">+48%</td>
@@ -2889,9 +2896,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">99</td>
-        <td class="c-sym"><span class="sym">FPNI</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">FPNI</span></td>
         <td class="c-score"><span class="badge" style="--v:9%">9</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.6× pace</span> <span class="rd-why">momentum 5h +29%</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 2.6× pace</span> <span class="rd-why">momentum 5h +29%</span></td>
         <td class="c-num" style="color:var(--avoid)">-4.3%</td>
         <td class="c-num" style="color:var(--buy)">+29.3%</td>
         <td class="c-num grp">+28%</td>
@@ -2907,9 +2914,9 @@
         <td class="rd-sec">basic</td>
       </tr><tr>
         <td class="c-rank">100</td>
-        <td class="c-sym"><span class="sym">FLMC</span><span class="rd-flag rf-warn" title="papan Akselerasi — bukan papan utama">akselerasi</span></td>
+        <td class="c-sym"><span class="sym">FLMC</span></td>
         <td class="c-score"><span class="badge" style="--v:9%">9</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">reversal dari base + volume</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">reversal dari base + volume</span></td>
         <td class="c-num" style="color:var(--buy)">+5.7%</td>
         <td class="c-num" style="color:var(--avoid)">-7.5%</td>
         <td class="c-num grp">-7%</td>
@@ -2925,9 +2932,9 @@
         <td class="rd-sec">noncyc</td>
       </tr><tr>
         <td class="c-rank">101</td>
-        <td class="c-sym"><span class="sym">KDTN</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">KDTN</span></td>
         <td class="c-score"><span class="badge" style="--v:3%">3</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.7× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.7× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-4.7%</td>
         <td class="c-num" style="color:var(--buy)">+40.0%</td>
         <td class="c-num grp">-17%</td>
@@ -2943,9 +2950,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">102</td>
-        <td class="c-sym"><span class="sym">CYBR</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">CYBR</span></td>
         <td class="c-score"><span class="badge" style="--v:-1%">-1</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.7× pace</span> <span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 4.7× pace</span> <span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+3.6%</td>
         <td class="c-num" style="color:var(--buy)">+1.8%</td>
         <td class="c-num grp">+2%</td>
@@ -2963,7 +2970,7 @@
         <td class="c-rank">103</td>
         <td class="c-sym"><span class="sym">DILD</span></td>
         <td class="c-score"><span class="badge" style="--v:9%">9</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Uptrend/Pullback"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+0.9%</td>
         <td class="c-num" style="color:var(--buy)">+0.9%</td>
         <td class="c-num grp">-3%</td>
@@ -2979,9 +2986,9 @@
         <td class="rd-sec">propert</td>
       </tr><tr>
         <td class="c-rank">104</td>
-        <td class="c-sym"><span class="sym">MKAP</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">MKAP</span></td>
         <td class="c-score"><span class="badge" style="--v:7%">7</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (100%)</span> <span class="rd-why">perfect order 60&gt;100&gt;200</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num grp">-3%</td>
@@ -2997,9 +3004,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">105</td>
-        <td class="c-sym"><span class="sym">TRUE</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">TRUE</span></td>
         <td class="c-score"><span class="badge" style="--v:-14%">-14</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 5.3× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 5.3× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-9.1%</td>
         <td class="c-num" style="color:var(--avoid)">-13.8%</td>
         <td class="c-num grp">-48%</td>
@@ -3017,7 +3024,7 @@
         <td class="c-rank">106</td>
         <td class="c-sym"><span class="sym">GOLF</span></td>
         <td class="c-score"><span class="badge" style="--v:-3%">-3</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">reversal dari base + volume</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">reversal dari base + volume</span></td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num grp">-5%</td>
@@ -3035,7 +3042,7 @@
         <td class="c-rank">107</td>
         <td class="c-sym"><span class="sym">BJTM</span></td>
         <td class="c-score"><span class="badge" style="--v:1%">1</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (97%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+1.0%</td>
         <td class="c-num" style="color:var(--buy)">+1.0%</td>
         <td class="c-num grp">+1%</td>
@@ -3051,9 +3058,9 @@
         <td class="rd-sec">finance</td>
       </tr><tr>
         <td class="c-rank">108</td>
-        <td class="c-sym"><span class="sym">WSKT</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">WSKT</span></td>
         <td class="c-score"><span class="badge" style="--v:-12%">-12</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.3× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 4.3× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-1.9%</td>
         <td class="c-num" style="color:var(--avoid)">-12.9%</td>
         <td class="c-num grp">-12%</td>
@@ -3069,9 +3076,9 @@
         <td class="rd-sec">infra</td>
       </tr><tr>
         <td class="c-rank">109</td>
-        <td class="c-sym"><span class="sym">PTDU</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">PTDU</span></td>
         <td class="c-score"><span class="badge" style="--v:-1%">-1</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +13%</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">momentum 5h +13%</span></td>
         <td class="c-num" style="color:var(--buy)">+1.4%</td>
         <td class="c-num" style="color:var(--buy)">+12.9%</td>
         <td class="c-num grp">-56%</td>
@@ -3089,7 +3096,7 @@
         <td class="c-rank">110</td>
         <td class="c-sym"><span class="sym">TUGU</span></td>
         <td class="c-score"><span class="badge" style="--v:-1%">-1</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+0.4%</td>
         <td class="c-num" style="color:var(--buy)">+2.5%</td>
         <td class="c-num grp">+2%</td>
@@ -3107,7 +3114,7 @@
         <td class="c-rank">111</td>
         <td class="c-sym"><span class="sym">ADHI</span></td>
         <td class="c-score"><span class="badge" style="--v:-15%">-15</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.9× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.9× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-3.2%</td>
         <td class="c-num" style="color:var(--avoid)">-5.0%</td>
         <td class="c-num grp">-4%</td>
@@ -3123,9 +3130,9 @@
         <td class="rd-sec">infra</td>
       </tr><tr>
         <td class="c-rank">112</td>
-        <td class="c-sym"><span class="sym">BUVA</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">BUVA</span></td>
         <td class="c-score"><span class="badge" style="--v:-15%">-15</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.4× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.4× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-3.2%</td>
         <td class="c-num" style="color:var(--avoid)">-8.5%</td>
         <td class="c-num grp">-13%</td>
@@ -3141,9 +3148,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">113</td>
-        <td class="c-sym"><span class="sym">MTFN</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">MTFN</span></td>
         <td class="c-score"><span class="badge" style="--v:-15%">-15</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.1× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.1× pace</span></td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num" style="color:var(--avoid)">-13.3%</td>
         <td class="c-num grp">-24%</td>
@@ -3161,7 +3168,7 @@
         <td class="c-rank">114</td>
         <td class="c-sym"><span class="sym">RALS</span></td>
         <td class="c-score"><span class="badge" style="--v:-11%">-11</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (98%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+1.1%</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num grp">-1%</td>
@@ -3177,9 +3184,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">115</td>
-        <td class="c-sym"><span class="sym">BTEK</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">BTEK</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 4.2× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 4.2× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-9.1%</td>
         <td class="c-num" style="color:var(--avoid)">-16.7%</td>
         <td class="c-num grp">+0%</td>
@@ -3197,7 +3204,7 @@
         <td class="c-rank">116</td>
         <td class="c-sym"><span class="sym">SAME</span></td>
         <td class="c-score"><span class="badge" style="--v:-11%">-11</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">nempel trigger (99%)</span> <span class="rd-why">tutup kuat di puncak range</span></td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num" style="color:var(--buy)">+1.3%</td>
         <td class="c-num grp">-8%</td>
@@ -3213,9 +3220,9 @@
         <td class="rd-sec">health</td>
       </tr><tr>
         <td class="c-rank">117</td>
-        <td class="c-sym"><span class="sym">LUCY</span><span class="rd-flag rf-warn" title="papan Akselerasi — bukan papan utama">akselerasi</span></td>
+        <td class="c-sym"><span class="sym">LUCY</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 3.0× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">reversal dari base + volume</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 3.0× pace</span> <span class="rd-why">tutup kuat di puncak range</span> <span class="rd-why">reversal dari base + volume</span></td>
         <td class="c-num" style="color:var(--buy)">+0.9%</td>
         <td class="c-num" style="color:var(--avoid)">-11.0%</td>
         <td class="c-num grp">-65%</td>
@@ -3231,9 +3238,9 @@
         <td class="rd-sec">cyclic</td>
       </tr><tr>
         <td class="c-rank">118</td>
-        <td class="c-sym"><span class="sym">MPPA</span><span class="rd-flag rf-warn" title="papan Pemantauan Khusus — bukan papan utama">papan khusus</span></td>
+        <td class="c-sym"><span class="sym">MPPA</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.9× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 2.9× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-2.1%</td>
         <td class="c-num" style="color:var(--avoid)">-9.8%</td>
         <td class="c-num grp">-4%</td>
@@ -3251,7 +3258,7 @@
         <td class="c-rank">119</td>
         <td class="c-sym"><span class="sym">RMKE</span></td>
         <td class="c-score"><span class="badge" style="--v:-18%">-18</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">reversal dari base + volume</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">reversal dari base + volume</span></td>
         <td class="c-num" style="color:var(--buy)">+0.5%</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
         <td class="c-num grp">-6%</td>
@@ -3267,9 +3274,9 @@
         <td class="rd-sec">energy</td>
       </tr><tr>
         <td class="c-rank">120</td>
-        <td class="c-sym"><span class="sym">BEER</span><span class="rd-flag rf-warn" title="papan Pengembangan — bukan papan utama">pengembangan</span></td>
+        <td class="c-sym"><span class="sym">BEER</span></td>
         <td class="c-score"><span class="badge" style="--v:-21%">-21</span></td>
-        <td style="font-size:.82rem;max-width:270px" title="Neutral"><span class="rd-why">volume 2.5× pace</span></td>
+        <td class="rd-whycell" title="Neutral"><span class="rd-why">volume 2.5× pace</span></td>
         <td class="c-num" style="color:var(--avoid)">-1.4%</td>
         <td class="c-num" style="color:var(--avoid)">-4.0%</td>
         <td class="c-num grp">-10%</td>
@@ -3296,7 +3303,7 @@
       <thead><tr><th>#</th><th>Sym</th><th>Skor</th><th class="grp" title="Relative strength 20 hari vs IHSG">RS20</th><th>chg1d</th><th>chg20</th><th>volR</th><th>Close-kuat</th><th class="grp" title="10-day high — tembus ini dgn volume = naik kelas">Trigger</th><th title="Harga ÷ trigger">Jarak</th><th>MA20</th><th class="grp" title="Umur data BM (hari). Kosong = belum pernah ada BM.">BM</th><th title="Ukuran maksimum menurut kelengkapan lensa BM">Size</th><th class="grp">Close</th><th>Likuid</th><th>Sektor</th></tr></thead>
       <tbody><tr>
         <td class="c-rank">1</td>
-        <td class="c-sym"><span class="sym">BEEF</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">BEEF</span></td>
         <td class="c-score"><span class="badge" style="--v:69%">69</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+55</td>
         <td class="c-num" style="color:var(--buy)">+5.0%</td>
@@ -3313,7 +3320,7 @@
         <td class="c-sec"><span class="chip sec">noncyc</span></td>
       </tr><tr>
         <td class="c-rank">2</td>
-        <td class="c-sym"><span class="sym">TRUK</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">TRUK</span></td>
         <td class="c-score"><span class="badge" style="--v:62%">62</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+46</td>
         <td class="c-num" style="color:var(--buy)">+17.6%</td>
@@ -3330,7 +3337,7 @@
         <td class="c-sec"><span class="chip sec">trans</span></td>
       </tr><tr>
         <td class="c-rank">3</td>
-        <td class="c-sym"><span class="sym">VIVA</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">VIVA</span></td>
         <td class="c-score"><span class="badge" style="--v:58%">58</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+38</td>
         <td class="c-num" style="color:var(--buy)">+8.7%</td>
@@ -3347,7 +3354,7 @@
         <td class="c-sec"><span class="chip sec">cyclic</span></td>
       </tr><tr>
         <td class="c-rank">4</td>
-        <td class="c-sym"><span class="sym">BKDP</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">BKDP</span></td>
         <td class="c-score"><span class="badge" style="--v:57%">57</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+45</td>
         <td class="c-num" style="color:var(--buy)">+15.8%</td>
@@ -3364,7 +3371,7 @@
         <td class="c-sec"><span class="chip sec">propert</span></td>
       </tr><tr>
         <td class="c-rank">5</td>
-        <td class="c-sym"><span class="sym">HOPE</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">HOPE</span></td>
         <td class="c-score"><span class="badge" style="--v:55%">55</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+51</td>
         <td class="c-num" style="color:var(--buy)">+1.9%</td>
@@ -3381,7 +3388,7 @@
         <td class="c-sec"><span class="chip sec">indust</span></td>
       </tr><tr>
         <td class="c-rank">6</td>
-        <td class="c-sym"><span class="sym">MMIX</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">MMIX</span></td>
         <td class="c-score"><span class="badge" style="--v:40%">40</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+39</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
@@ -3398,7 +3405,7 @@
         <td class="c-sec"><span class="chip sec">health</span></td>
       </tr><tr>
         <td class="c-rank">7</td>
-        <td class="c-sym"><span class="sym">DWGL</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">DWGL</span></td>
         <td class="c-score"><span class="badge" style="--v:39%">39</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+53</td>
         <td class="c-num" style="color:var(--avoid)">-1.1%</td>
@@ -3415,7 +3422,7 @@
         <td class="c-sec"><span class="chip sec">energy</span></td>
       </tr><tr>
         <td class="c-rank">8</td>
-        <td class="c-sym"><span class="sym">VERN</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">VERN</span></td>
         <td class="c-score"><span class="badge" style="--v:33%">33</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+36</td>
         <td class="c-num" style="color:var(--buy)">+1.0%</td>
@@ -3432,7 +3439,7 @@
         <td class="c-sec"><span class="chip sec">cyclic</span></td>
       </tr><tr>
         <td class="c-rank">9</td>
-        <td class="c-sym"><span class="sym">OASA</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">OASA</span></td>
         <td class="c-score"><span class="badge" style="--v:32%">32</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+27</td>
         <td class="c-num" style="color:var(--buy)">+7.6%</td>
@@ -3449,7 +3456,7 @@
         <td class="c-sec"><span class="chip sec">infra</span></td>
       </tr><tr>
         <td class="c-rank">10</td>
-        <td class="c-sym"><span class="sym">GULA</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">GULA</span></td>
         <td class="c-score"><span class="badge" style="--v:31%">31</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+25</td>
         <td class="c-num" style="color:var(--buy)">+0.6%</td>
@@ -3466,7 +3473,7 @@
         <td class="c-sec"><span class="chip sec">noncyc</span></td>
       </tr><tr>
         <td class="c-rank">11</td>
-        <td class="c-sym"><span class="sym">ATAP</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">ATAP</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+31</td>
         <td class="c-num" style="color:var(--avoid)">-4.1%</td>
@@ -3483,7 +3490,7 @@
         <td class="c-sec"><span class="chip sec">propert</span></td>
       </tr><tr>
         <td class="c-rank">12</td>
-        <td class="c-sym"><span class="sym">ZONE</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">ZONE</span></td>
         <td class="c-score"><span class="badge" style="--v:30%">30</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+23</td>
         <td class="c-num" style="color:var(--avoid)">-0.7%</td>
@@ -3500,7 +3507,7 @@
         <td class="c-sec"><span class="chip sec">cyclic</span></td>
       </tr><tr>
         <td class="c-rank">13</td>
-        <td class="c-sym"><span class="sym">VKTR</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">VKTR</span></td>
         <td class="c-score"><span class="badge" style="--v:25%">25</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+31</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
@@ -3517,7 +3524,7 @@
         <td class="c-sec"><span class="chip sec">cyclic</span></td>
       </tr><tr>
         <td class="c-rank">14</td>
-        <td class="c-sym"><span class="sym">INAI</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">INAI</span></td>
         <td class="c-score"><span class="badge" style="--v:23%">23</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+32</td>
         <td class="c-num" style="color:var(--avoid)">-2.2%</td>
@@ -3534,7 +3541,7 @@
         <td class="c-sec"><span class="chip sec">basic</span></td>
       </tr><tr>
         <td class="c-rank">15</td>
-        <td class="c-sym"><span class="sym">KKES</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">KKES</span></td>
         <td class="c-score"><span class="badge" style="--v:23%">23</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+22</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
@@ -3551,7 +3558,7 @@
         <td class="c-sec"><span class="chip sec">basic</span></td>
       </tr><tr>
         <td class="c-rank">16</td>
-        <td class="c-sym"><span class="sym">MTPS</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">MTPS</span></td>
         <td class="c-score"><span class="badge" style="--v:22%">22</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+30</td>
         <td class="c-num" style="color:var(--avoid)">-9.0%</td>
@@ -3568,7 +3575,7 @@
         <td class="c-sec"><span class="chip sec">infra</span></td>
       </tr><tr>
         <td class="c-rank">17</td>
-        <td class="c-sym"><span class="sym">JGLE</span><span title="papan Pengembangan — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">JGLE</span></td>
         <td class="c-score"><span class="badge" style="--v:22%">22</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+23</td>
         <td class="c-num" style="color:var(--buy)">+0.0%</td>
@@ -3585,7 +3592,7 @@
         <td class="c-sec"><span class="chip sec">cyclic</span></td>
       </tr><tr>
         <td class="c-rank">18</td>
-        <td class="c-sym"><span class="sym">TIRT</span><span title="likuiditas sangat tipis">🔥</span><span title="papan Pemantauan Khusus — bukan papan utama">⚠</span></td>
+        <td class="c-sym"><span class="sym">TIRT</span></td>
         <td class="c-score"><span class="badge" style="--v:21%">21</span></td>
         <td class="c-num grp" style="color:var(--buy);font-weight:700">+23</td>
         <td class="c-num" style="color:var(--avoid)">-9.2%</td>
@@ -3612,7 +3619,7 @@
       <thead><tr><th>#</th><th>Sym</th><th title="Screen mana yang kena">Jenis</th><th>Skor</th><th class="grp">chg1d</th><th>chg20</th><th>volR</th><th>Close-kuat</th><th class="grp" title="Level yang harus ditembus">Trigger</th><th title="Harga ÷ trigger">Jarak</th><th>Serial ARA</th><th class="grp">Fase (BM)</th><th title="Umur data BM">BM</th><th title="Ukuran maksimum menurut lensa BM">Size</th><th class="grp">Close</th><th>Likuid</th><th>Sektor</th></tr></thead>
       <tbody><tr>
         <td class="c-rank">1</td>
-        <td class="c-sym"><span class="sym">ENZO</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan">⚠</span></td>
+        <td class="c-sym"><span class="sym">ENZO</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span> <span class="chip" title="Model histori ARA (2.580 kejadian): volume mulai membangun / markup sudah jalan">🚀 markup</span></td>
         <td class="c-score"><span class="badge" style="--v:66%">66</span></td>
         <td class="c-num grp" style="color:var(--buy)">+22.7%</td>
@@ -3630,7 +3637,7 @@
         <td class="c-sec"><span class="chip sec">noncyc</span></td>
       </tr><tr>
         <td class="c-rank">2</td>
-        <td class="c-sym"><span class="sym">ICON</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan">⚠</span></td>
+        <td class="c-sym"><span class="sym">ICON</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span> <span class="chip" title="Volume-Spike: volR ≥2× dgn tutup kuat = ignition awal markup">⚡ spike</span></td>
         <td class="c-score"><span class="badge" style="--v:62%">62</span></td>
         <td class="c-num grp" style="color:var(--buy)">+4.7%</td>
@@ -3684,7 +3691,7 @@
         <td class="c-sec"><span class="chip sec">basic</span></td>
       </tr><tr>
         <td class="c-rank">5</td>
-        <td class="c-sym"><span class="sym">BKDP</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan">⚠</span></td>
+        <td class="c-sym"><span class="sym">BKDP</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Model histori ARA (2.580 kejadian): volume mulai membangun / markup sudah jalan">🚀 markup</span></td>
         <td class="c-score"><span class="badge" style="--v:47%">47</span></td>
         <td class="c-num grp" style="color:var(--buy)">+15.8%</td>
@@ -3702,7 +3709,7 @@
         <td class="c-sec"><span class="chip sec">propert</span></td>
       </tr><tr>
         <td class="c-rank">6</td>
-        <td class="c-sym"><span class="sym">BSSR</span><span title="likuiditas tipis">🔥</span></td>
+        <td class="c-sym"><span class="sym">BSSR</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:46%">46</span></td>
         <td class="c-num grp" style="color:var(--buy)">+0.2%</td>
@@ -3774,7 +3781,7 @@
         <td class="c-sec"><span class="chip sec">basic</span></td>
       </tr><tr>
         <td class="c-rank">10</td>
-        <td class="c-sym"><span class="sym">MKPI</span><span title="likuiditas tipis">🔥</span><span title="papan Pengembangan">⚠</span></td>
+        <td class="c-sym"><span class="sym">MKPI</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:45%">45</span></td>
         <td class="c-num grp" style="color:var(--buy)">+0.9%</td>
@@ -3792,7 +3799,7 @@
         <td class="c-sec"><span class="chip sec">propert</span></td>
       </tr><tr>
         <td class="c-rank">11</td>
-        <td class="c-sym"><span class="sym">SPTO</span><span title="likuiditas tipis">🔥</span></td>
+        <td class="c-sym"><span class="sym">SPTO</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:44%">44</span></td>
         <td class="c-num grp" style="color:var(--buy)">+0.8%</td>
@@ -3810,7 +3817,7 @@
         <td class="c-sec"><span class="chip sec">indust</span></td>
       </tr><tr>
         <td class="c-rank">12</td>
-        <td class="c-sym"><span class="sym">FORE</span><span title="papan Pengembangan">⚠</span></td>
+        <td class="c-sym"><span class="sym">FORE</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:44%">44</span></td>
         <td class="c-num grp" style="color:var(--buy)">+2.1%</td>
@@ -3828,7 +3835,7 @@
         <td class="c-sec"><span class="chip sec">noncyc</span></td>
       </tr><tr>
         <td class="c-rank">13</td>
-        <td class="c-sym"><span class="sym">TLDN</span><span title="likuiditas tipis">🔥</span></td>
+        <td class="c-sym"><span class="sym">TLDN</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:43%">43</span></td>
         <td class="c-num grp" style="color:var(--buy)">+0.9%</td>
@@ -3846,7 +3853,7 @@
         <td class="c-sec"><span class="chip sec">noncyc</span></td>
       </tr><tr>
         <td class="c-rank">14</td>
-        <td class="c-sym"><span class="sym">JRPT</span><span title="likuiditas tipis">🔥</span></td>
+        <td class="c-sym"><span class="sym">JRPT</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:43%">43</span></td>
         <td class="c-num grp" style="color:var(--buy)">+0.0%</td>
@@ -3864,7 +3871,7 @@
         <td class="c-sec"><span class="chip sec">propert</span></td>
       </tr><tr>
         <td class="c-rank">15</td>
-        <td class="c-sym"><span class="sym">CFIN</span><span title="likuiditas tipis">🔥</span></td>
+        <td class="c-sym"><span class="sym">CFIN</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:43%">43</span></td>
         <td class="c-num grp" style="color:var(--buy)">+1.2%</td>
@@ -3882,7 +3889,7 @@
         <td class="c-sec"><span class="chip sec">finance</span></td>
       </tr><tr>
         <td class="c-rank">16</td>
-        <td class="c-sym"><span class="sym">DKFT</span><span title="likuiditas tipis">🔥</span></td>
+        <td class="c-sym"><span class="sym">DKFT</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:43%">43</span></td>
         <td class="c-num grp" style="color:var(--buy)">+2.3%</td>
@@ -3954,7 +3961,7 @@
         <td class="c-sec"><span class="chip sec">noncyc</span></td>
       </tr><tr>
         <td class="c-rank">20</td>
-        <td class="c-sym"><span class="sym">NCKL</span><span title="papan Pengembangan">⚠</span></td>
+        <td class="c-sym"><span class="sym">NCKL</span></td>
         <td class="c-tag" style="white-space:nowrap"><span class="chip" title="Akumulasi: kompresi volatilitas + volume hari-naik dominan + coiling di bawah resistance">🔥 akum</span></td>
         <td class="c-score"><span class="badge" style="--v:43%">43</span></td>
         <td class="c-num grp" style="color:var(--buy)">+1.6%</td>
@@ -5903,7 +5910,10 @@ th.sortable{cursor:pointer} th.sortable:hover{color:var(--ink)}
 .tag,.chip,.es,.ma,.rot-chip,.ss-chip,.rd-flag,.rd-why{display:inline-block;border-radius:999px;
   font-size:.69rem;padding:2px 8px;border:1px solid var(--line);background:transparent;
   font-weight:600;white-space:nowrap;line-height:1.5}
-.rd-why{border-radius:6px;font-weight:500;font-size:.72rem;color:var(--muted);margin:1px 1px}
+.rd-why{border-radius:6px;font-weight:500;font-size:.71rem;color:var(--muted);margin:1px 2px 1px 0}
+/* chip alasan mengalir horizontal; tanpa ini 6 chip menumpuk vertikal dan baris jadi ~180px */
+.rd-whycell{font-size:.82rem;min-width:300px;max-width:420px}
+.rd-whycell .rd-why{display:inline-block}
 .rd-none{color:var(--muted);font-size:.74rem}
 .rd-flag{font-size:.68rem;margin:1px 1px}
 /* status: HIJAU = mendukung · MERAH = hindari · AMBER = hati-hati · BIRU = netral/info */
