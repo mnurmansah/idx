@@ -1,5 +1,30 @@
 <div class="wrap">
-  <button id="themeBtn" class="theme-btn" aria-label="Ganti tema terang/gelap" title="Terang / Gelap">🌙</button>
+  <nav class="rail" aria-label="Navigasi section">
+    <div class="rail-brand">IDX Watchlist</div>
+    <div class="rail-lbl ulabel">Section</div>
+    <a href="#s-konsensus" data-nav="#s-konsensus">Konsensus<span class="rc">22</span></a>
+    <a href="#s-komposit" data-nav="#s-komposit">Komposit<span class="rc">54</span></a>
+    <a href="#s-radar" data-nav="#s-radar">Radar Scan<span class="rc">120</span></a>
+    <a href="#s-rsleader" data-nav="#s-rsleader">RS-Leader<span class="rc">18</span></a>
+    <a href="#s-prebreakout" data-nav="#s-prebreakout">Pra-breakout<span class="rc">20</span></a>
+    <a href="#s-rotasi" data-nav="#s-rotasi">Rotasi Sektor<span class="rc">11</span></a>
+    <a href="#s-konglomerasi" data-nav="#s-konglomerasi">Konglomerasi<span class="rc">18</span></a>
+    <div class="rail-spacer" style="flex:1"></div>
+    <div class="rail-lbl ulabel">Tampilan</div>
+    <a href="#" id="themeBtn" role="button" aria-label="Ganti tema terang/gelap">Tema<span class="rc" id="themeVal">terang</span></a>
+    <a href="#" id="densBtn" role="button" aria-label="Kepadatan baris">Kepadatan<span class="rc" id="densVal">padat</span></a>
+  </nav>
+  <div class="main">
+    <div class="topbar">
+      <span class="ulabel">IDX Swing</span>
+      <span class="tb-chip off"><span class="tb-dot"></span>RISK-OFF</span>
+      <span class="tb-chip">TRANSISI — Hati-hati</span>
+      <span class="tb-chip">Breadth 23% &gt;MA200</span>
+      <span class="tb-sp"></span>
+      <span class="tb-chip">Data 2026-08-04</span>
+      <span class="tb-chip">174 nama dinilai</span>
+    </div>
+    <div class="inner">
   <header class="head">
     <div class="titleblock">
       <h1>IDX Swing Watchlist</h1>
@@ -35,7 +60,7 @@
   </section>
 
 
-  <details class="con-sec sec-collap" open>
+  <details id="s-konsensus" class="con-sec sec-collap" open>
     <summary class="sec-sum">⭐ Konsensus — sintesis akurat semua screen <span class="fca-badge best-badge">7 KUAT · 22 nama · arah = LPM</span></summary>
     <div class="fca-head">
       <p class="fca-note"><b>Lapisan master</b> di atas 5 screen di bawah (yang saling tumpang-tindih). Akurasi = <b>kesepakatan antar-AXIS ORTOGONAL</b>, bukan hitung screen momentum yang bunyi bareng: <b>📈 TREND</b> (Triple Screen) · <b>💰 ARAH</b> (kemiringan LPM = fondasi BM) · <b>💪 RS</b> (ungguli IHSG) · <b>⚡ MOMENTUM</b> (volume/breakout) · <b>🔄 REVERSAL</b> (oversold berbalik).
@@ -379,7 +404,7 @@
       <button class="tab" data-f="avoid">🔴 Hindari (E)</button>
     </div>
     <div class="filters">
-      <button class="cg-btn" type="button" id="densBtn" title="Kepadatan baris">⇕ Padat</button>
+<!-- kontrol Kepadatan & Tema dipindah ke rail kiri (2026-08-04) — dulu di sini, id ganda kalau dibiarkan -->
       <select id="secsel" aria-label="Filter sektor">
         <option value="">Semua sektor</option>
         <option value="basic">basic</option><option value="cyclic">cyclic</option><option value="energy">energy</option><option value="finance">finance</option><option value="health">health</option><option value="indust">indust</option><option value="infra">infra</option><option value="noncyc">noncyc</option><option value="propert">propert</option><option value="techno">techno</option><option value="trans">trans</option>
@@ -388,7 +413,7 @@
     </div>
   </section>
 
-  <details class="wl-sec sec-collap" open>
+  <details id="s-komposit" class="wl-sec sec-collap" open>
     <summary class="sec-sum">📊 Komposit — tabel utama <span class="fca-badge wl-badge">54 nama · skor komposit</span><span class="fca-badge best-badge">+31 kandidat baru</span><span class="fca-badge">−9 dibuang</span></summary>
     <p class="fca-note"><b>Daftar ini DINAMIS</b> — nama yang price action-nya mati dibuang, kandidat baru ditarik dari ⭐Konsensus dan mover teknikal di scan. 21 dari 30 nama kurasi bertahan · 2 promote-BM · <b>31 kandidat baru</b> (tag ⭐KONSENSUS / ⭐TEKNIKAL, level entry/SL/TP dihitung otomatis dari bars — verifikasi live sebelum entry). Nama ber-tier <b>HELD tidak pernah dibuang</b> walau jelek — posisi terbuka justru harus terlihat supaya bisa diputuskan cut.
     <b>Dibuang hari ini (9):</b> <span class="rd-why" title="WATCH-AKUMULASI · close 1650 · chg1d 0% · chg5d 2.8% · volR 0.09× · tutup-kuat 0.43 — tak satu pun kondisi price action menyala">SSIA</span> <span class="rd-why" title="GREEN-base · close 2380 · chg1d 1.71% · chg5d -8.81% · volR 0.42× · tutup-kuat 0.38 — tak satu pun kondisi price action menyala">INDY</span> <span class="rd-why" title="GORENGAN-GO · close 492 · chg1d 0% · chg5d 2.5% · volR 0.09× · tutup-kuat 0.67 — tak satu pun kondisi price action menyala">NRCA</span> <span class="rd-why" title="GORENGAN-GO · close 460 · chg1d 1.77% · chg5d 0% · volR 0.22× · tutup-kuat 0.57 — tak satu pun kondisi price action menyala">TOBA</span> <span class="rd-why" title="GREEN · close 2880 · chg1d 0.35% · chg5d -0.35% · volR 0.18× · tutup-kuat 0 — tak satu pun kondisi price action menyala">ANTM</span> <span class="rd-why" title="WATCH-AKUMULASI · close 260 · chg1d 0.78% · chg5d -0.76% · volR 0.22× · tutup-kuat 0.5 — tak satu pun kondisi price action menyala">PWON</span> <span class="rd-why" title="GREEN · close 127 · chg1d 0.79% · chg5d -0.78% · volR 0.09× · tutup-kuat 0.67 — tak satu pun kondisi price action menyala">DGIK</span> <span class="rd-why" title="WATCH-NEW · close 3270 · chg1d -0.3% · chg5d 1.55% · volR 0.08× · tutup-kuat 0.67 — tak satu pun kondisi price action menyala">CITA</span> <span class="rd-why" title="WATCH-NEW · close 316 · chg1d 0% · chg5d -1.25% · volR 0.25× · tutup-kuat 0.5 — tak satu pun kondisi price action menyala">SMRA</span> — hover untuk angkanya. Bukan hilang: kalau price action-nya hidup lagi, otomatis masuk kembali.
@@ -1094,7 +1119,7 @@
   </div>
   </details>
 
-  <details class="rsw-sec sec-collap" open>
+  <details id="s-radar" class="rsw-sec sec-collap" open>
     <summary class="sec-sum">📡 Radar Scan — mover di luar daftar pantauan <span class="fca-badge rsw-badge">120 nama · langsung dari scan</span></summary>
     <p class="fca-note"><b>Aturannya: price action dulu — kalau menarik, TIDAK difilter.</b> Seleksinya bukan ambang skor, tapi <b>gabungan-ATAU kondisi price action</b> (volume pace · breakout · nempel trigger · tutup kuat · GK reversal · perfect order · momentum 5h · reversal dari base · higher-lows). <b>Satu alasan menarik sudah cukup untuk tampil</b>, dan alasannya ditulis di kolom <b>Kenapa menarik</b> supaya bisa diulas bareng. Satu-satunya yang dibuang: likuiditas di bawah 300 jt/hari (benar-benar tak bisa masuk/keluar).
     Section lain bersumber dari <code>greenlist.json</code> (kurasi manual) atau <code>riskoff_output</code>, jadi nama yang <b>belum pernah dikurasi tidak bisa muncul di mana pun</b> — section ini membaca <b>langsung dari scan</b> untuk menutup lubang itu.
@@ -3266,7 +3291,7 @@
     </table></div>
   </details>
 
-  <details class="rsw-sec sec-collap">
+  <details id="s-rsleader" class="rsw-sec sec-collap">
     <summary class="sec-sum">💪 RS-Leader tanpa konfirmasi <span class="fca-badge rsw-badge">18 nama · WATCH, bukan entry</span></summary>
     <p class="fca-note">Nama yang <b>mengungguli IHSG (RS20 ≥20)</b> dan strukturnya sehat (di atas MA200, belum extended) <b>tapi baru 1 axis yang menyala</b> — sehingga tidak masuk ⭐ Konsensus yang mewajibkan ≥2 axis. Biasanya karena <b>belum breakout</b> dan/atau <b>volume belum ramai</b>. Ini kelas <b>WATCH</b>: jangan entry sekarang, pasang alert di trigger.
     <b>Trigger</b> = tembus <i>10-day high</i> dengan <b>volR ≥1,5</b> → axis MOMENTUM menyala → otomatis naik ke Konsensus. Diurut dari yang paling dekat trigger. Kolom <b>Jarak</b> = harga ÷ trigger (100% = tepat di trigger). BM kosong → maksimum ½ size.
@@ -3583,7 +3608,7 @@
     </table></div>
   </details>
 
-  <details class="pre-sec sec-collap">
+  <details id="s-prebreakout" class="pre-sec sec-collap">
     <summary class="sec-sum">🌱 Pra-breakout — belum jalan tapi mulai dimuati <span class="fca-badge pre-badge">20 nama · 2 kena ≥2 screen</span></summary>
     <p class="fca-note">Peleburan tiga screen lama (<b>🔥 Akumulasi</b> · <b>⚡ Volume-Spike</b> · <b>🚀 Potensi Markup</b>) — ketiganya menjawab pertanyaan yang sama, jadi ditampilkan sebagai satu daftar. <b>Kolom Jenis</b> menunjukkan screen mana yang kena; <b>kena ≥2 screen = bukti lebih luas</b> (26 poin per screen), prinsip yang sama dengan axis di Konsensus. Nama ber-arah <b>distribusi dibuang</b>.
     <b>ENTRY = saat breakout &gt; trigger dengan volume</b>, BUKAN saat masih coiling. 🔥 likuiditas tipis · ⚠ bukan papan utama · 🔒 ARA hari ini. Model markup = <b>probabilitas, bukan kepastian</b> (edge ~3× jalur awal, ~7× jalur lanjutan).</p>
@@ -3953,7 +3978,7 @@
     </table></div>
   </details>
 
-  <details class="rot-sec sec-collap" open>
+  <details id="s-rotasi" class="rot-sec sec-collap" open>
     <summary class="sec-sum">🧭 Rotasi Sektor — kemana uang pindah <span class="fca-badge rot-badge">11 sektor · relative-strength</span></summary>
     <p class="fca-note">Uang jarang bergerak merata — ia <b>berputar antar sektor</b>. Skor rotasi = konsentrasi <b>mover-kuat</b> (volR≥1.5 + tutup-kuat + hijau) + median chg5d/chg1d + breadth naik + volume rata + bonus kalau <b>JM sektor sudah risk-on</b>. Sektor teratas = tujuan rotasi hari ini; <b>Pilihan</b> = anggota terkuatnya (calon entry, cek BM & live dulu). Time-stop 5 hari.</p>
     <div class="rot-grid">
@@ -4004,7 +4029,7 @@
     </div>
   </details>
 
-  <details class="conglo-sec sec-collap">
+  <details id="s-konglomerasi" class="conglo-sec sec-collap">
     <summary class="sec-sum">🏛️ Konglomerasi <span class="fca-badge conglo-badge">TEKNIKAL saja · tanpa BM</span></summary>
     <p class="fca-note">Kekuatan teknikal per grup konglomerat (breakout + MA-stage + momentum + volume + close-strength). Klik kartu untuk buka/tutup anggota. Bar = skor 0–100, warna ikut band. ⚠️ Skor tinggi ≠ konfirmasi bandar — volume tipis + tren turun = pop distribusi. Cek BM sebelum entry.</p>
     <div class="cg-ctrls">
@@ -5725,34 +5750,79 @@
     </div>
     <p class="disc">⚠️ Feed IDX_DLY delayed · bar intraday · verifikasi live di broker. Edukatif, bukan rekomendasi investasi.</p>
   </footer>
+    </div><!-- /.inner -->
+  </div><!-- /.main -->
 </div>
 
 <style>
+/* ═══ TOKEN ═══ Arah visual mengikuti referensi yang dikirim user (2026-08-04): near-monochrome
+   warm-neutral, kartu putih ber-border hairline, label mikro monospace, dan warna kromatik DIPAKAI
+   HANYA untuk status (hijau/merah/amber) — bukan sebagai aksen dekoratif. Netralnya dipilih hangat
+   (bias kuning tipis), bukan grey murni, supaya tidak terbaca "default". */
 :root{
-  --bg:#f4f7f5; --panel:#ffffff; --panel2:#f0f4f1; --ink:#12211c; --muted:#5e7167; --line:#dde6e1;
-  --accent:#0f9d76; --buy:#0e9b67; --watch:#c07f16; --avoid:#cf4a45; --held:#2b7fb0; --info:#6d54c8; --gor:#b06a1c;
-  --shadow:0 1px 2px rgba(20,40,32,.06),0 8px 24px rgba(20,40,32,.05);
+  --bg:#f7f7f5; --panel:#ffffff; --panel2:#fbfbf9; --ink:#1a1a18; --muted:#70706a; --line:#e7e7e2;
+  --accent:#a8741c; --buy:#2d8a54; --watch:#a8741c; --avoid:#c4443e; --held:#3b6b9e; --info:#3b6b9e; --gor:#a8651f;
+  --shadow:0 1px 2px rgba(26,26,24,.04);
+  --radius:11px;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,Consolas,monospace;
 }
+/* Dark = warm-neutral gelap, BUKAN inversi naif: netralnya tetap hangat, semantik dinaikkan
+   luminansinya supaya tetap lolos kontras di atas ground gelap. */
 @media (prefers-color-scheme:dark){:root{
-  --bg:#0b120f; --panel:#111a16; --panel2:#0e1613; --ink:#e7efe9; --muted:#8aa398; --line:#20302a;
-  --accent:#1dd8a3; --buy:#2ecc9a; --watch:#e6ad42; --avoid:#ec6a66; --held:#4aa8e0; --info:#a78bfa; --gor:#e0954a;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  --bg:#171715; --panel:#1e1e1c; --panel2:#232320; --ink:#eceae4; --muted:#97958d; --line:#302f2c;
+  --accent:#d8a445; --buy:#4fb87a; --watch:#d8a445; --avoid:#e0736c; --held:#6fa3d4; --info:#6fa3d4; --gor:#d99a52;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
 }}
 :root[data-theme="light"]{
-  --bg:#f4f7f5; --panel:#ffffff; --panel2:#f0f4f1; --ink:#12211c; --muted:#5e7167; --line:#dde6e1;
-  --accent:#0f9d76; --buy:#0e9b67; --watch:#c07f16; --avoid:#cf4a45; --held:#2b7fb0; --info:#6d54c8; --gor:#b06a1c;
+  --bg:#f7f7f5; --panel:#ffffff; --panel2:#fbfbf9; --ink:#1a1a18; --muted:#70706a; --line:#e7e7e2;
+  --accent:#a8741c; --buy:#2d8a54; --watch:#a8741c; --avoid:#c4443e; --held:#3b6b9e; --info:#3b6b9e; --gor:#a8651f;
+  --shadow:0 1px 2px rgba(26,26,24,.04);
 }
 :root[data-theme="dark"]{
-  --bg:#0b120f; --panel:#111a16; --panel2:#0e1613; --ink:#e7efe9; --muted:#8aa398; --line:#20302a;
-  --accent:#1dd8a3; --buy:#2ecc9a; --watch:#e6ad42; --avoid:#ec6a66; --held:#4aa8e0; --info:#a78bfa; --gor:#e0954a;
+  --bg:#171715; --panel:#1e1e1c; --panel2:#232320; --ink:#eceae4; --muted:#97958d; --line:#302f2c;
+  --accent:#d8a445; --buy:#4fb87a; --watch:#d8a445; --avoid:#e0736c; --held:#6fa3d4; --info:#6fa3d4; --gor:#d99a52;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
-.wrap{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);
-  max-width:none;width:100%;margin:0;padding:22px 24px 80px;line-height:1.45;-webkit-font-smoothing:antialiased}
-.mono,.c-num,.c-score,.c-rank{font-variant-numeric:tabular-nums;font-family:ui-monospace,"SF Mono","Cascadia Code",Menlo,monospace}
+/* ═══ SHELL ═══ rail kiri sticky + kolom konten. Grid, bukan margin per-elemen. */
+.wrap{font-family:var(--sans);color:var(--ink);background:var(--bg);
+  max-width:none;width:100%;margin:0;padding:0;line-height:1.5;-webkit-font-smoothing:antialiased;
+  display:grid;grid-template-columns:208px minmax(0,1fr);align-items:start;gap:0;min-height:100vh}
+.mono,.c-num,.c-score,.c-rank{font-variant-numeric:tabular-nums;font-family:var(--mono)}
+/* label mikro monospace uppercase = ciri utama referensi */
+.ulabel{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600}
+.rail{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--panel);
+  border-right:1px solid var(--line);padding:18px 12px 24px;display:flex;flex-direction:column;gap:6px}
+.rail-brand{font-weight:800;letter-spacing:.16em;font-size:.82rem;text-transform:uppercase;padding:2px 8px 14px;color:var(--ink)}
+.rail-lbl{padding:10px 8px 4px}
+.rail a{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:8px;text-decoration:none;
+  color:var(--ink);font-size:.83rem;font-weight:500;border:1px solid transparent}
+.rail a:hover{background:var(--panel2);border-color:var(--line)}
+.rail a.on{background:var(--panel2);border-color:var(--line);font-weight:700}
+.rail a .rc{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.rail a:focus-visible,.topbar button:focus-visible,.tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.main{min-width:0;padding:0 0 80px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  padding:11px 22px;background:var(--panel);border-bottom:1px solid var(--line)}
+.topbar .tb-sp{margin-left:auto}
+.tb-chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:var(--panel2)}
+.tb-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex:none}
+.tb-chip.on .tb-dot{background:var(--buy)} .tb-chip.off .tb-dot{background:var(--avoid)}
+.inner{padding:22px 22px 0;display:flex;flex-direction:column;gap:0}
 .head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
-h1{font-size:1.5rem;letter-spacing:-.02em;margin:0;font-weight:700}
-.sub{margin:.25rem 0 0;color:var(--muted);font-size:.82rem}
+h1{font-size:1.42rem;letter-spacing:-.015em;margin:0;font-weight:700;text-wrap:balance}
+.sub{margin:.3rem 0 0;color:var(--muted);font-size:.82rem}
+@media (max-width:960px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  .rail{position:static;height:auto;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px 12px;gap:6px;align-items:center}
+  .rail-brand,.rail-lbl,.rail .rail-spacer{display:none}
+  .rail a{white-space:nowrap;flex:none}
+  .rail a .rc{display:none}
+  .inner,.topbar{padding-left:14px;padding-right:14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .regime{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--avoid);border-radius:10px;padding:8px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1px;min-width:230px}
 .rlabel{font-size:.62rem;letter-spacing:.14em;color:var(--muted)}
 .rval{font-weight:700;color:var(--avoid);font-size:.92rem}
@@ -6050,8 +6120,54 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
 .pg-btn:disabled{opacity:.4;cursor:default}
 .pg-pages{font-weight:800;color:var(--ink)}
 .pg-info{color:var(--muted);margin-left:auto}
-.theme-btn{position:fixed;top:12px;right:14px;z-index:20;font:inherit;font-size:1.05rem;line-height:1;padding:8px 11px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:.15s}
-.theme-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+/* ═══ PENYELARASAN KE REFERENSI ═══ ditaruh di AKHIR blok style supaya menang atas aturan lama
+   tanpa harus membongkarnya satu per satu (hati-hati soal spesifisitas: semuanya class-level). */
+.sec-collap{margin-top:14px}
+.sec-collap>summary{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:13px 16px;font-size:.92rem;font-weight:700;box-shadow:none;gap:10px}
+.sec-collap[open]>summary{border-radius:var(--radius) var(--radius) 0 0;border-bottom-color:transparent}
+.sec-collap[open]>summary+*{border:1px solid var(--line);border-top:0;border-radius:0 0 var(--radius) var(--radius);background:var(--panel)}
+.sec-collap>summary::before{color:var(--muted)}
+/* section punya border sendiri; rail/aksen tebal dari desain lama dilepas supaya kembali tenang */
+.best-sec,.rsw-sec,.picks-sec{border:0!important;background:transparent!important;padding:0!important;margin:14px 0 0!important}
+.fca-note{font-size:.79rem;color:var(--muted);line-height:1.6;padding:12px 16px 0;margin:0}
+.fca-head{padding-top:0}
+.tablewrap{overflow-x:auto;padding:10px 6px 6px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:.82rem}
+thead th{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--muted);font-weight:600;background:var(--panel);border-bottom:1px solid var(--line);
+  padding:9px 10px;text-align:left;white-space:nowrap;position:sticky;top:0;z-index:2}
+tbody td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even){background:transparent}
+tbody tr:hover{background:var(--panel2)}
+.c-num,.c-close,.c-rank{text-align:right}
+.c-rank{color:var(--muted);font-size:.72rem}
+.sym{font-weight:700;letter-spacing:-.01em}
+/* skor: angka + bar tipis, bukan blok berwarna penuh */
+.badge{border-radius:6px;border:1px solid var(--line);font-size:.8rem;padding:2px 8px;min-width:42px;
+  background:linear-gradient(90deg,var(--panel2) 0 var(--v,0%),transparent var(--v,0%) 100%)}
+.tag,.chip,.es,.fca-badge{border-radius:999px;font-size:.7rem;padding:2px 9px;border:1px solid var(--line);
+  background:transparent;font-weight:600;letter-spacing:.01em}
+.fca-badge{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.stats{gap:8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:none;padding:11px 8px}
+.stat b{font-family:var(--mono)}
+.stat span{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:11px 13px;margin:14px 0 0;box-shadow:none}
+.tab{border-radius:8px;border:1px solid transparent;background:transparent;font-size:.8rem;padding:6px 11px;color:var(--muted);font-weight:600}
+.tab.active{background:var(--panel2);border-color:var(--line);color:var(--ink)}
+#q,#secsel{border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);font:inherit;font-size:.8rem;padding:6px 10px}
+.mkt,.regime{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:none}
+.mkt{border-left-width:1px!important}
+.rlabel{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.rval{font-weight:700;font-size:.86rem}
+.rmeta{font-size:.7rem;color:var(--muted)}
+.secstrip{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:11px 14px;box-shadow:none}
+.ss-chip{border-radius:999px;font-size:.68rem;border:1px solid var(--line);background:transparent}
+.foot{border-top:1px solid var(--line);margin-top:26px;padding-top:16px;color:var(--muted);font-size:.75rem}
+/* anchor tidak boleh tertutup topbar sticky */
+[id^="s-"]{scroll-margin-top:74px}
 @media(max-width:640px){.stats{grid-template-columns:repeat(4,1fr)}.head{align-items:flex-start}.regime{min-width:0;width:100%}.theme-btn{top:8px;right:8px}}
 
 /* ===== 🎯 Pilihan WL (section paling bawah) ===== */
@@ -6104,17 +6220,48 @@ td.grp,thead th.grp{border-left:2px solid var(--accent)}
 
 <script>
 (function(){
-  var root=document.documentElement, btn=document.getElementById('themeBtn');
-  function setTheme(t){ root.setAttribute('data-theme',t); try{localStorage.setItem('idxwl-theme',t)}catch(e){} if(btn)btn.textContent=(t==='dark')?'☀️':'🌙'; }
+  // Tema & Kepadatan kini item di rail kiri: tulis nilainya ke <span class="rc">, JANGAN textContent
+  // pada tombolnya — itu akan menghapus label + span nilainya sekaligus.
+  var root=document.documentElement, btn=document.getElementById('themeBtn'), tv=document.getElementById('themeVal');
+  function setTheme(t){ root.setAttribute('data-theme',t); try{localStorage.setItem('idxwl-theme',t)}catch(e){} if(tv)tv.textContent=(t==='dark')?'gelap':'terang'; }
   var saved=null; try{saved=localStorage.getItem('idxwl-theme')}catch(e){}
   var init=saved||((window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light');
   setTheme(init);
-  if(btn) btn.addEventListener('click',function(){ setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
-  var dbtn=document.getElementById('densBtn');
-  function setDens(d){ root.setAttribute('data-density',d); try{localStorage.setItem('idxwl-dens',d)}catch(e){} if(dbtn)dbtn.textContent=(d==='cozy')?'⇕ Longgar':'⇕ Padat'; }
+  if(btn) btn.addEventListener('click',function(e){ e.preventDefault(); setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
+  var dbtn=document.getElementById('densBtn'), dv=document.getElementById('densVal');
+  function setDens(d){ root.setAttribute('data-density',d); try{localStorage.setItem('idxwl-dens',d)}catch(e){} if(dv)dv.textContent=(d==='cozy')?'longgar':'padat'; }
   var sd='compact'; try{sd=localStorage.getItem('idxwl-dens')||'compact'}catch(e){}
   setDens(sd);
-  if(dbtn) dbtn.addEventListener('click',function(){ setDens(root.getAttribute('data-density')==='cozy'?'compact':'cozy'); });
+  if(dbtn) dbtn.addEventListener('click',function(e){ e.preventDefault(); setDens(root.getAttribute('data-density')==='cozy'?'compact':'cozy'); });
+})();
+// Rail: tandai section yang sedang dilihat. Section <details> yang tertutup tetap bisa dituju —
+// klik rail membukanya dulu supaya anchor tidak mendarat di elemen ber-tinggi nol.
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.rail a[data-nav]'));
+  if(!links.length) return;
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      var el=document.querySelector(a.getAttribute('data-nav'));
+      if(!el) return;
+      e.preventDefault();
+      if(el.tagName==='DETAILS'&&!el.open) el.open=true;
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+      history.replaceState(null,'',a.getAttribute('data-nav'));
+    });
+  });
+  var targets=links.map(function(a){return document.querySelector(a.getAttribute('data-nav'));});
+  function mark(){
+    var best=-1,bestTop=-Infinity;
+    for(var i=0;i<targets.length;i++){
+      if(!targets[i]) continue;
+      var t=targets[i].getBoundingClientRect().top-90;
+      if(t<=0&&t>bestTop){bestTop=t;best=i;}
+    }
+    links.forEach(function(a,i){a.classList.toggle('on',i===best);});
+  }
+  var tid=0;
+  addEventListener('scroll',function(){ if(tid)return; tid=setTimeout(function(){tid=0;mark();},120); },{passive:true});
+  mark();
 })();
 (function(){
   var tbody=document.querySelector('#wl tbody');
