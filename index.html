@@ -22,7 +22,8 @@
       <span class="tb-chip">TRANSISI — Hati-hati</span>
       <span class="tb-chip">Breadth 26% &gt;MA200</span>
       <span class="tb-sp"></span>
-      <span class="tb-chip">Data 2026-08-07</span>
+      <span class="tb-chip ts-chip" title="Kapan scan teknikal terakhir dijalankan (WIB). Kalau jamnya SEBELUM 16:15, bar hari itu belum tutup — volRatio understated & flag breakout masih bisa berbalik.">⏱ Teknikal <b>2026-08-07 12:04</b></span>
+      <span class="tb-chip ts-chip" title="Tanggal BAR chart BM terbaru yang tercatat di bm_history.json · di-merge 2026-08-06 14:46 WIB. Masa berlaku: LPM &amp; Intensity 14 hari, Vol Rotation 5 hari — lewat itu lensanya dianggap TIDAK ADA, bukan dipakai nilai terakhirnya.">🏦 BM <b>2026-08-05</b> <span class="ts-age">(2 hr lalu)</span></span>
       <span class="tb-chip">196 nama dinilai</span>
     </div>
     <div class="inner">
@@ -6583,6 +6584,13 @@
 .tb-chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.67rem;
   letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;
   padding:3px 9px;white-space:nowrap}
+/* Stempel waktu: dua umur data yang berbeda (scan teknikal vs batch BM). Sengaja lebih tegas dari
+   chip biasa — pertanyaan "ini data kapan?" harus terjawab tanpa perlu bertanya. */
+.ts-chip{color:var(--ink);border-color:var(--line2,var(--line));background:var(--bg2,transparent)}
+.ts-chip b{font-weight:700;letter-spacing:0}
+.ts-age{color:var(--muted);font-weight:400}
+.ts-chip.ts-old{color:var(--avoid);border-color:var(--avoid)}
+.ts-chip.ts-old .ts-age{color:var(--avoid)}
 .tb-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);flex:none}
 .tb-chip.on{color:var(--buy);border-color:var(--buy)} .tb-chip.on .tb-dot{background:var(--buy)}
 .tb-chip.off{color:var(--avoid);border-color:var(--avoid)} .tb-chip.off .tb-dot{background:var(--avoid)}
