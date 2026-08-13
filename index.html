@@ -32,6 +32,10 @@
       <h1>IDX Swing Watchlist</h1>
       <p class="sub" title="Skor gabungan (Tech-breakout55 + BM15(gate) + MA20 + RR10), disesuaikan kondisi pasar (bear). BM dipangkas 35→15 pada 30/07 karena uji internal tak menemukan edge BM di jendela ≤5 hari; bobotnya pindah ke breakout.">Skor gabungan teknikal + aliran uang bandar · <span class="mono">2026-08-13</span> <span class="sub-hint">(delay ~15–20 mnt · edukatif)</span></p>
     </div>
+    <div class="mkt mkt-intraday">
+      <div class="mkt-head"><span class="mkt-ic">⏳</span><span class="mkt-title">SESI MASIH BERJALAN — ANGKA BELUM FINAL</span><span class="mkt-px">~25% volume harian masuk</span></div>
+      <p class="mkt-msg">Scan dijalankan sebelum bursa tutup (per 2026-08-13 10:23 WIB). Bar hari ini belum selesai, jadi <b>volume understated</b>, sedangkan <b>%hari ini &amp; posisi tutup dalam range masih bisa berubah total</b>. Skor, Konsensus, Kontrarian, dan FCA di halaman ini semuanya dihitung dari bar yang belum tutup. Perlakukan sebagai <b>pantauan</b>, bukan sinyal entry final — jalankan ulang setelah penutupan.</p>
+    </div>
     <div class="mkt mk-trans">
       <div class="mkt-head"><span class="mkt-ic">🟡</span><span class="mkt-title">KONDISI PASAR: TRANSISI — Hati-hati</span><span class="mkt-px">IHSG 6298</span></div>
       <p class="mkt-msg">Tren besar masih lemah, tapi jangka pendek mulai pulih. Main kecil & cepat, TP disiplin, stop ketat — jangan bangun posisi besar dulu.</p>
@@ -5389,6 +5393,12 @@ th.sortable{cursor:pointer} th.sortable:hover{color:var(--ink)}
 .mkt{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
   border-radius:var(--radius);padding:11px 14px;flex:1 1 340px;min-width:260px}
 .mk-on{border-left-color:var(--buy)} .mk-trans{border-left-color:var(--watch)} .mk-off{border-left-color:var(--avoid)}
+/* penanda sesi berjalan: harus melebar penuh & paling menonjol — kalau terlewat, seluruh angka
+   di halaman ini terbaca final padahal barnya belum tutup. */
+.mkt-intraday{flex:1 1 100%;border-left-color:var(--watch);border-color:var(--watch);
+  background:color-mix(in srgb,var(--watch) 9%,var(--panel))}
+.mkt-intraday .mkt-title{color:var(--watch);letter-spacing:.02em}
+.mkt-intraday .mkt-msg{color:var(--fg)}
 .mkt-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .mkt-title{font-weight:700;font-size:.84rem}
 .mkt-px{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-left:auto}
