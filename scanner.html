@@ -24,6 +24,8 @@ nav.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);flex-wrap:wrap
 nav.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:9px 15px;
 font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
 nav.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+nav.tabs button[data-gagal] {color:var(--avoid)}
+nav.tabs button[data-gagal][aria-selected=true]{border-bottom-color:var(--avoid)}
 nav.tabs .cnt{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:6px}
 .ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .seg{display:inline-flex;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:2px}
@@ -70,9 +72,9 @@ footer{color:var(--muted);font-size:12px;border-top:1px solid var(--line);paddin
 
 <nav class="tabs" role="tablist">
   <button role="tab" data-tab="akum" aria-selected="true">Top Akumulasi<span class="cnt" id="c-akum"></span></button>
-  <button role="tab" data-tab="sup" aria-selected="false">Support MA<span class="cnt" id="c-sup"></span></button>
-  <button role="tab" data-tab="ketat" aria-selected="false">Ketat<span class="cnt" id="c-ketat"></span></button>
-  <button role="tab" data-tab="rev" aria-selected="false">Reversal<span class="cnt" id="c-rev"></span></button>
+  <button role="tab" data-tab="sup" aria-selected="false" title="DIUJI 476 hari / 15.425 pengamatan: edge +1,58% di +5 hari, positif di ketiga rezim — TAPI median hanya +0,11% dan menang 51%. Profil ekor-kanan: butuh banyak percobaan dan membiarkan pemenang jalan, bukan angka pasti per posisi.">Support MA<span class="cnt" id="c-sup"></span></button>
+  <button role="tab" data-tab="ketat" aria-selected="false" title="DIUJI 476 hari / 12.103 pengamatan: TERKUAT. edge +1,15% di +5 hari, median +0,36%, menang 54%. Positif di ketiga rezim, dan PALING BAIK saat pasar bearish (edge +1,68%, menang 62%).">Ketat<span class="cnt" id="c-ketat"></span></button>
+  <button role="tab" data-tab="rev" aria-selected="false" title="GAGAL UJI 476 hari / 6.582 pengamatan: median NEGATIF di semua horizon (-0,35% s/d -0,78%), menang hanya 43-46%, dan edge NEGATIF saat bearish (-0,17%) maupun pemulihan (-0,50%). Rata-ratanya positif hanya karena ekor kanan di pasar naik 2025. Jangan diperlakukan sebagai saringan." data-gagal="1">Reversal ⚠<span class="cnt" id="c-rev"></span></button>
   <button role="tab" data-tab="all" aria-selected="false">Semua<span class="cnt" id="c-all"></span></button>
 </nav>
 
@@ -115,7 +117,7 @@ divergensi OBV dinolkan</b> karena gradiennya nol atau berlawanan di horizon +1/
 tetap dipakai untuk <i>melabeli</i> pola — ia menjelaskan bentuk, hanya tak terbukti memprediksi
 return. Setelah perubahan ini urutan komposit jadi monoton (Spearman 0,76/0,77/0,60 dari
 0,56/0,60/0,28), dan ember teratas menang 55% vs 43% di ember terbawah.
-Tanda <span class="tag">PK</span> Papan Pemantauan Khusus (lelang penuh) ·
+<br><b>Ambang tab sudah diuji</b> (476 hari, 30.125 pengamatan): <b>Ketat</b> terkuat — median +0,36%, menang 54%, dan paling baik justru saat bearish (menang 62%). <b>Support MA</b> lulus tapi profilnya ekor-kanan: median cuma +0,11%, menang 51%. <b>Reversal GAGAL</b> — median negatif di semua horizon dan menang 43–46%; rata-ratanya positif hanya karena ekor kanan pasar naik 2025. Arahkan kursor ke nama tab untuk angka lengkapnya.<br>Tanda <span class="tag">PK</span> Papan Pemantauan Khusus (lelang penuh) ·
 <span class="tag tp">tipis</span> sampel terlalu kecil, komponen konsentrasi &amp; partisipasi dinolkan.</div>
 
 <div class="panel"><table id="t"><thead><tr>
