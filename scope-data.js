@@ -20,3 +20,172 @@ function bangunCaption(o) {
   ref.push('', '*Disclaimer On*');
   return { kita: kita, referensi: ref.join('\n') };
 }
+function chartSVG(o, bars, opt) {
+  opt = opt || {};
+  var AMBIL = opt.bars || 170;
+  var W = opt.W || 1060, PADL = 54, PADR = 78, PADT = 16;
+  var Hp = opt.Hp || 360, Hv = 84, Hs = 96, GAP = 26;
+
+  var N = bars.length;
+  var T = [], O = [], H = [], L = [], C = [], V = [];
+  for (var i = 0; i < N; i++) { T.push(bars[i][0]); O.push(bars[i][1]); H.push(bars[i][2]); L.push(bars[i][3]); C.push(bars[i][4]); V.push(bars[i][5]); }
+
+  // ── indikator (dihitung ulang di sini, bukan ditanam) ──
+  function smaSeri(arr, p) {
+    var out = [], s = 0;
+    for (var i = 0; i < arr.length; i++) {
+      s += arr[i]; if (i >= p) s -= arr[i - p];
+      out.push(i + 1 >= p ? s / p : null);
+    }
+    return out;
+  }
+  function sdAt(arr, p, i) {
+    if (i + 1 < p) return null;
+    var m = 0, k; for (k = i - p + 1; k <= i; k++) m += arr[k]; m /= p;
+    var s = 0; for (k = i - p + 1; k <= i; k++) s += (arr[k] - m) * (arr[k] - m);
+    return Math.sqrt(s / p);
+  }
+  var MA20 = smaSeri(C, 20), MA50 = smaSeri(C, 50), MA200 = smaSeri(C, 200);
+  // RSI(14) -> Stochastic RSI(14,3,3)
+  var rsi = [], ag = 0, al = 0;
+  rsi.push(null);
+  for (var i2 = 1; i2 < N; i2++) {
+    var d = C[i2] - C[i2 - 1], g = d > 0 ? d : 0, l2 = d < 0 ? -d : 0;
+    if (i2 <= 14) { ag += g / 14; al += l2 / 14; rsi.push(i2 === 14 ? (al === 0 ? 100 : 100 - 100 / (1 + ag / al)) : null); continue; }
+    ag = (ag * 13 + g) / 14; al = (al * 13 + l2) / 14;
+    rsi.push(al === 0 ? 100 : 100 - 100 / (1 + ag / al));
+  }
+  var raw = [];
+  for (var i3 = 0; i3 < N; i3++) {
+    if (rsi[i3] == null || i3 < 28) { raw.push(null); continue; }
+    var mn = Infinity, mx = -Infinity, ok = true;
+    for (var k3 = i3 - 13; k3 <= i3; k3++) { if (rsi[k3] == null) { ok = false; break; } if (rsi[k3] < mn) mn = rsi[k3]; if (rsi[k3] > mx) mx = rsi[k3]; }
+    raw.push(ok ? (mx === mn ? 50 : 100 * (rsi[i3] - mn) / (mx - mn)) : null);
+  }
+  function smaNull(arr, p) {
+    var out = [];
+    for (var i = 0; i < arr.length; i++) {
+      var s = 0, ok = true;
+      for (var k = i - p + 1; k <= i; k++) { if (k < 0 || arr[k] == null) { ok = false; break; } s += arr[k]; }
+      out.push(ok ? s / p : null);
+    }
+    return out;
+  }
+  var SK = smaNull(raw, 3), SD = smaNull(SK, 3);
+
+  // ── geometri ──
+  var i0 = Math.max(0, N - AMBIL), n = N - i0;
+  var innerW = W - PADL - PADR, bw = innerW / n;
+  var x = function (i) { return PADL + (i - i0) * bw + bw / 2; };
+  var pMin = Infinity, pMax = -Infinity, i4;
+  for (i4 = i0; i4 < N; i4++) { if (L[i4] < pMin) pMin = L[i4]; if (H[i4] > pMax) pMax = H[i4]; }
+  var lvArr = [o.level.R2, o.level.R1, o.level.S1, o.level.S2, o.level.SL, o.level.trigger];
+  for (i4 = 0; i4 < lvArr.length; i4++) { var v4 = lvArr[i4]; if (v4 > 0) { if (v4 < pMin) pMin = v4; if (v4 > pMax) pMax = v4; } }
+  var padP = (pMax - pMin) * 0.08 || 1; pMin -= padP; pMax += padP;
+  var yP = function (v) { return PADT + Hp - (v - pMin) / (pMax - pMin) * Hp; };
+  var vMax = 0; for (i4 = i0; i4 < N; i4++) if (V[i4] > vMax) vMax = V[i4];
+  if (!vMax) vMax = 1;
+  var vTop = PADT + Hp + GAP, yV = function (v) { return vTop + Hv - (v / vMax) * Hv; };
+  var sTop = vTop + Hv + GAP, yS = function (v) { return sTop + Hs - (v / 100) * Hs; };
+  var totalH = sTop + Hs + 26;
+  var f = function (v) { return v.toFixed(1); };
+
+  // ── lilin + volume ──
+  var candles = '', vols = '';
+  for (i4 = i0; i4 < N; i4++) {
+    var cls = C[i4] >= O[i4] ? 'up' : 'dn';
+    var yo = yP(O[i4]), yc = yP(C[i4]);
+    var top = yo < yc ? yo : yc, hh = Math.abs(yo - yc); if (hh < 1) hh = 1;
+    candles += '<line class="wick ' + cls + '" x1="' + f(x(i4)) + '" x2="' + f(x(i4)) + '" y1="' + f(yP(H[i4])) + '" y2="' + f(yP(L[i4])) + '"/>'
+      + '<rect class="body ' + cls + '" x="' + f(x(i4) - bw * 0.32) + '" y="' + f(top) + '" width="' + f(bw * 0.64) + '" height="' + f(hh) + '"/>';
+    vols += '<rect class="vol ' + cls + '" x="' + f(x(i4) - bw * 0.32) + '" y="' + f(yV(V[i4])) + '" width="' + f(bw * 0.64) + '" height="' + f(vTop + Hv - yV(V[i4])) + '"/>';
+  }
+  var path = function (ser, yf) {
+    var d2 = '', mulai = true;
+    for (var i = i0; i < N; i++) {
+      var v = ser[i];
+      if (v == null || !isFinite(v)) { mulai = true; continue; }
+      d2 += (mulai ? 'M' : 'L') + f(x(i)) + ',' + f(yf(v)); mulai = false;
+    }
+    return d2;
+  };
+  // pita Bollinger
+  var up = [], lo = [];
+  for (i4 = i0; i4 < N; i4++) {
+    var m4 = MA20[i4], s4 = sdAt(C, 20, i4);
+    if (m4 == null || s4 == null) continue;
+    up.push([x(i4), yP(m4 + 2 * s4)]); lo.push([x(i4), yP(m4 - 2 * s4)]);
+  }
+  var bbArea = '';
+  if (up.length > 2) {
+    var a1 = [], a2 = [];
+    for (i4 = 0; i4 < up.length; i4++) a1.push(f(up[i4][0]) + ',' + f(up[i4][1]));
+    for (i4 = lo.length - 1; i4 >= 0; i4--) a2.push(f(lo[i4][0]) + ',' + f(lo[i4][1]));
+    bbArea = '<path class="bb" d="M' + a1.join('L') + 'L' + a2.join('L') + 'Z"/>';
+  }
+
+  // ── garis level, teks dipisah vertikal supaya tidak bertumpuk ──
+  var garis = [
+    { v: o.level.R2, t: 'R2 ' + o.level.R2, c: 'lv-res' },
+    { v: o.level.R1, t: 'R1 ' + o.level.R1, c: 'lv-res' },
+    { v: o.level.trigger, t: 'Pemicu ' + o.level.trigger, c: 'lv-trig' },
+    { v: o.level.SL, t: 'SL ' + o.level.SL, c: 'lv-sl' },
+    { v: o.level.S1, t: 'S1 ' + o.level.S1, c: 'lv-sup' },
+    { v: o.level.S2, t: 'S2 ' + o.level.S2, c: 'lv-sup' },
+  ].filter(function (g) { return g.v >= pMin && g.v <= pMax; })
+    .map(function (g) { g.y = yP(g.v); g.ty = g.y; return g; })
+    .sort(function (a, b) { return a.y - b.y; });
+  var MIN = 11.5;
+  for (i4 = 1; i4 < garis.length; i4++) if (garis[i4].ty - garis[i4 - 1].ty < MIN) garis[i4].ty = garis[i4 - 1].ty + MIN;
+  var luber = garis.length ? garis[garis.length - 1].ty - (PADT + Hp) : 0;
+  if (luber > 0) for (i4 = 0; i4 < garis.length; i4++) garis[i4].ty -= luber;
+  var levels = '';
+  for (i4 = 0; i4 < garis.length; i4++) {
+    var g4 = garis[i4];
+    levels += '<line class="lv ' + g4.c + '" x1="' + PADL + '" x2="' + (W - PADR) + '" y1="' + f(g4.y) + '" y2="' + f(g4.y) + '"/>';
+    if (Math.abs(g4.ty - g4.y) > 1.5) levels += '<line class="lvc ' + g4.c + '" x1="' + (W - PADR) + '" x2="' + (W - PADR + 4) + '" y1="' + f(g4.y) + '" y2="' + f(g4.ty) + '"/>';
+    levels += '<text class="lvt ' + g4.c + '" x="' + (W - PADR + 6) + '" y="' + f(g4.ty + 3.2) + '">' + g4.t + '</text>';
+  }
+
+  // ── sumbu + legenda ──
+  var gridY = '', langkah = (pMax - pMin) / 4;
+  for (i4 = 0; i4 <= 4; i4++) {
+    var vv = pMin + langkah * i4, yy = yP(vv);
+    gridY += '<line class="grid" x1="' + PADL + '" x2="' + (W - PADR) + '" y1="' + f(yy) + '" y2="' + f(yy) + '"/>'
+      + '<text class="ax" x="' + (PADL - 8) + '" y="' + f(yy + 3.2) + '" text-anchor="end">' + Math.round(vv) + '</text>';
+  }
+  var bln = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+  var gridX = '', lastM = -1;
+  for (i4 = i0; i4 < N; i4++) {
+    var dt = new Date(T[i4] * 1000), mo = dt.getUTCMonth();
+    if (mo !== lastM) {
+      lastM = mo;
+      gridX += '<text class="ax" x="' + f(x(i4)) + '" y="' + (totalH - 8) + '" text-anchor="middle">' + bln[mo] + ' ' + String(dt.getUTCFullYear()).slice(2) + '</text>';
+    }
+  }
+  var leg = [['ma20', 'MA20'], ['ma50', 'MA50'], ['ma200', 'MA200']], legend = '', lx = PADL + 4;
+  for (i4 = 0; i4 < leg.length; i4++) {
+    legend += '<line class="ma ' + leg[i4][0] + '" x1="' + lx + '" x2="' + (lx + 16) + '" y1="' + (PADT + 8) + '" y2="' + (PADT + 8) + '"/>'
+      + '<text class="ax" x="' + (lx + 20) + '" y="' + (PADT + 11.5) + '">' + leg[i4][1] + '</text>';
+    lx += 20 + leg[i4][1].length * 6.4 + 12;
+  }
+  legend += '<rect class="bb" x="' + lx + '" y="' + (PADT + 3) + '" width="16" height="10"/>'
+    + '<text class="ax" x="' + (lx + 20) + '" y="' + (PADT + 11.5) + '">Bollinger 20,2</text>';
+
+  return '<svg class="sc-svg" viewBox="0 0 ' + W + ' ' + totalH + '" width="100%" role="img" aria-label="Grafik harga ' + o.sym + '">'
+    + gridY + bbArea
+    + '<path class="ma ma200" d="' + path(MA200, yP) + '"/>'
+    + '<path class="ma ma50" d="' + path(MA50, yP) + '"/>'
+    + '<path class="ma ma20" d="' + path(MA20, yP) + '"/>'
+    + candles + levels + legend
+    + '<text class="panel-t" x="' + PADL + '" y="' + (vTop - 6) + '">Volume</text>' + vols
+    + '<line class="grid" x1="' + PADL + '" x2="' + (W - PADR) + '" y1="' + (sTop + Hs) + '" y2="' + (sTop + Hs) + '"/>'
+    + '<line class="grid dash" x1="' + PADL + '" x2="' + (W - PADR) + '" y1="' + f(yS(80)) + '" y2="' + f(yS(80)) + '"/>'
+    + '<line class="grid dash" x1="' + PADL + '" x2="' + (W - PADR) + '" y1="' + f(yS(20)) + '" y2="' + f(yS(20)) + '"/>'
+    + '<text class="panel-t" x="' + PADL + '" y="' + (sTop - 6) + '">Stochastic RSI (14, 3, 3)</text>'
+    + '<path class="srsi k" d="' + path(SK, yS) + '"/>'
+    + '<path class="srsi d" d="' + path(SD, yS) + '"/>'
+    + '<text class="ax" x="' + (PADL - 8) + '" y="' + f(yS(100) + 3) + '" text-anchor="end">100</text>'
+    + '<text class="ax" x="' + (PADL - 8) + '" y="' + f(yS(0) + 3) + '" text-anchor="end">0</text>'
+    + gridX + '</svg>';
+}

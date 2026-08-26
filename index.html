@@ -5875,6 +5875,36 @@ th.sortable{cursor:pointer} th.sortable:hover{color:var(--ink)}
 .sq-spark{width:100%;height:60px;display:block;margin-top:8px}
 .sq-spark path{fill:none;stroke:var(--accent);stroke-width:1.5}
 .sq-spark line{stroke-width:1;stroke-dasharray:4 3}
+.sq-cload{font-size:.62rem;color:var(--muted);text-align:center;padding:3px 0 1px}
+/* Chart lilin di panel. SEMUA disarangkan di bawah .sq-chart — nama kelas di scope_chart.mjs
+   generik (.grid, .body, .ma) dan tanpa penyarangan ini akan bertabrakan dgn CSS dashboard. */
+.sq-chart{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 4px;margin-top:8px}
+.sq-chart .sc-svg{display:block;width:100%}
+.sq-chart .grid{stroke:var(--line);stroke-width:1}
+.sq-chart .grid.dash{stroke-dasharray:3 4}
+.sq-chart .ax{fill:var(--muted);font:10px var(--mono)}
+.sq-chart .panel-t{fill:var(--muted);font:10px var(--sans)}
+.sq-chart .wick{stroke-width:1}
+.sq-chart .wick.up,.sq-chart .body.up{stroke:var(--buy)}
+.sq-chart .wick.dn,.sq-chart .body.dn{stroke:var(--avoid)}
+.sq-chart .body{stroke-width:.8}
+.sq-chart .body.up{fill:var(--buy)}.sq-chart .body.dn{fill:var(--avoid)}
+.sq-chart .vol.up{fill:var(--buy);opacity:.42}.sq-chart .vol.dn{fill:var(--avoid);opacity:.42}
+.sq-chart .ma{fill:none;stroke-width:1.4}
+.sq-chart .ma20{stroke:var(--accent)}.sq-chart .ma50{stroke:var(--info)}
+.sq-chart .ma200{stroke:var(--ink);opacity:.75}
+.sq-chart .bb{fill:var(--info);opacity:.07}
+.sq-chart .srsi{fill:none;stroke-width:1.2}
+.sq-chart .srsi.k{stroke:var(--ink)}.sq-chart .srsi.d{stroke:var(--accent)}
+.sq-chart .lv{stroke-width:1;stroke-dasharray:5 4;opacity:.85}
+.sq-chart .lv-res{stroke:var(--buy)}.sq-chart .lv-sup{stroke:var(--info)}
+.sq-chart .lv-sl{stroke:var(--avoid)}.sq-chart .lv-trig{stroke:var(--accent)}
+.sq-chart .lvt{font:9.5px var(--mono)}
+.sq-chart .lvt.lv-res{fill:var(--buy)}.sq-chart .lvt.lv-sup{fill:var(--info)}
+.sq-chart .lvt.lv-sl{fill:var(--avoid)}.sq-chart .lvt.lv-trig{fill:var(--accent)}
+.sq-chart .lvc{stroke-width:1;opacity:.6}
+.sq-chart .lvc.lv-res{stroke:var(--buy)}.sq-chart .lvc.lv-sup{stroke:var(--info)}
+.sq-chart .lvc.lv-sl{stroke:var(--avoid)}.sq-chart .lvc.lv-trig{stroke:var(--accent)}
 
 /* ─── 11. PAGER · FOOTER ─────────────────────────────────────────────────────────────────── */
 .pager{display:flex;gap:5px;align-items:center;justify-content:flex-end;padding:9px 15px;font-size:.75rem;color:var(--muted)}
@@ -5962,6 +5992,9 @@ document.addEventListener('DOMContentLoaded',function(){   // defer selesai SEBE
     }).join('')||'<div class="sq-empty">Tidak ada yang cocok.</div>';
     return r;
   }
+  // Chart: garis close dulu (data ringan yang sudah ada), lalu DIGANTI chart lilin penuh begitu
+  // scope-bars.js selesai dimuat. Bukan sekadar hiasan menunggu — kalau unduhannya gagal atau
+  // lambat, panel tetap memberi bentuk harga, bukan kotak kosong.
   function spark(d){
     var c=d.sp, n=c.length; if(n<2) return '';
     var mn=Math.min.apply(null,c), mx=Math.max.apply(null,c);
@@ -5971,7 +6004,36 @@ document.addEventListener('DOMContentLoaded',function(){   // defer selesai SEBE
     var dd=c.map(function(v,i){ return (i?'L':'M')+(i/(n-1)*W).toFixed(1)+','+y(v).toFixed(1); }).join('');
     var g=lv.map(function(v,i){ var col=['var(--accent)','var(--info)','var(--avoid)'][i];
       return '<line x1="0" x2="'+W+'" y1="'+y(v).toFixed(1)+'" y2="'+y(v).toFixed(1)+'" stroke="'+col+'"/>'; }).join('');
-    return '<svg class="sq-spark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+g+'<path d="'+dd+'"/></svg>';
+    return '<div class="sq-chart" data-s="'+d.s+'"><svg class="sq-spark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'
+      +g+'<path d="'+dd+'"/></svg><div class="sq-cload">memuat chart penuh…</div></div>';
+  }
+  // pemuatan malas scope-bars.js: <script src>, BUKAN fetch — fetch diblokir saat halaman ini
+  // dibuka sebagai berkas lokal, sedangkan <script src> tidak.
+  var barsState = 'belum';
+  function muatBars(lalu){
+    if (typeof SB !== 'undefined') { lalu(true); return; }
+    if (barsState === 'gagal') { lalu(false); return; }
+    if (barsState === 'jalan') { setTimeout(function(){ muatBars(lalu); }, 250); return; }
+    barsState = 'jalan';
+    var sc = document.createElement('script');
+    sc.src = 'scope-bars.js';
+    sc.onload = function(){ barsState = 'siap'; lalu(true); };
+    sc.onerror = function(){ barsState = 'gagal'; lalu(false); };
+    document.head.appendChild(sc);
+  }
+  function pasangChart(sym){
+    var box = panel.querySelector('.sq-chart');
+    if (!box || box.getAttribute('data-s') !== sym) return;
+    muatBars(function(ok){
+      var b2 = panel.querySelector('.sq-chart');
+      if (!b2 || b2.getAttribute('data-s') !== sym) return;      // pengguna sudah pindah nama
+      var ket = b2.querySelector('.sq-cload');
+      if (!ok || typeof sbBars !== 'function') { if (ket) ket.textContent = 'chart penuh tidak tersedia (scope-bars.js tidak termuat)'; return; }
+      var bars = sbBars(sym);
+      var dd = null; for (var i=0;i<SQ.length;i++) if (SQ[i].s===sym) { dd=SQ[i]; break; }
+      if (!bars || !dd) { if (ket) ket.textContent = 'bar tidak tersedia untuk nama ini'; return; }
+      b2.innerHTML = chartSVG({ sym: sym, level: dd.lv }, bars, { W: 1060 });
+    });
   }
   function buka(sym){
     var d=null; for(var i=0;i<SQ.length;i++) if(SQ[i].s===sym){d=SQ[i];break}
@@ -6016,6 +6078,7 @@ document.addEventListener('DOMContentLoaded',function(){   // defer selesai SEBE
         '</div>'+
       '</div>';
     saring();
+    pasangChart(sym);
   }
   list.addEventListener('click',function(e){ var it=e.target.closest('.sq-it'); if(it) buka(it.getAttribute('data-s')); });
   panel.addEventListener('click',function(e){
