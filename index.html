@@ -11,7 +11,7 @@
     <a href="#s-konglomerasi" data-nav="#s-konglomerasi">Konglomerasi<span class="rc">18</span></a>
     <a href="#s-scope" data-nav="#s-scope">Scope · cari<span class="rc">827</span></a>
     <div class="rail-lbl ulabel">Halaman</div>
-    <a href="scanner.html" title="Scanner akumulasi dari data resmi bursa: konsentrasi tiket, asing bertanda, partisipasi, float">Scanner Akumulasi<span class="rc">826</span></a>
+    <a href="scanner.html" title="Scanner akumulasi dari data resmi bursa: konsentrasi tiket, asing bertanda, partisipasi, float">Scanner Akumulasi<span class="rc">833</span></a>
     <div class="rail-spacer" style="flex:1"></div>
     <div class="rail-lbl ulabel">Tampilan</div>
     <a href="#" id="themeBtn" role="button" aria-label="Ganti tema terang/gelap">Tema<span class="rc" id="themeVal">terang</span></a>
@@ -34,9 +34,32 @@
       <h1>IDX Swing Watchlist</h1>
       <p class="sub" title="Skor gabungan (Tech55(breakout+tiket) + BM15(gate) + MA20 + RR10), disesuaikan kondisi pasar (bear). BM dipangkas 35→15 pada 30/07 karena uji internal tak menemukan edge BM di jendela ≤5 hari; bobotnya pindah ke breakout.">Skor gabungan teknikal + aliran uang bandar · <span class="mono">2026-08-28</span> <span class="sub-hint">(delay ~15–20 mnt · edukatif)</span></p>
     </div>
+    <div class="aksi ak-ada">
+      <div class="ak-head">🎯 TINDAKAN HARI INI <span class="ak-meta">2026-08-28 · regime BEAR · modal Rp 50 juta · slot 0/12 · ambang likuiditas Rp 50 miliar/hari</span></div>
+      
+      <div class="ak-item">
+        <div class="ak-top"><b>EMAS</b><span class="ak-h">masuk 9300</span>
+          <span class="ak-s">stop 8450 <em>(9.1%)</em></span>
+          <span class="ak-l">5 lot · Rp 4.650.000</span>
+          <span class="ak-r">risiko Rp 425.000</span></div>
+        <div class="ak-why">tiket <b>30.52x</b> · vol 1.59x · 20hr 50% · likuid Rp 230.6 miliar</div>
+        <div class="ak-cmd"><code>node scripts/trade.mjs masuk EMAS --harga=9300 --lot=5 --stop=8450</code><button class="ak-copy" type="button">salin</button></div>
+      </div>
+      <div class="ak-item">
+        <div class="ak-top"><b>VKTR</b><span class="ak-h">masuk 965</span>
+          <span class="ak-s">stop 815 <em>(15.5%)</em></span>
+          <span class="ak-l">33 lot · Rp 3.184.500</span>
+          <span class="ak-r">risiko Rp 495.000</span></div>
+        <div class="ak-why">tiket <b>5.06x</b> · vol 2.2x · 20hr 35.92% · likuid Rp 82.5 miliar</div>
+        <div class="ak-cmd"><code>node scripts/trade.mjs masuk VKTR --harga=965 --lot=33 --stop=815</code><button class="ak-copy" type="button">salin</button></div>
+      </div><details class="ak-tolak"><summary>7 nama lolos sinyal tapi DITOLAK penjaga — lihat alasannya</summary>
+      <ul><li><b>DMAS</b> 199 — likuiditas Rp 43.2 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>SGER</b> 600 — likuiditas Rp 19.4 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>MMIX</b> 800 — likuiditas Rp 18.3 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>AUTO</b> 3400 — likuiditas Rp 13.2 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>SHIP</b> 2470 — likuiditas Rp 0.3 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −2,04%</li><li><b>SINI</b> 9625 — likuiditas Rp 20.3 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>PACK</b> 510 — EXTENDED: +126% dalam 20 hari (ambang 60%) — diuji: nama extended dihukum −8,3%</li></ul></details>
+      <div class="ak-catat">Aturan yang dijalankan: sinyal breakout+volume+close-kuat+MA20+tiket≥2x · stop 2,2×ATR · maks 12 posisi @ risiko 1% · penjaga extended chg20&gt;60%.
+      <b>Bukti untuk tier ini tipis (n=178 di backtest)</b> — perlakukan sebagai kemiringan tipis, bukan kepastian. Catat hasilnya lewat <span class="mono">trade.mjs</span>.</div>
+    </div>
     
     <div class="mkt mk-trans">
-      <div class="mkt-head"><span class="mkt-ic">🟡</span><span class="mkt-title">KONDISI PASAR: TRANSISI — Hati-hati</span><span class="mkt-px">IHSG 6522</span></div>
+      <div class="mkt-head"><span class="mkt-ic">🟡</span><span class="mkt-title">KONDISI PASAR: TRANSISI — Hati-hati</span><span class="mkt-px">IHSG 6518</span></div>
       <p class="mkt-msg">Tren besar masih lemah, tapi jangka pendek mulai pulih. Main kecil & cepat, TP disiplin, stop ketat — jangan bangun posisi besar dulu.</p>
       <div class="bukti bk-off">
       <div class="bukti-head">📐 Yang terukur di regime ini <span class="bukti-src">backtest 28 Agu 2026 · horizon 5 hari · sudah termasuk stop &amp; ongkos</span></div>
@@ -48,7 +71,7 @@
     <div class="regime jm-regime jm-off" title="Jump Model struktural (3 fitur, lambat) · λ10 · Sharpe OOS 0.42">
       <span class="rlabel">TREN BESAR <small>(lambat)</small></span>
       <span class="rval">🔴 RISK-OFF</span>
-      <span class="rmeta">arah tren utama · per 2026-08-27 — defensif</span>
+      <span class="rmeta">arah tren utama · per 2026-08-28 — defensif</span>
     </div>
     <div class="regime jm-regime jm-fast jm-on" title="Jump Model taktis (2 fitur, cepat) · λ5">
       <span class="rlabel">JANGKA PENDEK <small>(cepat · 5 hari)</small></span>
@@ -5524,6 +5547,33 @@ th.sortable{cursor:pointer} th.sortable:hover{color:var(--ink)}
 .cg-close{color:var(--ink)}
 .cg-vol[data-hi="1"]{color:var(--accent);font-weight:700}
 .cg-dead{opacity:.45}
+
+/* ─── 8a. KARTU TINDAKAN (paling atas) ───────────────────────────────────────────────────── */
+.aksi{margin:0 0 14px;padding:13px 16px;border-radius:11px;background:var(--panel);border:1px solid var(--line)}
+.aksi.ak-ada{border-left:4px solid var(--buy)}
+.aksi.ak-nihil{border-left:4px solid var(--muted)}
+.ak-head{font-size:.86rem;font-weight:700;margin-bottom:9px}
+.ak-meta{font-weight:400;font-size:.66rem;color:var(--muted);margin-left:8px;font-family:var(--mono)}
+.ak-item{padding:9px 11px;margin-bottom:7px;border-radius:8px;background:var(--panel2);border:1px solid var(--line)}
+.ak-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.ak-top b{font-family:var(--mono);font-size:1.02rem}
+.ak-h,.ak-s,.ak-l,.ak-r{font-family:var(--mono);font-size:.72rem}
+.ak-s{color:var(--avoid)}.ak-l{color:var(--ink);font-weight:600}.ak-r{color:var(--muted)}
+.ak-s em{font-style:normal;opacity:.8}
+.ak-why{font-size:.7rem;color:var(--muted);margin-top:4px}
+.ak-cmd{display:flex;align-items:center;gap:8px;margin-top:6px}
+.ak-cmd code{flex:1;font-family:var(--mono);font-size:.66rem;background:var(--panel3);border:1px solid var(--line);
+  border-radius:6px;padding:5px 8px;overflow-x:auto;white-space:nowrap}
+.ak-copy{font-size:.62rem;font-weight:700;background:var(--panel3);color:var(--ink);border:1px solid var(--line);
+  border-radius:5px;padding:4px 9px;cursor:pointer}
+.ak-copy:hover{border-color:var(--accent);color:var(--accent)}
+.ak-kosong{padding:11px;border-radius:8px;background:var(--panel2);font-size:.76rem}
+.ak-pos{margin-top:7px;font-size:.72rem;font-family:var(--mono)}
+.ak-tolak{margin-top:8px}
+.ak-tolak summary{cursor:pointer;font-size:.7rem;color:var(--muted)}
+.ak-tolak ul{margin:6px 0 0;padding-left:18px;font-size:.68rem;color:var(--muted)}
+.ak-tolak li{margin:3px 0}
+.ak-catat{margin-top:9px;padding-top:8px;border-top:1px solid var(--line);font-size:.66rem;color:var(--muted)}
 
 /* ─── 8b. BUKTI EKSPEKTASI PER REGIME ────────────────────────────────────────────────────── */
 .bukti{margin-top:10px;padding:10px 12px;border-radius:8px;background:var(--panel);border:1px solid var(--line)}
