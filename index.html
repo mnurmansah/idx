@@ -35,26 +35,26 @@
       <p class="sub" title="Skor gabungan (Tech55(breakout+tiket) + BM15(gate) + MA20 + RR10), disesuaikan kondisi pasar (bear). BM dipangkas 35→15 pada 30/07 karena uji internal tak menemukan edge BM di jendela ≤5 hari; bobotnya pindah ke breakout.">Skor gabungan teknikal + aliran uang bandar · <span class="mono">2026-08-28</span> <span class="sub-hint">(delay ~15–20 mnt · edukatif)</span></p>
     </div>
     <div class="aksi ak-ada">
-      <div class="ak-head">🎯 TINDAKAN HARI INI <span class="ak-meta">2026-08-28 · regime BEAR · modal Rp 50 juta · slot 0/12 · ambang likuiditas Rp 50 miliar/hari</span></div>
+      <div class="ak-head">🎯 TINDAKAN HARI INI <span class="ak-meta">2026-08-28 · regime BEAR · modal Rp 50 juta · slot 0/12 · ambang likuiditas Rp 50 miliar/hari · time-stop 5 hari</span></div>
       
       <div class="ak-item">
         <div class="ak-top"><b>EMAS</b><span class="ak-h">masuk 9300</span>
           <span class="ak-s">stop 8450 <em>(9.1%)</em></span>
           <span class="ak-l">5 lot · Rp 4.650.000</span>
-          <span class="ak-r">risiko Rp 425.000</span></div>
+          <span class="ak-r">risiko Rp 425.000</span><span class="ak-r">time-stop 5 hr</span></div>
         <div class="ak-why">tiket <b>30.52x</b> · vol 1.59x · 20hr 50% · likuid Rp 230.6 miliar</div>
-        <div class="ak-cmd"><code>node scripts/trade.mjs masuk EMAS --harga=9300 --lot=5 --stop=8450</code><button class="ak-copy" type="button">salin</button></div>
+        <div class="ak-cmd"><code>node scripts/trade.mjs masuk EMAS --harga=9300 --lot=5 --stop=8450 --tahan=5</code><button class="ak-copy" type="button">salin</button></div>
       </div>
       <div class="ak-item">
         <div class="ak-top"><b>VKTR</b><span class="ak-h">masuk 965</span>
           <span class="ak-s">stop 815 <em>(15.5%)</em></span>
           <span class="ak-l">33 lot · Rp 3.184.500</span>
-          <span class="ak-r">risiko Rp 495.000</span></div>
+          <span class="ak-r">risiko Rp 495.000</span><span class="ak-r">time-stop 5 hr</span></div>
         <div class="ak-why">tiket <b>5.06x</b> · vol 2.2x · 20hr 35.92% · likuid Rp 82.5 miliar</div>
-        <div class="ak-cmd"><code>node scripts/trade.mjs masuk VKTR --harga=965 --lot=33 --stop=815</code><button class="ak-copy" type="button">salin</button></div>
+        <div class="ak-cmd"><code>node scripts/trade.mjs masuk VKTR --harga=965 --lot=33 --stop=815 --tahan=5</code><button class="ak-copy" type="button">salin</button></div>
       </div><details class="ak-tolak"><summary>7 nama lolos sinyal tapi DITOLAK penjaga — lihat alasannya</summary>
       <ul><li><b>DMAS</b> 199 — likuiditas Rp 43.2 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>SGER</b> 600 — likuiditas Rp 19.4 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>MMIX</b> 800 — likuiditas Rp 18.3 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>AUTO</b> 3400 — likuiditas Rp 13.2 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>SHIP</b> 2470 — likuiditas Rp 0.3 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −2,04%</li><li><b>SINI</b> 9625 — likuiditas Rp 20.3 miliar &lt; ambang regime BEAR (Rp 50 miliar) — ekspektasi tier ini −0,26%</li><li><b>PACK</b> 510 — EXTENDED: +126% dalam 20 hari (ambang 60%) — diuji: nama extended dihukum −8,3%</li></ul></details>
-      <div class="ak-catat">Aturan yang dijalankan: sinyal breakout+volume+close-kuat+MA20+tiket≥2x · stop 2,2×ATR · maks 12 posisi @ risiko 1% · penjaga extended chg20&gt;60%.
+      <div class="ak-catat">Aturan yang dijalankan: sinyal breakout+volume+close-kuat+MA20+tiket≥2x · stop 2,2×ATR · maks 12 posisi @ risiko 1% · penjaga extended chg20&gt;60% · time-stop 14 hari saat BULL / 5 hari saat BEAR.
       <b>Bukti untuk tier ini tipis (n=178 di backtest)</b> — perlakukan sebagai kemiringan tipis, bukan kepastian. Catat hasilnya lewat <span class="mono">trade.mjs</span>.</div>
     </div>
     
