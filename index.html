@@ -7,6 +7,7 @@
     <a href="#s-radar" data-nav="#s-radar">Radar Scan<span class="rc">132</span></a>
     <a href="#s-rsleader" data-nav="#s-rsleader">RS-Leader<span class="rc">24</span></a>
     <a href="#s-prebreakout" data-nav="#s-prebreakout">Pra-breakout<span class="rc">20</span></a>
+    <a href="#s-volatil" data-nav="#s-volatil">Volatil · ARA/ARB<span class="rc">40</span></a>
     <a href="#s-rotasi" data-nav="#s-rotasi">Rotasi Sektor<span class="rc">11</span></a>
     <a href="#s-konglomerasi" data-nav="#s-konglomerasi">Konglomerasi<span class="rc">18</span></a>
     <a href="#s-scope" data-nav="#s-scope">Scope · cari<span class="rc">829</span></a>
@@ -24,7 +25,7 @@
       <span class="tb-chip">RISK-ON — Pasar Sehat</span>
       <span class="tb-chip">Breadth 36% &gt;MA200</span>
       <span class="tb-sp"></span>
-      <span class="tb-chip ts-chip" title="Kapan scan teknikal terakhir dijalankan (WIB). Kalau jamnya SEBELUM 16:15, bar hari itu belum tutup — volRatio understated & flag breakout masih bisa berbalik.">⏱ Teknikal <b>2026-09-03 18:38</b></span>
+      <span class="tb-chip ts-chip" title="Kapan scan teknikal terakhir dijalankan (WIB). Kalau jamnya SEBELUM 16:15, bar hari itu belum tutup — volRatio understated & flag breakout masih bisa berbalik.">⏱ Teknikal <b>2026-09-03 19:15</b></span>
       <span class="tb-chip ts-chip" title="Tanggal cetakan RESMI bursa (idx.co.id) yang dipakai halaman ini untuk tiket, frekuensi, asing &amp; crossing. Bursa menerbitkannya ~17:00 WIB. Kalau TERTINGGAL dari tanggal bar (2026-09-03), berarti scan jalan sebelum data resmi terbit dan kolom uang memakai hari sebelumnya.">🏛 Bursa <b>2026-09-03</b></span>
       <span class="tb-chip ts-chip" title="Tanggal BAR chart BM terbaru yang tercatat di bm_history.json · di-merge 2026-08-21 16:21 WIB. Masa berlaku: LPM &amp; Intensity 14 hari, Vol Rotation 5 hari — lewat itu lensanya dianggap TIDAK ADA, bukan dipakai nilai terakhirnya.">🏦 BM <b>2026-08-20</b> <span class="ts-age">(14 hr lalu)</span></span>
       <span class="tb-chip">185 nama dinilai</span>
@@ -4471,6 +4472,938 @@
         <td class="c-num c-close grp">188</td>
         <td class="c-num">5.5 M</td>
         <td class="c-sec"><span class="chip sec">propert</span></td>
+      </tr></tbody>
+    </table></div>
+  </details>
+  <details id="s-volatil" class="pre-sec sec-collap">
+    <summary class="sec-sum">🎢 Volatil — watak ARA/ARB <span class="fca-badge pre-badge">682 emiten dinilai · 21 dari 40 teratas belum lari</span></summary>
+    <p class="fca-note"><b>Ini bukan daftar beli — ini daftar WATAK.</b> Kolom ARA/ARB menghitung berapa kali emiten menyentuh batas auto-reject dalam ~240 hari bursa terakhir.
+    <b>Ambangnya diukur dari data, bukan dihafal dari regulasi</b>: gugusan nyata muncul di +20% / +25% / +35% (tiga pita ARA menurut harga) dan di −15% untuk ARB — jadi <b>ARB asimetris, jauh lebih ketat daripada ARA</b>. Bar dgn lompatan ≥40% dibuang karena itu aksi korporasi (split/rights), bukan gerakan pasar.
+    <b>p90</b> = persentil 90 gerak harian absolut, alias "kalau running, berapa persen". <b>A:B</b> = rasio ARA terhadap ARB; di atas 1 berarti lebih sering menyentuh atas daripada bawah — itu yang dicari, dan itu langka.
+    <b>Lot</b> sudah dihitung pada risiko 1% dari modal Rp 50 juta dengan stop 2,2×ATR: makin liar sebuah nama, makin KECIL lotnya. Itu bukan kepelitan sistem, itu harga dari volatilitas — membesarkan lot supaya "terasa berarti" mengubah risiko 1% jadi 3% dan drawdown −38% jadi −51%.
+    <b>Sering ARA bukan berarti sedang ada setup</b>: banyak nama ber-ARA tinggi skornya negatif hari ini. Baca kolom Skor & Setup sebelum menyentuh apa pun.</p>
+    <div class="tablewrap"><table id="voltab">
+      <thead><tr><th>#</th><th>Sym</th><th class="grp">Close</th><th title="Jumlah hari menyentuh batas auto-reject ATAS (tutup = high)">ARA</th><th title="Jumlah hari menyentuh batas auto-reject BAWAH (tutup = low)">ARB</th><th title="Rasio ARA:ARB. >1 = lebih sering ke atas">A:B</th><th title="Jumlah hari naik >=10%">&gt;+10%</th><th title="Persentil 90 gerak harian absolut">p90</th><th title="Tanggal ARA terakhir">ARA terakhir</th><th class="grp" title="Skor screener hari ini">Skor</th><th>Setup</th><th title="Sudah lari atau belum">Status</th><th class="grp">chg20</th><th title="volRatio dinormalisasi thd median pasar">relVol</th><th title="Ukuran tiket vs median sendiri">tiket</th><th>asing%</th><th class="grp" title="10-day high">Trigger</th><th title="Harga / trigger">Jarak</th><th class="grp" title="Stop 2,2xATR">Stop</th><th title="Jarak ke stop">Risiko</th><th title="Lot pada risiko 1% dari Rp 50 jt">Lot</th><th class="grp">Likuid</th></tr></thead>
+      <tbody><tr>
+        <td class="c-rank">1</td>
+        <td class="c-sym"><span class="sym">POLU</span></td>
+        <td class="c-num c-close grp">18.600</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">23</td>
+        <td class="c-num" style="color:var(--avoid)">10</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.3</td>
+        <td class="c-num">36</td>
+        <td class="c-num" style="font-weight:700">19.3%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-27</td>
+        <td class="c-score grp"><span class="badge" style="--v:19%">19</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+61.74%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.5×</td>
+        <td class="c-num" style="font-weight:400">1.9×</td>
+        <td class="c-num" style="color:var(--avoid)">-0.2%</td>
+        <td class="c-num grp cs-r">21.850</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">85.1%</td>
+        <td class="c-num grp">15.622</td>
+        <td class="c-num" style="color:var(--ink)">16%</td>
+        <td class="c-num" style="font-weight:700">1</td>
+        <td class="c-num grp">445 jt</td>
+      </tr><tr>
+        <td class="c-rank">2</td>
+        <td class="c-sym"><span class="sym">SSTM</span></td>
+        <td class="c-num c-close grp">486</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">23</td>
+        <td class="c-num" style="color:var(--avoid)">12</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.92</td>
+        <td class="c-num">34</td>
+        <td class="c-num" style="font-weight:700">24.4%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-28</td>
+        <td class="c-score grp"><span class="badge" style="--v:2%">2</span></td>
+        <td class="c-tag"><span class="chip">Uptrend/Pullback</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+17.39%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.3×</td>
+        <td class="c-num" style="font-weight:400">0.17×</td>
+        <td class="c-num" style="color:var(--avoid)">-0.3%</td>
+        <td class="c-num grp cs-r">590</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">82.4%</td>
+        <td class="c-num grp">415</td>
+        <td class="c-num" style="color:var(--ink)">14.6%</td>
+        <td class="c-num" style="font-weight:700">70</td>
+        <td class="c-num grp">341 jt</td>
+      </tr><tr>
+        <td class="c-rank">3</td>
+        <td class="c-sym"><span class="sym">SOTS</span></td>
+        <td class="c-num c-close grp">605</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">22</td>
+        <td class="c-num" style="color:var(--avoid)">9</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.44</td>
+        <td class="c-num">25</td>
+        <td class="c-num" style="font-weight:700">16.9%</td>
+        <td class="c-num" style="white-space:nowrap">2026-05-21</td>
+        <td class="c-score grp"><span class="badge" style="--v:13%">13</span></td>
+        <td class="c-tag"><span class="chip">Base + Volume spike</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+2.54%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.5×</td>
+        <td class="c-num" style="font-weight:400">0.92×</td>
+        <td class="c-num" style="color:var(--avoid)">-2.3%</td>
+        <td class="c-num grp cs-r">690</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">87.7%</td>
+        <td class="c-num grp">502</td>
+        <td class="c-num" style="color:var(--ink)">17%</td>
+        <td class="c-num" style="font-weight:700">48</td>
+        <td class="c-num grp">270 jt</td>
+      </tr><tr>
+        <td class="c-rank">4</td>
+        <td class="c-sym"><span class="sym">ROCK</span></td>
+        <td class="c-num c-close grp">2.010</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">19</td>
+        <td class="c-num" style="color:var(--avoid)">6</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">3.17</td>
+        <td class="c-num">25</td>
+        <td class="c-num" style="font-weight:700">15%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-07</td>
+        <td class="c-score grp"><span class="badge" style="--v:0%">-18</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+14.2%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.1×</td>
+        <td class="c-num" style="font-weight:400">0.5×</td>
+        <td class="c-num" style="color:var(--buy)">+0.5%</td>
+        <td class="c-num grp cs-r">2.490</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">80.7%</td>
+        <td class="c-num grp">1.631</td>
+        <td class="c-num" style="color:var(--ink)">18.9%</td>
+        <td class="c-num" style="font-weight:700">13</td>
+        <td class="c-num grp">393 jt</td>
+      </tr><tr>
+        <td class="c-rank">5</td>
+        <td class="c-sym"><span class="sym">UANG</span><span class="rd-flag rf-warn" title="ARA hari ini — mengejar besok = ARA-chase">ARA</span></td>
+        <td class="c-num c-close grp">3.210</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">18</td>
+        <td class="c-num" style="color:var(--avoid)">12</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.5</td>
+        <td class="c-num">27</td>
+        <td class="c-num" style="font-weight:700">15%</td>
+        <td class="c-num" style="white-space:nowrap">2026-09-03</td>
+        <td class="c-score grp"><span class="badge" style="--v:82%">82</span></td>
+        <td class="c-tag"><span class="chip">Breakout + Volume</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+31.02%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">25.8×</td>
+        <td class="c-num" style="font-weight:700">2.41×</td>
+        <td class="c-num" style="color:var(--buy)">+0.7%</td>
+        <td class="c-num grp cs-r">2.610</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">123%</td>
+        <td class="c-num grp">2.874</td>
+        <td class="c-num" style="color:var(--ink)">10.5%</td>
+        <td class="c-num" style="font-weight:700">14</td>
+        <td class="c-num grp">463 jt</td>
+      </tr><tr>
+        <td class="c-rank">6</td>
+        <td class="c-sym"><span class="sym">TALF</span></td>
+        <td class="c-num c-close grp">700</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">18</td>
+        <td class="c-num" style="color:var(--avoid)">8</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.25</td>
+        <td class="c-num">25</td>
+        <td class="c-num" style="font-weight:400">14.9%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-05</td>
+        <td class="c-score grp"><span class="badge" style="--v:0%">-26</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-27.46%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.1×</td>
+        <td class="c-num" style="font-weight:400">0.31×</td>
+        <td class="c-num" style="color:var(--avoid)">-1.9%</td>
+        <td class="c-num grp cs-r">825</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">84.8%</td>
+        <td class="c-num grp">582</td>
+        <td class="c-num" style="color:var(--ink)">16.9%</td>
+        <td class="c-num" style="font-weight:700">42</td>
+        <td class="c-num grp">507 jt</td>
+      </tr><tr>
+        <td class="c-rank">7</td>
+        <td class="c-sym"><span class="sym">PGUN</span></td>
+        <td class="c-num c-close grp">9.800</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">18</td>
+        <td class="c-num" style="color:var(--avoid)">6</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">3</td>
+        <td class="c-num">23</td>
+        <td class="c-num" style="font-weight:400">14.9%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-18</td>
+        <td class="c-score grp"><span class="badge" style="--v:4%">4</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+32.88%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.5×</td>
+        <td class="c-num" style="font-weight:700">2.28×</td>
+        <td class="c-num" style="color:var(--buy)">+0%</td>
+        <td class="c-num grp cs-r">10.675</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">91.8%</td>
+        <td class="c-num grp">8.178</td>
+        <td class="c-num" style="color:var(--ink)">16.6%</td>
+        <td class="c-num" style="font-weight:700">3</td>
+        <td class="c-num grp">1.4 M</td>
+      </tr><tr>
+        <td class="c-rank">8</td>
+        <td class="c-sym"><span class="sym">ALKA</span></td>
+        <td class="c-num c-close grp">4.130</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">17</td>
+        <td class="c-num" style="color:var(--avoid)">10</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.7</td>
+        <td class="c-num">28</td>
+        <td class="c-num" style="font-weight:400">14.7%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-20</td>
+        <td class="c-score grp"><span class="badge" style="--v:6%">6</span></td>
+        <td class="c-tag"><span class="chip">Perfect-Order Uptrend</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+571.54%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.3×</td>
+        <td class="c-num" style="font-weight:700">2.13×</td>
+        <td class="c-num" style="color:var(--avoid)">-4%</td>
+        <td class="c-num grp cs-r">5.025</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">82.2%</td>
+        <td class="c-num grp">3.497</td>
+        <td class="c-num" style="color:var(--ink)">15.3%</td>
+        <td class="c-num" style="font-weight:700">7</td>
+        <td class="c-num grp">3.3 M</td>
+      </tr><tr>
+        <td class="c-rank">9</td>
+        <td class="c-sym"><span class="sym">MORA</span></td>
+        <td class="c-num c-close grp">5.400</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">15</td>
+        <td class="c-num" style="color:var(--avoid)">8</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.88</td>
+        <td class="c-num">26</td>
+        <td class="c-num" style="font-weight:400">14.9%</td>
+        <td class="c-num" style="white-space:nowrap">2026-06-19</td>
+        <td class="c-score grp"><span class="badge" style="--v:7%">7</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-12.9%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.4×</td>
+        <td class="c-num" style="font-weight:400">1.91×</td>
+        <td class="c-num" style="color:var(--avoid)">-2.9%</td>
+        <td class="c-num grp cs-r">6.175</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">87.4%</td>
+        <td class="c-num grp">4.724</td>
+        <td class="c-num" style="color:var(--ink)">12.5%</td>
+        <td class="c-num" style="font-weight:700">7</td>
+        <td class="c-num grp">3.3 M</td>
+      </tr><tr>
+        <td class="c-rank">10</td>
+        <td class="c-sym"><span class="sym">SKBM</span></td>
+        <td class="c-num c-close grp">565</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">15</td>
+        <td class="c-num" style="color:var(--avoid)">10</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.5</td>
+        <td class="c-num">25</td>
+        <td class="c-num" style="font-weight:400">14.6%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-14</td>
+        <td class="c-score grp"><span class="badge" style="--v:65%">65</span></td>
+        <td class="c-tag"><span class="chip">Uptrend/Pullback</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+4.63%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.4×</td>
+        <td class="c-num" style="font-weight:400">0.7×</td>
+        <td class="c-num" style="color:var(--buy)">+0.7%</td>
+        <td class="c-num grp cs-r">580</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">97.4%</td>
+        <td class="c-num grp">523</td>
+        <td class="c-num" style="color:var(--ink)">7.4%</td>
+        <td class="c-num" style="font-weight:700">119</td>
+        <td class="c-num grp">202 jt</td>
+      </tr><tr>
+        <td class="c-rank">11</td>
+        <td class="c-sym"><span class="sym">RLCO</span></td>
+        <td class="c-num c-close grp">4.550</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">15</td>
+        <td class="c-num" style="color:var(--avoid)">3</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">5</td>
+        <td class="c-num">24</td>
+        <td class="c-num" style="font-weight:700">17.3%</td>
+        <td class="c-num" style="white-space:nowrap">2026-06-12</td>
+        <td class="c-score grp"><span class="badge" style="--v:32%">32</span></td>
+        <td class="c-tag"><span class="chip">Reversal + Volume</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-9.9%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.7×</td>
+        <td class="c-num" style="font-weight:700">2.1×</td>
+        <td class="c-num" style="color:var(--buy)">+2.1%</td>
+        <td class="c-num grp cs-r">4.570</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">99.6%</td>
+        <td class="c-num grp">4.182</td>
+        <td class="c-num" style="color:var(--ink)">8.1%</td>
+        <td class="c-num" style="font-weight:700">13</td>
+        <td class="c-num grp">2.5 M</td>
+      </tr><tr>
+        <td class="c-rank">12</td>
+        <td class="c-sym"><span class="sym">RMKO</span></td>
+        <td class="c-num c-close grp">332</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">15</td>
+        <td class="c-num" style="color:var(--avoid)">8</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.88</td>
+        <td class="c-num">21</td>
+        <td class="c-num" style="font-weight:400">14.3%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-03</td>
+        <td class="c-score grp"><span class="badge" style="--v:67%">67</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+16.08%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">3.3×</td>
+        <td class="c-num" style="font-weight:400">1.03×</td>
+        <td class="c-num" style="color:var(--avoid)">-3.7%</td>
+        <td class="c-num grp cs-r">334</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">99.4%</td>
+        <td class="c-num grp">280</td>
+        <td class="c-num" style="color:var(--ink)">15.7%</td>
+        <td class="c-num" style="font-weight:700">96</td>
+        <td class="c-num grp">2.7 M</td>
+      </tr><tr>
+        <td class="c-rank">13</td>
+        <td class="c-sym"><span class="sym">KONI</span></td>
+        <td class="c-num c-close grp">2.190</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">14</td>
+        <td class="c-num" style="color:var(--avoid)">9</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.56</td>
+        <td class="c-num">28</td>
+        <td class="c-num" style="font-weight:700">16.3%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-10</td>
+        <td class="c-score grp"><span class="badge" style="--v:0%">-8</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-8.75%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.5×</td>
+        <td class="c-num" style="font-weight:400">0.52×</td>
+        <td class="c-num" style="color:var(--buy)">+2.2%</td>
+        <td class="c-num grp cs-r">2.550</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">85.9%</td>
+        <td class="c-num grp">1.851</td>
+        <td class="c-num" style="color:var(--ink)">15.5%</td>
+        <td class="c-num" style="font-weight:700">14</td>
+        <td class="c-num grp">105 jt</td>
+      </tr><tr>
+        <td class="c-rank">14</td>
+        <td class="c-sym"><span class="sym">TRUK</span><span class="rd-flag rf-warn" title="ARA hari ini — mengejar besok = ARA-chase">ARA</span></td>
+        <td class="c-num c-close grp">1.075</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">13</td>
+        <td class="c-num" style="color:var(--avoid)">5</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.6</td>
+        <td class="c-num">27</td>
+        <td class="c-num" style="font-weight:400">14.6%</td>
+        <td class="c-num" style="white-space:nowrap">2026-09-03</td>
+        <td class="c-score grp"><span class="badge" style="--v:53%">53</span></td>
+        <td class="c-tag"><span class="chip">Perfect-Order Uptrend</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+99.07%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.2×</td>
+        <td class="c-num" style="font-weight:400">1.55×</td>
+        <td class="c-num" style="color:var(--buy)">+1.1%</td>
+        <td class="c-num grp cs-r">910</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">118.1%</td>
+        <td class="c-num grp">831</td>
+        <td class="c-num" style="color:var(--avoid)">22.7%</td>
+        <td class="c-num" style="font-weight:700">20</td>
+        <td class="c-num grp">3.5 M</td>
+      </tr><tr>
+        <td class="c-rank">15</td>
+        <td class="c-sym"><span class="sym">RISE</span></td>
+        <td class="c-num c-close grp">860</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">13</td>
+        <td class="c-num" style="color:var(--avoid)">8</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.63</td>
+        <td class="c-num">20</td>
+        <td class="c-num" style="font-weight:400">14.8%</td>
+        <td class="c-num" style="white-space:nowrap">2026-06-11</td>
+        <td class="c-score grp"><span class="badge" style="--v:2%">2</span></td>
+        <td class="c-tag"><span class="chip">Reversal + Volume</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-12.24%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.7×</td>
+        <td class="c-num" style="font-weight:400">1.99×</td>
+        <td class="c-num" style="color:var(--buy)">+1.5%</td>
+        <td class="c-num grp cs-r">965</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">89.1%</td>
+        <td class="c-num grp">759</td>
+        <td class="c-num" style="color:var(--ink)">11.7%</td>
+        <td class="c-num" style="font-weight:700">49</td>
+        <td class="c-num grp">1.2 M</td>
+      </tr><tr>
+        <td class="c-rank">16</td>
+        <td class="c-sym"><span class="sym">JARR</span></td>
+        <td class="c-num c-close grp">3.310</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">13</td>
+        <td class="c-num" style="color:var(--avoid)">7</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.86</td>
+        <td class="c-num">17</td>
+        <td class="c-num" style="font-weight:400">13%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-20</td>
+        <td class="c-score grp"><span class="badge" style="--v:41%">41</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+74.21%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1×</td>
+        <td class="c-num" style="font-weight:700">4.24×</td>
+        <td class="c-num" style="color:var(--buy)">+1.4%</td>
+        <td class="c-num grp cs-r">3.580</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">92.5%</td>
+        <td class="c-num grp">2.603</td>
+        <td class="c-num" style="color:var(--avoid)">21.4%</td>
+        <td class="c-num" style="font-weight:700">7</td>
+        <td class="c-num grp">54 M</td>
+      </tr><tr>
+        <td class="c-rank">17</td>
+        <td class="c-sym"><span class="sym">ASLI</span></td>
+        <td class="c-num c-close grp">376</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">12</td>
+        <td class="c-num" style="color:var(--avoid)">3</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">4</td>
+        <td class="c-num">19</td>
+        <td class="c-num" style="font-weight:400">12.4%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-31</td>
+        <td class="c-score grp"><span class="badge" style="--v:31%">31</span></td>
+        <td class="c-tag"><span class="chip">Uptrend/Pullback</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+89.9%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.3×</td>
+        <td class="c-num" style="font-weight:700">2.2×</td>
+        <td class="c-num" style="color:var(--buy)">+4%</td>
+        <td class="c-num grp cs-r">390</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">96.4%</td>
+        <td class="c-num grp">296</td>
+        <td class="c-num" style="color:var(--avoid)">21.3%</td>
+        <td class="c-num" style="font-weight:700">62</td>
+        <td class="c-num grp">17 M</td>
+      </tr><tr>
+        <td class="c-rank">18</td>
+        <td class="c-sym"><span class="sym">CBRE</span></td>
+        <td class="c-num c-close grp">715</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">11</td>
+        <td class="c-num" style="color:var(--avoid)">7</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.57</td>
+        <td class="c-num">21</td>
+        <td class="c-num" style="font-weight:400">14.6%</td>
+        <td class="c-num" style="white-space:nowrap">2026-05-22</td>
+        <td class="c-score grp"><span class="badge" style="--v:49%">49</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+5.15%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.1×</td>
+        <td class="c-num" style="font-weight:700">2.77×</td>
+        <td class="c-num" style="color:var(--buy)">+0.9%</td>
+        <td class="c-num grp cs-r">815</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">87.7%</td>
+        <td class="c-num grp">633</td>
+        <td class="c-num" style="color:var(--ink)">11.5%</td>
+        <td class="c-num" style="font-weight:700">60</td>
+        <td class="c-num grp">11 M</td>
+      </tr><tr>
+        <td class="c-rank">19</td>
+        <td class="c-sym"><span class="sym">DEFI</span></td>
+        <td class="c-num c-close grp">108</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">11</td>
+        <td class="c-num" style="color:var(--avoid)">10</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.1</td>
+        <td class="c-num">20</td>
+        <td class="c-num" style="font-weight:400">14.5%</td>
+        <td class="c-num" style="white-space:nowrap">2026-05-06</td>
+        <td class="c-score grp"><span class="badge" style="--v:17%">17</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+2.86%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.8×</td>
+        <td class="c-num" style="font-weight:400">0.83×</td>
+        <td class="c-num" style="color:var(--buy)">+0.3%</td>
+        <td class="c-num grp cs-r">113</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">95.6%</td>
+        <td class="c-num grp">96</td>
+        <td class="c-num" style="color:var(--ink)">11.1%</td>
+        <td class="c-num" style="font-weight:700">416</td>
+        <td class="c-num grp">2.7 M</td>
+      </tr><tr>
+        <td class="c-rank">20</td>
+        <td class="c-sym"><span class="sym">YPAS</span></td>
+        <td class="c-num c-close grp">1.540</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">11</td>
+        <td class="c-num" style="color:var(--avoid)">3</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">3.67</td>
+        <td class="c-num">20</td>
+        <td class="c-num" style="font-weight:400">10.7%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-14</td>
+        <td class="c-score grp"><span class="badge" style="--v:35%">35</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+150.41%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.6×</td>
+        <td class="c-num" style="font-weight:400">0.47×</td>
+        <td class="c-num" style="color:var(--avoid)">-0.6%</td>
+        <td class="c-num grp cs-r">1.765</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">87.3%</td>
+        <td class="c-num grp">1.054</td>
+        <td class="c-num" style="color:var(--avoid)">31.6%</td>
+        <td class="c-num" style="font-weight:700">10</td>
+        <td class="c-num grp">1.0 M</td>
+      </tr><tr>
+        <td class="c-rank">21</td>
+        <td class="c-sym"><span class="sym">FPNI</span></td>
+        <td class="c-num c-close grp">635</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">10</td>
+        <td class="c-num" style="color:var(--avoid)">1</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">10</td>
+        <td class="c-num">20</td>
+        <td class="c-num" style="font-weight:400">10.8%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-19</td>
+        <td class="c-score grp"><span class="badge" style="--v:16%">16</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+51.19%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.8×</td>
+        <td class="c-num" style="font-weight:700">2.08×</td>
+        <td class="c-num" style="color:var(--avoid)">-3%</td>
+        <td class="c-num grp cs-r">670</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">94.8%</td>
+        <td class="c-num grp">513</td>
+        <td class="c-num" style="color:var(--ink)">19.2%</td>
+        <td class="c-num" style="font-weight:700">40</td>
+        <td class="c-num grp">13 M</td>
+      </tr><tr>
+        <td class="c-rank">22</td>
+        <td class="c-sym"><span class="sym">FITT</span></td>
+        <td class="c-num c-close grp">434</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">13</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.69</td>
+        <td class="c-num">23</td>
+        <td class="c-num" style="font-weight:400">14.8%</td>
+        <td class="c-num" style="white-space:nowrap">2026-04-14</td>
+        <td class="c-score grp"><span class="badge" style="--v:57%">57</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+21.23%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">3.5×</td>
+        <td class="c-num" style="font-weight:400">1.34×</td>
+        <td class="c-num" style="color:var(--avoid)">-7.2%</td>
+        <td class="c-num grp cs-r">486</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">89.3%</td>
+        <td class="c-num grp">363</td>
+        <td class="c-num" style="color:var(--ink)">16.4%</td>
+        <td class="c-num" style="font-weight:700">70</td>
+        <td class="c-num grp">535 jt</td>
+      </tr><tr>
+        <td class="c-rank">23</td>
+        <td class="c-sym"><span class="sym">PIPA</span></td>
+        <td class="c-num c-close grp">199</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">7</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.29</td>
+        <td class="c-num">23</td>
+        <td class="c-num" style="font-weight:400">13.1%</td>
+        <td class="c-num" style="white-space:nowrap">2026-02-11</td>
+        <td class="c-score grp"><span class="badge" style="--v:0%">-2</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+61.79%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.7×</td>
+        <td class="c-num" style="font-weight:400">1.65×</td>
+        <td class="c-num" style="color:var(--buy)">+0%</td>
+        <td class="c-num grp cs-r">222</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">89.6%</td>
+        <td class="c-num grp">150</td>
+        <td class="c-num" style="color:var(--avoid)">24.6%</td>
+        <td class="c-num" style="font-weight:700">102</td>
+        <td class="c-num grp">60 M</td>
+      </tr><tr>
+        <td class="c-rank">24</td>
+        <td class="c-sym"><span class="sym">KOKA</span></td>
+        <td class="c-num c-close grp">181</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">1</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">9</td>
+        <td class="c-num">23</td>
+        <td class="c-num" style="font-weight:400">10.9%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-03</td>
+        <td class="c-score grp"><span class="badge" style="--v:0%">-3</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-9.05%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.3×</td>
+        <td class="c-num" style="font-weight:400">0.79×</td>
+        <td class="c-num" style="color:var(--avoid)">-0.8%</td>
+        <td class="c-num grp cs-r">202</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">89.6%</td>
+        <td class="c-num grp">157</td>
+        <td class="c-num" style="color:var(--ink)">13.3%</td>
+        <td class="c-num" style="font-weight:700">208</td>
+        <td class="c-num grp">3.7 M</td>
+      </tr><tr>
+        <td class="c-rank">25</td>
+        <td class="c-sym"><span class="sym">BABY</span></td>
+        <td class="c-num c-close grp">214</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">7</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.29</td>
+        <td class="c-num">17</td>
+        <td class="c-num" style="font-weight:400">13.4%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-13</td>
+        <td class="c-score grp"><span class="badge" style="--v:4%">4</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+13.83%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.1×</td>
+        <td class="c-num" style="font-weight:400">0.56×</td>
+        <td class="c-num" style="color:var(--buy)">+1%</td>
+        <td class="c-num grp cs-r">238</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">89.9%</td>
+        <td class="c-num grp">175</td>
+        <td class="c-num" style="color:var(--ink)">18.2%</td>
+        <td class="c-num" style="font-weight:700">128</td>
+        <td class="c-num grp">2.9 M</td>
+      </tr><tr>
+        <td class="c-rank">26</td>
+        <td class="c-sym"><span class="sym">STAR</span></td>
+        <td class="c-num c-close grp">398</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">1</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">9</td>
+        <td class="c-num">16</td>
+        <td class="c-num" style="font-weight:400">10%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-11</td>
+        <td class="c-score grp"><span class="badge" style="--v:4%">4</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+44.2%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.1×</td>
+        <td class="c-num" style="font-weight:400">0.26×</td>
+        <td class="c-num" style="color:var(--avoid)">-3.8%</td>
+        <td class="c-num grp cs-r">496</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">80.2%</td>
+        <td class="c-num grp">314</td>
+        <td class="c-num" style="color:var(--avoid)">21.1%</td>
+        <td class="c-num" style="font-weight:700">59</td>
+        <td class="c-num grp">533 jt</td>
+      </tr><tr>
+        <td class="c-rank">27</td>
+        <td class="c-sym"><span class="sym">AGAR</span></td>
+        <td class="c-num c-close grp">1.630</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">2</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">4.5</td>
+        <td class="c-num">16</td>
+        <td class="c-num" style="font-weight:400">9.5%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-14</td>
+        <td class="c-score grp"><span class="badge" style="--v:21%">21</span></td>
+        <td class="c-tag"><span class="chip">Perfect-Order Uptrend</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+683.65%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.2×</td>
+        <td class="c-num" style="font-weight:400">1.18×</td>
+        <td class="c-num" style="color:var(--buy)">+0%</td>
+        <td class="c-num grp cs-r">2.000</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">81.5%</td>
+        <td class="c-num grp">1.397</td>
+        <td class="c-num" style="color:var(--ink)">14.3%</td>
+        <td class="c-num" style="font-weight:700">21</td>
+        <td class="c-num grp">1.6 M</td>
+      </tr><tr>
+        <td class="c-rank">28</td>
+        <td class="c-sym"><span class="sym">INDS</span></td>
+        <td class="c-num c-close grp">272</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">13</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.69</td>
+        <td class="c-num">14</td>
+        <td class="c-num" style="font-weight:400">14.4%</td>
+        <td class="c-num" style="white-space:nowrap">2026-02-18</td>
+        <td class="c-score grp"><span class="badge" style="--v:7%">7</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-2.16%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.9×</td>
+        <td class="c-num" style="font-weight:400">0.57×</td>
+        <td class="c-num" style="color:var(--avoid)">-4.7%</td>
+        <td class="c-num grp cs-r">276</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">98.6%</td>
+        <td class="c-num grp">253</td>
+        <td class="c-num" style="color:var(--ink)">7%</td>
+        <td class="c-num" style="font-weight:700">263</td>
+        <td class="c-num grp">540 jt</td>
+      </tr><tr>
+        <td class="c-rank">29</td>
+        <td class="c-sym"><span class="sym">KICI</span></td>
+        <td class="c-num c-close grp">256</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">4</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.25</td>
+        <td class="c-num">13</td>
+        <td class="c-num" style="font-weight:400">10.1%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-31</td>
+        <td class="c-score grp"><span class="badge" style="--v:14%">14</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+29.95%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.2×</td>
+        <td class="c-num" style="font-weight:400">0.49×</td>
+        <td class="c-num" style="color:var(--buy)">+0.1%</td>
+        <td class="c-num grp cs-r">326</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">78.5%</td>
+        <td class="c-num grp">200</td>
+        <td class="c-num" style="color:var(--avoid)">21.9%</td>
+        <td class="c-num" style="font-weight:700">89</td>
+        <td class="c-num grp">3.3 M</td>
+      </tr><tr>
+        <td class="c-rank">30</td>
+        <td class="c-sym"><span class="sym">ATAP</span></td>
+        <td class="c-num c-close grp">550</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">9</td>
+        <td class="c-num" style="color:var(--avoid)">5</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.8</td>
+        <td class="c-num">12</td>
+        <td class="c-num" style="font-weight:400">9.9%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-13</td>
+        <td class="c-score grp"><span class="badge" style="--v:0%">-8</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-6.78%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.4×</td>
+        <td class="c-num" style="font-weight:400">1.1×</td>
+        <td class="c-num" style="color:var(--avoid)">-4.4%</td>
+        <td class="c-num grp cs-r">640</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">85.9%</td>
+        <td class="c-num grp">461</td>
+        <td class="c-num" style="color:var(--ink)">16.2%</td>
+        <td class="c-num" style="font-weight:700">56</td>
+        <td class="c-num grp">790 jt</td>
+      </tr><tr>
+        <td class="c-rank">31</td>
+        <td class="c-sym"><span class="sym">ASPI</span></td>
+        <td class="c-num c-close grp">420</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">8</td>
+        <td class="c-num" style="color:var(--avoid)">3</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.67</td>
+        <td class="c-num">22</td>
+        <td class="c-num" style="font-weight:400">12.6%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-03</td>
+        <td class="c-score grp"><span class="badge" style="--v:57%">57</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+1.45%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">3.1×</td>
+        <td class="c-num" style="font-weight:700">2.34×</td>
+        <td class="c-num" style="color:var(--avoid)">-6.3%</td>
+        <td class="c-num grp cs-r">428</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">98.1%</td>
+        <td class="c-num grp">372</td>
+        <td class="c-num" style="color:var(--ink)">11.4%</td>
+        <td class="c-num" style="font-weight:700">104</td>
+        <td class="c-num grp">319 jt</td>
+      </tr><tr>
+        <td class="c-rank">32</td>
+        <td class="c-sym"><span class="sym">NZIA</span></td>
+        <td class="c-num c-close grp">172</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">8</td>
+        <td class="c-num" style="color:var(--avoid)">7</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.14</td>
+        <td class="c-num">17</td>
+        <td class="c-num" style="font-weight:400">14%</td>
+        <td class="c-num" style="white-space:nowrap">2026-06-02</td>
+        <td class="c-score grp"><span class="badge" style="--v:20%">20</span></td>
+        <td class="c-tag"><span class="chip">Uptrend/Pullback</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+22.86%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.8×</td>
+        <td class="c-num" style="font-weight:400">0.86×</td>
+        <td class="c-num" style="color:var(--buy)">+0%</td>
+        <td class="c-num grp cs-r">202</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">85.1%</td>
+        <td class="c-num grp">132</td>
+        <td class="c-num" style="color:var(--avoid)">23.3%</td>
+        <td class="c-num" style="font-weight:700">125</td>
+        <td class="c-num grp">9.1 M</td>
+      </tr><tr>
+        <td class="c-rank">33</td>
+        <td class="c-sym"><span class="sym">NATO</span></td>
+        <td class="c-num c-close grp">1.015</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">8</td>
+        <td class="c-num" style="color:var(--avoid)">0</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">∞</td>
+        <td class="c-num">13</td>
+        <td class="c-num" style="font-weight:400">9.6%</td>
+        <td class="c-num" style="white-space:nowrap">2026-09-02</td>
+        <td class="c-score grp"><span class="badge" style="--v:87%">87</span></td>
+        <td class="c-tag"><span class="chip">Perfect-Order Breakout</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+53.79%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">8.9×</td>
+        <td class="c-num" style="font-weight:400">0.99×</td>
+        <td class="c-num" style="color:var(--avoid)">-22.6%</td>
+        <td class="c-num grp cs-r">975</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">104.1%</td>
+        <td class="c-num grp">854</td>
+        <td class="c-num" style="color:var(--ink)">15.9%</td>
+        <td class="c-num" style="font-weight:700">31</td>
+        <td class="c-num grp">402 jt</td>
+      </tr><tr>
+        <td class="c-rank">34</td>
+        <td class="c-sym"><span class="sym">KDTN</span></td>
+        <td class="c-num c-close grp">418</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">7</td>
+        <td class="c-num" style="color:var(--avoid)">6</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.17</td>
+        <td class="c-num">21</td>
+        <td class="c-num" style="font-weight:400">14.4%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-03</td>
+        <td class="c-score grp"><span class="badge" style="--v:57%">57</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-7.11%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.8×</td>
+        <td class="c-num" style="font-weight:400">1.27×</td>
+        <td class="c-num" style="color:var(--buy)">+1.7%</td>
+        <td class="c-num grp cs-r">424</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">98.6%</td>
+        <td class="c-num grp">340</td>
+        <td class="c-num" style="color:var(--ink)">18.7%</td>
+        <td class="c-num" style="font-weight:700">64</td>
+        <td class="c-num grp">4.3 M</td>
+      </tr><tr>
+        <td class="c-rank">35</td>
+        <td class="c-sym"><span class="sym">KETR</span></td>
+        <td class="c-num c-close grp">845</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">7</td>
+        <td class="c-num" style="color:var(--avoid)">4</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.75</td>
+        <td class="c-num">20</td>
+        <td class="c-num" style="font-weight:400">11.8%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-27</td>
+        <td class="c-score grp"><span class="badge" style="--v:22%">22</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+37.4%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.4×</td>
+        <td class="c-num" style="font-weight:700">3.34×</td>
+        <td class="c-num" style="color:var(--buy)">+2.9%</td>
+        <td class="c-num grp cs-r">925</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">91.4%</td>
+        <td class="c-num grp">704</td>
+        <td class="c-num" style="color:var(--ink)">16.7%</td>
+        <td class="c-num" style="font-weight:700">35</td>
+        <td class="c-num grp">47 M</td>
+      </tr><tr>
+        <td class="c-rank">36</td>
+        <td class="c-sym"><span class="sym">TRIN</span></td>
+        <td class="c-num c-close grp">354</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">7</td>
+        <td class="c-num" style="color:var(--avoid)">3</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2.33</td>
+        <td class="c-num">19</td>
+        <td class="c-num" style="font-weight:400">11.1%</td>
+        <td class="c-num" style="white-space:nowrap">2026-06-10</td>
+        <td class="c-score grp"><span class="badge" style="--v:48%">48</span></td>
+        <td class="c-tag"><span class="chip">Uptrend/Pullback</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+12.74%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">2×</td>
+        <td class="c-num" style="font-weight:700">2.25×</td>
+        <td class="c-num" style="color:var(--buy)">+5.7%</td>
+        <td class="c-num grp cs-r">380</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">93.2%</td>
+        <td class="c-num grp">289</td>
+        <td class="c-num" style="color:var(--ink)">18.4%</td>
+        <td class="c-num" style="font-weight:700">76</td>
+        <td class="c-num grp">6.0 M</td>
+      </tr><tr>
+        <td class="c-rank">37</td>
+        <td class="c-sym"><span class="sym">DWGL</span></td>
+        <td class="c-num c-close grp">242</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">7</td>
+        <td class="c-num" style="color:var(--avoid)">10</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.7</td>
+        <td class="c-num">16</td>
+        <td class="c-num" style="font-weight:400">13.8%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-28</td>
+        <td class="c-score grp"><span class="badge" style="--v:0%">-26</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-33.52%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.5×</td>
+        <td class="c-num" style="font-weight:400">0.72×</td>
+        <td class="c-num" style="color:var(--buy)">+0.8%</td>
+        <td class="c-num grp cs-r">352</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">68.8%</td>
+        <td class="c-num grp">183</td>
+        <td class="c-num" style="color:var(--avoid)">24.4%</td>
+        <td class="c-num" style="font-weight:700">84</td>
+        <td class="c-num grp">2.7 M</td>
+      </tr><tr>
+        <td class="c-rank">38</td>
+        <td class="c-sym"><span class="sym">ESTI</span></td>
+        <td class="c-num c-close grp">163</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">7</td>
+        <td class="c-num" style="color:var(--avoid)">8</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.88</td>
+        <td class="c-num">16</td>
+        <td class="c-num" style="font-weight:400">13.1%</td>
+        <td class="c-num" style="white-space:nowrap">2026-07-30</td>
+        <td class="c-score grp"><span class="badge" style="--v:29%">29</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--buy)">belum</span></td>
+        <td class="c-num grp" style="color:var(--avoid)">-16.41%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.2×</td>
+        <td class="c-num" style="font-weight:400">0.55×</td>
+        <td class="c-num" style="color:var(--avoid)">-3.3%</td>
+        <td class="c-num grp cs-r">174</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">93.7%</td>
+        <td class="c-num grp">147</td>
+        <td class="c-num" style="color:var(--ink)">9.8%</td>
+        <td class="c-num" style="font-weight:700">312</td>
+        <td class="c-num grp">2.8 M</td>
+      </tr><tr>
+        <td class="c-rank">39</td>
+        <td class="c-sym"><span class="sym">TEBE</span></td>
+        <td class="c-num c-close grp">1.710</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">7</td>
+        <td class="c-num" style="color:var(--avoid)">6</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">1.17</td>
+        <td class="c-num">16</td>
+        <td class="c-num" style="font-weight:400">10.7%</td>
+        <td class="c-num" style="white-space:nowrap">2026-08-18</td>
+        <td class="c-score grp"><span class="badge" style="--v:15%">15</span></td>
+        <td class="c-tag"><span class="chip">Neutral</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+58.33%</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">0.3×</td>
+        <td class="c-num" style="font-weight:700">2.35×</td>
+        <td class="c-num" style="color:var(--avoid)">-0.9%</td>
+        <td class="c-num grp cs-r">1.980</td>
+        <td class="c-num" style="font-weight:400;color:var(--ink)">86.4%</td>
+        <td class="c-num grp">1.354</td>
+        <td class="c-num" style="color:var(--avoid)">20.8%</td>
+        <td class="c-num" style="font-weight:700">14</td>
+        <td class="c-num grp">29 M</td>
+      </tr><tr>
+        <td class="c-rank">40</td>
+        <td class="c-sym"><span class="sym">FORU</span><span class="rd-flag rf-warn" title="ARA hari ini — mengejar besok = ARA-chase">ARA</span></td>
+        <td class="c-num c-close grp">3.220</td>
+        <td class="c-num" style="font-weight:700;color:var(--buy)">7</td>
+        <td class="c-num" style="color:var(--avoid)">4</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">1.75</td>
+        <td class="c-num">16</td>
+        <td class="c-num" style="font-weight:400">10%</td>
+        <td class="c-num" style="white-space:nowrap">2026-09-03</td>
+        <td class="c-score grp"><span class="badge" style="--v:93%">93</span></td>
+        <td class="c-tag"><span class="chip">Perfect-Order Breakout</span></td>
+        <td class="c-num"><span class="chip" style="color:var(--avoid)">sudah lari</span></td>
+        <td class="c-num grp" style="color:var(--buy)">+21.51%</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">3.7×</td>
+        <td class="c-num" style="font-weight:700">2×</td>
+        <td class="c-num" style="color:var(--buy)">+2.3%</td>
+        <td class="c-num grp cs-r">2.860</td>
+        <td class="c-num" style="font-weight:700;color:var(--accent)">112.6%</td>
+        <td class="c-num grp">2.687</td>
+        <td class="c-num" style="color:var(--ink)">16.6%</td>
+        <td class="c-num" style="font-weight:700">9</td>
+        <td class="c-num grp">4.1 M</td>
       </tr></tbody>
     </table></div>
   </details>
