@@ -131,8 +131,8 @@ function chartSVG(o, bars, opt) {
   var garis = [
     { v: o.level.R2, t: 'R2 ' + o.level.R2, c: 'lv-res' },
     { v: o.level.R1, t: 'R1 ' + o.level.R1, c: 'lv-res' },
-    { v: o.level.trigger, t: 'Pemicu ' + o.level.trigger, c: 'lv-trig' },
-    { v: o.level.SL, t: 'SL ' + o.level.SL, c: 'lv-sl' },
+    { v: o.level.trigger, t: 'Tembus ' + o.level.trigger, c: 'lv-trig' },
+    { v: o.level.SL, t: 'Stop ' + o.level.SL, c: 'lv-sl' },
     { v: o.level.S1, t: 'S1 ' + o.level.S1, c: 'lv-sup' },
     { v: o.level.S2, t: 'S2 ' + o.level.S2, c: 'lv-sup' },
   ].filter(function (g) { return g.v >= pMin && g.v <= pMax; })
@@ -237,7 +237,7 @@ function intradaySVG(sym, bars, opt) {
   for (i = i0; i < END; i++) { if (L[i] < pMin) pMin = L[i]; if (H[i] > pMax) pMax = H[i]; }
   var garisLv = [];
   if (lv) {
-    var kand = [[lv.trigger, 'Pemicu ' + lv.trigger, 'lv-trig'], [lv.SL, 'SL ' + lv.SL, 'lv-sl'], [lv.S1, 'S1 ' + lv.S1, 'lv-sup'], [lv.R1, 'R1 ' + lv.R1, 'lv-res']];
+    var kand = [[lv.trigger, 'Tembus ' + lv.trigger, 'lv-trig'], [lv.SL, 'Stop ' + lv.SL, 'lv-sl'], [lv.S1, 'S1 ' + lv.S1, 'lv-sup'], [lv.R1, 'R1 ' + lv.R1, 'lv-res']];
     var rng = pMax - pMin || 1;
     for (k = 0; k < kand.length; k++) { var v = kand[k][0]; if (v > 0 && v >= pMin - rng * 0.25 && v <= pMax + rng * 0.25) { garisLv.push(kand[k]); if (v < pMin) pMin = v; if (v > pMax) pMax = v; } }
   }
@@ -348,15 +348,15 @@ function intradaySVG(sym, bars, opt) {
     + gridY + sesi + candles + levels
     + '<text class="panel-t" x="' + PADL + '" y="' + (PADT - 4) + '">' + sym + ' · ' + (opt.res || 5) + ' menit · ' + n + ' bar · terakhir ' + jam + ' WIB · ' + akhir + ' (' + (chg >= 0 ? '+' : '') + chg.toFixed(1) + '% sejak awal jendela)</text>'
     // panel 2: effective volume flow — garis di atas (skala jendela), batang per-bar di pita bawah
-    + judul(evTop, 'Effective Volume Flow — kumulatif (garis, skala jendela) · Δ jendela ' + delta(EVF) + ' · EV per bar (pita bawah)')
+    + judul(evTop, 'Volume yang menggeser harga — total berjalan (garis) · di tampilan ini ' + delta(EVF) + ' · per bar (pita bawah)')
     + sumbuKiri(sEV) + nol(sEV) + '<path class="evf" d="' + path(EVF, sEV.y) + '"/>' + nilaiAkhir(sEV, EVF[Z], 'evf-t')
     + nol(sEVb) + batang(ev, sEVb, 'evbar')
     // panel 3: besar vs kecil
-    + judul(lpTop, 'Pemain besar (kuning) vs kecil (hijau) · Δ besar ' + delta(LP) + ' · Δ kecil ' + delta(SP) + ' · pemisah ≥ ' + ringkas(sep) + ' lbr/bar (proksi BAR, bukan tiket)')
+    + judul(lpTop, 'Pemain besar (garis emas) vs kecil (garis hijau) · besar ' + delta(LP) + ' · kecil ' + delta(SP) + ' · bar disebut besar kalau volumenya ≥ ' + ringkas(sep) + ' lembar')
     + sumbuKiri(sLP) + nol(sLP) + '<path class="sp" d="' + path(SP, sLP.y) + '"/>' + '<path class="lp" d="' + path(LP, sLP.y) + '"/>'
     + nilaiAkhir(sLP, LP[Z], 'lp-t') + (Math.abs(sLP.y(LP[Z]) - sLP.y(SP[Z])) < 11 ? '' : nilaiAkhir(sLP, SP[Z], 'sp-t'))
     // panel 4: buyup - selldown
-    + judul(bTop, 'BuyUp − SellDown — kumulatif (garis) · Δ jendela ' + delta(BUD) + ' · per bar (pita bawah)')
+    + judul(bTop, 'Beli agresif − jual agresif — total berjalan (garis) · di tampilan ini ' + delta(BUD) + ' · per bar (pita bawah)')
     + sumbuKiri(sB) + nol(sB) + '<path class="bud" d="' + path(BUD, sB.y) + '"/>' + nilaiAkhir(sB, BUD[Z], 'bud-t')
     + nol(sBb) + batang(bud, sBb, 'budbar')
     + '</svg>';
@@ -376,20 +376,20 @@ function bacaIntraday(bars) {
   var arahLP = lp > 0 ? 'naik' : lp < 0 ? 'turun' : 'datar';
   var arahPx = dHarga > 0.5 ? 'naik' : dHarga < -0.5 ? 'turun' : 'datar';
   var vonis;
-  if (arahPx === 'turun' && arahLP === 'naik') vonis = 'DIVERGENSI BULLISH — harga turun, pemain besar menyerap. Kandidat beli di pullback, konfirmasi di bar berikutnya.';
-  else if (arahPx === 'naik' && arahLP !== 'naik') vonis = 'MARKUP TANPA UANG BESAR — harga naik, pemain besar tidak ikut. Jangan kejar.';
-  else if (arahPx === 'turun' && arahLP === 'turun') vonis = 'DISTRIBUSI TERKONFIRMASI — harga dan pemain besar turun bersama. Menyingkir; dip ini pintu keluar, bukan diskon.';
-  else if (arahPx === 'naik' && arahLP === 'naik') vonis = 'KONFIRMASI TREN — pemain besar ikut mengangkat. Bukan sinyal masuk baru, tapi tidak ada alasan keluar.';
-  else vonis = 'NETRAL — belum ada divergensi yang bisa dibaca di sepertiga jendela terakhir.';
+  if (arahPx === 'turun' && arahLP === 'naik') vonis = 'HARGA TURUN TAPI DISERAP — pemain besar mengumpulkan saat harga lemah. Kandidat beli di koreksi; tunggu bar berikutnya sebagai konfirmasi.';
+  else if (arahPx === 'naik' && arahLP !== 'naik') vonis = 'NAIK TANPA UANG BESAR — pemain besar tidak ikut. Jangan dikejar.';
+  else if (arahPx === 'turun' && arahLP === 'turun') vonis = 'PEMAIN BESAR KELUAR — harga dan uang besar turun bersama. Menyingkir; penurunan ini pintu keluar, bukan diskon.';
+  else if (arahPx === 'naik' && arahLP === 'naik') vonis = 'UANG BESAR IKUT NAIK — bukan sinyal beli baru, tapi tidak ada alasan keluar.';
+  else vonis = 'BELUM JELAS — belum ada perbedaan arah yang bisa dibaca di sepertiga terakhir.';
   return { sepertigaAkhir: N - dari, dHarga: +dHarga.toFixed(2), evBesar: Math.round(lp), arahLP: arahLP, arahPx: arahPx, vonis: vonis };
 }
 function penjelasanIntraday(b) {
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var baris = [
-    ['turun', 'naik', 'Akumulasi (divergensi bullish)', 'Pemain besar menyerap saat harga lemah. Kandidat beli di pullback — tunggu konfirmasi bar berikutnya, bukan langsung.'],
-    ['naik', 'naik', 'Konfirmasi tren', 'Uang besar ikut mengangkat. Bukan sinyal masuk baru; kalau sudah pegang, tidak ada alasan keluar.'],
-    ['naik', 'datar/turun', 'Markup tanpa uang besar', 'Harga naik tapi pemain besar tidak ikut — biasanya ritel yang mengejar. Jangan kejar; kalau pegang, siapkan keluar.'],
-    ['turun', 'turun', 'Distribusi terkonfirmasi', 'Harga dan pemain besar turun bersama. Menyingkir. Dip seperti ini pintu keluar, bukan diskon.'],
+    ['turun', 'naik', 'Diserap pemain besar', 'Pemain besar mengumpulkan saat harga lemah. Kandidat beli di koreksi — tunggu bar berikutnya, jangan langsung.'],
+    ['naik', 'naik', 'Uang besar ikut naik', 'Bukan sinyal beli baru; kalau sudah pegang, tidak ada alasan keluar.'],
+    ['naik', 'datar/turun', 'Naik tanpa uang besar', 'Harga naik tapi pemain besar tidak ikut — biasanya ritel yang mengejar. Jangan dikejar; kalau pegang, siapkan jual.'],
+    ['turun', 'turun', 'Pemain besar keluar', 'Harga dan uang besar turun bersama. Menyingkir. Penurunan seperti ini pintu keluar, bukan diskon.'],
   ];
   var aktif = -1;
   if (b) {
@@ -403,17 +403,17 @@ function penjelasanIntraday(b) {
     tr += '<tr' + (i === aktif ? ' class="on"' : '') + '><td>' + esc(baris[i][0]) + '</td><td>' + esc(baris[i][1]) + '</td><td><b>' + esc(baris[i][2]) + '</b>' + (i === aktif ? ' <span class="iw-now">← sekarang</span>' : '') + '</td><td>' + esc(baris[i][3]) + '</td></tr>';
   }
   return '<div class="iw">'
-    + '<h4>Kesimpulan · apa maksud metode ini</h4>'
-    + '<p>Panel ini memakai <b>Effective Volume</b> (Pascal Willain, <i>Value in Time</i>). Gagasannya satu: dari seluruh volume, hanya bagian yang <b>benar-benar menggeser harga</b> yang dihitung — volume yang lewat tanpa memindahkan harga dianggap derau. Effective volume itu lalu dipisah menjadi <b>pemain besar</b> (bar bervolume di atas pemisah) dan <b>pemain kecil</b>, karena keduanya jarang bergerak bersama: pemain besar membangun posisi pelan dan cenderung <b>mendahului harga</b>, pemain kecil mengikuti harga. Yang kita cari bukan angkanya, tapi <b>arah garis kuning dibanding arah harga</b> — itulah padanan intraday dari lensa LPM/Bandar Metrics yang sudah kita pakai secara harian.</p>'
+    + '<h4>Cara membaca panel ini</h4>'
+    + '<p>Dari seluruh volume, yang dihitung di sini hanya bagian yang <b>benar-benar menggeser harga</b> — volume yang lewat tanpa memindahkan harga dianggap derau. Volume itu lalu dipisah jadi <b>pemain besar</b> (bar bervolume besar) dan <b>pemain kecil</b>, karena keduanya jarang bergerak bersamaan: pemain besar mengumpulkan pelan dan biasanya <b>bergerak lebih dulu</b>, pemain kecil mengikuti harga. Yang dicari bukan angkanya, tapi <b>arah garis emas dibanding arah harga</b>. (Metodenya dari Pascal Willain, <i>Value in Time</i>.)</p>'
     + '<ul>'
-    + '<li><b>Lilin 5 menit + level Scope</b> — konteks: di mana harga relatif terhadap pemicu, S1, SL, R1 dari telaah harian.</li>'
-    + '<li><b>Effective Volume Flow</b> — arah uang secara keseluruhan. Datar saat harga bergerak = gerakan tanpa uang.</li>'
-    + '<li><b>Pemain besar (kuning) vs kecil (hijau)</b> — panel yang menentukan. Baca kuning saja; hijau hanya pembanding.</li>'
-    + '<li><b>BuyUp − SellDown</b> — siapa yang agresif: pembeli menyerang ke atas atau penjual menekan ke bawah.</li>'
+    + '<li><b>Candle 5 menit + level harian</b> — di mana harga sekarang dibanding level tembus, support, dan stop.</li>'
+    + '<li><b>Volume yang menggeser harga</b> — arah uang keseluruhan. Datar padahal harga bergerak = gerakan tanpa uang.</li>'
+    + '<li><b>Pemain besar vs kecil</b> — panel yang menentukan. Baca garis emas saja; hijau cuma pembanding.</li>'
+    + '<li><b>Beli agresif − jual agresif</b> — siapa yang menyerang: pembeli mengangkat, atau penjual menekan.</li>'
     + '</ul>'
     + '<table class="iw-t"><thead><tr><th>Harga</th><th>Pemain besar</th><th>Bacaan</th><th>Tindakan</th></tr></thead><tbody>' + tr + '</tbody></table>'
-    + '<p class="iw-fit"><b>Tempatnya di sistem kita:</b> ini alat <b>timing</b> pada nama yang sudah lolos screener harian (breakout bervolume + tiket), bukan alat mencari nama. Aturan lama tetap berlaku — <i>harga yang memilih, uang yang mengatur ukuran</i>. Pemain besar keluar saat harga turun = kecilkan atau lewati; pemain besar menyerap saat harga turun = boleh masuk di pullback dengan stop mekanis yang sama (2,2×ATR).</p>'
-    + '<p class="iw-lim"><b>Batasnya:</b> "pemain besar" di sini = <b>bar</b> bervolume besar, bukan ukuran order — TradingView tidak menyediakannya (Willain di Amibroker juga bekerja dari bar menit). Frequency Analyzer tidak direplikasi karena TV tak punya jumlah transaksi per bar; frekuensi harian kita ada di kolom tiket. Dan yang paling penting: lensa ini <b>belum diuji</b> di sistem ini, statusnya sama dengan klasifikasi regime Scope — untuk membaca, bukan menyaring. Kalau dipakai masuk/keluar, catat di jurnal supaya suatu hari bisa dibuktikan atau dibantah.</p>'
+    + '<p class="iw-fit"><b>Dipakai untuk apa:</b> menentukan <b>waktu masuk</b> pada saham yang sudah lolos saringan harian — bukan untuk mencari saham. Aturannya tetap: <i>harga menentukan beli atau tidak, uang menentukan seberapa besar.</i> Pemain besar keluar saat harga turun → kecilkan atau lewati. Pemain besar menyerap saat harga turun → boleh masuk di koreksi, dengan stop yang sama (2,2×ATR).</p>'
+    + '<p class="iw-lim"><b>Batasnya:</b> "pemain besar" di sini berarti <b>bar dengan volume besar</b>, bukan ukuran order yang sebenarnya — TradingView tidak menyediakan itu. Jumlah transaksi per bar juga tidak ada, jadi frekuensi hanya tersedia harian. Dan yang terpenting: cara baca ini <b>belum diuji</b> di sistem kita — untuk membaca, bukan menyaring. Kalau dipakai untuk masuk atau keluar, catat di Jurnal supaya suatu hari bisa dibuktikan atau dibantah.</p>'
     + '</div>';
 }
 function pasangZoom(box, total, awalN, gambar, ket) {

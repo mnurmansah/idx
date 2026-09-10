@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Scope · IDX Swing</title>
+<title>Per saham · IDX Swing</title>
 <meta name="color-scheme" content="light dark">
 <style>
 :root{color-scheme:light;
@@ -28,7 +28,7 @@ button{font:inherit;color:inherit}
 .brand:hover{text-decoration:none}
 .logo{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:5px;background:var(--accent);color:#fff;font:800 10px/1 var(--sans)}
 .nav{display:flex;gap:2px;align-items:center;height:100%}
-.nv{display:flex;align-items:center;gap:5px;height:44px;padding:0 10px;color:var(--ink2);font-weight:600;font-size:12.5px;border-bottom:2px solid transparent}
+.nv{display:flex;align-items:center;gap:5px;height:44px;padding:0 10px;color:var(--ink2);font-weight:600;font-size:12.5px;border-bottom:2px solid transparent;white-space:nowrap}
 .nv:hover{color:var(--ink);text-decoration:none}.nv.on{color:var(--ink);border-bottom-color:var(--accent)}
 .nv.soon{color:var(--muted);font-weight:500;cursor:default}
 .nv b{font:600 10px/1 var(--mono);color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 5px}
@@ -164,7 +164,7 @@ details.lipat ul{margin:6px 0 0;padding-left:16px;font-size:11.5px;color:var(--i
 .sig table{width:100%;border-collapse:collapse;font-size:11.5px}
 .sig th{text-align:left;font-size:10px;color:var(--muted);font-weight:600;padding:3px 8px;border-bottom:1px solid var(--line2)}
 .sig td{padding:3px 8px;border-bottom:1px solid var(--line2);white-space:nowrap;font-variant-numeric:tabular-nums}
-.sig th.r,.sig td.r{text-align:right}.sig td.s{max-width:150px;overflow:hidden;text-overflow:ellipsis;color:var(--ink2);font-size:11px}
+.sig th.r,.sig td.r{text-align:right}.sig td.s{max-width:200px;overflow:hidden;text-overflow:ellipsis;color:var(--ink2);font-size:11px}
 .sig tbody tr:nth-child(even) td{background:var(--zebra)}.sig tbody tr:hover td{background:var(--accent-soft)}.sig tr:last-child td{border-bottom:0}
 /* ── treemap ── */
 .tm{position:relative;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -255,20 +255,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 <header class="top">
   <div class="top-in">
     <a class="brand" href="index.html"><span class="logo">IDX</span>Swing</a>
-    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Screener</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Scope<b>826</b></a><a class="nv" href="scanner.html">Akumulasi<b>832</b></a><a class="nv" href="bandar.html">Bandar<b>215</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="jurnal.html">Jurnal</a></nav>
+    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>826</b></a><a class="nv" href="scanner.html">Uang masuk<b>832</b></a><a class="nv" href="bandar.html">Bandar<b>215</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="jurnal.html">Jurnal</a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
-      <input id="cariIn" name="q" type="search" placeholder="Cari kode… (Enter → Scope)" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
+      <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
-    <div class="stempel"><span class="st" title="Kapan scan teknikal terakhir dijalankan (WIB). Sebelum 16:15 = bar hari itu belum tutup.">Teknikal <b>2026-09-10 17:30</b></span><span class="st" title="Tanggal cetakan resmi bursa (idx.co.id) utk tiket, frekuensi, asing. Terbit ~17:00 WIB.">Bursa <b>2026-09-10</b></span><span class="st old" title="Tanggal bar chart BM terbaru. Masa berlaku LPM/Intensity 14 hari, VolRot 5 hari.">BM <b>2026-08-20</b> <i>21 hr</i></span></div>
+    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-10 17:30</b></span><span class="st" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-10</b></span><span class="st old" title="Chart bandar terbaru. Berlaku 14 hari (LPM), 5 hari (rotasi).">Bandar <b>2026-08-20</b> <i>21 hr</i></span></div>
     <button type="button" class="tema" id="temaBtn" title="Ganti tema"><span id="temaVal">terang</span></button>
   </div>
 </header>
-<main class="content lebar"><h1>Scope</h1><p class="h1-sub">826 nama · telaah per-emiten dari bar harian 2026-09-10. Ketik kode, atau klik kode di halaman mana pun.</p>
-  <div class="note warn"><b>Klasifikasi regime di sini adalah aturan berbobot yang dirancang, bukan model terlatih, dan belum diuji walk-forward.</b> Skor = kecocokan kondisi hari ini dengan definisi regime, bukan peluang. Yang tervalidasi di sistem ini hanya breakout bervolume dan stop ~2,2×ATR.</div>
+<main class="content lebar"><h1>Per saham</h1><p class="h1-sub">826 saham · harga per 2026-09-10. Ketik kode, atau klik kode saham di halaman mana pun.</p>
+  <div class="note warn"><b>Label kondisi chart di sini aturan buatan, belum diuji.</b> Skornya = seberapa cocok dengan definisi, bukan peluang naik.</div>
   <div class="sq-bar"><input id="sqIn" class="sq-in" placeholder="ketik kode… mis. BIPI" autocomplete="off" spellcheck="false" aria-label="Cari emiten di Scope"><span class="sq-hit" id="sqHit"></span></div>
-  <div class="sq-chips" id="sqChips"><span class="sq-chip on" data-r="">Semua</span><span class="sq-chip" data-r="Momentum loss">Momentum loss</span><span class="sq-chip" data-r="Overextended">Overextended</span><span class="sq-chip" data-r="Pullback in uptrend">Pullback in uptrend</span><span class="sq-chip" data-r="Range consolidation">Range consolidation</span><span class="sq-chip" data-r="Structural bearish">Structural bearish</span><span class="sq-chip" data-r="Trend continuation">Trend continuation</span><span class="sq-chip" data-f="ex">Extended</span><span class="sq-chip" data-f="am">Pembacaan ganda</span><span class="sq-chip" data-f="rr">R/R ≥ 1,5</span><span class="sq-chip" data-f="in">Ada intraday</span></div>
-  <div class="sq-wrap"><div class="sq-list" id="sqList"></div><div class="sq-panel" id="sqPanel"><div class="sq-empty">Pilih emiten di kiri, atau ketik kodenya lalu tekan Enter.</div></div></div></main>
-<footer class="ft"><div class="ft-in">Feed IDX_DLY tertunda · verifikasi live di broker · edukatif, bukan rekomendasi investasi. Skor &amp; klasifikasi adalah aturan yang dirancang; yang tervalidasi di sistem ini hanya breakout bervolume + stop ~2,2×ATR. <a href="legacy.html">Versi lama</a></div></footer>
+  <div class="sq-chips" id="sqChips"><span class="sq-chip on" data-r="">Semua</span><span class="sq-chip" data-r="Momentum loss">Momentum melemah</span><span class="sq-chip" data-r="Overextended">Sudah naik terlalu jauh</span><span class="sq-chip" data-r="Pullback in uptrend">Koreksi dalam tren naik</span><span class="sq-chip" data-r="Range consolidation">Sideways</span><span class="sq-chip" data-r="Structural bearish">Tren turun</span><span class="sq-chip" data-r="Trend continuation">Tren naik berlanjut</span><span class="sq-chip" data-f="ex">Sudah naik jauh</span><span class="sq-chip" data-f="am">Dua bacaan</span><span class="sq-chip" data-f="rr">Untung ≥ 1,5× rugi</span></div>
+  <div class="sq-wrap"><div class="sq-list" id="sqList"></div><div class="sq-panel" id="sqPanel"><div class="sq-empty">Pilih saham di kiri, atau ketik kodenya lalu Enter.</div></div></div></main>
+<footer class="ft"><div class="ft-in">Harga tertunda ±15 menit — cek harga live sebelum eksekusi. Bukan rekomendasi investasi. <a href="legacy.html">Tampilan lama</a></div></footer>
 <script>
 (function(){
   var root=document.documentElement;
@@ -313,7 +313,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     var ok=function(){ var t=b.textContent; b.textContent='tersalin'; setTimeout(function(){b.textContent=t},1200); };
     if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(code.getAttribute('data-cmd')||code.textContent).then(ok,ok); else ok(); });
 })();
-
+var KOND={"Momentum loss":"Momentum melemah","Overextended":"Sudah naik terlalu jauh","Pullback in uptrend":"Koreksi dalam tren naik","Range consolidation":"Sideways","Structural bearish":"Tren turun","Trend continuation":"Tren naik berlanjut"}; var kond=function(k){return KOND[k]||k||'–';};
 document.addEventListener('DOMContentLoaded',function(){
 (function(){
   var panel=document.getElementById('sqPanel');
@@ -321,18 +321,17 @@ document.addEventListener('DOMContentLoaded',function(){
   var inp=document.getElementById('sqIn'), list=document.getElementById('sqList'), hit=document.getElementById('sqHit'), chips=document.getElementById('sqChips');
   var fR='', fF='', aktif=null;
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-  function adaIntra(s){ return typeof SI!=='undefined' && !!SI[s]; }
   function saring(){
     var q=inp.value.trim().toUpperCase();
     var r=SQ.filter(function(d){
       if(q && d.s.indexOf(q)<0) return false;
       if(fR && d.ra!==fR) return false;
       if(fF==='ex' && !d.ex) return false; if(fF==='am' && !d.am) return false;
-      if(fF==='rr' && !(d.lv.rr>=1.5)) return false; if(fF==='in' && !adaIntra(d.s)) return false;
+      if(fF==='rr' && !(d.lv.rr>=1.5)) return false;
       return true; });
     if(q) r.sort(function(a,b){ return (a.s.indexOf(q)===0?0:1)-(b.s.indexOf(q)===0?0:1) || a.s.localeCompare(b.s); });
     hit.textContent=r.length+' / '+SQ.length+' nama';
-    list.innerHTML=r.slice(0,200).map(function(d){ return '<div class="sq-it'+(aktif===d.s?' on':'')+'" data-s="'+d.s+'"><b>'+d.s+'</b><span class="sq-px">'+d.h+'</span><span class="sq-rg">'+esc(d.ra)+' '+d.k.toFixed(2)+(d.ex?' · <b style="color:var(--down)">EXT</b>':'')+(d.am?' · GANDA':'')+(adaIntra(d.s)?' · intraday':'')+'</span></div>'; }).join('')||'<div class="sq-empty">Tidak ada yang cocok.</div>';
+    list.innerHTML=r.slice(0,200).map(function(d){ return '<div class="sq-it'+(aktif===d.s?' on':'')+'" data-s="'+d.s+'"><b>'+d.s+'</b><span class="sq-px">'+d.h+'</span><span class="sq-rg">'+esc(kond(d.ra))+' '+d.k.toFixed(2)+(d.ex?' · <b style="color:var(--down)">naik jauh</b>':'')+(d.am?' · dua bacaan':'')+'</span></div>'; }).join('')||'<div class="sq-empty">Tidak ada yang cocok.</div>';
     return r; }
   function spark(d){ var c=d.sp, n=c.length; if(n<2) return ''; var mn=Math.min.apply(null,c), mx=Math.max.apply(null,c);
     var lv=[d.lv.trigger,d.lv.S1,d.lv.SL].filter(function(v){return v>0}); lv.forEach(function(v){ if(v<mn)mn=v; if(v>mx)mx=v; });
@@ -340,9 +339,21 @@ document.addEventListener('DOMContentLoaded',function(){
     var dd=c.map(function(v,i){ return (i?'L':'M')+(i/(n-1)*W).toFixed(1)+','+y(v).toFixed(1); }).join('');
     var g=lv.map(function(v,i){ var col=['var(--warn)','var(--info)','var(--down)'][i]; return '<line x1="0" x2="'+W+'" y1="'+y(v).toFixed(1)+'" y2="'+y(v).toFixed(1)+'" stroke="'+col+'"/>'; }).join('');
     return '<div class="sq-chart" data-s="'+d.s+'"><svg class="sq-spark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+g+'<path d="'+dd+'"/></svg><div class="sq-cload">memuat chart penuh…</div></div>'; }
-  var barsState='belum';
-  function muatBars(lalu){ if(typeof SB!=='undefined'){lalu(true);return;} if(barsState==='gagal'){lalu(false);return;} if(barsState==='jalan'){setTimeout(function(){muatBars(lalu)},250);return;}
-    barsState='jalan'; var sc=document.createElement('script'); sc.src='scope-bars.js'; sc.onload=function(){barsState='siap';lalu(true)}; sc.onerror=function(){barsState='gagal';lalu(false)}; document.head.appendChild(sc); }
+  // Dua berkas data dimuat MALAS dan TERPISAH: scope-bars.js (candle harian) & scope-intra.js
+  // (bar 5 menit semua nama). Dipisah supaya chart harian tampil tanpa menunggu bar 5 menit, dan
+  // kegagalan salah satunya tidak mematikan yang lain. <script src>, bukan fetch — fetch diblokir
+  // saat halaman dibuka sebagai berkas lokal.
+  var muat = {};
+  function muatBerkas(nama, src, siap, lalu){
+    if(siap()){ lalu(true); return; }
+    var st = muat[nama];
+    if(st==='gagal'){ lalu(false); return; }
+    if(st==='jalan'){ setTimeout(function(){ muatBerkas(nama,src,siap,lalu); },250); return; }
+    muat[nama]='jalan'; var sc=document.createElement('script'); sc.src=src;
+    sc.onload=function(){ muat[nama]='siap'; lalu(true); }; sc.onerror=function(){ muat[nama]='gagal'; lalu(false); };
+    document.head.appendChild(sc); }
+  function muatBars(lalu){ muatBerkas('bars','scope-bars.js',function(){return typeof SB!=='undefined';},lalu); }
+  function muatIntra(lalu){ muatBerkas('intra','scope-intra.js',function(){return typeof SI!=='undefined';},lalu); }
   function pasangChart(sym){
     var box=panel.querySelector('.sq-chart'); if(!box||box.getAttribute('data-s')!==sym) return;
     muatBars(function(ok){
@@ -353,16 +364,28 @@ document.addEventListener('DOMContentLoaded',function(){
       if(!bars||!dd){ if(ket) ket.textContent='bar tidak tersedia untuk nama ini'; return; }
       var gambarHarian=function(i0,end){ return chartSVG({sym:sym,level:dd.lv},bars,{W:1060,bars:end-i0,end:end}); };
       if(typeof pasangZoom==='function') pasangZoom(b2,bars.length,170,gambarHarian,typeof ketRentang==='function'?ketRentang(bars,false):null); else b2.innerHTML=gambarHarian(Math.max(0,bars.length-170),bars.length);
-      var lama=panel.querySelector('.sq-intra'); if(lama) lama.parentNode.removeChild(lama);
-      if(typeof SI!=='undefined'&&SI[sym]&&typeof intradaySVG==='function'){
-        var ib=SI[sym].bars, ires=SI[sym].res, w=document.createElement('div'); w.className='sq-chart sq-intra';
-        var zc=document.createElement('div'); w.appendChild(zc);
-        var gambarIntra=function(i0,end){ return intradaySVG(sym,ib,{W:1060,lv:dd.lv,res:ires,bars:end-i0,end:end}); };
-        if(typeof pasangZoom==='function') pasangZoom(zc,ib.length,ib.length,gambarIntra,typeof ketRentang==='function'?ketRentang(ib,true):null); else zc.innerHTML=gambarIntra(0,ib.length);
-        var k2=document.createElement('div'); k2.className='sq-cload'; k2.textContent='Effective volume '+ires+' mnt · tarikan '+String(SI[sym].tarik||'').slice(0,16).replace('T',' ')+' UTC'; w.appendChild(k2);
-        if(typeof bacaIntraday==='function'&&typeof penjelasanIntraday==='function'){ var bc=bacaIntraday(ib), teks=document.createElement('div');
-          teks.innerHTML=(bc?'<div class="sq-vonis'+(/DISTRIBUSI|TANPA UANG/.test(bc.vonis)?' bad':'')+'"><b>Bacaan sepertiga jendela terakhir:</b> harga '+bc.arahPx+' ('+bc.dHarga+'%), EV pemain besar '+bc.arahLP+'. '+bc.vonis+'</div>':'')+penjelasanIntraday(bc); w.appendChild(teks); }
-        b2.parentNode.insertBefore(w,b2.nextSibling); }
+      pasangIntra(sym, dd, b2);
+    }); }
+  // Panel 5 menit — sekarang STANDAR untuk semua nama (tarikan menyeluruh intraday_all.mjs),
+  // jadi tidak ada lagi penanda/filter "ada data 5 menit". Kalau satu nama memang tak punya bar
+  // (baru IPO, suspend panjang), panelnya diganti satu baris keterangan — bukan hilang tanpa jejak.
+  function pasangIntra(sym, dd, b2){
+    var lama=panel.querySelector('.sq-intra'); if(lama) lama.parentNode.removeChild(lama);
+    var w=document.createElement('div'); w.className='sq-chart sq-intra';
+    var zc=document.createElement('div'); w.appendChild(zc);
+    zc.innerHTML='<div class="sq-cload">memuat bar 5 menit…</div>';
+    b2.parentNode.insertBefore(w,b2.nextSibling);
+    muatIntra(function(ok){
+      if(!panel.querySelector('.sq-intra')||aktif!==sym) return;
+      if(!ok||typeof siBars!=='function'||typeof intradaySVG!=='function'){ zc.innerHTML='<div class="sq-cload">bar 5 menit tidak tersedia (scope-intra.js tidak termuat)</div>'; return; }
+      var ib=siBars(sym);
+      if(!ib||ib.length<3){ zc.innerHTML='<div class="sq-cload">belum ada bar 5 menit untuk '+esc(sym)+'</div>'; return; }
+      var meta=(typeof SIM!=='undefined'&&SIM[sym])||['5',''], ires=meta[0];
+      var gambarIntra=function(i0,end){ return intradaySVG(sym,ib,{W:1060,lv:dd.lv,res:ires,bars:end-i0,end:end}); };
+      if(typeof pasangZoom==='function') pasangZoom(zc,ib.length,ib.length,gambarIntra,typeof ketRentang==='function'?ketRentang(ib,true):null); else zc.innerHTML=gambarIntra(0,ib.length);
+      var k2=document.createElement('div'); k2.className='sq-cload'; k2.textContent='Bar '+ires+' menit · diambil '+meta[1]+' UTC'; w.appendChild(k2);
+      if(typeof bacaIntraday==='function'&&typeof penjelasanIntraday==='function'){ var bc=bacaIntraday(ib), teks=document.createElement('div');
+        teks.innerHTML=(bc?'<div class="sq-vonis'+(/KELUAR|TANPA UANG/.test(bc.vonis)?' bad':'')+'"><b>Bacaan sepertiga terakhir:</b> harga '+bc.arahPx+' ('+bc.dHarga+'%), uang pemain besar '+bc.arahLP+'. '+bc.vonis+'</div>':'')+penjelasanIntraday(bc); w.appendChild(teks); }
     }); }
   function buka(sym){
     var d=null; for(var i=0;i<SQ.length;i++) if(SQ[i].s===sym){d=SQ[i];break}
@@ -370,18 +393,18 @@ document.addEventListener('DOMContentLoaded',function(){
     aktif=sym; try{ history.replaceState(null,'','scope.html?q='+encodeURIComponent(sym)); }catch(e){}
     var cap=bangunCaption(d.it&&d.it.length?{sym:d.s,close:d.h,regime:{aktif:d.ra,skor:d.k},level:d.lv,indikator:d.ind,konteksBursa:d.kx,interpretasi:d.it,strategi:d.st}:d);
     var rg=Object.keys(d.rg).map(function(k){return [k,d.rg[k]]}).sort(function(a,b){return b[1]-a[1]}); var mx=Math.max(rg[0][1],1);
-    panel.innerHTML='<div class="sq-h"><b>'+d.s+'</b><span class="sq-px">'+d.h+'</span><span class="sq-reg">'+esc(d.ra)+' '+d.k.toFixed(2)+'</span>'+(d.ex?'<span class="sq-flag x">Extended</span>':'')+(d.am?'<span class="sq-flag">Pembacaan ganda</span>':'')+(d.fca?'<span class="sq-flag">FCA</span>':'')+'</div>'
+    panel.innerHTML='<div class="sq-h"><b>'+d.s+'</b><span class="sq-px">'+d.h+'</span><span class="sq-reg">'+esc(kond(d.ra))+' '+d.k.toFixed(2)+'</span>'+(d.ex?'<span class="sq-flag x">Sudah naik jauh</span>':'')+(d.am?'<span class="sq-flag">Dua bacaan</span>':'')+(d.fca?'<span class="sq-flag" title="Papan Pemantauan Khusus — lelang penuh">FCA</span>':'')+'</div>'
       +'<div class="sq-note">'+esc(d.kt)+'</div>'+spark(d)
-      +'<div class="sq-grid"><div><span>Pemicu</span><b>&gt; '+d.lv.trigger+'</b></div><div><span>R1'+(d.lv.R1proyeksi?' · proy':'')+'</span><b>'+d.lv.R1+'</b></div><div><span>R2'+(d.lv.R2proyeksi?' · proy':'')+'</span><b>'+d.lv.R2+'</b></div><div><span>S1</span><b>'+d.lv.S1+'</b></div><div><span>S2</span><b>'+d.lv.S2+'</b></div><div><span>Stop loss</span><b>'+d.lv.SL+'</b></div><div><span>R/R</span><b>1:'+d.lv.rr.toFixed(1)+'</b></div></div>'
-      +(d.ex?'<div class="sq-warn bad">Extended — skor Overextended '+d.rg['Overextended'].toFixed(2)+'. Apa pun regime pemenangnya, ini bukan titik masuk.</div>':'')
-      +(d.am?'<div class="sq-warn">Pembacaan ganda — peringkat kedua ('+esc(rg[1]?rg[1][0]:'-')+') nyaris sama kuat. Label di atas bukan jawaban tunggal.</div>':'')
-      +'<div class="sq-two" style="margin-top:14px"><div><div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px">Skor regime</div>'
-      +rg.map(function(p){ return '<div class="sq-rrow'+(p[0]===d.ra?' on':'')+'"><span class="t">'+esc(p[0])+'</span><span class="bar"><i style="width:'+(p[1]/mx*100).toFixed(0)+'%"></i></span><em>'+p[1].toFixed(2)+'</em></div>'; }).join('')
+      +'<div class="sq-grid"><div><span>Beli kalau tembus</span><b>&gt; '+d.lv.trigger+'</b></div><div><span>Target 1'+(d.lv.R1proyeksi?' · perkiraan':'')+'</span><b>'+d.lv.R1+'</b></div><div><span>Target 2'+(d.lv.R2proyeksi?' · perkiraan':'')+'</span><b>'+d.lv.R2+'</b></div><div><span>Support 1</span><b>'+d.lv.S1+'</b></div><div><span>Support 2</span><b>'+d.lv.S2+'</b></div><div><span>Stop</span><b>'+d.lv.SL+'</b></div><div><span>Untung : rugi</span><b>1 : '+d.lv.rr.toFixed(1)+'</b></div></div>'
+      +(d.ex?'<div class="sq-warn bad">Sudah naik terlalu jauh (skor '+d.rg['Overextended'].toFixed(2)+'). Bukan titik beli, apa pun kondisinya.</div>':'')
+      +(d.am?'<div class="sq-warn">Dua bacaan hampir sama kuat — kondisi kedua: '+esc(kond(rg[1]?rg[1][0]:'-'))+'. Label di atas bukan satu-satunya jawaban.</div>':'')
+      +'<div class="sq-two" style="margin-top:14px"><div><div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px">Kondisi chart</div>'
+      +rg.map(function(p){ return '<div class="sq-rrow'+(p[0]===d.ra?' on':'')+'"><span class="t">'+esc(kond(p[0]))+'</span><span class="bar"><i style="width:'+(p[1]/mx*100).toFixed(0)+'%"></i></span><em>'+p[1].toFixed(2)+'</em></div>'; }).join('')
       +'<table class="sq-kd"><thead><tr><th>Tipe</th><th>Kondisi</th><th style="text-align:right">Nilai</th><th style="text-align:right">Ambang</th><th style="text-align:right">Skor</th></tr></thead><tbody>'+d.kd.map(function(k){ return '<tr><td>'+esc(k[0])+'</td><td>'+esc(k[1])+'</td><td class="n">'+esc(k[2])+'</td><td class="n" style="color:var(--muted)">'+esc(k[3])+'</td><td class="n"><b>'+k[4].toFixed(2)+'</b></td></tr>'; }).join('')+'</tbody></table>'
       +(d.kx.length?'<ul class="sq-it-list">'+d.kx.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul>':'')+'</div>'
       +'<div>'+d.it.map(function(p){ return '<p class="sq-note">'+esc(p)+'</p>'; }).join('')+'<div style="font-weight:700;font-size:12px;margin-top:8px">Strategi</div><ul class="sq-it-list">'+d.st.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul>'
-      +'<div class="sq-cap"><div class="lb"><span>Caption · gaya kita</span><button type="button" data-cap="k">Salin</button></div><pre id="sqCapK">'+esc(cap.kita)+'</pre></div>'
-      +'<div class="sq-cap"><div class="lb"><span>Caption · format acuan</span><button type="button" data-cap="r">Salin</button></div><pre id="sqCapR">'+esc(cap.referensi)+'</pre></div></div></div>';
+      +'<div class="sq-cap"><div class="lb"><span>Teks siap kirim</span><button type="button" data-cap="k">Salin</button></div><pre id="sqCapK">'+esc(cap.kita)+'</pre></div>'
+      +'<div class="sq-cap"><div class="lb"><span>Teks versi panjang</span><button type="button" data-cap="r">Salin</button></div><pre id="sqCapR">'+esc(cap.referensi)+'</pre></div></div></div>';
     saring(); pasangChart(sym); }
   window.__scopeBuka=function(q){ inp.value=q; var r=saring(); if(r.length&&r[0].s===q) buka(q); else buka(q); };
   list.addEventListener('click',function(e){ var it=e.target.closest('.sq-it'); if(it) buka(it.getAttribute('data-s')); });
