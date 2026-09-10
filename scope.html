@@ -356,6 +356,7 @@ document.addEventListener('DOMContentLoaded',function(){
   function muatIntra(lalu){ muatBerkas('intra','scope-intra.js',function(){return typeof SI!=='undefined';},lalu); }
   function pasangChart(sym){
     var box=panel.querySelector('.sq-chart'); if(!box||box.getAttribute('data-s')!==sym) return;
+    muatIntra(function(){});   // mulai unduh bar 5 menit BERSAMAAN dgn candle harian, bukan sesudahnya
     muatBars(function(ok){
       var b2=panel.querySelector('.sq-chart'); if(!b2||b2.getAttribute('data-s')!==sym) return;
       var ket=b2.querySelector('.sq-cload');
