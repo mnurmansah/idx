@@ -157,7 +157,7 @@ table.tbl,table.mini{width:100%;border-collapse:collapse;font-size:11.5px}
 details.lipat{padding:6px 10px;border-top:1px solid var(--line2)}details.lipat summary{cursor:pointer;font-size:11px;color:var(--link);font-weight:600}
 details.lipat ul{margin:6px 0 0;padding-left:16px;font-size:11.5px;color:var(--ink2)}details.lipat li{margin:2px 0}
 /* ── dinding sinyal (finviz) ── */
-.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:10px}
 .sig{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .sig h3{margin:0;padding:5px 9px;font-size:11.5px;font-weight:700;background:var(--panel2);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
 .sig h3 a{font-size:10.5px;font-weight:600}.sig h3 span{font-size:10px;color:var(--muted);font-weight:500}
@@ -180,8 +180,54 @@ details.lipat ul{margin:6px 0 0;padding-left:16px;font-size:11.5px;color:var(--i
 .strip{display:flex;flex-wrap:wrap;gap:5px}
 .strip .chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px}
 .strip .dot{width:6px;height:6px;border-radius:50%;background:var(--muted)}.strip .on .dot{background:var(--up)}.strip .off .dot{background:var(--down)}
+details.fdet{margin:0}
+details.fdet>summary{display:none}
+details.fdet>summary::-webkit-details-marker{display:none}
 @media (max-width:1100px){.grid3,.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:800px){.grid2,.grid3,.grid4{grid-template-columns:minmax(0,1fr)}.nav{display:none}.stempel{display:none}.cari{width:100%}}
+@media (max-width:800px){
+ .grid2,.grid3,.grid4{grid-template-columns:minmax(0,1fr)}
+ .stempel{display:none}
+ .top-in{flex-wrap:wrap;height:auto;padding:5px 10px;gap:8px}
+ .brand{font-size:13px;min-width:0}.logo{width:24px;height:24px;flex:0 0 auto}
+ .cari{margin-left:auto;width:auto;flex:1 1 110px;height:32px}
+ .cari kbd{display:none}
+ .tema{height:32px;padding:0 10px}
+ /* NAVIGASI: baris kedua, digeser ke samping. JANGAN dikembalikan ke display:none — itu cacat yang
+    membuat ponsel kehilangan seluruh menu (diperbaiki 11 Sep 2026, diukur dgn scripts/audit_mobile.mjs). */
+ .nav{order:3;width:100%;height:36px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -10px;padding:0 10px;border-top:1px solid var(--line2)}
+ .nav::-webkit-scrollbar{display:none}
+ .nv{height:36px;padding:0 9px}
+ .content{padding:10px 10px 26px}.ft-in{padding:10px 10px 16px}
+ /* Safari iOS mem-zoom paksa saat input ber-font <16px difokus — di bawah ini semua kendali naik ke 16px. */
+ .cari input,.tbl-cari,.f select,.f input{font-size:16px}
+ .f select,.f input,.tbl-cari{height:32px}
+ .fbar{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));padding:8px}
+ .fbar .reset{height:32px}
+ details.fdet>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);font-weight:700;font-size:12.5px;cursor:pointer;list-style:none}
+ details.fdet[open]>summary{margin-bottom:6px}
+ /* sasaran sentuh minimal ~30px */
+ .pg-btn{min-height:30px;min-width:36px}
+ .ak-copy{min-height:30px;padding:5px 10px}
+ .tab{padding:9px 11px}
+ .ak-cmd code{max-width:100%;white-space:normal;word-break:break-all}
+ .sig td.s{max-width:110px}
+ /* baris tabel ditinggikan supaya tautan kode saham (sasaran sentuh utama) mencapai ~30px */
+ .tbl td,.mini td,.sig td{padding:7px}
+ .tbl th,.mini th,.sig th{padding:7px}
+ .brand{min-height:30px}
+ /* Kotak tautan diperbesar tanpa menambah tinggi baris: padding positif + margin negatif. */
+ .sym{display:inline-block;padding:6px 4px;margin:-6px -4px}
+ .sig h3 a,.card-h .more,.sec-r a{display:inline-block;padding:6px 2px;margin:-6px -2px}
+ details.lipat summary{padding:5px 0}
+ .tbl-tools{gap:6px}
+}
+@media (max-width:430px){
+ /* satu baris untuk merek + cari + tema: kata "Swing" disembunyikan, logo IDX tetap jadi tautan pulang */
+ .brand .bnama{display:none}
+ .cari{flex:1 1 80px}
+ .tema{padding:0 8px;font-size:10.5px}
+ .nv{padding:0 8px;font-size:12px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 </style><style>
@@ -211,6 +257,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .sq-warn{margin-top:10px;padding:9px 12px;border-radius:var(--r2);background:var(--warn-soft);color:var(--ink2);font-size:12.5px;border-left:3px solid var(--warn)}.sq-warn.bad{background:var(--down-soft);border-left-color:var(--down)}
 .sq-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
 @media(max-width:1000px){.sq-wrap{grid-template-columns:minmax(0,1fr)}.sq-list{position:static;max-height:260px}.sq-two{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:800px){.sq-in{font-size:16px}.sq-chart{padding:6px 2px}.sq-chart .zb{flex-wrap:wrap}.sq-chart .zb button{min-width:34px;min-height:30px}.sq-chart .zb-h{display:none}.sq-chart .zb-k{white-space:normal}}
 .sq-rrow{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:8px;padding:3px 0;font-size:12px}
 .sq-rrow .t{color:var(--muted)}.sq-rrow.on .t{color:var(--ink);font-weight:700}
 .sq-rrow .bar{height:12px;background:var(--panel3);border-radius:3px;overflow:hidden}.sq-rrow .bar i{display:block;height:100%;background:var(--muted);opacity:.5}.sq-rrow.on .bar i{background:var(--accent);opacity:1}
@@ -271,7 +318,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 </head><body>
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="index.html"><span class="logo">IDX</span>Swing</a>
+    <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
     <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>822</b></a><a class="nv" href="scanner.html">Uang masuk<b>828</b></a><a class="nv" href="bandar.html">Bandar<b>214</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
@@ -372,18 +419,32 @@ document.addEventListener('DOMContentLoaded',function(){
   function muatBars(lalu){ muatBerkas('bars','scope-bars.js',function(){return typeof SB!=='undefined';},lalu); }
   function muatIntra(lalu){ muatBerkas('intra','scope-intra.js',function(){return typeof SI!=='undefined';},lalu); }
   function muatOwn(lalu){ muatBerkas('own','scope-own.js',function(){return typeof SO!=='undefined';},lalu); }
+  // Lebar gambar = lebar dalam wadahnya (dikurangi padding .sq-chart 4px kiri+kanan), dibatasi 320..1060.
+  // Panggil fn sekarang di layar lebar; di ponsel tunggu sampai el hampir terlihat (hemat kuota).
+  function saatTerlihat(el, fn){
+    if(typeof innerWidth==='undefined'||innerWidth>=700||typeof IntersectionObserver!=='function'){ fn(); return; }
+    var sudah=false, io=new IntersectionObserver(function(es){ for(var i=0;i<es.length;i++){ if(es[i].isIntersecting&&!sudah){ sudah=true; io.disconnect(); fn(); } } },{rootMargin:'300px'});
+    io.observe(el);
+  }
+  function lebarSVG(el){ var w=(el&&el.clientWidth)||0; if(!w) w=((typeof innerWidth!=='undefined'?innerWidth:1060)-28); return Math.max(320,Math.min(1060,Math.round(w-8))); }
   function pasangChart(sym){
     var box=panel.querySelector('.sq-chart'); if(!box||box.getAttribute('data-s')!==sym) return;
-    muatIntra(function(){});   // mulai unduh bar 5 menit BERSAMAAN dgn candle harian, bukan sesudahnya
-    muatOwn(function(){});     // begitu juga data kepemilikan & orang dalam
+    // Di layar lebar: mulai unduh bar 5 menit & kepemilikan BERSAMAAN dgn candle harian (bukan sesudahnya).
+    // Di ponsel: jangan di muka — panelnya sendiri yang memicu unduhan lewat saatTerlihat().
+    if(typeof innerWidth==='undefined'||innerWidth>=700){ muatIntra(function(){}); muatOwn(function(){}); }
     muatBars(function(ok){
       var b2=panel.querySelector('.sq-chart'); if(!b2||b2.getAttribute('data-s')!==sym) return;
       var ket=b2.querySelector('.sq-cload');
       if(!ok||typeof sbBars!=='function'){ if(ket) ket.textContent='chart penuh tidak tersedia (scope-bars.js tidak termuat)'; return; }
       var bars=sbBars(sym), dd=null; for(var i=0;i<SQ.length;i++) if(SQ[i].s===sym){dd=SQ[i];break;}
       if(!bars||!dd){ if(ket) ket.textContent='bar tidak tersedia untuk nama ini'; return; }
-      var gambarHarian=function(i0,end){ return chartSVG({sym:sym,level:dd.lv},bars,{W:1060,bars:end-i0,end:end}); };
-      if(typeof pasangZoom==='function') pasangZoom(b2,bars.length,170,gambarHarian,typeof ketRentang==='function'?ketRentang(bars,false):null); else b2.innerHTML=gambarHarian(Math.max(0,bars.length-170),bars.length);
+      // LEBAR GRAFIK = lebar wadah sesungguhnya (11 Sep 2026). Sebelumnya selalu 1060 lalu diperkecil
+      // viewBox ke ~314px di ponsel, jadi label sumbu & harga mengecil jadi ~3px dan tak terbaca.
+      // Digambar di peramban, jadi lebarnya boleh ditentukan saat itu. Jumlah bar awal juga dikurangi
+      // di layar sempit — 170 lilin di 360px = 2px per lilin, tidak ada gunanya.
+      var awalBar=(typeof innerWidth!=='undefined'&&innerWidth<700)?60:170;
+      var gambarHarian=function(i0,end){ return chartSVG({sym:sym,level:dd.lv},bars,{W:lebarSVG(b2),bars:end-i0,end:end}); };
+      if(typeof pasangZoom==='function') pasangZoom(b2,bars.length,awalBar,gambarHarian,typeof ketRentang==='function'?ketRentang(bars,false):null); else b2.innerHTML=gambarHarian(Math.max(0,bars.length-awalBar),bars.length);
       pasangIntra(sym, dd, b2);
       pasangOwn(sym);
     }); }
@@ -396,29 +457,31 @@ document.addEventListener('DOMContentLoaded',function(){
     var zc=document.createElement('div'); w.appendChild(zc);
     zc.innerHTML='<div class="sq-cload">memuat bar 5 menit…</div>';
     b2.parentNode.insertBefore(w,b2.nextSibling);
-    muatIntra(function(ok){
+    saatTerlihat(w,function(){ muatIntra(function(ok){
       if(!panel.querySelector('.sq-intra')||aktif!==sym) return;
       if(!ok||typeof siBars!=='function'||typeof intradaySVG!=='function'){ zc.innerHTML='<div class="sq-cload">bar 5 menit tidak tersedia (scope-intra.js tidak termuat)</div>'; return; }
       var ib=siBars(sym);
       if(!ib||ib.length<3){ zc.innerHTML='<div class="sq-cload">belum ada bar 5 menit untuk '+esc(sym)+'</div>'; return; }
       var meta=(typeof SIM!=='undefined'&&SIM[sym])||['5',''], ires=meta[0];
-      var gambarIntra=function(i0,end){ return intradaySVG(sym,ib,{W:1060,lv:dd.lv,res:ires,bars:end-i0,end:end}); };
-      if(typeof pasangZoom==='function') pasangZoom(zc,ib.length,ib.length,gambarIntra,typeof ketRentang==='function'?ketRentang(ib,true):null); else zc.innerHTML=gambarIntra(0,ib.length);
+      var gambarIntra=function(i0,end){ return intradaySVG(sym,ib,{W:lebarSVG(zc),lv:dd.lv,res:ires,bars:end-i0,end:end}); };
+      // 600 bar sekaligus di layar ponsel = 1 bar per 0,5px. Mulai dari ~1,5 sesi, zoom keluar kalau perlu.
+      var awalIntra=(typeof innerWidth!=='undefined'&&innerWidth<700)?Math.min(ib.length,90):ib.length;
+      if(typeof pasangZoom==='function') pasangZoom(zc,ib.length,awalIntra,gambarIntra,typeof ketRentang==='function'?ketRentang(ib,true):null); else zc.innerHTML=gambarIntra(Math.max(0,ib.length-awalIntra),ib.length);
       var k2=document.createElement('div'); k2.className='sq-cload'; k2.textContent='Bar '+ires+' menit · diambil '+meta[1]+' UTC'; w.appendChild(k2);
       if(typeof bacaIntraday==='function'&&typeof penjelasanIntraday==='function'){ var bc=bacaIntraday(ib), teks=document.createElement('div');
         teks.innerHTML=(bc?'<div class="sq-vonis'+(/KELUAR|TANPA UANG/.test(bc.vonis)?' bad':'')+'"><b>Bacaan sepertiga terakhir:</b> harga '+bc.arahPx+' ('+bc.dHarga+'%), uang pemain besar '+bc.arahLP+'. '+bc.vonis+'</div>':'')+penjelasanIntraday(bc); w.appendChild(teks); }
-    }); }
+    }); }); }
   // Bagian "Orang dalam & kepemilikan" — di bawah panel 5 menit. Kelas sq-intra dipinjam supaya gaya tabel/keterangan (iw-*) ikut.
   function pasangOwn(sym){
     var lama=panel.querySelector('.sq-own'); if(lama) lama.parentNode.removeChild(lama);
     var anchor=panel.querySelector('.sq-intra')||panel.querySelector('.sq-chart'); if(!anchor) return;
     var w=document.createElement('div'); w.className='sq-chart sq-intra sq-own'; w.innerHTML='<div class="sq-cload">memuat kepemilikan &amp; orang dalam…</div>';
     anchor.parentNode.insertBefore(w,anchor.nextSibling);
-    muatOwn(function(ok){
+    saatTerlihat(w,function(){ muatOwn(function(ok){
       if(!panel.querySelector('.sq-own')||aktif!==sym) return;
       if(!ok||typeof ownerHTML!=='function'){ w.innerHTML='<div class="sq-cload">data kepemilikan tidak tersedia (scope-own.js tidak termuat)</div>'; return; }
       w.innerHTML=ownerHTML(sym, (typeof SO!=='undefined'&&SO[sym])||null, typeof SOM!=='undefined'?SOM:[]);
-    }); }
+    }); }); }
   function buka(sym){
     var d=null; for(var i=0;i<SQ.length;i++) if(SQ[i].s===sym){d=SQ[i];break}
     if(!d){ panel.innerHTML='<div class="sq-empty">'+esc(sym)+' tidak ada di Scope (tidak bisa ditransaksikan, bar basi, atau riwayat &lt;60 bar).</div>'; return; }

@@ -339,6 +339,10 @@ function intradaySVG(sym, bars, opt) {
     }
   }
   var judul = function (top, t) { return '<text class="panel-t" x="' + PADL + '" y="' + (top - 7) + '">' + t + '</text>'; };
+  // Di lebar ponsel judul panjang keluar dari bingkai SVG lalu terpotong (svg memangkas isi di luar viewBox).
+  // Jadi di bawah 620px judulnya dipendekkan, bukan dibiarkan hilang separuh. Diukur 11 Sep 2026.
+  var kecil = W < 620;
+  var pilih = function (panjang, pendek) { return kecil ? pendek : panjang; };
   var jamAkhir = new Date((T[END - 1] + 7 * 3600) * 1000);
   var jam = ('0' + jamAkhir.getUTCHours()).slice(-2) + ':' + ('0' + jamAkhir.getUTCMinutes()).slice(-2);
   var akhir = C[END - 1], awal = C[i0], chg = awal ? (akhir - awal) / awal * 100 : 0;
@@ -346,17 +350,17 @@ function intradaySVG(sym, bars, opt) {
 
   return '<svg class="sc-svg" viewBox="0 0 ' + W + ' ' + totalH + '" width="100%" role="img" aria-label="Effective volume intraday ' + sym + '">'
     + gridY + sesi + candles + levels
-    + '<text class="panel-t" x="' + PADL + '" y="' + (PADT - 4) + '">' + sym + ' · ' + (opt.res || 5) + ' menit · ' + n + ' bar · terakhir ' + jam + ' WIB · ' + akhir + ' (' + (chg >= 0 ? '+' : '') + chg.toFixed(1) + '% sejak awal jendela)</text>'
+    + '<text class="panel-t" x="' + PADL + '" y="' + (PADT - 4) + '">' + pilih(sym + ' · ' + (opt.res || 5) + ' menit · ' + n + ' bar · terakhir ' + jam + ' WIB · ' + akhir + ' (' + (chg >= 0 ? '+' : '') + chg.toFixed(1) + '% sejak awal jendela)', sym + ' · ' + n + ' bar · ' + akhir + ' (' + (chg >= 0 ? '+' : '') + chg.toFixed(1) + '%)') + '</text>'
     // panel 2: effective volume flow — garis di atas (skala jendela), batang per-bar di pita bawah
-    + judul(evTop, 'Volume yang menggeser harga — total berjalan (garis) · di tampilan ini ' + delta(EVF) + ' · per bar (pita bawah)')
+    + judul(evTop, pilih('Volume yang menggeser harga — total berjalan (garis) · di tampilan ini ' + delta(EVF) + ' · per bar (pita bawah)', 'Volume yang menggeser harga · ' + delta(EVF)))
     + sumbuKiri(sEV) + nol(sEV) + '<path class="evf" d="' + path(EVF, sEV.y) + '"/>' + nilaiAkhir(sEV, EVF[Z], 'evf-t')
     + nol(sEVb) + batang(ev, sEVb, 'evbar')
     // panel 3: besar vs kecil
-    + judul(lpTop, 'Pemain besar (garis emas) vs kecil (garis hijau) · besar ' + delta(LP) + ' · kecil ' + delta(SP) + ' · bar disebut besar kalau volumenya ≥ ' + ringkas(sep) + ' lembar')
+    + judul(lpTop, pilih('Pemain besar (garis emas) vs kecil (garis hijau) · besar ' + delta(LP) + ' · kecil ' + delta(SP) + ' · bar disebut besar kalau volumenya ≥ ' + ringkas(sep) + ' lembar', 'Pemain besar (emas) vs kecil (hijau) · besar ' + delta(LP)))
     + sumbuKiri(sLP) + nol(sLP) + '<path class="sp" d="' + path(SP, sLP.y) + '"/>' + '<path class="lp" d="' + path(LP, sLP.y) + '"/>'
     + nilaiAkhir(sLP, LP[Z], 'lp-t') + (Math.abs(sLP.y(LP[Z]) - sLP.y(SP[Z])) < 11 ? '' : nilaiAkhir(sLP, SP[Z], 'sp-t'))
     // panel 4: buyup - selldown
-    + judul(bTop, 'Beli agresif − jual agresif — total berjalan (garis) · di tampilan ini ' + delta(BUD) + ' · per bar (pita bawah)')
+    + judul(bTop, pilih('Beli agresif − jual agresif — total berjalan (garis) · di tampilan ini ' + delta(BUD) + ' · per bar (pita bawah)', 'Beli − jual agresif · ' + delta(BUD)))
     + sumbuKiri(sB) + nol(sB) + '<path class="bud" d="' + path(BUD, sB.y) + '"/>' + nilaiAkhir(sB, BUD[Z], 'bud-t')
     + nol(sBb) + batang(bud, sBb, 'budbar')
     + '</svg>';
@@ -425,7 +429,7 @@ function pasangZoom(box, total, awalN, gambar, ket) {
     + '<button type="button" data-z="left" title="geser ke kiri">◀</button>'
     + '<button type="button" data-z="right" title="geser ke kanan">▶</button>'
     + '<button type="button" data-z="reset" title="kembali ke tampilan awal">⟲</button>'
-    + '<span class="zb-k"></span><span class="zb-h">roda mouse = zoom · seret = geser</span>';
+    + '<span class="zb-k"></span><span class="zb-h">' + (('ontouchstart' in window) ? 'cubit = zoom · seret = geser' : 'roda mouse = zoom · seret = geser') + '</span>';
   var isi = document.createElement('div'); isi.className = 'zb-isi';
   box.innerHTML = ''; box.appendChild(tb); box.appendChild(isi);
   var lbl = tb.querySelector('.zb-k');
@@ -531,7 +535,10 @@ function ownerSVG(rec, months, opt) {
   if (!o.length) return '<div class="sq-cload">belum ada data kepemilikan KSEI untuk nama ini</div>';
   const n = o.length, iw = (W - PADL - PADR) / n, bw = Math.max(6, Math.min(46, iw * 0.62));
   const y = v => PADT + (H - PADT - PADB) * (1 - v / 100);
-  const fmt = m => { const d = new Date(m); return isNaN(d) ? m : d.toLocaleDateString('id-ID', { month: 'short', year: '2-digit' }); };
+  // Di lebar ponsel 8 label "Jan 26" berdempetan jadi satu blok tak terbaca; di bawah 700px tahunnya
+  // dibuang dan hanya bulan ganjil yang diberi label (diukur 11 Sep 2026).
+  const kecil = W < 700;
+  const fmt = m => { const d = new Date(m); return isNaN(d) ? m : d.toLocaleDateString('id-ID', kecil ? { month: 'short' } : { month: 'short', year: '2-digit' }); };
   let s = `<svg class="sc-svg ow-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Kepemilikan per bulan">`;
   for (const g of [0, 25, 50, 75, 100]) s += `<line class="grid" x1="${PADL}" x2="${W - PADR}" y1="${y(g).toFixed(1)}" y2="${y(g).toFixed(1)}"/><text class="ax" x="${PADL - 6}" y="${(y(g) + 3.5).toFixed(1)}" text-anchor="end">${g}%</text>`;
   o.forEach((v, i) => {
@@ -542,7 +549,8 @@ function ownerSVG(rec, months, opt) {
       s += `<rect class="${cls}" x="${x.toFixed(1)}" y="${yy.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, h - 1).toFixed(1)}"><title>${fmt(v.m)} · ${k === 'ritel' ? 'ritel lokal' : k === 'inst' ? 'institusi lokal' : 'asing'} ${v[k].toFixed(1)}%</title></rect>`;
       top += v[k];
     }
-    if (i === n - 1 || n <= 14 || i % Math.ceil(n / 14) === 0) s += `<text class="ax" x="${(x + bw / 2).toFixed(1)}" y="${H - 10}" text-anchor="middle">${fmt(v.m)}</text>`;
+    const labelBulan = kecil ? (i === n - 1 || i % 2 === 0) : (i === n - 1 || n <= 14 || i % Math.ceil(n / 14) === 0);
+    if (labelBulan) s += `<text class="ax" x="${(x + bw / 2).toFixed(1)}" y="${H - 10}" text-anchor="middle">${fmt(v.m)}</text>`;
   });
   // garis reksa dana lokal (bagian dari institusi) — diskalakan 0..100 sama
   const pts = o.map((v, i) => `${(PADL + i * iw + iw / 2).toFixed(1)},${y(v.rd).toFixed(1)}`).join(' ');
@@ -553,13 +561,13 @@ function ownerSVG(rec, months, opt) {
   // PANEL PERUBAHAN — tumpukan 100% menyembunyikan gerak 0,3 poin yang justru jadi sinyal; di sini
   // selisih bulan-ke-bulan (poin persen) asing & institusi lokal digambar sebagai batang berpasangan.
   if (n >= 2) {
-    const H2 = opt.H2 || 110, PT = 16, PB = 6;
+    const H2 = opt.H2 || (kecil ? 124 : 110), PT = 16, PB = kecil ? 16 : 6;
     const dl = o.slice(1).map((v, i) => ({ m: v.m, a: +(v.asing - o[i].asing).toFixed(2), s: +(v.inst - o[i].inst).toFixed(2) }));
     const mx = Math.max(0.5, ...dl.map(d => Math.max(Math.abs(d.a), Math.abs(d.s))));
     const y2 = v => PT + (H2 - PT - PB) / 2 * (1 - v / mx), y0 = y2(0);
     const bw2 = Math.max(4, Math.min(20, iw * 0.28));
     s += `<svg class="sc-svg ow-svg ow-svg2" viewBox="0 0 ${W} ${H2}" preserveAspectRatio="none" role="img" aria-label="Perubahan porsi per bulan">`;
-    s += `<text class="panel-t" x="${PADL}" y="11">Perubahan porsi bulan ke bulan (poin persen) — asing · institusi lokal · skala ±${mx.toFixed(1)}</text>`;
+    s += `<text class="panel-t" x="${PADL}" y="11">${kecil ? `Perubahan porsi (pp) · asing &amp; institusi · ±${mx.toFixed(1)}` : `Perubahan porsi bulan ke bulan (poin persen) — asing · institusi lokal · skala ±${mx.toFixed(1)}`}</text>`;
     s += `<line class="grid" x1="${PADL}" x2="${W - PADR}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>`;
     s += `<text class="ax" x="${PADL - 6}" y="${(y2(mx) + 8).toFixed(1)}" text-anchor="end">+${mx.toFixed(1)}</text><text class="ax" x="${PADL - 6}" y="${(y2(-mx) - 1).toFixed(1)}" text-anchor="end">−${mx.toFixed(1)}</text>`;
     dl.forEach((d, i) => {
@@ -567,7 +575,7 @@ function ownerSVG(rec, months, opt) {
       for (const [k, cls, off] of [['a', 'ow-asing', -bw2 - 1], ['s', 'ow-inst', 1]]) {
         const v = d[k], yy = Math.min(y0, y2(v)), h = Math.abs(y2(v) - y0);
         s += `<rect class="${cls}${v < 0 ? ' neg' : ''}" x="${(cx + off).toFixed(1)}" y="${yy.toFixed(1)}" width="${bw2.toFixed(1)}" height="${Math.max(1, h).toFixed(1)}"><title>${fmt(d.m)} · ${k === 'a' ? 'asing' : 'institusi lokal'} ${v > 0 ? '+' : ''}${v.toFixed(2)} pp</title></rect>`;
-        if (Math.abs(v) >= mx * 0.35) s += `<text class="ax" x="${(cx + off + bw2 / 2).toFixed(1)}" y="${(v >= 0 ? yy - 3 : yy + h + 10).toFixed(1)}" text-anchor="middle">${v > 0 ? '+' : ''}${v.toFixed(2)}</text>`;
+        if (Math.abs(v) >= mx * (kecil ? 0.6 : 0.35)) s += `<text class="ax" x="${(cx + off + bw2 / 2).toFixed(1)}" y="${(v >= 0 ? yy - 3 : yy + h + 10).toFixed(1)}" text-anchor="middle">${v > 0 ? '+' : ''}${v.toFixed(2)}</text>`;
       }
     });
     s += '</svg>';
@@ -595,7 +603,8 @@ function ownerHTML(sym, rec, months) {
     + '</div>';
   if (b.vonis && b.vonis !== 'BELUM ADA BACAAN') h += `<div class="sq-vonis${b.tone === 'bad' ? ' bad' : b.tone === 'warn' ? ' warn' : ''}"><b>${esc(b.vonis)}.</b> ${esc(b.alasan.join('; '))}.</div>`;
   // grafik
-  h += `<div class="ow-chart">${ownerSVG(rec, months, { W: 1060, H: 220 })}</div>`;
+  const lebarOw = (typeof innerWidth !== 'undefined' && innerWidth < 700) ? Math.max(320, innerWidth - 44) : 1060;
+  h += `<div class="ow-chart">${ownerSVG(rec, months, { W: lebarOw, H: lebarOw < 700 ? 200 : 220 })}</div>`;
   h += '<div class="ow-legend"><i class="ow-ritel"></i>ritel lokal <i class="ow-inst"></i>institusi lokal (asuransi, dana pensiun, bank, reksa dana, korporasi, sekuritas, yayasan) <i class="ow-asing"></i>asing <i class="ow-rd-l"></i>reksa dana lokal · KSEI, akhir bulan' + (k ? ` · terakhir ${tgl(k.m)}` : '') + '</div>';
   // tabel transaksi
   const t = (rec.t || []).slice(0, 14);

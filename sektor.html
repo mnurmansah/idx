@@ -157,7 +157,7 @@ table.tbl,table.mini{width:100%;border-collapse:collapse;font-size:11.5px}
 details.lipat{padding:6px 10px;border-top:1px solid var(--line2)}details.lipat summary{cursor:pointer;font-size:11px;color:var(--link);font-weight:600}
 details.lipat ul{margin:6px 0 0;padding-left:16px;font-size:11.5px;color:var(--ink2)}details.lipat li{margin:2px 0}
 /* ── dinding sinyal (finviz) ── */
-.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:10px}
 .sig{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .sig h3{margin:0;padding:5px 9px;font-size:11.5px;font-weight:700;background:var(--panel2);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
 .sig h3 a{font-size:10.5px;font-weight:600}.sig h3 span{font-size:10px;color:var(--muted);font-weight:500}
@@ -180,8 +180,54 @@ details.lipat ul{margin:6px 0 0;padding-left:16px;font-size:11.5px;color:var(--i
 .strip{display:flex;flex-wrap:wrap;gap:5px}
 .strip .chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px}
 .strip .dot{width:6px;height:6px;border-radius:50%;background:var(--muted)}.strip .on .dot{background:var(--up)}.strip .off .dot{background:var(--down)}
+details.fdet{margin:0}
+details.fdet>summary{display:none}
+details.fdet>summary::-webkit-details-marker{display:none}
 @media (max-width:1100px){.grid3,.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:800px){.grid2,.grid3,.grid4{grid-template-columns:minmax(0,1fr)}.nav{display:none}.stempel{display:none}.cari{width:100%}}
+@media (max-width:800px){
+ .grid2,.grid3,.grid4{grid-template-columns:minmax(0,1fr)}
+ .stempel{display:none}
+ .top-in{flex-wrap:wrap;height:auto;padding:5px 10px;gap:8px}
+ .brand{font-size:13px;min-width:0}.logo{width:24px;height:24px;flex:0 0 auto}
+ .cari{margin-left:auto;width:auto;flex:1 1 110px;height:32px}
+ .cari kbd{display:none}
+ .tema{height:32px;padding:0 10px}
+ /* NAVIGASI: baris kedua, digeser ke samping. JANGAN dikembalikan ke display:none — itu cacat yang
+    membuat ponsel kehilangan seluruh menu (diperbaiki 11 Sep 2026, diukur dgn scripts/audit_mobile.mjs). */
+ .nav{order:3;width:100%;height:36px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -10px;padding:0 10px;border-top:1px solid var(--line2)}
+ .nav::-webkit-scrollbar{display:none}
+ .nv{height:36px;padding:0 9px}
+ .content{padding:10px 10px 26px}.ft-in{padding:10px 10px 16px}
+ /* Safari iOS mem-zoom paksa saat input ber-font <16px difokus — di bawah ini semua kendali naik ke 16px. */
+ .cari input,.tbl-cari,.f select,.f input{font-size:16px}
+ .f select,.f input,.tbl-cari{height:32px}
+ .fbar{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));padding:8px}
+ .fbar .reset{height:32px}
+ details.fdet>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);font-weight:700;font-size:12.5px;cursor:pointer;list-style:none}
+ details.fdet[open]>summary{margin-bottom:6px}
+ /* sasaran sentuh minimal ~30px */
+ .pg-btn{min-height:30px;min-width:36px}
+ .ak-copy{min-height:30px;padding:5px 10px}
+ .tab{padding:9px 11px}
+ .ak-cmd code{max-width:100%;white-space:normal;word-break:break-all}
+ .sig td.s{max-width:110px}
+ /* baris tabel ditinggikan supaya tautan kode saham (sasaran sentuh utama) mencapai ~30px */
+ .tbl td,.mini td,.sig td{padding:7px}
+ .tbl th,.mini th,.sig th{padding:7px}
+ .brand{min-height:30px}
+ /* Kotak tautan diperbesar tanpa menambah tinggi baris: padding positif + margin negatif. */
+ .sym{display:inline-block;padding:6px 4px;margin:-6px -4px}
+ .sig h3 a,.card-h .more,.sec-r a{display:inline-block;padding:6px 2px;margin:-6px -2px}
+ details.lipat summary{padding:5px 0}
+ .tbl-tools{gap:6px}
+}
+@media (max-width:430px){
+ /* satu baris untuk merek + cari + tema: kata "Swing" disembunyikan, logo IDX tetap jadi tautan pulang */
+ .brand .bnama{display:none}
+ .cari{flex:1 1 80px}
+ .tema{padding:0 8px;font-size:10.5px}
+ .nv{padding:0 8px;font-size:12px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 </style><style>
@@ -205,12 +251,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .cg summary::-webkit-details-marker{display:none}
 .cg-n{display:flex;gap:8px;align-items:center;font-size:12.5px}
 .cg-m{display:block;height:4px;background:var(--panel3);border-radius:2px;overflow:hidden;margin-top:3px}.cg-m b{display:block;height:100%;background:var(--accent)}
-@media(max-width:800px){.cg-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:800px){.cg-grid{grid-template-columns:minmax(0,1fr)}
+ .rh-chips{gap:6px}.rh-chip{min-height:30px;display:inline-flex;align-items:center;padding:2px 8px;font-size:11.5px}}
 </style>
 </head><body>
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="index.html"><span class="logo">IDX</span>Swing</a>
+    <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
     <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>822</b></a><a class="nv" href="scanner.html">Uang masuk<b>828</b></a><a class="nv" href="bandar.html">Bandar<b>214</b></a><a class="nv on" href="sektor.html">Sektor</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
