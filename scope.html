@@ -250,6 +250,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .sq-intra .iw-t th{text-align:left;padding:6px 9px;font:600 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
 .sq-intra .iw-t td{padding:6px 9px;border-bottom:1px solid var(--line2);vertical-align:top}.sq-intra .iw-t tr.on td{background:var(--panel)}
 .sq-intra .iw-now{color:var(--warn);font-weight:700;font-size:11px;white-space:nowrap}.sq-intra .iw-fit{border-left:3px solid var(--warn);padding-left:10px}.sq-intra .iw-lim{color:var(--muted);font-size:12px}
+.sq-own .ow{padding:8px 10px 4px}.sq-own .ow h4{margin:0 0 10px;font:600 10.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sq-own .ow h5{margin:14px 0 6px;font:600 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ow-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
+.ow-kpis>div{background:var(--panel);padding:8px 10px}.ow-kpis span{display:block;font:600 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ow-kpis b{display:block;font:600 17px/1.15 var(--mono);margin-top:5px;font-variant-numeric:tabular-nums}.ow-kpis i{display:block;font-style:normal;font-size:11px;color:var(--ink2);margin-top:3px}
+.ow .pos{color:var(--up)}.ow .neg{color:var(--down)}.sq-vonis.warn{border-color:var(--warn)}
+.ow-chart{margin:8px 0 2px}.ow-svg{display:block;width:100%;height:220px}.ow-svg2{height:110px;margin-top:6px}.ow-svg2 rect.neg{opacity:.55}
+.ow-ritel{fill:var(--muted);opacity:.55}.ow-inst{fill:var(--info)}.ow-asing{fill:var(--accent)}.ow-rd{fill:none;stroke:var(--warn);stroke-width:1.6}.ow-rd-t{fill:var(--warn)}
+.ow-legend{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:11px;color:var(--muted);margin:2px 0 12px}
+.ow-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}.ow-legend i.ow-ritel{background:var(--muted);opacity:.55}.ow-legend i.ow-inst{background:var(--info)}.ow-legend i.ow-asing{background:var(--accent)}.ow-legend i.ow-rd-l{background:var(--warn);height:3px}
+.ow-t td.r,.ow-t th.r{text-align:right}.ow-t .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}.ow-t tr.ow-ins td{background:var(--accent-soft)}
+.ow-tag{display:inline-block;font:600 9.5px/1 var(--mono);border:1px solid var(--line);border-radius:3px;padding:2px 5px;margin-left:6px;color:var(--ink2);background:var(--panel)}.ow-tag.lg{color:var(--muted)}
+.ow-more{font-size:11.5px;color:var(--muted);margin:4px 0 8px}
+.ow-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:4px 0 10px}.ow-two ul{list-style:none;margin:0;padding:0;font-size:12px}
+.ow-two li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;padding:4px 0;border-bottom:1px solid var(--line2);align-items:baseline}
+.ow-two li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ow-two li em{font-style:normal;color:var(--muted);font-size:11px;white-space:nowrap}.ow-two li b{font-family:var(--mono);font-variant-numeric:tabular-nums}
+@media (max-width:760px){.ow-two{grid-template-columns:1fr}}
 </style><script defer src="scope-data.js"></script>
 </head><body>
 <header class="top">
@@ -354,9 +371,11 @@ document.addEventListener('DOMContentLoaded',function(){
     document.head.appendChild(sc); }
   function muatBars(lalu){ muatBerkas('bars','scope-bars.js',function(){return typeof SB!=='undefined';},lalu); }
   function muatIntra(lalu){ muatBerkas('intra','scope-intra.js',function(){return typeof SI!=='undefined';},lalu); }
+  function muatOwn(lalu){ muatBerkas('own','scope-own.js',function(){return typeof SO!=='undefined';},lalu); }
   function pasangChart(sym){
     var box=panel.querySelector('.sq-chart'); if(!box||box.getAttribute('data-s')!==sym) return;
     muatIntra(function(){});   // mulai unduh bar 5 menit BERSAMAAN dgn candle harian, bukan sesudahnya
+    muatOwn(function(){});     // begitu juga data kepemilikan & orang dalam
     muatBars(function(ok){
       var b2=panel.querySelector('.sq-chart'); if(!b2||b2.getAttribute('data-s')!==sym) return;
       var ket=b2.querySelector('.sq-cload');
@@ -366,6 +385,7 @@ document.addEventListener('DOMContentLoaded',function(){
       var gambarHarian=function(i0,end){ return chartSVG({sym:sym,level:dd.lv},bars,{W:1060,bars:end-i0,end:end}); };
       if(typeof pasangZoom==='function') pasangZoom(b2,bars.length,170,gambarHarian,typeof ketRentang==='function'?ketRentang(bars,false):null); else b2.innerHTML=gambarHarian(Math.max(0,bars.length-170),bars.length);
       pasangIntra(sym, dd, b2);
+      pasangOwn(sym);
     }); }
   // Panel 5 menit — sekarang STANDAR untuk semua nama (tarikan menyeluruh intraday_all.mjs),
   // jadi tidak ada lagi penanda/filter "ada data 5 menit". Kalau satu nama memang tak punya bar
@@ -387,6 +407,17 @@ document.addEventListener('DOMContentLoaded',function(){
       var k2=document.createElement('div'); k2.className='sq-cload'; k2.textContent='Bar '+ires+' menit · diambil '+meta[1]+' UTC'; w.appendChild(k2);
       if(typeof bacaIntraday==='function'&&typeof penjelasanIntraday==='function'){ var bc=bacaIntraday(ib), teks=document.createElement('div');
         teks.innerHTML=(bc?'<div class="sq-vonis'+(/KELUAR|TANPA UANG/.test(bc.vonis)?' bad':'')+'"><b>Bacaan sepertiga terakhir:</b> harga '+bc.arahPx+' ('+bc.dHarga+'%), uang pemain besar '+bc.arahLP+'. '+bc.vonis+'</div>':'')+penjelasanIntraday(bc); w.appendChild(teks); }
+    }); }
+  // Bagian "Orang dalam & kepemilikan" — di bawah panel 5 menit. Kelas sq-intra dipinjam supaya gaya tabel/keterangan (iw-*) ikut.
+  function pasangOwn(sym){
+    var lama=panel.querySelector('.sq-own'); if(lama) lama.parentNode.removeChild(lama);
+    var anchor=panel.querySelector('.sq-intra')||panel.querySelector('.sq-chart'); if(!anchor) return;
+    var w=document.createElement('div'); w.className='sq-chart sq-intra sq-own'; w.innerHTML='<div class="sq-cload">memuat kepemilikan &amp; orang dalam…</div>';
+    anchor.parentNode.insertBefore(w,anchor.nextSibling);
+    muatOwn(function(ok){
+      if(!panel.querySelector('.sq-own')||aktif!==sym) return;
+      if(!ok||typeof ownerHTML!=='function'){ w.innerHTML='<div class="sq-cload">data kepemilikan tidak tersedia (scope-own.js tidak termuat)</div>'; return; }
+      w.innerHTML=ownerHTML(sym, (typeof SO!=='undefined'&&SO[sym])||null, typeof SOM!=='undefined'?SOM:[]);
     }); }
   function buka(sym){
     var d=null; for(var i=0;i<SQ.length;i++) if(SQ[i].s===sym){d=SQ[i];break}

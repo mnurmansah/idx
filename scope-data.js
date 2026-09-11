@@ -496,3 +496,125 @@ function ketRentang(bars, intraday) {
   };
   return function (i0, i1) { return f(bars[i0][0]) + ' → ' + f(bars[i1][0]); };
 }
+function bacaOwner(rec, months) {
+  if (!rec) return null;
+  const o = (rec.o || []).map((v, i) => v ? { i, m: months[i], ritel: v[0], inst: v[1], asing: v[2], rd: v[3], n: v[4] } : null).filter(Boolean);
+  const kini = o.length ? o[o.length - 1] : null, lalu = o.length > 1 ? o[o.length - 2] : null;
+  const d = (a, b) => (a != null && b != null) ? +(a - b).toFixed(2) : null;
+  const dAsing = kini && lalu ? d(kini.asing, lalu.asing) : null, dInst = kini && lalu ? d(kini.inst, lalu.inst) : null, dRitel = kini && lalu ? d(kini.ritel, lalu.ritel) : null;
+  // 3 bulan
+  const l3 = o.length > 3 ? o[o.length - 4] : null;
+  const dAsing3 = kini && l3 ? d(kini.asing, l3.asing) : null, dInst3 = kini && l3 ? d(kini.inst, l3.inst) : null;
+  // transaksi orang dalam 90 hari terakhir (hanya direksi/komisaris)
+  const t = rec.t || [];
+  const batas = kini ? new Date(new Date(kini.m).getTime() - 90 * 864e5) : new Date(Date.now() - 90 * 864e5);
+  const ins = t.filter(x => x[2] && new Date(x[0]) >= batas);
+  const beli = ins.filter(x => /Pembelian|Purchase/i.test(x[4])), jual = ins.filter(x => /Penjualan|Sale/i.test(x[4]));
+  const nilai = arr => arr.reduce((s, x) => s + (x[5] || 0) * (x[6] || 0), 0);
+  const besar = t.filter(x => !x[2] && new Date(x[0]) >= batas);           // pemegang ≥5% (institusi/holding)
+  const besarBeli = besar.filter(x => /Pembelian|Purchase/i.test(x[4])).length, besarJual = besar.filter(x => /Penjualan|Sale/i.test(x[4])).length;
+  // vonis polos
+  let vonis = 'BELUM ADA BACAAN', tone = '', alasan = [];
+  const uangBesarMasuk = (dAsing != null && dAsing >= 0.3) || (dInst != null && dInst >= 0.3);
+  const uangBesarKeluar = (dAsing != null && dAsing <= -0.3) || (dInst != null && dInst <= -0.3);
+  if (beli.length && !jual.length) { vonis = 'ORANG DALAM BELI'; tone = 'good'; alasan.push(`${beli.length} laporan beli dari direksi/komisaris dalam 90 hari, tanpa jual`); }
+  else if (jual.length && !beli.length) { vonis = 'ORANG DALAM JUAL'; tone = 'bad'; alasan.push(`${jual.length} laporan jual dari direksi/komisaris dalam 90 hari, tanpa beli`); }
+  else if (beli.length && jual.length) { vonis = nilai(beli) > nilai(jual) ? 'ORANG DALAM LEBIH BANYAK BELI' : 'ORANG DALAM LEBIH BANYAK JUAL'; tone = nilai(beli) > nilai(jual) ? 'good' : 'warn'; alasan.push(`${beli.length} beli vs ${jual.length} jual dari direksi/komisaris dalam 90 hari`); }
+  if (uangBesarMasuk) { alasan.push(`porsi ${dAsing != null && dAsing >= 0.3 ? 'asing' : 'institusi lokal'} naik ${(Math.max(dAsing || 0, dInst || 0)).toFixed(2)} poin sebulan`); if (!tone) { vonis = 'UANG BESAR MASUK'; tone = 'good'; } }
+  if (uangBesarKeluar) { alasan.push(`porsi ${dAsing != null && dAsing <= -0.3 ? 'asing' : 'institusi lokal'} turun ${Math.abs(Math.min(dAsing || 0, dInst || 0)).toFixed(2)} poin sebulan`); if (!tone) { vonis = 'UANG BESAR KELUAR'; tone = 'bad'; } }
+  if (dRitel != null && dRitel >= 0.5 && !tone) { vonis = 'RITEL MENAMPUNG'; tone = 'warn'; alasan.push(`porsi ritel lokal naik ${dRitel.toFixed(2)} poin: yang beli kebanyakan perorangan`); }
+  return { kini, lalu, dAsing, dInst, dRitel, dAsing3, dInst3, beli: beli.length, jual: jual.length, nilaiBeli: nilai(beli), nilaiJual: nilai(jual), besarBeli, besarJual, vonis, tone, alasan, nBulan: o.length };
+}
+function ownerSVG(rec, months, opt) {
+  opt = opt || {}; const W = opt.W || 1060, H = opt.H || 220, PADL = 44, PADR = 12, PADT = 14, PADB = 30;
+  const o = (rec.o || []).map((v, i) => v ? { m: months[i], ritel: v[0], inst: v[1], asing: v[2], rd: v[3] } : null).filter(Boolean);
+  if (!o.length) return '<div class="sq-cload">belum ada data kepemilikan KSEI untuk nama ini</div>';
+  const n = o.length, iw = (W - PADL - PADR) / n, bw = Math.max(6, Math.min(46, iw * 0.62));
+  const y = v => PADT + (H - PADT - PADB) * (1 - v / 100);
+  const fmt = m => { const d = new Date(m); return isNaN(d) ? m : d.toLocaleDateString('id-ID', { month: 'short', year: '2-digit' }); };
+  let s = `<svg class="sc-svg ow-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Kepemilikan per bulan">`;
+  for (const g of [0, 25, 50, 75, 100]) s += `<line class="grid" x1="${PADL}" x2="${W - PADR}" y1="${y(g).toFixed(1)}" y2="${y(g).toFixed(1)}"/><text class="ax" x="${PADL - 6}" y="${(y(g) + 3.5).toFixed(1)}" text-anchor="end">${g}%</text>`;
+  o.forEach((v, i) => {
+    const x = PADL + i * iw + (iw - bw) / 2;
+    let top = 0;
+    for (const [k, cls] of [['ritel', 'ow-ritel'], ['inst', 'ow-inst'], ['asing', 'ow-asing']]) {
+      const h = (H - PADT - PADB) * v[k] / 100; const yy = y(top + v[k]);
+      s += `<rect class="${cls}" x="${x.toFixed(1)}" y="${yy.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, h - 1).toFixed(1)}"><title>${fmt(v.m)} · ${k === 'ritel' ? 'ritel lokal' : k === 'inst' ? 'institusi lokal' : 'asing'} ${v[k].toFixed(1)}%</title></rect>`;
+      top += v[k];
+    }
+    if (i === n - 1 || n <= 14 || i % Math.ceil(n / 14) === 0) s += `<text class="ax" x="${(x + bw / 2).toFixed(1)}" y="${H - 10}" text-anchor="middle">${fmt(v.m)}</text>`;
+  });
+  // garis reksa dana lokal (bagian dari institusi) — diskalakan 0..100 sama
+  const pts = o.map((v, i) => `${(PADL + i * iw + iw / 2).toFixed(1)},${y(v.rd).toFixed(1)}`).join(' ');
+  s += `<polyline class="ow-rd" points="${pts}"/>`;
+  const last = o[n - 1];
+  s += `<text class="ax ow-rd-t" x="${W - PADR}" y="${(y(last.rd) - 4).toFixed(1)}" text-anchor="end">reksa dana ${last.rd.toFixed(1)}%</text>`;
+  s += '</svg>';
+  // PANEL PERUBAHAN — tumpukan 100% menyembunyikan gerak 0,3 poin yang justru jadi sinyal; di sini
+  // selisih bulan-ke-bulan (poin persen) asing & institusi lokal digambar sebagai batang berpasangan.
+  if (n >= 2) {
+    const H2 = opt.H2 || 110, PT = 16, PB = 6;
+    const dl = o.slice(1).map((v, i) => ({ m: v.m, a: +(v.asing - o[i].asing).toFixed(2), s: +(v.inst - o[i].inst).toFixed(2) }));
+    const mx = Math.max(0.5, ...dl.map(d => Math.max(Math.abs(d.a), Math.abs(d.s))));
+    const y2 = v => PT + (H2 - PT - PB) / 2 * (1 - v / mx), y0 = y2(0);
+    const bw2 = Math.max(4, Math.min(20, iw * 0.28));
+    s += `<svg class="sc-svg ow-svg ow-svg2" viewBox="0 0 ${W} ${H2}" preserveAspectRatio="none" role="img" aria-label="Perubahan porsi per bulan">`;
+    s += `<text class="panel-t" x="${PADL}" y="11">Perubahan porsi bulan ke bulan (poin persen) — asing · institusi lokal · skala ±${mx.toFixed(1)}</text>`;
+    s += `<line class="grid" x1="${PADL}" x2="${W - PADR}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>`;
+    s += `<text class="ax" x="${PADL - 6}" y="${(y2(mx) + 8).toFixed(1)}" text-anchor="end">+${mx.toFixed(1)}</text><text class="ax" x="${PADL - 6}" y="${(y2(-mx) - 1).toFixed(1)}" text-anchor="end">−${mx.toFixed(1)}</text>`;
+    dl.forEach((d, i) => {
+      const cx = PADL + (i + 1) * iw + iw / 2;
+      for (const [k, cls, off] of [['a', 'ow-asing', -bw2 - 1], ['s', 'ow-inst', 1]]) {
+        const v = d[k], yy = Math.min(y0, y2(v)), h = Math.abs(y2(v) - y0);
+        s += `<rect class="${cls}${v < 0 ? ' neg' : ''}" x="${(cx + off).toFixed(1)}" y="${yy.toFixed(1)}" width="${bw2.toFixed(1)}" height="${Math.max(1, h).toFixed(1)}"><title>${fmt(d.m)} · ${k === 'a' ? 'asing' : 'institusi lokal'} ${v > 0 ? '+' : ''}${v.toFixed(2)} pp</title></rect>`;
+        if (Math.abs(v) >= mx * 0.35) s += `<text class="ax" x="${(cx + off + bw2 / 2).toFixed(1)}" y="${(v >= 0 ? yy - 3 : yy + h + 10).toFixed(1)}" text-anchor="middle">${v > 0 ? '+' : ''}${v.toFixed(2)}</text>`;
+      }
+    });
+    s += '</svg>';
+  }
+  return s;
+}
+function ownerHTML(sym, rec, months) {
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  if (!rec) return '<div class="sq-cload">belum ada data kepemilikan / orang dalam untuk ' + esc(sym) + '</div>';
+  const b = bacaOwner(rec, months) || {};
+  const pp = v => v == null ? '–' : `<span class="${v > 0 ? 'pos' : v < 0 ? 'neg' : ''}">${v > 0 ? '+' : ''}${v.toFixed(2)} pp</span>`;
+  const rp = v => v == null || !isFinite(v) ? '–' : (v >= 1e12 ? (v / 1e12).toFixed(2) + ' T' : v >= 1e9 ? (v / 1e9).toFixed(1) + ' M' : v >= 1e6 ? (v / 1e6).toFixed(0) + ' jt' : Math.round(v).toLocaleString('id-ID'));
+  const lembar = v => v == null ? '–' : v >= 1e9 ? (v / 1e9).toFixed(2) + ' M' : v >= 1e6 ? (v / 1e6).toFixed(1) + ' jt' : Math.round(v).toLocaleString('id-ID');
+  const tgl = s => { const d = new Date(s); return isNaN(d) ? esc(s) : d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: '2-digit' }); };
+  const k = b.kini;
+  let h = '<div class="ow">';
+  h += '<h4>Orang dalam &amp; kepemilikan</h4>';
+  // ubin ringkas
+  h += '<div class="ow-kpis">'
+    + `<div><span>Asing</span><b>${k ? k.asing.toFixed(1) + '%' : '–'}</b><i>${pp(b.dAsing)} sebulan · ${pp(b.dAsing3)} 3 bln</i></div>`
+    + `<div><span>Institusi lokal</span><b>${k ? k.inst.toFixed(1) + '%' : '–'}</b><i>${pp(b.dInst)} sebulan · ${pp(b.dInst3)} 3 bln</i></div>`
+    + `<div><span>Ritel lokal</span><b>${k ? k.ritel.toFixed(1) + '%' : '–'}</b><i>${pp(b.dRitel)} sebulan</i></div>`
+    + `<div><span>Direksi/komisaris 90 hari</span><b>${b.beli || 0} beli · ${b.jual || 0} jual</b><i>Rp ${rp(b.nilaiBeli)} vs Rp ${rp(b.nilaiJual)}</i></div>`
+    + `<div><span>Pemegang ≥5% 90 hari</span><b>${b.besarBeli || 0} beli · ${b.besarJual || 0} jual</b><i>institusi / holding yang wajib lapor</i></div>`
+    + '</div>';
+  if (b.vonis && b.vonis !== 'BELUM ADA BACAAN') h += `<div class="sq-vonis${b.tone === 'bad' ? ' bad' : b.tone === 'warn' ? ' warn' : ''}"><b>${esc(b.vonis)}.</b> ${esc(b.alasan.join('; '))}.</div>`;
+  // grafik
+  h += `<div class="ow-chart">${ownerSVG(rec, months, { W: 1060, H: 220 })}</div>`;
+  h += '<div class="ow-legend"><i class="ow-ritel"></i>ritel lokal <i class="ow-inst"></i>institusi lokal (asuransi, dana pensiun, bank, reksa dana, korporasi, sekuritas, yayasan) <i class="ow-asing"></i>asing <i class="ow-rd-l"></i>reksa dana lokal · KSEI, akhir bulan' + (k ? ` · terakhir ${tgl(k.m)}` : '') + '</div>';
+  // tabel transaksi
+  const t = (rec.t || []).slice(0, 14);
+  if (t.length) {
+    h += '<table class="iw-t ow-t"><thead><tr><th>Lapor</th><th>Siapa</th><th>Jenis</th><th class="r">Lembar</th><th class="r">Harga</th><th class="r">Nilai</th><th class="r">Sebelum → sesudah</th><th>Tgl transaksi</th></tr></thead><tbody>';
+    for (const x of t) {
+      const jenis = x[4] || '–', beli = /Pembelian|Purchase/i.test(jenis), jual = /Penjualan|Sale/i.test(jenis);
+      h += `<tr class="${x[2] ? 'ow-ins' : ''}"><td class="mono muted">${tgl(x[0])}</td><td><b>${esc(x[1])}</b>${x[2] ? `<span class="ow-tag">${esc(x[3] || 'direksi/komisaris')}</span>` : '<span class="ow-tag lg">≥5%</span>'}${x[10] ? '<span class="ow-tag lg">pengendali</span>' : ''}</td><td class="${beli ? 'pos' : jual ? 'neg' : ''}">${esc(jenis)}</td><td class="r mono">${lembar(x[5])}</td><td class="r mono">${x[6] != null ? Math.round(x[6]).toLocaleString('id-ID') : '–'}</td><td class="r mono">${x[5] && x[6] ? 'Rp ' + rp(x[5] * x[6]) : '–'}</td><td class="r mono">${x[8] != null ? x[8].toFixed(x[8] < 0.1 ? 4 : 2) : '–'}% → ${x[9] != null ? x[9].toFixed(x[9] < 0.1 ? 4 : 2) : '–'}%</td><td class="mono muted">${tgl(x[7])}</td></tr>`;
+    }
+    h += '</tbody></table>';
+    if ((rec.t || []).length > 14) h += `<div class="ow-more">${(rec.t || []).length - 14} laporan lebih lama tidak ditampilkan.</div>`;
+  } else h += '<div class="ow-more">Belum ada laporan perubahan kepemilikan yang tertangkap untuk nama ini.</div>';
+  // pemegang & pengurus
+  const p = rec.p || [], d = rec.d || [], km = rec.k || [];
+  h += '<div class="ow-two">';
+  h += '<div><h5>Pemegang saham (snapshot bursa' + (rec.pt ? ', ' + tgl(rec.pt) : '') + ')</h5>' + (p.length ? '<ul>' + p.filter(x => !/Masyarakat|Treasury/i.test(x[1]) || x[2] >= 1).slice(0, 12).map(x => `<li><span>${esc(x[0])}</span><em>${esc(x[1])}</em><b>${x[2].toFixed(2)}%</b></li>`).join('') + '</ul>' : '<div class="ow-more">–</div>') + '</div>';
+  h += '<div><h5>Direksi &amp; komisaris</h5>' + ((d.length || km.length) ? '<ul>' + d.map(x => `<li><span>${esc(x[0])}</span><em>${esc(x[1])}</em></li>`).join('') + km.map(x => `<li><span>${esc(x[0])}</span><em>${esc(x[1])}${x[2] ? ' · independen' : ''}</em></li>`).join('') + '</ul>' : '<div class="ow-more">–</div>') + '</div>';
+  h += '</div>';
+  h += '<div class="iw-lim">Cara baca: porsi asing/institusi naik saat harga masih di bawah pemicu = uang besar mengumpulkan; direksi beli di pasar dengan uang sendiri lebih bermakna daripada hibah/warisan/"Lainnya". Laporan ≥5% mencakup institusi (mis. bank kustodian) dan bisa berupa pindah rekening, bukan beli-jual sungguhan. Data KSEI akhir bulan, terlambat 1–4 minggu; laporan POJK terlambat sampai 10 hari.</div>';
+  h += '</div>';
+  return h;
+}
