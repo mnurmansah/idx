@@ -303,10 +303,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .ow-kpis>div{background:var(--panel);padding:8px 10px}.ow-kpis span{display:block;font:600 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .ow-kpis b{display:block;font:600 17px/1.15 var(--mono);margin-top:5px;font-variant-numeric:tabular-nums}.ow-kpis i{display:block;font-style:normal;font-size:11px;color:var(--ink2);margin-top:3px}
 .ow .pos{color:var(--up)}.ow .neg{color:var(--down)}.sq-vonis.warn{border-color:var(--warn)}
-.ow-chart{margin:8px 0 2px}.ow-svg{display:block;width:100%;height:220px}.ow-svg2{height:110px;margin-top:6px}.ow-svg2 rect.neg{opacity:.55}
-.ow-ritel{fill:var(--muted);opacity:.55}.ow-inst{fill:var(--info)}.ow-asing{fill:var(--accent)}.ow-rd{fill:none;stroke:var(--warn);stroke-width:1.6}.ow-rd-t{fill:var(--warn)}
+.ow-chart{margin:8px 0 2px}.ow-svg{display:block;width:100%;height:220px}.ow-svg2{height:122px;margin-top:6px}.ow-svg2 rect.neg{opacity:.55}
+/* Palet tiga deret kepemilikan. --own-asing dibuat TERSENDIRI karena --info dan --accent bernilai
+   sama, sehingga institusi lokal dan asing dulu tampil satu warna. Nilai oranye lolos uji pemisahan
+   buta warna di kedua tema (ΔE 19,5 terang · 9,2 gelap); ungu & teal gagal. Jangan ganti ke hue lain
+   tanpa menjalankan ulang validator. */
+:root{--own-asing:#c2410c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--own-asing:#df6a30}}
+:root[data-theme="dark"]{--own-asing:#df6a30}
+.ow-ritel{fill:var(--muted);opacity:.5}.ow-inst{fill:var(--info)}.ow-asing{fill:var(--own-asing)}
+.ow-rd{fill:none;stroke:var(--ink2);stroke-width:1.6;stroke-dasharray:5 3}.ow-rd-t{fill:var(--ink2)}
 .ow-legend{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:11px;color:var(--muted);margin:2px 0 12px}
-.ow-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}.ow-legend i.ow-ritel{background:var(--muted);opacity:.55}.ow-legend i.ow-inst{background:var(--info)}.ow-legend i.ow-asing{background:var(--accent)}.ow-legend i.ow-rd-l{background:var(--warn);height:3px}
+.ow-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}.ow-legend i.ow-ritel{background:var(--muted);opacity:.5}.ow-legend i.ow-inst{background:var(--info)}
+.ow-legend i.ow-asing{background:var(--own-asing)}
+.ow-legend i.ow-rd-l{background:none;height:0;width:16px;border-top:2px dashed var(--ink2);border-radius:0}
 .ow-t td.r,.ow-t th.r{text-align:right}.ow-t .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}.ow-t tr.ow-ins td{background:var(--accent-soft)}
 .ow-tag{display:inline-block;font:600 9.5px/1 var(--mono);border:1px solid var(--line);border-radius:3px;padding:2px 5px;margin-left:6px;color:var(--ink2);background:var(--panel)}.ow-tag.lg{color:var(--muted)}
 .ow-more{font-size:11.5px;color:var(--muted);margin:4px 0 8px}

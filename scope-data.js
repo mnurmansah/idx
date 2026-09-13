@@ -561,7 +561,9 @@ function ownerSVG(rec, months, opt) {
   // PANEL PERUBAHAN — tumpukan 100% menyembunyikan gerak 0,3 poin yang justru jadi sinyal; di sini
   // selisih bulan-ke-bulan (poin persen) asing & institusi lokal digambar sebagai batang berpasangan.
   if (n >= 2) {
-    const H2 = opt.H2 || (kecil ? 124 : 110), PT = 16, PB = kecil ? 16 : 6;
+    // PT dinaikkan 16 -> 28 (13 Sep 2026): angka di atas batang tertinggi menabrak judul panel yang
+    // digambar di y=11, sehingga terbaca "…(poin persen) 57 asing" — potongan label +4,57 menimpa teks.
+    const H2 = opt.H2 || (kecil ? 136 : 122), PT = 28, PB = kecil ? 16 : 6;
     const dl = o.slice(1).map((v, i) => ({ m: v.m, a: +(v.asing - o[i].asing).toFixed(2), s: +(v.inst - o[i].inst).toFixed(2) }));
     const mx = Math.max(0.5, ...dl.map(d => Math.max(Math.abs(d.a), Math.abs(d.s))));
     const y2 = v => PT + (H2 - PT - PB) / 2 * (1 - v / mx), y0 = y2(0);
@@ -575,7 +577,8 @@ function ownerSVG(rec, months, opt) {
       for (const [k, cls, off] of [['a', 'ow-asing', -bw2 - 1], ['s', 'ow-inst', 1]]) {
         const v = d[k], yy = Math.min(y0, y2(v)), h = Math.abs(y2(v) - y0);
         s += `<rect class="${cls}${v < 0 ? ' neg' : ''}" x="${(cx + off).toFixed(1)}" y="${yy.toFixed(1)}" width="${bw2.toFixed(1)}" height="${Math.max(1, h).toFixed(1)}"><title>${fmt(d.m)} · ${k === 'a' ? 'asing' : 'institusi lokal'} ${v > 0 ? '+' : ''}${v.toFixed(2)} pp</title></rect>`;
-        if (Math.abs(v) >= mx * (kecil ? 0.6 : 0.35)) s += `<text class="ax" x="${(cx + off + bw2 / 2).toFixed(1)}" y="${(v >= 0 ? yy - 3 : yy + h + 10).toFixed(1)}" text-anchor="middle">${v > 0 ? '+' : ''}${v.toFixed(2)}</text>`;
+        // dijepit ke bawah judul (y >= 22) supaya tidak pernah menimpa teks judul panel
+        if (Math.abs(v) >= mx * (kecil ? 0.6 : 0.35)) s += `<text class="ax" x="${(cx + off + bw2 / 2).toFixed(1)}" y="${(v >= 0 ? Math.max(yy - 3, 22) : Math.min(yy + h + 10, H2 - 3)).toFixed(1)}" text-anchor="middle">${v > 0 ? '+' : ''}${v.toFixed(2)}</text>`;
       }
     });
     s += '</svg>';
