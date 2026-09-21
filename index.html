@@ -86,6 +86,20 @@ h1{font-size:17px;margin:2px 0 0;font-weight:700}
 .mk-m{display:flex;height:6px;border-radius:3px;overflow:hidden;background:var(--panel3);margin:5px 0 4px}
 .mk-m i{display:block;height:100%}.mk-m .a{background:var(--up)}.mk-m .b{background:var(--down)}.mk-m .c{background:var(--accent)}
 .mk-v{display:flex;justify-content:space-between;font-size:11px;font-variant-numeric:tabular-nums}
+/* ── kartu dekomposisi indeks: strip metrik + dua kolom berdampingan ── */
+.idxg{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));border-bottom:1px solid var(--line)}
+.idxg>div{padding:9px 12px;border-right:1px solid var(--line2);min-width:0}
+.idxg>div:last-child{border-right:0}
+.idxg span{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.idxg b{display:block;margin-top:5px;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.idxg em{display:block;margin-top:4px;font-style:normal;font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.idxs{display:grid;grid-template-columns:1fr 1fr}
+.idxs>div{padding:10px 12px;min-width:0}
+.idxs>div+div{border-left:1px solid var(--line2)}
+.idxs h4{margin:0 0 8px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;display:flex;align-items:baseline;gap:6px}
+.idxs h4 i{font-style:normal;font-weight:500;letter-spacing:0;text-transform:none;font-size:10.5px;opacity:.8}
+.idxs .strip{gap:4px}
+@media(max-width:700px){.idxs{grid-template-columns:1fr}.idxs>div+div{border-left:0;border-top:1px solid var(--line2)}}
 /* ── ubin ── */
 .ubin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 .ubin{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:8px 10px;min-width:0}
@@ -268,19 +282,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   </div>
   <div style="height:10px"></div><section class="card tight"><div class="card-h"><h3>Siapa yang menggerakkan indeks</h3>
       <span class="muted" style="font-size:10.5px">2026-09-18 · kontribusi poin dari bobot indeks resmi</span></div>
-     <div style="padding:9px 10px">
-       <div class="mk-l" style="margin-bottom:7px">
-         <span>IHSG <b>-0.33%</b> (−21.3 poin)</span>
-         <span>saham naik <b>25.6%</b></span>
-         <span>saham tengah <b>-0.68%</b></span>
-         <span title="IHSG dikurangi return saham tengah — makin besar makin ditopang segelintir nama">selisih <b>+0.35 pp</b></span>
-       </div>
-       <div style="font-size:10.5px;color:var(--muted);margin:8px 0 4px;letter-spacing:.06em;text-transform:uppercase;font-weight:600">Menopang</div>
-       <div class="strip"><span class="chip good" title="kontribusi +37.5 poin ke IHSG"><a class="sym" href="scope.html?q=BYAN">BYAN</a> +37.5</span><span class="chip good" title="kontribusi +6.3 poin ke IHSG"><a class="sym" href="scope.html?q=DCII">DCII</a> +6.3</span><span class="chip good" title="kontribusi +3.9 poin ke IHSG"><a class="sym" href="scope.html?q=BREN">BREN</a> +3.9</span><span class="chip good" title="kontribusi +1.6 poin ke IHSG"><a class="sym" href="scope.html?q=MBMA">MBMA</a> +1.6</span><span class="chip good" title="kontribusi +1.1 poin ke IHSG"><a class="sym" href="scope.html?q=ANTM">ANTM</a> +1.1</span></div>
-       <div style="font-size:10.5px;color:var(--muted);margin:10px 0 4px;letter-spacing:.06em;text-transform:uppercase;font-weight:600">Memberatkan</div>
-       <div class="strip"><span class="chip bad" title="kontribusi −9.3 poin ke IHSG"><a class="sym" href="scope.html?q=AMMN">AMMN</a> −9.3</span><span class="chip bad" title="kontribusi −7.3 poin ke IHSG"><a class="sym" href="scope.html?q=BMRI">BMRI</a> −7.3</span><span class="chip bad" title="kontribusi −5.2 poin ke IHSG"><a class="sym" href="scope.html?q=DSSA">DSSA</a> −5.2</span><span class="chip bad" title="kontribusi −5.1 poin ke IHSG"><a class="sym" href="scope.html?q=MORA">MORA</a> −5.1</span><span class="chip bad" title="kontribusi −4.4 poin ke IHSG"><a class="sym" href="scope.html?q=BBCA">BBCA</a> −4.4</span></div>
-       <div class="muted" style="margin-top:9px;font-size:11px">Pola 'indeks dijaga' tidak aktif hari ini. Daftar di atas tetap berguna untuk melihat dari mana gerak indeks datang.</div>
-     </div></section>
+     <div class="idxg">
+       <div><span>IHSG</span><b class="neg">-0.33%</b><em>−21.3 poin</em></div>
+       <div><span>Saham naik</span><b>25.6%</b><em>212 dari 829</em></div>
+       <div><span>Saham tengah</span><b class="neg">-0.68%</b><em>median pasar</em></div>
+       <div title="IHSG dikurangi return saham tengah — makin besar, makin ditopang segelintir nama"><span>Selisih</span><b>+0.35 pp</b><em>indeks vs median</em></div>
+     </div>
+     <div class="idxs">
+       <div><h4>Menopang <i>total +66.3 poin</i></h4>
+         <div class="strip"><span class="chip good" title="kontribusi +37.5 poin ke IHSG"><a class="sym" href="scope.html?q=BYAN">BYAN</a> +37.5</span><span class="chip good" title="kontribusi +6.3 poin ke IHSG"><a class="sym" href="scope.html?q=DCII">DCII</a> +6.3</span><span class="chip good" title="kontribusi +3.9 poin ke IHSG"><a class="sym" href="scope.html?q=BREN">BREN</a> +3.9</span><span class="chip good" title="kontribusi +1.6 poin ke IHSG"><a class="sym" href="scope.html?q=MBMA">MBMA</a> +1.6</span><span class="chip good" title="kontribusi +1.1 poin ke IHSG"><a class="sym" href="scope.html?q=ANTM">ANTM</a> +1.1</span></div></div>
+       <div><h4>Memberatkan <i>total −87.5 poin</i></h4>
+         <div class="strip"><span class="chip bad" title="kontribusi −9.3 poin ke IHSG"><a class="sym" href="scope.html?q=AMMN">AMMN</a> −9.3</span><span class="chip bad" title="kontribusi −7.3 poin ke IHSG"><a class="sym" href="scope.html?q=BMRI">BMRI</a> −7.3</span><span class="chip bad" title="kontribusi −5.2 poin ke IHSG"><a class="sym" href="scope.html?q=DSSA">DSSA</a> −5.2</span><span class="chip bad" title="kontribusi −5.1 poin ke IHSG"><a class="sym" href="scope.html?q=MORA">MORA</a> −5.1</span><span class="chip bad" title="kontribusi −4.4 poin ke IHSG"><a class="sym" href="scope.html?q=BBCA">BBCA</a> −4.4</span></div></div>
+     </div>
+     <div class="muted" style="padding:0 12px 11px;font-size:11px">Pola <b>indeks dijaga</b> tidak aktif hari ini. Daftar di atas tetap menunjukkan dari mana gerak indeks datang.</div></section>
   <div style="height:10px"></div><div class="ubin-grid">
     <div class="ubin">
     <div class="ubin-l">IHSG</div>
