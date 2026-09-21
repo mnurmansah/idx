@@ -80,3 +80,8 @@
   from = "/peta"
   to = "/peta.html"
   status = 200
+
+[[redirects]]
+  from = "/dunia"
+  to = "/dunia.html"
+  status = 200
