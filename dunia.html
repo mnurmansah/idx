@@ -275,6 +275,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .dw-basi{font-size:9px;padding:0 4px;border:1px solid var(--line);border-radius:3px;color:var(--muted)}
 .dw-geser{font-size:9px;padding:0 4px;border:1px solid var(--line);border-radius:3px;color:var(--muted);font-variant-numeric:tabular-nums}
 .dw-par{font-weight:600}
+.dw-ok{color:var(--good,#1b7a3e);font-weight:600}
+.dw-no{color:var(--bad,#c62828);font-weight:600}
 .dw-p{font-size:11.5px;line-height:1.55;margin:8px 0 12px;max-width:74ch;color:var(--ink-2,inherit)}
 .dw-met p{font-size:11.5px;line-height:1.6;margin:0 0 10px;max-width:78ch}
 .dw-met p:last-child{margin-bottom:0}
@@ -292,7 +294,114 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <button type="button" class="tema" id="temaBtn" title="Ganti tema"><span id="temaVal">terang</span></button>
   </div>
 </header>
-<main class="content lebar"><div class="sec-h"><div><h2>Penggerak dunia</h2><p>komoditas, bursa dunia, mata uang, dan yield — lalu ke mana saja jalurnya masuk ke IDX</p></div><div class="sec-r"><span class="muted mono" style="font-size:10.5px">investing.com · 2026-09-21</span></div></div><section class="card tight"><div class="card-h"><h3>Papan penggerak</h3>
+<main class="content lebar"><div class="sec-h"><div><h2>Penggerak dunia</h2><p>komoditas, bursa dunia, mata uang, dan yield — lalu ke mana saja jalurnya masuk ke IDX</p></div><div class="sec-r"><span class="muted mono" style="font-size:10.5px">investing.com · 2026-09-21</span></div></div><section class="card tight"><div class="card-h"><h3>Sudah diuji — dan hasilnya tidak bisa ditransaksikan</h3>
+      <span class="muted" style="font-size:10.5px">walk-forward 2020–2026 atas data resmi bursa</span></div>
+    <p class="dw-p"><b>Dugaan yang diuji:</b> emas naik semalam, lalu emiten emas ikut naik keesokan harinya.
+    <b>Hasilnya: dugaannya benar, tetapi uangnya tidak bisa diambil.</b> Hubungannya nyata — untuk tiap 1% kenaikan
+    emas semalam, keranjang emas bergerak +0,40% hari itu. Masalahnya <b>87% dari gerakan itu sudah selesai di gap
+    pembukaan</b>, sebelum ada satu pun pesanan bisa dikirim.</p>
+
+    <div class="tbl-scroll"><table class="mini dw-t">
+      <thead><tr><th>Keranjang</th>
+        <th class="r" title="berapa persen emiten bergerak untuk tiap 1% gerak penggerak semalam">Beta hari-sama</th>
+        <th class="r" title="berapa bagian reaksi yang habis di gap pembukaan">Habis di gap</th>
+        <th class="r" title="gap yang sudah lewat saat bursa buka, ketika penggerak naik >1% semalam">Gap terlewat</th>
+        <th class="r" title="beli di pembukaan, jual di penutupan hari itu">Beli di buka</th>
+        <th class="r" title="rata-rata intraday semua hari — pembandingnya">Pembanding</th>
+        <th title="di hari ke berapa reaksi paling besar mendarat">Puncak reaksi</th></tr></thead>
+      <tbody><tr>
+      <td><b>emas</b> <span class="muted">Emas</span></td>
+      <td class="r num">0.40</td>
+      <td class="r num">76%</td>
+      <td class="r num">0.98%</td>
+      <td class="r num dw-no">-0.04%</td>
+      <td class="r num muted">-0.25%</td>
+      <td class="muted">hari itu juga</td></tr><tr>
+      <td><b>batubara</b> <span class="muted">Batu bara Newcastle</span></td>
+      <td class="r num">0.15</td>
+      <td class="r num">56%</td>
+      <td class="r num">0.43%</td>
+      <td class="r num dw-ok">0.05%</td>
+      <td class="r num muted">-0.24%</td>
+      <td class="muted">hari itu juga</td></tr><tr>
+      <td><b>nikel</b> <span class="muted">Nikel</span></td>
+      <td class="r num">0.05</td>
+      <td class="r num">72%</td>
+      <td class="r num">1.25%</td>
+      <td class="r num dw-ok">0.00%</td>
+      <td class="r num muted">-0.24%</td>
+      <td class="muted">hari itu juga</td></tr><tr>
+      <td><b>timah</b> <span class="muted">Timah</span></td>
+      <td class="r num">0.36</td>
+      <td class="r num">93%</td>
+      <td class="r num">1.10%</td>
+      <td class="r num dw-no">-0.54%</td>
+      <td class="r num muted">-0.01%</td>
+      <td class="muted">hari itu juga</td></tr><tr>
+      <td><b>tembaga</b> <span class="muted">Tembaga</span></td>
+      <td class="r num">0.29</td>
+      <td class="r num">61%</td>
+      <td class="r num">0.91%</td>
+      <td class="r num dw-ok">0.10%</td>
+      <td class="r num muted">-0.31%</td>
+      <td class="muted">hari itu juga</td></tr><tr>
+      <td><b>minyak</b> <span class="muted">Minyak Brent</span></td>
+      <td class="r num">0.18</td>
+      <td class="r num">83%</td>
+      <td class="r num">0.47%</td>
+      <td class="r num dw-no">-0.33%</td>
+      <td class="r num muted">-0.28%</td>
+      <td class="muted">hari itu juga</td></tr><tr>
+      <td><b>cpo</b> <span class="muted">CPO Malaysia</span></td>
+      <td class="r num">0.12</td>
+      <td class="r num">40%</td>
+      <td class="r num">0.40%</td>
+      <td class="r num dw-no">-0.05%</td>
+      <td class="r num muted">-0.15%</td>
+      <td class="muted">hari itu juga</td></tr><tr>
+      <td><b>teknologi</b> <span class="muted">SOX semikonduktor</span></td>
+      <td class="r num">0.13</td>
+      <td class="r num">38%</td>
+      <td class="r num">0.22%</td>
+      <td class="r num dw-no">-0.32%</td>
+      <td class="r num muted">-0.31%</td>
+      <td class="muted">hari itu juga</td></tr></tbody></table></div>
+
+    <p class="dw-p"><b>Dan reaksinya tidak tertunda.</b> Kolom terakhir menguji apakah gerakannya datang belakangan —
+    di H+1, H+2, sampai H+5. Untuk <b>seluruh</b> keranjang, reaksi terbesar mendarat pada hari itu juga; hari-hari
+    berikutnya tinggal derau. Jadi tidak ada versi lambat dari dugaan ini yang bisa dikejar.</p>
+
+    <p class="dw-p" style="margin-bottom:6px"><b>Uji kedua, pendekatan berbeda:</b> beli emiten yang punya ikatan kuat
+      ketika penggeraknya bergerak tidak biasa (|z| ≥ 1,5), tahan beberapa hari. Dibandingkan dengan membeli
+      emiten yang sama pada hari acak.</p>
+    <div class="tbl-scroll"><table class="mini dw-t">
+      <thead><tr><th>Ditahan</th><th class="r">Sinyal</th><th class="r">Hasil sinyal</th><th class="r">Hari acak</th><th class="r">Selisih</th></tr></thead>
+      <tbody><tr>
+    <td>1 hari</td><td class="r">26.658</td>
+    <td class="r num dw-ok">0.05%</td>
+    <td class="r num muted">0.10%</td>
+    <td class="r num dw-no"><b>-0.05%</b></td></tr><tr>
+    <td>3 hari</td><td class="r">26.658</td>
+    <td class="r num dw-ok">0.01%</td>
+    <td class="r num muted">0.30%</td>
+    <td class="r num dw-no"><b>-0.29%</b></td></tr><tr>
+    <td>5 hari</td><td class="r">26.658</td>
+    <td class="r num dw-no">-0.02%</td>
+    <td class="r num muted">0.56%</td>
+    <td class="r num dw-no"><b>-0.58%</b></td></tr><tr>
+    <td>10 hari</td><td class="r">26.658</td>
+    <td class="r num dw-no">-0.02%</td>
+    <td class="r num muted">1.08%</td>
+    <td class="r num dw-no"><b>-1.10%</b></td></tr></tbody></table></div>
+    <p class="dw-p"><b>Kalah di setiap horizon.</b> Menaikkan ambang jadi z ≥ 3 tidak menolong — justru memburuk.
+    Sinyalnya lebih sering menang tapi rata-ratanya lebih rendah: ia memangkas ekor gemuk, dan di IDX ekor gemuk
+    itulah sumber untungnya.</p>
+
+    <div class="note">
+      <b>Karena itu halaman ini adalah lensa baca, bukan penyaring beli.</b> Tabel di bawah berguna untuk memahami
+      <i>kenapa</i> sebuah emiten bergerak, dan untuk mengukur risiko yang Anda tanggung terhadap harga dunia.
+      Tabel itu <b>tidak</b> berguna sebagai alasan membuka posisi — bagian itu sudah diuji dan gagal.
+    </div></section><section class="card tight"><div class="card-h"><h3>Papan penggerak</h3>
     <span class="muted" style="font-size:10.5px">32 seri harian · investing.com · 2026-09-21</span></div>
     <div class="dw-grp"><h4>Komoditas</h4>
       <div class="tbl-scroll"><table class="mini dw-t">
@@ -310,10 +419,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         <td class="r num muted">20%</td></tr><tr>
         <td><b>Tembaga</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">6,783</td>
-        <td class="r"><span class="num pos">+1.0%</span></td><td class="r"><span class="num pos">+5.3%</span></td><td class="r"><span class="num pos">+1%</span></td>
+        <td class="r num">6,801</td>
+        <td class="r"><span class="num pos">+1.3%</span></td><td class="r"><span class="num pos">+5.5%</span></td><td class="r"><span class="num pos">+1%</span></td>
         <td class="r"><span class="num pos">+2%</span></td>
-        <td class="r num">0.77</td>
+        <td class="r num">0.97</td>
         <td class="r num muted">21%</td></tr><tr>
         <td><b>Batu bara Rotterdam</b>
             <span class="muted mono dw-tg">2026-09-18</span></td>
@@ -322,41 +431,41 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         <td class="r"><span class="num pos">+2%</span></td>
         <td class="r num">-0.72</td>
         <td class="r num muted">26%</td></tr><tr>
+        <td><b>Gandum</b>
+            <span class="muted mono dw-tg">2026-09-21</span></td>
+        <td class="r num">723,40</td>
+        <td class="r"><span class="num pos">+1.3%</span></td><td class="r"><span class="num pos">+0.2%</span></td><td class="r"><span class="num pos">+3%</span></td>
+        <td class="r"><span class="num neg">−3%</span></td>
+        <td class="r num">0.59</td>
+        <td class="r num muted">34%</td></tr><tr>
         <td><b>Minyak WTI</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">94,27</td>
-        <td class="r"><span class="num neg">−1.4%</span></td><td class="r"><span class="num neg">−6.4%</span></td><td class="r"><span class="num pos">+15%</span></td>
+        <td class="r num">94,41</td>
+        <td class="r"><span class="num neg">−1.3%</span></td><td class="r"><span class="num neg">−6.3%</span></td><td class="r"><span class="num pos">+15%</span></td>
         <td class="r"><span class="num pos">+1%</span></td>
-        <td class="r num">-0.52</td>
+        <td class="r num">-0.47</td>
         <td class="r num muted">45%</td></tr><tr>
         <td><b>Minyak Brent</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">101,87</td>
-        <td class="r"><span class="num neg">−1.5%</span></td><td class="r"><span class="num neg">−6.3%</span></td><td class="r"><span class="num pos">+17%</span></td>
+        <td class="r num">102,08</td>
+        <td class="r"><span class="num neg">−1.3%</span></td><td class="r"><span class="num neg">−6.1%</span></td><td class="r"><span class="num pos">+17%</span></td>
         <td class="r"><span class="num pos">+3%</span></td>
-        <td class="r num">-0.50</td>
+        <td class="r num">-0.43</td>
         <td class="r num muted">48%</td></tr><tr>
-        <td><b>Gandum</b>
-            <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">721,90</td>
-        <td class="r"><span class="num pos">+1.1%</span></td><td class="r"><span class="num neg">−0.0%</span></td><td class="r"><span class="num pos">+3%</span></td>
-        <td class="r"><span class="num neg">−3%</span></td>
-        <td class="r num">0.50</td>
-        <td class="r num muted">34%</td></tr><tr>
-        <td><b>Emas</b>
-            <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">4.389</td>
-        <td class="r"><span class="num neg">−0.5%</span></td><td class="r"><span class="num pos">+1.3%</span></td><td class="r"><span class="num neg">−6%</span></td>
-        <td class="r"><span class="num neg">−1%</span></td>
-        <td class="r num">-0.37</td>
-        <td class="r num muted">22%</td></tr><tr>
         <td><b>Nikel</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">16.287</td>
+        <td class="r num">16.289</td>
         <td class="r"><span class="num pos">+0.4%</span></td><td class="r"><span class="num neg">−0.5%</span></td><td class="r"><span class="num neg">−4%</span></td>
         <td class="r"><span class="num neg">−2%</span></td>
-        <td class="r num">0.37</td>
+        <td class="r num">0.38</td>
         <td class="r num muted">16%</td></tr><tr>
+        <td><b>Emas</b>
+            <span class="muted mono dw-tg">2026-09-21</span></td>
+        <td class="r num">4.390</td>
+        <td class="r"><span class="num neg">−0.5%</span></td><td class="r"><span class="num pos">+1.3%</span></td><td class="r"><span class="num neg">−6%</span></td>
+        <td class="r"><span class="num neg">−1%</span></td>
+        <td class="r num">-0.36</td>
+        <td class="r num muted">22%</td></tr><tr>
         <td><b>CPO Malaysia</b>
             <span class="muted mono dw-tg">2026-09-17</span></td>
         <td class="r num">4.898</td>
@@ -373,25 +482,25 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         <td class="r num muted">31%</td></tr><tr>
         <td><b>Aluminium</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">3.289</td>
-        <td class="r"><span class="num neg">−0.2%</span></td><td class="r"><span class="num pos">+1.2%</span></td><td class="r"><span class="num pos">+1%</span></td>
-        <td class="r"><span class="num pos">+0%</span></td>
-        <td class="r num">-0.22</td>
+        <td class="r num">3.302</td>
+        <td class="r"><span class="num pos">+0.1%</span></td><td class="r"><span class="num pos">+1.6%</span></td><td class="r"><span class="num pos">+2%</span></td>
+        <td class="r"><span class="num pos">+1%</span></td>
+        <td class="r num">0.15</td>
         <td class="r num muted">16%</td></tr><tr>
-        <td><b>Perak</b>
-            <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">66,62</td>
-        <td class="r"><span class="num neg">−0.3%</span></td><td class="r"><span class="num pos">+4.3%</span></td><td class="r"><span class="num neg">−2%</span></td>
-        <td class="r"><span class="num pos">+0%</span></td>
-        <td class="r num">-0.13</td>
-        <td class="r num muted">36%</td></tr><tr>
         <td><b>Gas alam</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">2,880</td>
-        <td class="r"><span class="num neg">−0.2%</span></td><td class="r"><span class="num neg">−1.3%</span></td><td class="r"><span class="num pos">+0%</span></td>
+        <td class="r num">2,878</td>
+        <td class="r"><span class="num neg">−0.3%</span></td><td class="r"><span class="num neg">−1.4%</span></td><td class="r"><span class="num pos">+0%</span></td>
         <td class="r"><span class="num neg">−1%</span></td>
-        <td class="r num">-0.11</td>
-        <td class="r num muted">31%</td></tr>
+        <td class="r num">-0.14</td>
+        <td class="r num muted">31%</td></tr><tr>
+        <td><b>Perak</b>
+            <span class="muted mono dw-tg">2026-09-21</span></td>
+        <td class="r num">66,68</td>
+        <td class="r"><span class="num neg">−0.2%</span></td><td class="r"><span class="num pos">+4.4%</span></td><td class="r"><span class="num neg">−2%</span></td>
+        <td class="r"><span class="num pos">+0%</span></td>
+        <td class="r num">-0.10</td>
+        <td class="r num muted">36%</td></tr>
       </tbody></table></div></div><div class="dw-grp"><h4>Bursa dunia</h4>
       <div class="tbl-scroll"><table class="mini dw-t">
       <thead><tr><th>Penggerak</th><th class="r">Harga</th><th class="r">1 hr</th><th class="r">5 hr</th><th class="r">20 hr</th>
@@ -401,17 +510,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
       <tr>
         <td><b>DAX</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">25.537</td>
-        <td class="r"><span class="num pos">+0.9%</span></td><td class="r"><span class="num pos">+0.4%</span></td><td class="r"><span class="num neg">−2%</span></td>
+        <td class="r num">25.553</td>
+        <td class="r"><span class="num pos">+1.0%</span></td><td class="r"><span class="num pos">+0.4%</span></td><td class="r"><span class="num neg">−2%</span></td>
         <td class="r"><span class="num neg">−1%</span></td>
-        <td class="r num">1.11</td>
+        <td class="r num">1.18</td>
         <td class="r num muted">13%</td></tr><tr>
         <td><b>Hang Seng</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">24.990</td>
-        <td class="r"><span class="num pos">+1.0%</span></td><td class="r"><span class="num pos">+0.3%</span></td><td class="r"><span class="num neg">−2%</span></td>
+        <td class="r num">25.043</td>
+        <td class="r"><span class="num pos">+1.2%</span></td><td class="r"><span class="num pos">+0.5%</span></td><td class="r"><span class="num neg">−2%</span></td>
         <td class="r"><span class="num neg">−1%</span></td>
-        <td class="r num">0.95</td>
+        <td class="r num">1.15</td>
         <td class="r num muted">16%</td></tr><tr>
         <td><b>Shanghai Composite</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
@@ -423,9 +532,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         <td><b>MSCI Emerging Markets</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
         <td class="r num">1.736</td>
-        <td class="r"><span class="num pos">+1.5%</span></td><td class="r"><span class="num pos">+2.2%</span></td><td class="r"><span class="num pos">+2%</span></td>
+        <td class="r"><span class="num pos">+1.4%</span></td><td class="r"><span class="num pos">+2.2%</span></td><td class="r"><span class="num pos">+2%</span></td>
         <td class="r"><span class="num pos">+1%</span></td>
-        <td class="r num">0.92</td>
+        <td class="r num">0.91</td>
         <td class="r num muted">25%</td></tr><tr>
         <td><b>SOX semikonduktor</b>
             <span class="muted mono dw-tg">2026-09-18</span></td>
@@ -471,17 +580,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
       <tr>
         <td><b>USD/IDR</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">17.834</td>
+        <td class="r num">17.835</td>
         <td class="r"><span class="num pos">+0.4%</span></td><td class="r"><span class="num pos">+0.8%</span></td><td class="r"><span class="num pos">+1%</span></td>
         <td class="r"><span class="num pos">+1%</span></td>
-        <td class="r num">1.48</td>
+        <td class="r num">1.49</td>
         <td class="r num muted">5%</td></tr><tr>
         <td><b>US 2Y</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">4,720</td>
-        <td class="r"><span class="num neg">−0.8%</span></td><td class="r"><span class="num pos">+1.2%</span></td><td class="r"><span class="num pos">+12%</span></td>
+        <td class="r num">4,725</td>
+        <td class="r"><span class="num neg">−0.7%</span></td><td class="r"><span class="num pos">+1.3%</span></td><td class="r"><span class="num pos">+13%</span></td>
         <td class="r"><span class="num pos">+5%</span></td>
-        <td class="r num">-0.75</td>
+        <td class="r num">-0.66</td>
         <td class="r num muted">16%</td></tr><tr>
         <td><b>INDO 10Y</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
@@ -492,31 +601,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         <td class="r num muted">13%</td></tr><tr>
         <td><b>US 10Y</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">4,958</td>
-        <td class="r"><span class="num neg">−0.5%</span></td><td class="r"><span class="num neg">−0.8%</span></td><td class="r"><span class="num pos">+5%</span></td>
+        <td class="r num">4,960</td>
+        <td class="r"><span class="num neg">−0.4%</span></td><td class="r"><span class="num neg">−0.7%</span></td><td class="r"><span class="num pos">+5%</span></td>
         <td class="r"><span class="num pos">+2%</span></td>
-        <td class="r num">-0.56</td>
+        <td class="r num">-0.51</td>
         <td class="r num muted">13%</td></tr><tr>
         <td><b>USD/CNY</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
         <td class="r num">6,696</td>
         <td class="r"><span class="num neg">−0.0%</span></td><td class="r"><span class="num neg">−0.2%</span></td><td class="r"><span class="num neg">−0%</span></td>
         <td class="r"><span class="num neg">−0%</span></td>
-        <td class="r num">-0.34</td>
+        <td class="r num">-0.37</td>
         <td class="r num muted">1%</td></tr><tr>
         <td><b>VIX</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">14,96</td>
-        <td class="r"><span class="num pos">+1.0%</span></td><td class="r"><span class="num neg">−12.5%</span></td><td class="r"><span class="num neg">−6%</span></td>
-        <td class="r"><span class="num neg">−5%</span></td>
-        <td class="r num">0.16</td>
+        <td class="r num">14,98</td>
+        <td class="r"><span class="num pos">+1.1%</span></td><td class="r"><span class="num neg">−12.4%</span></td><td class="r"><span class="num neg">−5%</span></td>
+        <td class="r"><span class="num neg">−4%</span></td>
+        <td class="r num">0.18</td>
         <td class="r num muted">101%</td></tr><tr>
         <td><b>DXY</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">100,31</td>
+        <td class="r num">100,32</td>
         <td class="r"><span class="num pos">+0.0%</span></td><td class="r"><span class="num pos">+0.7%</span></td><td class="r"><span class="num pos">+1%</span></td>
         <td class="r"><span class="num pos">+1%</span></td>
-        <td class="r num">0.10</td>
+        <td class="r num">0.13</td>
         <td class="r num muted">5%</td></tr>
       </tbody></table></div></div><div class="dw-grp"><h4>Kripto</h4>
       <div class="tbl-scroll"><table class="mini dw-t">
@@ -524,20 +633,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
         <th class="r" title="jarak harga dari rata-rata 20 hari">vs MA20</th>
         <th class="r" title="gerak sehari terakhir dibagi volatilitas 60 harinya sendiri — |z| di atas 1,5 berarti tidak biasa">z</th>
         <th class="r" title="volatilitas tahunan dari 60 hari terakhir">Volatil</th></tr></thead><tbody>
-      <tr>
+      <tr class="dw-luar">
         <td><b>Bitcoin</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">83.711</td>
-        <td class="r"><span class="num pos">+3.1%</span></td><td class="r"><span class="num pos">+9.8%</span></td><td class="r"><span class="num pos">+8%</span></td>
+        <td class="r num">83.891</td>
+        <td class="r"><span class="num pos">+3.3%</span></td><td class="r"><span class="num pos">+10.0%</span></td><td class="r"><span class="num pos">+8%</span></td>
         <td class="r"><span class="num pos">+6%</span></td>
-        <td class="r num">1.45</td>
+        <td class="r num hi">1.55</td>
         <td class="r num muted">34%</td></tr><tr>
         <td><b>Ethereum</b>
             <span class="muted mono dw-tg">2026-09-21</span></td>
-        <td class="r num">2.702</td>
-        <td class="r"><span class="num pos">+2.1%</span></td><td class="r"><span class="num pos">+11.7%</span></td><td class="r"><span class="num pos">+12%</span></td>
+        <td class="r num">2.699</td>
+        <td class="r"><span class="num pos">+2.0%</span></td><td class="r"><span class="num pos">+11.6%</span></td><td class="r"><span class="num pos">+12%</span></td>
         <td class="r"><span class="num pos">+8%</span></td>
-        <td class="r num">0.70</td>
+        <td class="r num">0.66</td>
         <td class="r num muted">48%</td></tr>
       </tbody></table></div></div><div class="dw-grp"><h4>Acuan</h4>
       <div class="tbl-scroll"><table class="mini dw-t">
