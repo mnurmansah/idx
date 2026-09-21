@@ -54,7 +54,6 @@ button{font:inherit;color:inherit}
 .st{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:var(--r);padding:3px 7px;white-space:nowrap;background:var(--panel)}
 .st b{color:var(--ink);font-family:var(--mono);font-size:10.5px;font-weight:600}.st i{font-style:normal}.st.old{border-color:var(--warn)}
 .wr{color:var(--warn);font-weight:600;font-style:normal}
-.st.env b{font-family:var(--sans)}
 .env-f{display:inline-block;margin-right:8px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);
   background:var(--panel);font-size:10.5px;font-weight:600;color:var(--ink2)}
 .env-f.netlify{color:#0e7490;border-color:#0e7490}
@@ -287,7 +286,7 @@ background:var(--watch);color:var(--panel)}.scn .tag.tp{background:transparent;b
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
-    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-18 17:26</b></span><span class="st" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-18</b></span><span class="st old" title="Chart bandar terbaru. Berlaku 14 hari (LPM), 5 hari (rotasi).">Bandar <b>2026-08-20</b> <i>32 hr</i></span><span class="st env" id="envChip" hidden></span></div>
+    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-21 11:55</b></span><span class="st" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-18</b></span></div>
     <button type="button" class="tema" id="temaBtn" title="Ganti tema"><span id="temaVal">terang</span></button>
   </div>
 </header>
@@ -372,13 +371,14 @@ Ambang tab Ketat = desil terbawah kompresi pasar (7.6%), dihitung dari data.</di
     else if(/github.io$/i.test(h)){ nama='Arsip'; peran='tidak diperbarui'; ket='pages'; tautan=UTAMA; }
     else if(!h||h==='localhost'||h==='127.0.0.1'){ nama='Lokal'; ket='lokal'; }
     else { nama=h; ket='lain'; }
-    var label=nama+(peran?' · '+peran:'');
-    var c=document.getElementById('envChip');
-    if(c){ c.innerHTML='<b>'+label+'</b>'; c.hidden=false;
-      c.title=(tautan?'Halaman ini arsip dan tidak lagi diperbarui. Alamat aktif: '+UTAMA:'Alamat yang sedang dibuka: '+(h||'berkas lokal')); }
+    // Penanda hanya dipasang kalau keadaannya TIDAK normal: arsip github.io atau berkas lokal.
+    // Saat disajikan dari Netlify (keadaan normal) footer dibiarkan bersih tanpa penanda apa pun.
     var fo=document.getElementById('envFoot');
-    if(fo) fo.innerHTML='<span class="env-f '+ket+'">'+label+'</span>'
-      + (tautan?' <a class="env-l" href="'+tautan+'">pindah ke alamat aktif →</a>':'');
+    if(fo && ket!=='netlify'){
+      var label=nama+(peran?' · '+peran:'');
+      fo.innerHTML='<span class="env-f '+ket+'">'+label+'</span>'
+        + (tautan?' <a class="env-l" href="'+tautan+'">pindah ke alamat aktif →</a>':'');
+    }
   })();
   var ci=document.getElementById('cariIn');
   if(ci){ addEventListener('keydown',function(e){ if(e.key==='/'&&document.activeElement!==ci&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){ e.preventDefault(); ci.focus(); } });
