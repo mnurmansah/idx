@@ -60,6 +60,8 @@ button{font:inherit;color:inherit}
 .env-f.netlify{color:#0e7490;border-color:#0e7490}
 :root[data-theme="dark"] .env-f.netlify,@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .env-f.netlify{color:#67d3e8;border-color:#2b5a66}}
 .env-f.lokal{color:var(--warn);border-color:var(--warn)}
+.env-f.pages{color:var(--muted)}
+.env-l{margin-right:8px;font-size:10.5px;font-weight:600}
 .tema{height:28px;padding:0 9px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);cursor:pointer;font-size:11px;color:var(--ink2)}
 .tema:hover{border-color:var(--muted)}
 .content{max-width:1560px;margin:0 auto;padding:12px 14px 30px}
@@ -557,18 +559,25 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   var saved=null; try{saved=localStorage.getItem('idx-theme')}catch(e){}
   tema(saved||'light');
   var tb=document.getElementById('temaBtn'); if(tb) tb.addEventListener('click',function(){ tema(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
-  // ── Penanda lingkungan ────────────────────────────────────────────────────
-  // Satu berkas melayani GitHub Pages, Netlify, dan buka-berkas-lokal. Nama host yang menentukan.
+  // ── Penanda lingkungan & peran ────────────────────────────────────────────
+  // Satu berkas melayani tiga tempat; nama host yang menentukan. PERAN (21 Sep 2026):
+  //   Netlify      = UTAMA    — alamat yang dipakai sehari-hari
+  //   GitHub Pages = CADANGAN — tetap diterbitkan tiap push, dipakai kalau Netlify bermasalah
+  // Isi keduanya SELALU kembar karena sumbernya satu repo; yang berbeda cuma peran.
   (function(){
-    var h=location.hostname||'', nama, ket;
-    if(/netlify.app$/i.test(h)){ nama='Netlify'; ket='netlify'; }
-    else if(/github.io$/i.test(h)){ nama='GitHub Pages'; ket='pages'; }
+    var UTAMA='https://loremipsumidx.netlify.app/';
+    var h=location.hostname||'', nama, peran='', ket, tautan='';
+    if(/netlify.app$/i.test(h)){ nama='Netlify'; peran='utama'; ket='netlify'; }
+    else if(/github.io$/i.test(h)){ nama='GitHub Pages'; peran='cadangan'; ket='pages'; tautan=UTAMA; }
     else if(!h||h==='localhost'||h==='127.0.0.1'){ nama='Lokal'; ket='lokal'; }
     else { nama=h; ket='lain'; }
+    var label=nama+(peran?' · '+peran:'');
     var c=document.getElementById('envChip');
-    if(c){ c.innerHTML='Tayang di <b>'+nama+'</b>'; c.hidden=false; c.title='Alamat yang sedang dibuka: '+(h||'berkas lokal'); }
+    if(c){ c.innerHTML='<b>'+label+'</b>'; c.hidden=false;
+      c.title=(peran==='cadangan'?'Ini salinan cadangan. Alamat utama: '+UTAMA:'Alamat yang sedang dibuka: '+(h||'berkas lokal')); }
     var fo=document.getElementById('envFoot');
-    if(fo) fo.innerHTML='<span class="env-f '+ket+'">'+nama+'</span>';
+    if(fo) fo.innerHTML='<span class="env-f '+ket+'">'+label+'</span>'
+      + (tautan?' <a class="env-l" href="'+tautan+'">buka yang utama →</a>':'');
   })();
   var ci=document.getElementById('cariIn');
   if(ci){ addEventListener('keydown',function(e){ if(e.key==='/'&&document.activeElement!==ci&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){ e.preventDefault(); ci.focus(); } });
