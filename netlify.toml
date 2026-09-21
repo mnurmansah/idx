@@ -1,0 +1,81 @@
+# Konfigurasi Netlify untuk situs IDX Swing.
+#
+# Repo ini berisi HASIL BUILD, bukan sumbernya — dibangun di mesin lokal oleh
+# tradingview-mcp/scripts/site/build.mjs lalu disalin ke sini dan di-push. Jadi TIDAK ADA
+# perintah build di Netlify; Netlify cukup menyajikan berkas apa adanya dari akar repo.
+#
+# Situs ini juga tetap tayang di GitHub Pages (mnurmansah.github.io/idx). Keduanya bisa jalan
+# berbarengan dari repo yang sama karena seluruh tautan di halaman bersifat RELATIF, sehingga
+# sama benarnya saat disajikan dari akar domain maupun dari sub-folder /idx/.
+
+[build]
+  publish = "."
+  command = ""
+
+[build.environment]
+  # tidak ada proses build; cegah Netlify menebak-nebak runtime
+  NETLIFY_USE_YARN = "false"
+
+# ── Cache ──────────────────────────────────────────────────────────────────────
+# Berkas data ditulis ulang SETIAP HARI dengan nama yang sama (scope-data.js, scope-bars.js,
+# scope-intra.js, scope-own.js). Kalau di-cache lama, pengunjung akan melihat angka kemarin
+# padahal halamannya baru. Jadi HTML dan JS wajib divalidasi ulang tiap kunjungan.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Huruf tidak pernah berubah isinya (nama berkas tetap, versi Plex Serif terkunci), jadi aman
+# di-cache lama. Ini yang membuat kunjungan kedua terasa cepat.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Halaman per-saham statis (kalau suatu saat ikut diterbitkan)
+[[headers]]
+  for = "/scope/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── Perilaku ───────────────────────────────────────────────────────────────────
+# Alamat tanpa .html tetap bisa dibuka, mis. /screener -> /screener.html
+[[redirects]]
+  from = "/screener"
+  to = "/screener.html"
+  status = 200
+
+[[redirects]]
+  from = "/scope"
+  to = "/scope.html"
+  status = 200
+
+[[redirects]]
+  from = "/riset"
+  to = "/riset.html"
+  status = 200
+
+[[redirects]]
+  from = "/jurnal"
+  to = "/jurnal.html"
+  status = 200
+
+[[redirects]]
+  from = "/bandar"
+  to = "/bandar.html"
+  status = 200
+
+[[redirects]]
+  from = "/sektor"
+  to = "/sektor.html"
+  status = 200
+
+[[redirects]]
+  from = "/peta"
+  to = "/peta.html"
+  status = 200
