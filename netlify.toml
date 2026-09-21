@@ -4,9 +4,10 @@
 # tradingview-mcp/scripts/site/build.mjs lalu disalin ke sini dan di-push. Jadi TIDAK ADA
 # perintah build di Netlify; Netlify cukup menyajikan berkas apa adanya dari akar repo.
 #
-# Situs ini juga tetap tayang di GitHub Pages (mnurmansah.github.io/idx). Keduanya bisa jalan
-# berbarengan dari repo yang sama karena seluruh tautan di halaman bersifat RELATIF, sehingga
-# sama benarnya saat disajikan dari akar domain maupun dari sub-folder /idx/.
+# Alamat aktif SATU-SATUNYA: https://loremipsumidx.netlify.app/
+# GitHub Pages (mnurmansah.github.io/idx) DINONAKTIFKAN 21 Sep 2026. Repo ini tetap di-push tiap
+# hari karena Netlify membangun DARI repo ini — mematikan Pages bukan berarti menghentikan push.
+# Seluruh tautan di halaman tetap RELATIF, jadi tetap benar kalau suatu saat dipindah ke domain lain.
 
 [build]
   publish = "."
