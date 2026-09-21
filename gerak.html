@@ -282,11 +282,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .gk-pasar{background:var(--muted)}
 .gk-dunia{background:var(--accent,#2a78d6)}
 .gk-sisa{background:var(--warn,#d68a2a)}
+.gk-run{display:inline-block;font-size:9px;padding:0 4px;border-radius:3px;border:1px solid var(--line);white-space:nowrap}
+.gk-run-u{color:var(--good,#1b7a3e)}
+.gk-run-d{color:var(--bad,#c62828)}
+.gk-tipis{display:inline-block;font-size:9px;padding:0 4px;border-radius:3px;border:1px solid var(--line);color:var(--muted);margin-left:3px}
+.gk-surat{display:inline-block;font-size:9px;padding:0 4px;border-radius:3px;background:rgba(198,40,40,.12);color:var(--bad,#c62828);margin-left:3px;white-space:nowrap}
 .gk-nc{min-width:300px}
 .gk-n{margin:0 0 5px;line-height:1.45}
 .gk-n:last-child{margin-bottom:0}
 .gk-jam{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
 .gk-judul{font-size:11px}
+.gk-sekt{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
+.gk-sk{display:flex;flex-direction:column;gap:1px;padding:6px 10px;border:1px solid var(--line);border-radius:4px;min-width:150px}
+.gk-sk b{font-size:11.5px}
+.gk-sk>span:nth-child(2){font-size:13px;font-variant-numeric:tabular-nums}
 .gk-met p{font-size:11.5px;line-height:1.6;margin:0 0 10px;max-width:80ch}
 .gk-met p:last-child{margin-bottom:0}
 @media (max-width:640px){.gk-p,.gk-met p{max-width:none}.gk-nc{min-width:220px}.gk-top{gap:14px}}
@@ -306,231 +315,66 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 <main class="content lebar"><div class="sec-h"><div><h2>Kenapa bergerak</h2><p>memisahkan gerak yang milik pasar, milik harga dunia, dan yang benar-benar milik emitennya</p></div><div class="sec-r"><span class="muted mono" style="font-size:10.5px">2026-09-21</span></div></div><section class="card tight"><div class="gk-top">
       <div><span class="gk-lbl">Sesi</span><b>2026-09-21</b></div>
       <div><span class="gk-lbl">IHSG</span><b class="gk-dn">-0.74%</b></div>
-      <div><span class="gk-lbl">Emiten ditelaah</span><b>447</b></div>
-      <div><span class="gk-lbl">Gerak tak biasa</span><b>42</b></div>
-      <div><span class="gk-lbl">Ada keterbukaan</span><b>23</b></div>
+      <div><span class="gk-lbl">Ditelaah</span><b>449</b></div>
+      <div><span class="gk-lbl">Turun tak jelas</span><b class="gk-dn">8</b></div>
+      <div><span class="gk-lbl">Naik tak jelas</span><b class="gk-up">32</b></div>
+      <div><span class="gk-lbl">Ada keterbukaan</span><b>2</b></div>
     </div>
     <p class="gk-p">Tiap gerak dipecah tiga: <b>pasar</b> (IHSG bergerak dan saham ini ikut), <b>dunia</b>
-    (harga komoditas atau kurs yang ia jual-beli bergerak), dan <b>sisa</b> — yang tidak dijelaskan keduanya.
-    Sisa besar berarti sesuatu terjadi pada emitennya sendiri.</p></section><section class="card tight"><div class="card-h"><h3>Ada penjelasan resminya</h3>
-      <span class="muted" style="font-size:10.5px">gerak tak biasa yang disertai keterbukaan informasi dalam jendela sesi ini</span></div>
+    (harga komoditas atau kurs yang ia jual-beli bergerak), dan <b>sisa</b> — yang tidak dijelaskan keduanya.</p></section><section class="card tight"><div class="card-h"><h3>Posisi saya</h3>
+      <span class="muted" style="font-size:10.5px">10 posisi terbuka di buku paper · kenapa masing-masing bergerak hari ini</span></div>
+    <div class="note bad"><b>1 posisi turun tanpa penjelasan.</b> Pola ini berlanjut turun
+         di 6 dari 7 tahun yang diuji. Bukan perintah jual, tapi
+         alasan sah untuk meninjau ukuran posisi: MARK.</div>
+    <div class="tbl-scroll"><table class="mini gk-t">
+      <thead><tr><th>Saham</th><th class="r">Gerak</th><th>Susunan</th><th class="r">Pasar</th><th class="r">Dunia</th>
+        <th class="r">Sisa</th><th class="r">z</th><th>Penilaian</th></tr></thead><tbody>
+      <tr><td><a class="sym" href="scope.html?q=MARK">MARK</a> <span class="gk-run gk-run-d" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
+      <td class="r num"><b>-4.24%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -0.30% · dunia 0.00% · sisa -4.37%"><i class="gk-pasar" style="width:6.4%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:93.6%"></i></span></td>
+      <td class="r num muted">-0.30</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>-4.37</b></td><td class="r num">-1.7</td><td><span class="chip warn">perlu ditinjau</span></td></tr><tr><td><a class="sym" href="scope.html?q=AGII">AGII</a> </td>
+      <td class="r num"><b>-3.21%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -0.71% · dunia 0.00% · sisa -2.73%"><i class="gk-pasar" style="width:20.6%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:79.4%"></i></span></td>
+      <td class="r num muted">-0.71</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>-2.73</b></td><td class="r num">-0.7</td><td><span class="chip">wajar</span></td></tr><tr><td><a class="sym" href="scope.html?q=MAPI">MAPI</a> </td>
+      <td class="r num"><b>-0.33%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -0.07% · dunia -0.09% · sisa -0.51%"><i class="gk-pasar" style="width:10.9%"></i><i class="gk-dunia" style="width:13.2%"></i><i class="gk-sisa" style="width:75.9%"></i></span></td>
+      <td class="r num muted">-0.07</td><td class="r num muted">-0.09</td>
+      <td class="r num"><b>-0.51</b></td><td class="r num">-0.1</td><td><span class="chip">wajar</span></td></tr><tr><td><a class="sym" href="scope.html?q=MMIX">MMIX</a> <span class="gk-surat" title="bursa mengirim surat permintaan penjelasan pada 2026-09-17 — penilai dari luar juga menganggap geraknya tidak wajar">surat bursa</span></td>
+      <td class="r num"><b>1.16%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar 0.03% · dunia 0.00% · sisa -0.29%"><i class="gk-pasar" style="width:9.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:90.8%"></i></span></td>
+      <td class="r num muted">0.03</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>-0.29</b></td><td class="r num">-0.0</td><td><span class="chip">wajar</span></td></tr><tr><td><a class="sym" href="scope.html?q=VISI">VISI</a> <span class="gk-surat" title="bursa mengirim surat permintaan penjelasan pada 2026-09-21 — penilai dari luar juga menganggap geraknya tidak wajar">surat bursa</span></td>
+      <td class="r num"><b>0.82%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -0.33% · dunia 0.00% · sisa 0.30%"><i class="gk-pasar" style="width:52.3%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:47.7%"></i></span></td>
+      <td class="r num muted">-0.33</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>0.30</b></td><td class="r num">+0.1</td><td><span class="chip" title="geraknya mengikuti IHSG — bukan tentang emiten ini">ikut pasar</span></td></tr><tr><td><a class="sym" href="scope.html?q=TEBE">TEBE</a>  <span class="gk-tipis" title="nilai transaksi di bawah Rp 500 juta/hari — angkanya sah, tetapi keluar dari posisi ini bisa sulit">tipis</span></td>
+      <td class="r num"><b>0.00%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -1.33% · dunia 0.00% · sisa 0.54%"><i class="gk-pasar" style="width:71.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:28.9%"></i></span></td>
+      <td class="r num muted">-1.33</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>0.54</b></td><td class="r num">+0.1</td><td><span class="chip" title="geraknya mengikuti IHSG — bukan tentang emiten ini">ikut pasar</span></td></tr><tr><td><a class="sym" href="scope.html?q=HBAT">HBAT</a>  <span class="gk-tipis" title="nilai transaksi di bawah Rp 500 juta/hari — angkanya sah, tetapi keluar dari posisi ini bisa sulit">tipis</span></td>
+      <td class="r num"><b>1.54%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -0.32% · dunia 0.00% · sisa 1.47%"><i class="gk-pasar" style="width:17.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:82.1%"></i></span></td>
+      <td class="r num muted">-0.32</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>1.47</b></td><td class="r num">+0.3</td><td><span class="chip">wajar</span></td></tr><tr><td><a class="sym" href="scope.html?q=SGER">SGER</a> </td>
+      <td class="r num"><b>2.86%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -1.13% · dunia -0.09% · sisa 3.42%"><i class="gk-pasar" style="width:24.4%"></i><i class="gk-dunia" style="width:1.9%"></i><i class="gk-sisa" style="width:73.7%"></i></span></td>
+      <td class="r num muted">-1.13</td><td class="r num muted">-0.09</td>
+      <td class="r num"><b>3.42</b></td><td class="r num">+0.9</td><td><span class="chip">wajar</span></td></tr><tr><td><a class="sym" href="scope.html?q=UVCR">UVCR</a> </td>
+      <td class="r num"><b>5.62%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -0.75% · dunia 0.00% · sisa 5.80%"><i class="gk-pasar" style="width:11.4%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:88.6%"></i></span></td>
+      <td class="r num muted">-0.75</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>5.80</b></td><td class="r num">+1.0</td><td><span class="chip">wajar</span></td></tr><tr><td><a class="sym" href="scope.html?q=TUGU">TUGU</a> </td>
+      <td class="r num"><b>2.83%</b></td><td class="gk-bc"><span class="gk-bar" title="pasar -0.30% · dunia 0.00% · sisa 2.86%"><i class="gk-pasar" style="width:9.5%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:90.5%"></i></span></td>
+      <td class="r num muted">-0.30</td><td class="r num muted">0.00</td>
+      <td class="r num"><b>2.86</b></td><td class="r num">+1.3</td><td><span class="chip">wajar</span></td></tr>
+    </tbody></table></div></section><section class="card tight"><div class="card-h"><h3>Turun tanpa penjelasan</h3>
+      <span class="muted" style="font-size:10.5px">8 emiten · peringatan, dan ini yang paling terbukti di halaman ini</span></div>
+    <div class="note bad"><b>Turun tanpa sebab yang bisa dilacak cenderung berlanjut turun.</b> Diuji atas 23.445 sinyal sejak 2020: lima hari setelah muncul di daftar ini,
+       rata-ratanya <b>-0.93%</b> sementara membeli emiten yang sama pada hari acak menghasilkan
+       <b>0.49%</b> — selisih <b>-1.43%</b>. Searah di
+       <b>6 dari 7 tahun</b>, dan konsisten di semua kelas likuiditas.</div>
     <div class="tbl-scroll"><table class="mini gk-t"><thead><tr><th>Saham</th><th>Sektor</th><th class="r">Gerak</th>
-    <th title="komposisi gerak: pasar, dunia, sisa">Komposisi</th>
-    <th class="r" title="bagian yang dijelaskan gerak IHSG">Pasar</th>
-    <th class="r" title="bagian yang dijelaskan harga dunia yang ia jual atau beli">Dunia</th>
-    <th class="r" title="yang tidak dijelaskan keduanya">Sisa</th>
-    <th class="r" title="sisa dibagi simpangan baku sisa harian emiten ini sendiri">z</th>
-    <th class="r">Harga</th><th>Keterbukaan informasi</th></tr></thead><tbody>
-        <tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=TRUE">TRUE</a></td>
-    <td class="muted">Properti</td>
-    <td class="r num"><b>34.33%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.24% · dunia 0.00% · sisa 35.78%"><i class="gk-pasar" style="width:3.3%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.7%"></i></span></td>
-    <td class="r num muted">-1.24</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>35.78</b></td>
-    <td class="r num">+6.3</td>
-    <td class="r num muted">90</td>
-    
-    <td class="gk-nc"><div class="gk-n">
-  <span class="gk-jam">10:30</span>
-  <span class="chip good">saat sesi</span>
-  <span class="chip">lain</span>
-  <span class="gk-judul">Penyampaian Laporan Tahunan &amp; Keberlanjutan dan ESG</span></div></td></tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=SILO">SILO</a></td>
-    <td class="muted">Kesehatan</td>
-    <td class="r num"><b>5.10%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar 0.16% · dunia 0.00% · sisa 5.22%"><i class="gk-pasar" style="width:2.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.1%"></i></span></td>
-    <td class="r num muted">0.16</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>5.22</b></td>
-    <td class="r num">+2.4</td>
-    <td class="r num muted">2.060</td>
-    
-    <td class="gk-nc"><div class="gk-n">
-  <span class="gk-jam">23:44</span>
-  <span class="chip">setelah tutup</span>
-  <span class="chip bad">material</span>
-  <span class="gk-judul">Penyampaian Informasi rencana Transaksi material - Rencana Transaksi Material Dengan Persetujuan RUPS </span></div></td></tr></tbody></table></div></section><section class="card tight"><div class="card-h"><h3>Tanpa penjelasan resmi</h3>
-      <span class="muted" style="font-size:10.5px">40 emiten · gerak tak biasa, tidak ada keterbukaan informasi</span></div>
-    <p class="gk-p"><b>Ini daftar pantau, bukan daftar beli.</b> Pasar dan harga dunia sudah dikeluarkan, jadi
-    geraknya milik emiten itu sendiri — tetapi tidak ada dokumen resmi yang menjelaskannya. Penyebab yang
-    masuk akal: berita media, rumor, aksi pemegang saham besar, atau sekadar likuiditas tipis yang membuat
-    sedikit order menggerakkan harga jauh. Perlakukan sebagai pertanyaan, bukan jawaban.</p>
-    <div class="tbl-scroll"><table class="mini gk-t"><thead><tr><th>Saham</th><th>Sektor</th><th class="r">Gerak</th>
-    <th title="komposisi gerak: pasar, dunia, sisa">Komposisi</th>
-    <th class="r" title="bagian yang dijelaskan gerak IHSG">Pasar</th>
-    <th class="r" title="bagian yang dijelaskan harga dunia yang ia jual atau beli">Dunia</th>
-    <th class="r" title="yang tidak dijelaskan keduanya">Sisa</th>
-    <th class="r" title="sisa dibagi simpangan baku sisa harian emiten ini sendiri">z</th>
-    <th class="r">Harga</th></tr></thead><tbody>
-        <tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=BBSS">BBSS</a></td>
-    <td class="muted">Properti</td>
-    <td class="r num"><b>29.11%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.81% · dunia 0.00% · sisa 30.41%"><i class="gk-pasar" style="width:2.6%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.4%"></i></span></td>
-    <td class="r num muted">-0.81</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>30.41</b></td>
-    <td class="r num">+10.6</td>
-    <td class="r num muted">102</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=NASI">NASI</a></td>
-    <td class="muted">Konsumsi primer</td>
-    <td class="r num"><b>24.79%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.55% · dunia 0.00% · sisa 24.70%"><i class="gk-pasar" style="width:2.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.8%"></i></span></td>
-    <td class="r num muted">-0.55</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>24.70</b></td>
-    <td class="r num">+5.7</td>
-    <td class="r num muted">292</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=JAWA">JAWA</a></td>
-    <td class="muted">Konsumsi primer</td>
-    <td class="r num"><b>25.64%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.89% · dunia 0.00% · sisa 26.27%"><i class="gk-pasar" style="width:3.3%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.7%"></i></span></td>
-    <td class="r num muted">-0.89</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>26.27</b></td>
-    <td class="r num">+5.6</td>
-    <td class="r num muted">196</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=MAYA">MAYA</a></td>
-    <td class="muted">Keuangan</td>
-    <td class="r num"><b>8.81%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.35% · dunia 0.00% · sisa 9.09%"><i class="gk-pasar" style="width:3.7%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.3%"></i></span></td>
-    <td class="r num muted">-0.35</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>9.09</b></td>
-    <td class="r num">+5.1</td>
-    <td class="r num muted">210</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=AISA">AISA</a></td>
-    <td class="muted">Konsumsi primer</td>
-    <td class="r num"><b>10.83%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.70% · dunia 0.00% · sisa 11.44%"><i class="gk-pasar" style="width:5.8%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:94.2%"></i></span></td>
-    <td class="r num muted">-0.70</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>11.44</b></td>
-    <td class="r num">+4.8</td>
-    <td class="r num muted">133</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=INTD">INTD</a></td>
-    <td class="muted">Barang baku</td>
-    <td class="r num"><b>24.39%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.31% · dunia 0.00% · sisa 24.41%"><i class="gk-pasar" style="width:1.3%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:98.7%"></i></span></td>
-    <td class="r num muted">-0.31</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>24.41</b></td>
-    <td class="r num">+4.8</td>
-    <td class="r num muted">306</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=CSMI">CSMI</a></td>
-    <td class="muted">Konsumsi sekunder</td>
-    <td class="r num"><b>34.48%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.00% · dunia 0.00% · sisa 34.55%"><i class="gk-pasar" style="width:2.8%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.2%"></i></span></td>
-    <td class="r num muted">-1.00</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>34.55</b></td>
-    <td class="r num">+4.3</td>
-    <td class="r num muted">234</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=HOPE">HOPE</a></td>
-    <td class="muted">Industri</td>
-    <td class="r num"><b>24.78%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.31% · dunia 0.00% · sisa 25.61%"><i class="gk-pasar" style="width:4.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:95.1%"></i></span></td>
-    <td class="r num muted">-1.31</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>25.61</b></td>
-    <td class="r num">+4.1</td>
-    <td class="r num muted">282</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=GDST">GDST</a></td>
-    <td class="muted">Barang baku</td>
-    <td class="r num"><b>15.83%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.58% · dunia 0.00% · sisa 16.12%"><i class="gk-pasar" style="width:3.5%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.5%"></i></span></td>
-    <td class="r num muted">-0.58</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>16.12</b></td>
-    <td class="r num">+4.0</td>
-    <td class="r num muted">139</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=HELI">HELI</a></td>
-    <td class="muted">Transportasi</td>
-    <td class="r num"><b>10.58%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.77% · dunia 0.00% · sisa 11.14%"><i class="gk-pasar" style="width:6.4%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:93.6%"></i></span></td>
-    <td class="r num muted">-0.77</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>11.14</b></td>
-    <td class="r num">+3.9</td>
-    <td class="r num muted">230</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=BAJA">BAJA</a></td>
-    <td class="muted">Barang baku</td>
-    <td class="r num"><b>24.57%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.93% · dunia 0.00% · sisa 24.40%"><i class="gk-pasar" style="width:3.7%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.3%"></i></span></td>
-    <td class="r num muted">-0.93</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>24.40</b></td>
-    <td class="r num">+3.7</td>
-    <td class="r num muted">436</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=COIN">COIN</a></td>
-    <td class="muted">Keuangan</td>
-    <td class="r num"><b>12.58%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.98% · dunia 0.82% · sisa 13.76%"><i class="gk-pasar" style="width:12.0%"></i><i class="gk-dunia" style="width:5.0%"></i><i class="gk-sisa" style="width:83.1%"></i></span></td>
-    <td class="r num muted">-1.98</td>
-    <td class="r num gk-hi">0.82</td>
-    <td class="r num"><b>13.76</b></td>
-    <td class="r num">+3.5</td>
-    <td class="r num muted">850</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=PRAY">PRAY</a></td>
-    <td class="muted">Kesehatan</td>
-    <td class="r num"><b>11.11%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.02% · dunia 0.00% · sisa 11.11%"><i class="gk-pasar" style="width:0.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:99.8%"></i></span></td>
-    <td class="r num muted">-0.02</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>11.11</b></td>
-    <td class="r num">+3.3</td>
-    <td class="r num muted">800</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=WAPO">WAPO</a></td>
-    <td class="muted">Konsumsi primer</td>
-    <td class="r num"><b>11.21%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.70% · dunia 0.00% · sisa 11.23%"><i class="gk-pasar" style="width:5.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:94.1%"></i></span></td>
-    <td class="r num muted">-0.70</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>11.23</b></td>
-    <td class="r num">+3.2</td>
-    <td class="r num muted">258</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=IBOS">IBOS</a></td>
-    <td class="muted">Konsumsi primer</td>
-    <td class="r num"><b>10.00%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.10% · dunia 0.00% · sisa 11.18%"><i class="gk-pasar" style="width:9.0%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:91.0%"></i></span></td>
-    <td class="r num muted">-1.10</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>11.18</b></td>
-    <td class="r num">+3.0</td>
-    <td class="r num muted">99</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=MNCN">MNCN</a></td>
+  <th title="komposisi gerak: pasar, dunia, sisa">Susunan</th>
+  <th class="r" title="bagian yang dijelaskan gerak IHSG">Pasar</th>
+  <th class="r" title="bagian yang dijelaskan harga dunia yang ia jual atau beli">Dunia</th>
+  <th class="r" title="yang tidak dijelaskan keduanya">Sisa</th>
+  <th class="r" title="sisa dibagi simpangan baku sisa harian emiten ini sendiri">z</th>
+  <th class="r" title="nilai transaksi hari ini — gerak 30% di papan tipis dan di papan tebal dua hal berbeda">Nilai</th>
+  <th class="r">Harga</th></tr></thead><tbody><tr>
+    <td><a class="sym" href="scope.html?q=MNCN">MNCN</a> <span class="gk-run gk-run-d" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
     <td class="muted">Konsumsi sekunder</td>
     <td class="r num"><b>-6.38%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.47% · dunia 0.00% · sisa -5.91%"><i class="gk-pasar" style="width:7.4%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:92.6%"></i></span></td>
@@ -538,76 +382,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num muted">0.00</td>
     <td class="r num"><b>-5.91</b></td>
     <td class="r num">-2.9</td>
+    <td class="r num muted">17 M</td>
     <td class="r num muted">176</td>
     
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=AGAR">AGAR</a></td>
-    <td class="muted">Konsumsi primer</td>
-    <td class="r num"><b>25.00%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.50% · dunia 0.00% · sisa 23.37%"><i class="gk-pasar" style="width:2.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.9%"></i></span></td>
-    <td class="r num muted">-0.50</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>23.37</b></td>
-    <td class="r num">+2.8</td>
-    <td class="r num muted">2.300</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=HUMI">HUMI</a></td>
-    <td class="muted">Energi</td>
-    <td class="r num"><b>7.87%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.70% · dunia 0.00% · sisa 9.53%"><i class="gk-pasar" style="width:15.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:84.8%"></i></span></td>
-    <td class="r num muted">-1.70</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>9.53</b></td>
-    <td class="r num">+2.8</td>
-    <td class="r num muted">137</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=ARII">ARII</a></td>
-    <td class="muted">Energi</td>
-    <td class="r num"><b>6.34%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.39% · dunia 0.00% · sisa 6.65%"><i class="gk-pasar" style="width:5.5%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:94.5%"></i></span></td>
-    <td class="r num muted">-0.39</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>6.65</b></td>
-    <td class="r num">+2.8</td>
-    <td class="r num muted">302</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=GTSI">GTSI</a></td>
-    <td class="muted">Energi</td>
-    <td class="r num"><b>8.84%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.89% · dunia 0.00% · sisa 10.62%"><i class="gk-pasar" style="width:15.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:84.9%"></i></span></td>
-    <td class="r num muted">-1.89</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>10.62</b></td>
-    <td class="r num">+2.7</td>
-    <td class="r num muted">160</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=TGUK">TGUK</a></td>
-    <td class="muted">Konsumsi primer</td>
-    <td class="r num"><b>9.90%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar 0.01% · dunia 0.00% · sisa 10.07%"><i class="gk-pasar" style="width:0.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:99.9%"></i></span></td>
-    <td class="r num muted">0.01</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>10.07</b></td>
-    <td class="r num">+2.6</td>
-    <td class="r num muted">111</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=CHEM">CHEM</a></td>
-    <td class="muted">Barang baku</td>
-    <td class="r num"><b>12.50%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -1.03% · dunia 0.00% · sisa 13.44%"><i class="gk-pasar" style="width:7.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:92.9%"></i></span></td>
-    <td class="r num muted">-1.03</td>
-    <td class="r num muted">0.00</td>
-    <td class="r num"><b>13.44</b></td>
-    <td class="r num">+2.5</td>
-    <td class="r num muted">72</td>
-    
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=KICI">KICI</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=KICI">KICI</a> </td>
     <td class="muted">Konsumsi sekunder</td>
     <td class="r num"><b>-14.77%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.53% · dunia 0.00% · sisa -15.08%"><i class="gk-pasar" style="width:3.4%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.6%"></i></span></td>
@@ -615,10 +394,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num muted">0.00</td>
     <td class="r num"><b>-15.08</b></td>
     <td class="r num">-2.5</td>
+    <td class="r num muted">38 M</td>
     <td class="r num muted">300</td>
     
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=POWR">POWR</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=POWR">POWR</a> </td>
     <td class="muted">Infrastruktur</td>
     <td class="r num"><b>-4.88%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.25% · dunia 0.00% · sisa -4.96%"><i class="gk-pasar" style="width:4.8%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:95.2%"></i></span></td>
@@ -626,30 +406,386 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num muted">0.00</td>
     <td class="r num"><b>-4.96</b></td>
     <td class="r num">-2.4</td>
+    <td class="r num muted">9.2 M</td>
     <td class="r num muted">975</td>
     
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=GWSA">GWSA</a></td>
-    <td class="muted">Konsumsi sekunder</td>
-    <td class="r num"><b>5.70%</b></td>
-    <td class="gk-bc"><span class="gk-bar" title="pasar -0.60% · dunia 0.00% · sisa 6.10%"><i class="gk-pasar" style="width:8.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:91.1%"></i></span></td>
-    <td class="r num muted">-0.60</td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=LIFE">LIFE</a> </td>
+    <td class="muted">Keuangan</td>
+    <td class="r num"><b>-9.82%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.33% · dunia 0.00% · sisa -10.11%"><i class="gk-pasar" style="width:3.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.8%"></i></span></td>
+    <td class="r num muted">-0.33</td>
     <td class="r num muted">0.00</td>
-    <td class="r num"><b>6.10</b></td>
-    <td class="r num">+2.4</td>
-    <td class="r num muted">167</td>
+    <td class="r num"><b>-10.11</b></td>
+    <td class="r num">-2.3</td>
+    <td class="r num muted">894 jt</td>
+    <td class="r num muted">11.475</td>
     
-    </tr></tbody></table></div></section><section class="card tight"><div class="card-h"><h3>Digerakkan harga dunia</h3>
-      <span class="muted" style="font-size:10.5px">minimal 20% geraknya berasal dari komoditas atau kurs yang ia jual-beli</span></div>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=MMLP">MMLP</a> </td>
+    <td class="muted">Properti</td>
+    <td class="r num"><b>-5.33%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.53% · dunia 0.00% · sisa -4.97%"><i class="gk-pasar" style="width:9.6%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:90.4%"></i></span></td>
+    <td class="r num muted">-0.53</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>-4.97</b></td>
+    <td class="r num">-2.3</td>
+    <td class="r num muted">1.4 M</td>
+    <td class="r num muted">320</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=CAMP">CAMP</a> </td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>-5.94%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.58% · dunia 0.00% · sisa -5.46%"><i class="gk-pasar" style="width:9.6%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:90.4%"></i></span></td>
+    <td class="r num muted">-0.58</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>-5.46</b></td>
+    <td class="r num">-2.1</td>
+    <td class="r num muted">3.0 M</td>
+    <td class="r num muted">190</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=JARR">JARR</a> <span class="gk-run gk-run-d" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>-10.28%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.61% · dunia 0.00% · sisa -9.95%"><i class="gk-pasar" style="width:14.0%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:86.0%"></i></span></td>
+    <td class="r num muted">-1.61</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>-9.95</b></td>
+    <td class="r num">-2.1</td>
+    <td class="r num muted">130 M</td>
+    <td class="r num muted">3.230</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=GRPH">GRPH</a> </td>
+    <td class="muted">Konsumsi sekunder</td>
+    <td class="r num"><b>-9.49%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.71% · dunia 0.00% · sisa -9.78%"><i class="gk-pasar" style="width:6.8%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:93.2%"></i></span></td>
+    <td class="r num muted">-0.71</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>-9.78</b></td>
+    <td class="r num">-2.0</td>
+    <td class="r num muted">1.0 M</td>
+    <td class="r num muted">124</td>
+    
+    </tr></tbody></table></div></section><section class="card tight"><div class="card-h"><h3>Naik tanpa penjelasan</h3>
+      <span class="muted" style="font-size:10.5px">32 emiten · daftar pantau, bukan daftar beli</span></div>
+    <div class="note warn"><b>Berbeda dari daftar di atas, yang ini TIDAK terbukti bisa ditindaklanjuti.</b> Rata-ratanya memang <b>0.83%</b> dalam lima hari, tetapi <b>mediannya -1.06%</b> —
+       artinya sebagian besar berbalik dan hanya sedikit yang lari jauh. Hanya searah di
+       <b>3 dari 7 tahun</b>, dan tahun ini justru di bawah hari acak.
+    Penyebab yang masuk akal: berita media, rumor, aksi pemegang saham besar, atau likuiditas tipis yang membuat
+    sedikit order menggerakkan harga jauh. Perlakukan sebagai pertanyaan.</div>
     <div class="tbl-scroll"><table class="mini gk-t"><thead><tr><th>Saham</th><th>Sektor</th><th class="r">Gerak</th>
-    <th title="komposisi gerak: pasar, dunia, sisa">Komposisi</th>
-    <th class="r" title="bagian yang dijelaskan gerak IHSG">Pasar</th>
-    <th class="r" title="bagian yang dijelaskan harga dunia yang ia jual atau beli">Dunia</th>
-    <th class="r" title="yang tidak dijelaskan keduanya">Sisa</th>
-    <th class="r" title="sisa dibagi simpangan baku sisa harian emiten ini sendiri">z</th>
-    <th class="r">Harga</th><th>Penggerak</th></tr></thead><tbody>
-        <tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=MLPT">MLPT</a></td>
+  <th title="komposisi gerak: pasar, dunia, sisa">Susunan</th>
+  <th class="r" title="bagian yang dijelaskan gerak IHSG">Pasar</th>
+  <th class="r" title="bagian yang dijelaskan harga dunia yang ia jual atau beli">Dunia</th>
+  <th class="r" title="yang tidak dijelaskan keduanya">Sisa</th>
+  <th class="r" title="sisa dibagi simpangan baku sisa harian emiten ini sendiri">z</th>
+  <th class="r" title="nilai transaksi hari ini — gerak 30% di papan tipis dan di papan tebal dua hal berbeda">Nilai</th>
+  <th class="r">Harga</th></tr></thead><tbody><tr>
+    <td><a class="sym" href="scope.html?q=BBSS">BBSS</a> </td>
+    <td class="muted">Properti</td>
+    <td class="r num"><b>29.11%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.81% · dunia 0.00% · sisa 30.41%"><i class="gk-pasar" style="width:2.6%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.4%"></i></span></td>
+    <td class="r num muted">-0.81</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>30.41</b></td>
+    <td class="r num">+10.6</td>
+    <td class="r num muted">44 M</td>
+    <td class="r num muted">102</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=NASI">NASI</a> <span class="gk-run gk-run-u" title="3 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">3 hari</span></td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>24.79%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.55% · dunia 0.00% · sisa 24.70%"><i class="gk-pasar" style="width:2.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.8%"></i></span></td>
+    <td class="r num muted">-0.55</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>24.70</b></td>
+    <td class="r num">+5.7</td>
+    <td class="r num muted">6.7 M</td>
+    <td class="r num muted">292</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=JAWA">JAWA</a> </td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>25.64%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.89% · dunia 0.00% · sisa 26.27%"><i class="gk-pasar" style="width:3.3%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.7%"></i></span></td>
+    <td class="r num muted">-0.89</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>26.27</b></td>
+    <td class="r num">+5.6</td>
+    <td class="r num muted">17 M</td>
+    <td class="r num muted">196</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=MAYA">MAYA</a> </td>
+    <td class="muted">Keuangan</td>
+    <td class="r num"><b>8.81%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.35% · dunia 0.00% · sisa 9.09%"><i class="gk-pasar" style="width:3.7%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.3%"></i></span></td>
+    <td class="r num muted">-0.35</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>9.09</b></td>
+    <td class="r num">+5.1</td>
+    <td class="r num muted">2.8 M</td>
+    <td class="r num muted">210</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=AISA">AISA</a> <span class="gk-run gk-run-u" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>10.83%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.70% · dunia 0.00% · sisa 11.44%"><i class="gk-pasar" style="width:5.8%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:94.2%"></i></span></td>
+    <td class="r num muted">-0.70</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>11.44</b></td>
+    <td class="r num">+4.8</td>
+    <td class="r num muted">30 M</td>
+    <td class="r num muted">133</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=INTD">INTD</a> <span class="gk-surat" title="bursa mengirim surat permintaan penjelasan pada 2026-09-17 — penilai dari luar juga menganggap geraknya tidak wajar">surat bursa</span></td>
+    <td class="muted">Barang baku</td>
+    <td class="r num"><b>24.39%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.31% · dunia 0.00% · sisa 24.41%"><i class="gk-pasar" style="width:1.3%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:98.7%"></i></span></td>
+    <td class="r num muted">-0.31</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>24.41</b></td>
+    <td class="r num">+4.8</td>
+    <td class="r num muted">2.0 M</td>
+    <td class="r num muted">306</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=CSMI">CSMI</a> </td>
+    <td class="muted">Konsumsi sekunder</td>
+    <td class="r num"><b>34.48%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.00% · dunia 0.00% · sisa 34.55%"><i class="gk-pasar" style="width:2.8%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.2%"></i></span></td>
+    <td class="r num muted">-1.00</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>34.55</b></td>
+    <td class="r num">+4.3</td>
+    <td class="r num muted">43 M</td>
+    <td class="r num muted">234</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=HOPE">HOPE</a> </td>
+    <td class="muted">Industri</td>
+    <td class="r num"><b>24.78%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.31% · dunia 0.00% · sisa 25.61%"><i class="gk-pasar" style="width:4.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:95.1%"></i></span></td>
+    <td class="r num muted">-1.31</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>25.61</b></td>
+    <td class="r num">+4.1</td>
+    <td class="r num muted">46 M</td>
+    <td class="r num muted">282</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=GDST">GDST</a> <span class="gk-run gk-run-u" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
+    <td class="muted">Barang baku</td>
+    <td class="r num"><b>15.83%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.58% · dunia 0.00% · sisa 16.12%"><i class="gk-pasar" style="width:3.5%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.5%"></i></span></td>
+    <td class="r num muted">-0.58</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>16.12</b></td>
+    <td class="r num">+4.0</td>
+    <td class="r num muted">27 M</td>
+    <td class="r num muted">139</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=HELI">HELI</a> </td>
+    <td class="muted">Transportasi</td>
+    <td class="r num"><b>10.58%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.77% · dunia 0.00% · sisa 11.14%"><i class="gk-pasar" style="width:6.4%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:93.6%"></i></span></td>
+    <td class="r num muted">-0.77</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>11.14</b></td>
+    <td class="r num">+3.9</td>
+    <td class="r num muted">3.9 M</td>
+    <td class="r num muted">230</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=BAJA">BAJA</a> <span class="gk-run gk-run-u" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
+    <td class="muted">Barang baku</td>
+    <td class="r num"><b>24.57%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.93% · dunia 0.00% · sisa 24.40%"><i class="gk-pasar" style="width:3.7%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.3%"></i></span></td>
+    <td class="r num muted">-0.93</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>24.40</b></td>
+    <td class="r num">+3.7</td>
+    <td class="r num muted">51 M</td>
+    <td class="r num muted">436</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=COIN">COIN</a> </td>
+    <td class="muted">Keuangan</td>
+    <td class="r num"><b>12.58%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.98% · dunia 0.82% · sisa 13.76%"><i class="gk-pasar" style="width:12.0%"></i><i class="gk-dunia" style="width:5.0%"></i><i class="gk-sisa" style="width:83.1%"></i></span></td>
+    <td class="r num muted">-1.98</td>
+    <td class="r num gk-hi">0.82</td>
+    <td class="r num"><b>13.76</b></td>
+    <td class="r num">+3.5</td>
+    <td class="r num muted">149 M</td>
+    <td class="r num muted">850</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=PRAY">PRAY</a> </td>
+    <td class="muted">Kesehatan</td>
+    <td class="r num"><b>11.11%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.02% · dunia 0.00% · sisa 11.11%"><i class="gk-pasar" style="width:0.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:99.8%"></i></span></td>
+    <td class="r num muted">-0.02</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>11.11</b></td>
+    <td class="r num">+3.3</td>
+    <td class="r num muted">570 jt</td>
+    <td class="r num muted">800</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=WAPO">WAPO</a> <span class="gk-run gk-run-u" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>11.21%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.70% · dunia 0.00% · sisa 11.23%"><i class="gk-pasar" style="width:5.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:94.1%"></i></span></td>
+    <td class="r num muted">-0.70</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>11.23</b></td>
+    <td class="r num">+3.2</td>
+    <td class="r num muted">4.8 M</td>
+    <td class="r num muted">258</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=IBOS">IBOS</a> </td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>10.00%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.10% · dunia 0.00% · sisa 11.18%"><i class="gk-pasar" style="width:9.0%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:91.0%"></i></span></td>
+    <td class="r num muted">-1.10</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>11.18</b></td>
+    <td class="r num">+3.0</td>
+    <td class="r num muted">2.5 M</td>
+    <td class="r num muted">99</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=AGAR">AGAR</a> </td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>25.00%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.50% · dunia 0.00% · sisa 23.37%"><i class="gk-pasar" style="width:2.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.9%"></i></span></td>
+    <td class="r num muted">-0.50</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>23.37</b></td>
+    <td class="r num">+2.8</td>
+    <td class="r num muted">7.9 M</td>
+    <td class="r num muted">2.300</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=HUMI">HUMI</a> </td>
+    <td class="muted">Energi</td>
+    <td class="r num"><b>7.87%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.70% · dunia 0.00% · sisa 9.53%"><i class="gk-pasar" style="width:15.2%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:84.8%"></i></span></td>
+    <td class="r num muted">-1.70</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>9.53</b></td>
+    <td class="r num">+2.8</td>
+    <td class="r num muted">15 M</td>
+    <td class="r num muted">137</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=ARII">ARII</a> </td>
+    <td class="muted">Energi</td>
+    <td class="r num"><b>6.34%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -0.39% · dunia 0.00% · sisa 6.65%"><i class="gk-pasar" style="width:5.5%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:94.5%"></i></span></td>
+    <td class="r num muted">-0.39</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>6.65</b></td>
+    <td class="r num">+2.8</td>
+    <td class="r num muted">1.1 M</td>
+    <td class="r num muted">302</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=GTSI">GTSI</a> </td>
+    <td class="muted">Energi</td>
+    <td class="r num"><b>8.84%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.89% · dunia 0.00% · sisa 10.62%"><i class="gk-pasar" style="width:15.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:84.9%"></i></span></td>
+    <td class="r num muted">-1.89</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>10.62</b></td>
+    <td class="r num">+2.7</td>
+    <td class="r num muted">14 M</td>
+    <td class="r num muted">160</td>
+    
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=TGUK">TGUK</a> </td>
+    <td class="muted">Konsumsi primer</td>
+    <td class="r num"><b>9.90%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar 0.01% · dunia 0.00% · sisa 10.07%"><i class="gk-pasar" style="width:0.1%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:99.9%"></i></span></td>
+    <td class="r num muted">0.01</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>10.07</b></td>
+    <td class="r num">+2.6</td>
+    <td class="r num muted">503 jt</td>
+    <td class="r num muted">111</td>
+    
+    </tr></tbody></table></div></section><section class="card tight"><div class="card-h"><h3>Ada penjelasan resminya</h3>
+      <span class="muted" style="font-size:10.5px">gerak tak biasa yang disertai keterbukaan informasi dalam jendela sesi ini</span></div>
+    <div class="tbl-scroll"><table class="mini gk-t"><thead><tr><th>Saham</th><th>Sektor</th><th class="r">Gerak</th>
+  <th title="komposisi gerak: pasar, dunia, sisa">Susunan</th>
+  <th class="r" title="bagian yang dijelaskan gerak IHSG">Pasar</th>
+  <th class="r" title="bagian yang dijelaskan harga dunia yang ia jual atau beli">Dunia</th>
+  <th class="r" title="yang tidak dijelaskan keduanya">Sisa</th>
+  <th class="r" title="sisa dibagi simpangan baku sisa harian emiten ini sendiri">z</th>
+  <th class="r" title="nilai transaksi hari ini — gerak 30% di papan tipis dan di papan tebal dua hal berbeda">Nilai</th>
+  <th class="r">Harga</th><th>Keterbukaan informasi</th></tr></thead><tbody>
+        <tr>
+    <td><a class="sym" href="scope.html?q=TRUE">TRUE</a> <span class="gk-run gk-run-u" title="2 hari bursa berturut-turut sisanya searah — sesuatu yang berjalan, bukan satu order yang kebetulan lewat">2 hari</span></td>
+    <td class="muted">Properti</td>
+    <td class="r num"><b>34.33%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar -1.24% · dunia 0.00% · sisa 35.78%"><i class="gk-pasar" style="width:3.3%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:96.7%"></i></span></td>
+    <td class="r num muted">-1.24</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>35.78</b></td>
+    <td class="r num">+6.3</td>
+    <td class="r num muted">116 M</td>
+    <td class="r num muted">90</td>
+    
+    <td class="gk-nc"><div class="gk-n">
+  <span class="gk-jam">10:30</span>
+  <span class="chip good">saat sesi</span>
+  <span class="chip">lain</span>
+  <span class="gk-judul">Penyampaian Laporan Tahunan &amp; Keberlanjutan dan ESG</span></div></td></tr><tr>
+    <td><a class="sym" href="scope.html?q=SILO">SILO</a> </td>
+    <td class="muted">Kesehatan</td>
+    <td class="r num"><b>5.10%</b></td>
+    <td class="gk-bc"><span class="gk-bar" title="pasar 0.16% · dunia 0.00% · sisa 5.22%"><i class="gk-pasar" style="width:2.9%"></i><i class="gk-dunia" style="width:0.0%"></i><i class="gk-sisa" style="width:97.1%"></i></span></td>
+    <td class="r num muted">0.16</td>
+    <td class="r num muted">0.00</td>
+    <td class="r num"><b>5.22</b></td>
+    <td class="r num">+2.4</td>
+    <td class="r num muted">8.1 M</td>
+    <td class="r num muted">2.060</td>
+    
+    <td class="gk-nc"><div class="gk-n">
+  <span class="gk-jam">23:44</span>
+  <span class="chip">setelah tutup</span>
+  <span class="chip bad">material</span>
+  <span class="gk-judul">Penyampaian Informasi rencana Transaksi material - Rencana Transaksi Material Dengan Persetujuan RUPS </span></div></td></tr></tbody></table></div></section><section class="card tight"><div class="card-h"><h3>Digerakkan harga dunia</h3>
+      <span class="muted" style="font-size:10.5px">minimal 20% geraknya berasal dari komoditas atau kurs yang ia jual-beli</span></div>
+    <div class="gk-sekt">
+      <div class="gk-sk">
+        <b>Kesehatan</b>
+        <span class="gk-dn">-0.13%</span>
+        <span class="gk-jam">dari USD/IDR · rata sektor 0.57%</span></div><div class="gk-sk">
+        <b>Teknologi</b>
+        <span class="gk-dn">-0.10%</span>
+        <span class="gk-jam">dari USD/IDR · rata sektor 0.32%</span></div>
+      </div>
+    <div class="tbl-scroll"><table class="mini gk-t"><thead><tr><th>Saham</th><th>Sektor</th><th class="r">Gerak</th>
+  <th title="komposisi gerak: pasar, dunia, sisa">Susunan</th>
+  <th class="r" title="bagian yang dijelaskan gerak IHSG">Pasar</th>
+  <th class="r" title="bagian yang dijelaskan harga dunia yang ia jual atau beli">Dunia</th>
+  <th class="r" title="yang tidak dijelaskan keduanya">Sisa</th>
+  <th class="r" title="sisa dibagi simpangan baku sisa harian emiten ini sendiri">z</th>
+  <th class="r" title="nilai transaksi hari ini — gerak 30% di papan tipis dan di papan tebal dua hal berbeda">Nilai</th>
+  <th class="r">Harga</th><th>Penggerak</th></tr></thead><tbody>
+        <tr>
+    <td><a class="sym" href="scope.html?q=MLPT">MLPT</a> </td>
     <td class="muted">Teknologi</td>
     <td class="r num"><b>-3.69%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -1.30% · dunia -1.80% · sisa -1.64%"><i class="gk-pasar" style="width:27.5%"></i><i class="gk-dunia" style="width:38.0%"></i><i class="gk-sisa" style="width:34.6%"></i></span></td>
@@ -657,10 +793,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-1.80</td>
     <td class="r num"><b>-1.64</b></td>
     <td class="r num">-0.2</td>
+    <td class="r num muted">1.9 M</td>
     <td class="r num muted">1.175</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=DEFI">DEFI</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=DEFI">DEFI</a> <span class="gk-surat" title="bursa mengirim surat permintaan penjelasan pada 2026-09-18 — penilai dari luar juga menganggap geraknya tidak wajar">surat bursa</span></td>
     <td class="muted">Keuangan</td>
     <td class="r num"><b>-1.80%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -1.16% · dunia 0.87% · sisa -2.35%"><i class="gk-pasar" style="width:26.5%"></i><i class="gk-dunia" style="width:19.9%"></i><i class="gk-sisa" style="width:53.6%"></i></span></td>
@@ -668,10 +805,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">0.87</td>
     <td class="r num"><b>-2.35</b></td>
     <td class="r num">-0.2</td>
+    <td class="r num muted">2.6 M</td>
     <td class="r num muted">109</td>
     <td class="muted">Bitcoin <span class="gk-jam">3.33%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=KRAS">KRAS</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=KRAS">KRAS</a> </td>
     <td class="muted">Barang baku</td>
     <td class="r num"><b>2.65%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.74% · dunia -0.84% · sisa 4.25%"><i class="gk-pasar" style="width:12.7%"></i><i class="gk-dunia" style="width:14.4%"></i><i class="gk-sisa" style="width:72.9%"></i></span></td>
@@ -679,10 +817,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-0.84</td>
     <td class="r num"><b>4.25</b></td>
     <td class="r num">+1.9</td>
+    <td class="r num muted">672 jt</td>
     <td class="r num muted">232</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=KLBF">KLBF</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=KLBF">KLBF</a> </td>
     <td class="muted">Kesehatan</td>
     <td class="r num"><b>-1.32%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.29% · dunia -0.65% · sisa -0.28%"><i class="gk-pasar" style="width:23.9%"></i><i class="gk-dunia" style="width:53.1%"></i><i class="gk-sisa" style="width:23.1%"></i></span></td>
@@ -690,10 +829,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-0.65</td>
     <td class="r num"><b>-0.28</b></td>
     <td class="r num">-0.1</td>
+    <td class="r num muted">20 M</td>
     <td class="r num muted">750</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=ISAT">ISAT</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=ISAT">ISAT</a> </td>
     <td class="muted">Infrastruktur</td>
     <td class="r num"><b>-2.53%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.65% · dunia 0.60% · sisa -2.69%"><i class="gk-pasar" style="width:16.5%"></i><i class="gk-dunia" style="width:15.3%"></i><i class="gk-sisa" style="width:68.2%"></i></span></td>
@@ -701,10 +841,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">0.60</td>
     <td class="r num"><b>-2.69</b></td>
     <td class="r num">-0.9</td>
+    <td class="r num muted">111 M</td>
     <td class="r num muted">2.310</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=CPIN">CPIN</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=CPIN">CPIN</a> </td>
     <td class="muted">Konsumsi primer</td>
     <td class="r num"><b>-1.27%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.33% · dunia -0.59% · sisa -0.36%"><i class="gk-pasar" style="width:25.6%"></i><i class="gk-dunia" style="width:46.1%"></i><i class="gk-sisa" style="width:28.3%"></i></span></td>
@@ -712,10 +853,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-0.59</td>
     <td class="r num"><b>-0.36</b></td>
     <td class="r num">-0.1</td>
+    <td class="r num muted">65 M</td>
     <td class="r num muted">3.110</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=SMDR">SMDR</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=SMDR">SMDR</a> </td>
     <td class="muted">Transportasi</td>
     <td class="r num"><b>2.54%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.59% · dunia -0.53% · sisa 3.41%"><i class="gk-pasar" style="width:12.9%"></i><i class="gk-dunia" style="width:11.8%"></i><i class="gk-sisa" style="width:75.3%"></i></span></td>
@@ -723,10 +865,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-0.53</td>
     <td class="r num"><b>3.41</b></td>
     <td class="r num">+1.9</td>
+    <td class="r num muted">31 M</td>
     <td class="r num muted">404</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=MAPA">MAPA</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=MAPA">MAPA</a> </td>
     <td class="muted">Konsumsi sekunder</td>
     <td class="r num"><b>1.45%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.44% · dunia -0.41% · sisa 2.06%"><i class="gk-pasar" style="width:15.2%"></i><i class="gk-dunia" style="width:14.1%"></i><i class="gk-sisa" style="width:70.7%"></i></span></td>
@@ -734,10 +877,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-0.41</td>
     <td class="r num"><b>2.06</b></td>
     <td class="r num">+0.8</td>
+    <td class="r num muted">6.9 M</td>
     <td class="r num muted">700</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=ACES">ACES</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=ACES">ACES</a> </td>
     <td class="muted">Konsumsi sekunder</td>
     <td class="r num"><b>-1.14%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.41% · dunia -0.32% · sisa -0.43%"><i class="gk-pasar" style="width:35.5%"></i><i class="gk-dunia" style="width:27.6%"></i><i class="gk-sisa" style="width:36.9%"></i></span></td>
@@ -745,10 +889,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-0.32</td>
     <td class="r num"><b>-0.43</b></td>
     <td class="r num">-0.2</td>
+    <td class="r num muted">4.4 M</td>
     <td class="r num muted">346</td>
     <td class="muted">USD/IDR <span class="gk-jam">0.43%</span></td>
-    </tr><tr class="gk-r">
-    <td><a class="sym" href="scope.html?q=MEDC">MEDC</a></td>
+    </tr><tr>
+    <td><a class="sym" href="scope.html?q=MEDC">MEDC</a> </td>
     <td class="muted">Energi</td>
     <td class="r num"><b>1.03%</b></td>
     <td class="gk-bc"><span class="gk-bar" title="pasar -0.39% · dunia -0.31% · sisa 1.78%"><i class="gk-pasar" style="width:15.6%"></i><i class="gk-dunia" style="width:12.6%"></i><i class="gk-sisa" style="width:71.8%"></i></span></td>
@@ -756,13 +901,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <td class="r num gk-hi">-0.31</td>
     <td class="r num"><b>1.78</b></td>
     <td class="r num">+0.6</td>
+    <td class="r num muted">91 M</td>
     <td class="r num muted">1.475</td>
     <td class="muted">Minyak Brent <span class="gk-jam">-1.35%</span></td>
     </tr></tbody></table></div>
     <p class="gk-p"><b>Ini penjelasan, bukan sinyal.</b> Jalur ini sudah diuji dan tidak bisa didahului:
     ketika emas naik semalam, 87% reaksi emiten emas sudah selesai di gap pembukaan sebelum satu pun
-    pesanan bisa dikirim, dan reaksinya tidak tertunda ke hari berikutnya. Gunanya untuk memahami
-    <i>kenapa</i> posisi Anda bergerak dan seberapa besar ia bergantung pada harga dunia.</p></section><section class="card tight"><div class="card-h"><h3>Papan penggerak dunia</h3>
+    pesanan bisa dikirim, dan reaksinya tidak tertunda ke hari berikutnya.</p></section><section class="card tight"><div class="card-h"><h3>Papan penggerak dunia</h3>
       <span class="muted" style="font-size:10.5px">32 seri harian · investing.com · 2026-09-21 · diurut dari yang paling tidak biasa</span></div>
     <div class="tbl-scroll"><table class="mini gk-t">
     <thead><tr><th>Penggerak</th><th class="r">Harga</th><th class="r">1 hr</th><th class="r">5 hr</th><th class="r">20 hr</th>
@@ -825,21 +970,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     </tbody></table></div></section><section class="card tight"><div class="card-h"><h3>Cara halaman ini dihitung</h3></div>
     <div class="gk-met">
       <p><b>Modelnya.</b> <code>gerak = a + b₁·IHSG + b₂·penggerak + sisa</code>. Koefisiennya diperkirakan dari
-      120 hari bursa yang berakhir <b>sebelum</b> hari yang dijelaskan, jadi tidak ada angka masa depan yang
-      dipakai. Penggeraknya bukan hasil saringan korelasi melainkan kurasi ekonomi: apa yang emiten itu
-      benar-benar jual atau beli.</p>
-      <p><b>Jendela beritanya bukan "hari yang sama".</b> Bursa tutup pukul 16:00. Untuk sesi tanggal ini,
-      keterbukaan yang bisa menggerakkan harga adalah yang terbit <b>setelah tutup pada hari bursa sebelumnya</b>
-      ditambah yang terbit <b>pra-buka dan selama sesi hari ini</b>. Pengumuman pukul 17:25 masuk jendela
-      hari berikutnya — kalau tidak dipisahkan begini, berita yang sekadar <i>melaporkan</i> gerak harga akan
-      terbaca seolah <i>menyebabkannya</i>.</p>
-      <p><b>Sebagian besar pengumuman adalah rutinitas.</b> Laporan bulanan registrasi pemegang efek terbit
-      untuk hampir semua emiten tiap bulan dan tidak pernah menggerakkan apa pun. Yang ditampilkan di sini
-      hanya kelas yang berpotensi material.</p>
-      <p><b>Ukuran sisa ini diuji pihak luar.</b> Bursa mengirim surat "Penjelasan atas Volatilitas Transaksi"
-      kepada emiten yang geraknya dianggap tidak wajar. Emiten yang disurati ternyata punya nilai <b>z</b>
-      rata-rata <b>1,77 kali</b> lebih tinggi daripada emiten lain pada hari yang sama (median 2,5 kali).
-      Penilai yang tidak kami kendalikan menandai nama yang sama.</p>
+      120 hari bursa yang berakhir <b>sebelum</b> hari yang dijelaskan, jadi tidak ada angka masa depan yang dipakai.
+      Penggeraknya bukan hasil saringan korelasi melainkan kurasi ekonomi: apa yang emiten itu benar-benar jual atau beli.</p>
+      <p><b>Jendela beritanya bukan "hari yang sama".</b> Bursa tutup pukul 16:00. Keterbukaan yang bisa menggerakkan
+      harga adalah yang terbit <b>setelah tutup pada hari bursa sebelumnya</b> ditambah yang terbit <b>pra-buka dan
+      selama sesi hari ini</b>. Pengumuman pukul 17:25 masuk jendela hari berikutnya — kalau tidak dipisahkan begini,
+      berita yang sekadar <i>melaporkan</i> gerak harga akan terbaca seolah <i>menyebabkannya</i>.</p>
+      <p><b>Kolom "hari" pada nama saham</b> menunjukkan berapa hari bursa berturut-turut sisanya searah. Tiga hari
+      beruntun menunjukkan sesuatu yang berjalan; satu lonjakan bisa jadi satu order besar yang kebetulan lewat.</p>
+      <p><b>Tanda "surat bursa"</b> berarti bursa mengirim permintaan penjelasan atas volatilitas dalam lima hari
+      terakhir. Emiten yang disurati ternyata punya nilai <b>z</b> rata-rata <b>1,77 kali</b> lebih tinggi daripada
+      emiten lain pada hari yang sama — penilai yang tidak kami kendalikan menandai nama yang sama.</p>
+      <p><b>Nilai transaksi ditampilkan</b> karena gerak 30% pada papan Rp 1 miliar sehari dan pada papan
+      Rp 100 miliar sehari adalah dua fenomena berbeda, meski angka persennya sama.</p>
     </div></section></main>
 <footer class="ft"><div class="ft-in"><span id="envFoot"></span>Harga tertunda ±15 menit — cek harga live sebelum eksekusi. Bukan rekomendasi investasi.</div></footer>
 <script>
