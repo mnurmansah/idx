@@ -555,6 +555,40 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--warn)}
 .sq-vonis.bad{border-left-color:var(--down)}
 .sq-vonis b{color:var(--ink)}
+/* ── konsol keputusan (Decision Orchestrator) ──────────────────────────────── */
+.dc{margin:0 0 14px}
+.dc-hd{padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.dc-eye{font:600 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.dc-neg{margin:6px 0 0;font:700 15px/1.2 var(--sans);letter-spacing:.01em}
+.dc-seb{margin:5px 0 0;font-size:11.5px;line-height:1.5;color:var(--ink2)}
+.dc-lap{display:grid;gap:1px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line2)}
+.dc-l{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:3px 0;font-size:11.5px}
+.dc-l span:first-child{color:var(--muted);flex:0 0 auto}
+.dc-l b{font-weight:600;text-align:right;min-width:0;word-break:break-word}
+.dc-st{margin-top:9px;padding:7px 9px;border-radius:6px;font:700 10.5px/1.35 var(--sans);letter-spacing:.03em}
+.dc-st.baik{background:var(--up-soft);color:var(--up)}
+.dc-st.buruk{background:var(--down-soft);color:var(--down)}
+.dc-st.netral{background:var(--panel2);color:var(--ink2)}
+.dc-sub{margin:14px 0 6px;padding-top:10px;border-top:1px solid var(--line2);
+  font:600 9px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.dc-chk{margin:0;padding:0;list-style:none;display:grid;gap:1px}
+.dc-chk li{display:grid;grid-template-columns:14px 1fr;gap:6px;padding:4px 0;border-bottom:1px solid var(--line2);font-size:11.5px;color:var(--muted)}
+.dc-chk li:last-child{border-bottom:0}
+.dc-chk li.ok{color:var(--ink)}
+.dc-chk li i{font-style:normal;font-size:11px;color:var(--muted);text-align:center}
+.dc-chk li.ok i{color:var(--up)}
+.dc-chk li.no i{color:var(--down)}
+.dc-chk li em{display:block;margin-top:1px;font-style:normal;font-size:10px;color:var(--muted);line-height:1.4}
+.dc-chk li u{text-decoration:none;font-size:9.5px;color:var(--accent);letter-spacing:.04em}
+.dc-tg{margin:0;padding:0 0 0 16px;font-size:11.5px;line-height:1.55;color:var(--ink2)}
+.dc-tg li{margin:3px 0}
+.dc-inv{margin:0;padding:0 0 0 16px;font-size:11px;line-height:1.5;color:var(--down)}
+.dc-bl{display:grid;gap:5px}
+.dc-bl div{display:flex;gap:7px;align-items:baseline;font-size:11.5px}
+.dc-bl i{font-style:normal;color:var(--down);flex:0 0 auto}
+.dc-ren{padding:9px 11px;background:var(--up-soft);border-radius:8px}
+.dc-ren .dc-l span:first-child{color:var(--up)}
+.dc-foot{margin:10px 0 0;font-size:10px;line-height:1.5;color:var(--muted)}
 /* ── panel aliran intraday (konsol, bukan paragraf) ─────────────────────────── */
 .fl{margin:12px 0 0;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
 .fl-eye{font:600 9.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -694,7 +728,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 <header class="top">
   <div class="top-in">
     <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
-    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="gerak.html">Kenapa bergerak</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a></nav>
+    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="gerak.html">Kenapa bergerak</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
@@ -930,7 +964,104 @@ document.addEventListener('DOMContentLoaded',function(){
       w.innerHTML=ownerHTML(sym, (typeof SO!=='undefined'&&SO[sym])||null, typeof SOM!=='undefined'?SOM:[]);
     }); }); }
 
-  /* KONSOL KEPUTUSAN — bagian statis di rel kiri.
+  /* ── KONSOL KEPUTUSAN — menggambar keluaran Decision Orchestrator (bidang d.dc).
+     TIDAK ADA ATURAN KEPUTUSAN DI SINI. Semua ambang, penjaga, dan transisi dihitung di
+     scripts/domain/* di Node dan dikirim sebagai JSON. Komponen ini cuma menyusun.
+     Itu syarat yang diminta: mesin keputusan harus deterministik dan bisa diuji, dan mesin
+     yang hanya bisa dijalankan lewat peramban tidak bisa diuji. */
+  function konsolKeputusan(d){
+    var dc=d.dc; if(!dc) return '';
+    var n=function(v){ return v>0 ? Math.round(v).toLocaleString('id-ID') : '–'; };
+    var L=dc.lv||{}, o='';
+    var NAMA={LONG_TERM_BULLISH:'Long-term bullish',LONG_TERM_BEARISH:'Long-term bearish',TRANSITION:'Transition',
+      ACCUMULATION:'Accumulation',MARKUP:'Markup',PULLBACK:'Pullback',DEMAND_TEST:'Demand Test',
+      RECLAIM_ATTEMPT:'Reclaim Attempt',DISTRIBUTION:'Distribution',BREAKDOWN:'Breakdown',
+      BUYER_CONFIRMATION:'Buyer Confirmation',SELLING_STABILIZING:'Selling Stabilizing',
+      ACTIVE_DISTRIBUTION:'Active Distribution',ABSORPTION:'Absorption',NO_SIGNIFICANT_ACTIVITY:'No Significant Activity',
+      WAITING_FOR_SETUP:'Waiting for Setup',WAITING_FOR_TRIGGER:'Waiting for Trigger',TRIGGERED:'Triggered',
+      WAITING_FOR_CONFIRMATION:'Waiting for Confirmation',ACTIONABLE:'Actionable',IN_POSITION:'In Position',
+      THESIS_WEAKENING:'Thesis Weakening',INVALIDATED:'Invalidated',EXIT:'Exit'};
+    var nm=function(k){ return NAMA[k]||k; };
+
+    /* 1 · CURRENT STATE — empat lapisan, tidak dicampur jadi satu label */
+    o+='<div class="dc"><div class="dc-hd">'
+      +'<div class="dc-eye">Execution state</div>'
+      +'<div class="dc-neg">'+esc(nm(dc.neg))+'</div>'
+      +'<p class="dc-seb">'+esc(dc.seb)+'</p>'
+      +'<div class="dc-lap">'
+      +'<div class="dc-l"><span>Primary trend</span><b>'+esc(nm(dc.tren.negara))+'</b></div>'
+      +'<div class="dc-l"><span>Local structure</span><b>'+esc(nm(dc.str.negara))+'</b></div>'
+      +'<div class="dc-l"><span>Intraday flow</span><b>'+esc(nm(dc.alr.negara))+'</b></div>'
+      +'</div>'
+      +'<div class="dc-st '+esc(dc.st.nada)+'">'+esc(dc.st.label)+'</div></div></div>';
+
+    /* 2 · KEY LEVELS */
+    var baris=[];
+    if(L.supply) baris.push([L.supply.lo+'–'+L.supply.hi,'Major supply',0]);
+    if(L.reclaim) baris.push([L.reclaim.lo+'–'+L.reclaim.hi,'Reclaim zone',0]);
+    baris.push([n(L.trigger),'Trigger',0]);
+    baris.push([n(L.px),'SEKARANG',1]);
+    if(L.demand) baris.push([L.demand.lo+'–'+L.demand.hi,'Decision zone',0]);
+    if(L.refBawah) baris.push([n(L.refBawah),'Next support',0]);
+    o+='<div class="dc-sub">Key levels</div><div class="dc-lap">';
+    for(var i=0;i<baris.length;i++) o+='<div class="dc-l"><span>'+(baris[i][2]?'<b>'+esc(baris[i][1])+'</b>':esc(baris[i][1]))+'</span><b>'+esc(baris[i][0])+'</b></div>';
+    o+='</div>';
+
+    /* 3 · CONFIRMATION — dengan bobot hasil uji, dan faktor tak tersedia ditandai */
+    var kf=dc.kf;
+    o+='<div class="dc-sub">Buyer confirmation '+kf.skor+' / '+kf.ada
+      +(kf.pb!=null?' · bobot '+Math.round(kf.pb*100)+'%':'')+'</div><ul class="dc-chk">';
+    for(var j=0;j<kf.r.length;j++){
+      var r=kf.r[j], tersedia=r[2], ok=r[1];
+      var kls=!tersedia?'':(ok?'ok':'no');
+      var tanda=!tersedia?'—':(ok?'✓':'✗');
+      o+='<li class="'+kls+'"><i>'+tanda+'</i><span>'+esc(r[0])
+        +(r[3]>0?' <u>berbobot</u>':'')
+        +'<em>'+esc(r[4]||'')+(r[3]>0?'':' · bobot nol: tidak lolos uji')+'</em></span></li>';
+    }
+    o+='</ul>';
+
+    /* 4 · DECISION TREE */
+    if(dc.pohon&&dc.pohon.length){
+      o+='<div class="dc-sub">Decision tree</div><div class="dc-lap">';
+      for(var p=0;p<dc.pohon.length;p++) o+='<div class="dc-l"><span>'+esc(dc.pohon[p].syarat)+'</span><b class="'+(dc.pohon[p].kelas==='naik'?'fl-up':'fl-dn')+'">'+esc(dc.pohon[p].akibat)+'</b></div>';
+      o+='</div>';
+    }
+
+    /* 5 · WHAT WE ARE WAITING FOR */
+    if(dc.tunggu&&dc.tunggu.length){
+      o+='<div class="dc-sub">Menunggu</div><ul class="dc-tg">';
+      for(var t=0;t<Math.min(4,dc.tunggu.length);t++) o+='<li>'+esc(dc.tunggu[t])+'</li>';
+      o+='</ul>';
+    }
+
+    /* 6 · EXECUTION — qualified vs executable, dengan alasan spesifik */
+    o+='<div class="dc-sub">Execution</div>';
+    if(dc.bisa&&dc.ren){
+      o+='<div class="dc-ren"><div class="dc-l"><span>Harga</span><b>'+n(dc.ren.harga)+'</b></div>'
+        +'<div class="dc-l"><span>Stop</span><b>'+n(dc.ren.stop)+'</b></div>'
+        +'<div class="dc-l"><span>Lot</span><b>'+dc.ren.lot+'</b></div>'
+        +'<div class="dc-l"><span>Untung:rugi</span><b>1 : '+dc.ren.rr+'</b></div></div>';
+    } else {
+      var blok=[];
+      for(var b=0;b<dc.x.length;b++) if(!dc.x[b][2]) blok.push(dc.x[b]);
+      o+='<div class="dc-bl">';
+      for(var q=0;q<blok.length;q++) o+='<div><i>✗</i><span><b>'+esc(blok[q][1])+'</b> — '+esc(blok[q][3])+'</span></div>';
+      o+='</div>';
+    }
+
+    /* 7 · INVALIDATION */
+    if(dc.inval&&dc.inval.length){
+      o+='<div class="dc-sub">Invalidasi</div><ul class="dc-inv">';
+      for(var v=0;v<dc.inval.length;v++) o+='<li>'+esc(dc.inval[v])+'</li>';
+      o+='</ul>';
+    }
+
+    o+='<p class="dc-foot">ⓘ Bobot faktor konfirmasi diisi dari <a href="lab.html">Validation Lab</a>'
+      +(kf.diuji?'':' (belum dijalankan — bobot seragam)')+'. Faktor berbobot nol tetap ditampilkan tapi tidak menentukan gerbang eksekusi.</p>';
+    return o;
+  }
+  /* KONSOL KEPUTUSAN LAMA (skor & bacaan kedua) — bagian statis di rel kiri.
      Yang dinamis (keadaan, key levels, current reading, decision tree) datang dari mesin negara
      lewat #sqState; bagian ini melengkapinya dengan ACTION, bacaan kedua, dan catatan metode.
      ATURAN: kalau sebuah informasi tidak menjawab salah satu dari enam pertanyaan —
@@ -997,7 +1128,9 @@ document.addEventListener('DOMContentLoaded',function(){
       +(d.am?'<span class="sq-tag g">Dua bacaan</span>':'')
       +(d.fca?'<span class="sq-tag g" title="Papan Pemantauan Khusus — lelang penuh">FCA</span>':'')
       +'</div></div>'
-      // slot untuk keluaran mesin negara: keadaan -> key levels -> current reading -> decision tree
+      // Decision Orchestrator lebih dulu (keadaan, level, konfirmasi, pohon, eksekusi), lalu
+      // slot mesin negara chart, lalu konsol lama (skor & bacaan kedua) sebagai pelengkap.
+      + konsolKeputusan(d)
       + '<div id="sqState"></div>'
       + konsol(d,rg);
 

@@ -265,12 +265,24 @@ details.fdet>summary::-webkit-details-marker{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+</style><style>
+.ak-eks{margin:10px 0;padding:10px 12px;border-radius:8px;font-size:12.5px;line-height:1.5}
+.ak-eks b{font-weight:700;letter-spacing:.03em}
+.ak-eks span{display:block;margin-top:5px;font-size:11.5px;color:var(--ink2)}
+.ak-eks-ok{background:var(--up-soft);color:var(--up)}
+.ak-eks-blok{background:var(--down-soft);color:var(--down)}
+
+.eks{margin:0 0 12px;padding:10px 12px;border-radius:8px;font-size:12.5px;line-height:1.55}
+.eks b{font-weight:700;letter-spacing:.02em}
+.eks span{display:block;margin-top:5px;font-size:11.5px;color:var(--ink2)}
+.eks-ok{background:var(--up-soft);color:var(--up)}
+.eks-blok{background:var(--down-soft);color:var(--down)}
 </style>
 </head><body>
 <header class="top">
   <div class="top-in">
     <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
-    <nav class="nav" aria-label="Halaman"><a class="nv on" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="gerak.html">Kenapa bergerak</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a></nav>
+    <nav class="nav" aria-label="Halaman"><a class="nv on" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="gerak.html">Kenapa bergerak</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
@@ -330,7 +342,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   </div>
   </div>
   <div style="height:10px"></div><section class="aksi">
-    <div class="aksi-h"><h2>Beli hari ini <span class="muted" style="font-weight:500">1 saham</span></h2><span class="meta">2026-09-22 · pasar <b>naik</b> · <span class="wr">model belum sepakat 3/5</span> · modal Rp 105 jt (buku paper) · posisi 10/10 · omzet ≥ Rp 1 M/hari · jual paksa hari ke-5</span></div>
+    <div class="aksi-h"><h2>Qualified setup <span class="muted" style="font-weight:500">1 saham</span></h2><span class="meta">2026-09-22 · pasar <b>naik</b> · <span class="wr">model belum sepakat 3/5</span> · modal Rp 105 jt (buku paper) · posisi 10/10 · omzet ≥ Rp 1 M/hari · jual paksa hari ke-5</span></div>
+    <div class="eks eks-blok"><b>EXECUTION BLOCKED</b> — slot portofolio 10/10 terisi · kas Rp 4.724.053 di bawah nilai posisi terkecil Rp 19.075.000.
+        <span>Saham di bawah tetap <b>qualified setup</b>: lolos seluruh saringan yang sudah diuji. Yang menahan bukan sahamnya, melainkan buku — slot dan kas. Perintah salin ada untuk dicatat, bukan untuk dijalankan hari ini.</span></div>
     <div class="tbl-scroll"><table class="mini"><thead><tr><th>Saham</th><th class="r">Beli di</th><th class="r">Stop</th><th class="r">Rugi maks</th><th class="r">Lot</th><th class="r">Modal</th><th class="r" title="nilai rata-rata per transaksi dibanding biasanya — ≥2× artinya order besar masuk">Order besar</th><th class="r" title="volume dibanding rata-rata 20 hari">Volume</th><th class="r">20 hari</th><th class="r" title="nilai transaksi per hari">Omzet</th><th>Catat</th></tr></thead><tbody>
       <tr><td><a class="sym" href="scope.html?q=BSSR">BSSR</a></td><td class="r"><b>5.450</b></td><td class="r neg">5.150 <span class="muted">(5.5%)</span></td><td class="r">Rp 1.050.000</td><td class="r"><b>35</b></td><td class="r">Rp 19.075.000</td><td class="r"><span class="num hi">2.42×</span></td><td class="r"><span class="num hi">4.4×</span></td><td class="r"><span class="num pos">+21%</span></td><td class="r muted">7.6 M</td><td><span class="ak-cmd"><code data-cmd="node scripts/trade.mjs masuk BSSR --harga=5450 --lot=35 --stop=5150 --tahan=5">trade.mjs masuk BSSR --harga=5450 --lot=35 --stop=5150 --tahan=5</code><button type="button" class="ak-copy">salin</button></span></td></tr>
     </tbody></table></div>
