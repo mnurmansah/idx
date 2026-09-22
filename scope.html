@@ -565,7 +565,25 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .pd-kat{font:600 9px/1.3 var(--sans);letter-spacing:.04em;padding:1px 5px;border-radius:3px;background:var(--warn-soft);color:var(--warn);margin-left:5px}
 .pd-up{color:var(--up)}.pd-dn{color:var(--down)}.pd-mu{color:var(--muted)}
 .pd-note{margin:8px 0 0;font-size:10.5px;line-height:1.5;color:var(--muted)}
-/* ── panel aliran intraday (konsol, bukan paragraf) ─────────────────────────── */
+/* ── panel aliran uang EOD ──────────────────────────────────────────────────── */
+.sq-intra .fl-wrap{padding:16px}
+.sq-intra .fl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin:0 0 4px}
+.sq-intra .fl-st{font:700 15px/1.2 var(--sans);letter-spacing:.02em}
+.sq-intra .fl-st.fl-up{color:var(--up)}
+.sq-intra .fl-st.fl-dn{color:var(--down)}
+.sq-intra .fl-st.fl-nt{color:var(--ink)}
+.sq-intra .fl-sub{font:600 11.5px/1.3 var(--sans);letter-spacing:.04em;color:var(--muted)}
+.sq-intra .fl-src{margin:0 0 12px;font-size:12px;color:var(--muted)}
+.sq-intra .fl-chg{margin:2px 0 10px;padding:9px 12px;border-radius:8px;font-size:13px;background:var(--panel);border:1px solid var(--line)}
+.sq-intra .fl-chg.fl-up{border-left:3px solid var(--up)}
+.sq-intra .fl-chg.fl-dn{border-left:3px solid var(--down)}
+.sq-intra .fl-chg.fl-nt{border-left:3px solid var(--line2)}
+.sq-intra .fl-why{margin:0 0 8px;font-size:13px;line-height:1.6;color:var(--ink2)}
+.sq-intra .fl-why.fl-dim{color:var(--muted);font-size:12.5px}
+.sq-intra .iw-t td.pos{color:var(--up);font-variant-numeric:tabular-nums}
+.sq-intra .iw-t td.neg{color:var(--down);font-variant-numeric:tabular-nums}
+
+/* ── sisa gaya panel lama (tabel & pembungkus details) masih dipakai panel EOD ── */
 .fl{margin:12px 0 0;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
 .fl-eye{font:600 9.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .fl-eye b{color:var(--ink2)}
@@ -704,16 +722,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 <header class="top">
   <div class="top-in">
     <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
-    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="global.html">Global</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
+    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>822</b></a><a class="nv" href="scanner.html">Uang masuk<b>828</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="global.html">Global</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
-    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-22 10:15</b> <i class="wr">bursa masih buka</i></span><span class="st old" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-21</b> <i class="wr">kemarin</i></span></div>
+    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-22 18:28</b></span><span class="st" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-22</b></span></div>
     <button type="button" class="tema" id="temaBtn" title="Ganti tema"><span id="temaVal">terang</span></button>
   </div>
 </header>
 <main class="content lebar"><div class="sq-top">
-    <div><h1>Per saham</h1><p class="h1-sub">816 saham · harga per 2026-09-22. Ketik kode, atau klik kode saham di halaman mana pun.</p></div>
+    <div><h1>Per saham</h1><p class="h1-sub">822 saham · harga per 2026-09-22. Ketik kode, atau klik kode saham di halaman mana pun.</p></div>
   </div>
   <div class="sq-tools">
     <div class="sq-find"><input id="sqIn" placeholder="Ketik kode…" autocomplete="off" spellcheck="false" aria-label="Cari emiten"></div>
@@ -833,7 +851,7 @@ document.addEventListener('DOMContentLoaded',function(){
     sc.onload=function(){ muat[nama]='siap'; lalu(true); }; sc.onerror=function(){ muat[nama]='gagal'; lalu(false); };
     document.head.appendChild(sc); }
   function muatBars(lalu){ muatBerkas('bars','scope-bars.js',function(){return typeof SB!=='undefined';},lalu); }
-  function muatIntra(lalu){ muatBerkas('intra','scope-intra.js',function(){return typeof SI!=='undefined';},lalu); }
+  /* muatIntra() DICABUT: scope-intra.js tidak dibangun lagi. */
   function muatOwn(lalu){ muatBerkas('own','scope-own.js',function(){return typeof SO!=='undefined';},lalu); }
   function saatTerlihat(el, fn){
     if(typeof innerWidth==='undefined'||innerWidth>=700||typeof IntersectionObserver!=='function'){ fn(); return; }
@@ -843,7 +861,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   function pasangChart(sym){
     var box=panel.querySelector('.sq-chart[data-s]'); if(!box||box.getAttribute('data-s')!==sym) return;
-    if(typeof innerWidth==='undefined'||innerWidth>=700){ muatIntra(function(){}); muatOwn(function(){}); }
+    if(typeof innerWidth==='undefined'||innerWidth>=700){ muatOwn(function(){}); }
     muatBars(function(ok){
       var b2=panel.querySelector('.sq-chart[data-s]'); if(!b2||b2.getAttribute('data-s')!==sym) return;
       var ket=b2.querySelector('.sq-cload');
@@ -887,46 +905,77 @@ document.addEventListener('DOMContentLoaded',function(){
       pasangOwn(sym);
     }); }
 
+  /* ── PANEL ALIRAN UANG EOD ────────────────────────────────────────────────
+     Menggantikan panel bar 5 menit (jendela bergulir 30m/60m/2j, penanda Willain, daftar periksa
+     intraday). Penggantian ini bukan penyederhanaan tampilan — ia mengikuti batasan pokok
+     project: sistem ini tidak memiliki dan tidak boleh bergantung pada data 5 menit.
+
+     Tiga hal yang HILANG dan memang dimaksudkan hilang:
+       - jendela bergulir 30 menit / 60 menit / 2 jam
+       - keadaan "pemain besar" dari pemisah volume Willain
+       - daftar periksa konfirmasi intraday
+
+     Penggantinya angka yang bisa direplay dan sudah diuji: asing bersih resmi bursa per hari
+     (atau volume efektif harian kalau papan itu tidak punya asing sama sekali), pada lima
+     horizon. Uji 22 Sep 2026 di panel resmi 2025-2026: keadaan AKUMULASI sendirian cuma
+     +0,17% (5 hari, relatif rerata tanggal), tapi AKUMULASI + breakout +1,86% [+1,41..+2,44]
+     n=1.314 — di atas breakout biasa yang +0,91%. Jadi yang berguna kombinasinya, dan panel ini
+     menyebut itu daripada membiarkan pembaca menyangka keadaan aliran sendiri sudah cukup.
+
+     TANPA PEMUATAN MALAS. Datanya sudah ada di muatan halaman (bidang af): lima baris angka,
+     bukan 600 bar. Tidak ada scope-intra.js yang perlu ditarik, jadi tidak ada keadaan "memuat". */
   function pasangIntra(sym, dd){
     var host=document.getElementById('secLima'); if(!host) return;
-    host.innerHTML='';
-    var w=document.createElement('div'); w.className='sq-chart sq-intra';
-    var zc=document.createElement('div'); w.appendChild(zc);
-    zc.innerHTML='<div class="sq-cload">memuat bar 5 menit…</div>';
-    host.appendChild(w);
-    saatTerlihat(w,function(){ muatIntra(function(ok){
-      if(aktif!==sym||!document.body.contains(w)) return;
-      if(!ok||typeof siBars!=='function'||typeof intradaySVG!=='function'){ zc.innerHTML='<div class="sq-cload">bar 5 menit tidak tersedia (scope-intra.js tidak termuat)</div>'; return; }
-      var ib=siBars(sym);
-      if(!ib||ib.length<3){ zc.innerHTML='<div class="sq-cload">belum ada bar 5 menit untuk '+esc(sym)+'</div>'; return; }
-      var meta=(typeof SIM!=='undefined'&&SIM[sym])||['5',''], ires=meta[0];
-      // Aliran dihitung SEKALI, lalu dipakai dua kali: penandanya masuk ke chart, angkanya ke
-      // panel. Menghitungnya di dalam gambarIntra akan mengulangnya tiap kali di-zoom.
-      // Penanda peristiwa aliran di chart (usul 7) sudah jadi dan teruji — 5 penanda, 3 label,
-      // maksimum 2 per jenis, yang bertabrakan dibuang. DITAHAN dulu: user minta meninjau usul
-      // nomor 1 lebih dulu. Nyalakan dengan mengubah satu nilai ini jadi true.
-      var TANDA_ALIRAN=false;
-      var al=(typeof aliranIntraday==='function')?aliranIntraday(ib,{lv:dd.lv}):null;
-      var gambarIntra=function(i0,end){ return intradaySVG(sym,ib,{W:lebarSVG(zc),lv:dd.lv,res:ires,bars:end-i0,end:end,tanda:TANDA_ALIRAN?(al?al.tanda:null):null}); };
-      var awalIntra=(typeof innerWidth!=='undefined'&&innerWidth<700)?Math.min(ib.length,90):ib.length;
-      if(typeof pasangZoom==='function') pasangZoom(zc,ib.length,awalIntra,gambarIntra,typeof ketRentang==='function'?ketRentang(ib,true):null); else zc.innerHTML=gambarIntra(Math.max(0,ib.length-awalIntra),ib.length);
-      var k2=document.createElement('div'); k2.className='sq-cload'; k2.textContent='Bar '+ires+' menit · diambil '+meta[1]+' UTC'; w.appendChild(k2);
-      // BAGIAN YANG DITAMPILKAN.
-      //   latar   = dua keadaan berdampingan (latar 600 bar vs kondisi 2 jam terakhir)
-      //   jendela = tabel aliran per jendela bergulir + kolom perubahan
-      //   bacaan  = bacaan terkini + STATUS
-      // Yang masih ditahan: 'kunci' (angka kunci + percepatan), 'norma' (z-skor & persentil),
-      // 'konfirm' (daftar periksa 5 syarat), 'jika' (cabang bersyarat), 'keadaan' (kepala
-      // satu-label versi lama). Semuanya sudah jalan; menyalakan = menambah namanya di sini.
-      //
-      // Vonis "sepertiga terakhir" DICABUT dari tampilan (user 22 Sep: jendela bergulir sudah
-      // lebih presisi). Fungsi bacaIntraday TETAP hidup karena willain_jendela.mjs dan
-      // semesta.mjs memakainya — yang dicabut cuma tampilannya di sini.
-      var teks=document.createElement('div'), isi='';
-      if(al&&typeof panelAliran==='function') isi+=panelAliran(al,['latar','jendela','bacaan']);
-      if(typeof penjelasanIntraday==='function'&&typeof bacaIntraday==='function') isi+=penjelasanIntraday(bacaIntraday(ib));
-      teks.innerHTML=isi; host.appendChild(teks);
-    }); }); }
+    var a=dd.af;
+    if(!a){ host.innerHTML='<div class="sq-chart sq-intra"><div class="sq-cload">seri aliran uang EOD tidak tersedia untuk '+esc(sym)+'</div></div>'; return; }
+
+    var pos=function(v){ return v==null?'':(v>=0?'pos':'neg'); };
+    var h='<div class="sq-chart sq-intra"><div class="fl-wrap">';
+
+    // kepala: keadaan + sumber + tanggal data
+    h+='<div class="fl-head">'
+      +'<div class="fl-st fl-'+(a.ada?(a.n==='ACCUMULATION'||a.n==='BUYING_PRESSURE_IMPROVING'?'up':(a.n==='DISTRIBUTION'?'dn':'nt')):'nt')+'">'+esc(a.n)+'</div>'
+      +'<div class="fl-sub">'+esc(a.r||'')+'</div>'
+      +'</div>';
+    h+='<p class="fl-src">Sumber: '+esc(a.sn||'—')+(a.tg?' · data '+esc(a.tg):'')+'</p>';
+
+    // lima horizon
+    h+='<table class="iw-t"><thead><tr><th>Horizon</th><th style="text-align:right">Aliran bersih</th>'
+      +'<th style="text-align:right">% nilai transaksi</th></tr></thead><tbody>';
+    for(var i=0;i<(a.b||[]).length;i++){ var r=a.b[i];
+      h+='<tr'+(r[0]==='5D'?' class="on"':'')+'><td>'+esc(r[0])+'</td>'
+        +'<td style="text-align:right" class="'+pos(r[2])+'">'+esc(r[1])+'</td>'
+        +'<td style="text-align:right" class="'+pos(r[2])+'">'+(r[3]?((r[2]>=0?'+':'')+r[2]+'%'):'—')+'</td></tr>';
+    }
+    h+='</tbody></table>';
+
+    // pergeseran — inilah yang ditindaklanjuti, bukan keadaannya
+    if(a.ub){
+      h+='<div class="fl-chg fl-'+(a.ub==='MEMBAIK'?'up':(a.ub==='MEMBURUK'?'dn':'nt'))+'">'
+        +'Perubahan 5 hari ini vs 5 hari sebelumnya: <b>'+esc(a.ub)+'</b>'
+        +(a.dl!=null?' ('+(a.dl>=0?'+':'')+a.dl+' poin)':'')+'</div>';
+    }
+    if(a.al) h+='<p class="fl-why">'+esc(a.al)+'</p>';
+    if(a.ab) h+='<p class="fl-why fl-dim">Ambang kuartil emiten sejenis: keluar di bawah '+a.ab[0]+'%, masuk di atas +'+a.ab[1]+'% dari nilai transaksi.</p>';
+    if(dd.sr) h+='<p class="fl-why">Kekuatan relatif sektor: <b>'+esc(dd.sr[1])+' '+(dd.sr[0]>=0?'+':'')+dd.sr[0]+'</b> poin vs IHSG (20 hari).</p>';
+
+    h+='<details class="iw"><summary>Cara membaca panel ini</summary><div class="iw-isi">'
+      +'<p>Angka di atas adalah <b>uang bersih yang benar-benar berpindah</b>, dari panel resmi bursa: '
+      +'pembelian asing dikurangi penjualan asing, dikali harga tutup. Untuk emiten yang memang tidak '
+      +'ada asingnya, angkanya diganti perkiraan dari harga &amp; volume harian, dan itu disebut di baris Sumber.</p>'
+      +'<p>Semuanya dibagi <b>nilai transaksi</b> pada jendela yang sama, supaya Rp 5 miliar di emiten kecil '
+      +'tidak dibaca sama dengan Rp 5 miliar di BBCA.</p>'
+      +'<p><b>Yang perlu dijaga:</b> keadaan aliran sendirian hampir tidak menambah apa-apa (+0,17% dalam 5 hari). '
+      +'Yang terukur menambah adalah aliran masuk <b>bersamaan dengan breakout bervolume</b> (+1,86% vs +0,91% '
+      +'untuk breakout biasa, n=1.314, panel resmi 2025-2026). Jadi jangan membeli karena kolom ini hijau.</p>'
+      +'<p class="iw-lim">Panel bar 5 menit dicabut 22 Sep 2026. Alasannya bukan tampilan: bar hari ini belum '
+      +'selesai saat sesi berjalan, riwayatnya cuma ~38 sesi untuk 137 nama, jadi ia tidak bisa direplay dan '
+      +'tidak bisa diuji — dan di sistem ini yang tidak bisa diuji tidak boleh ikut memutuskan.</p>'
+      +'</div></details>';
+
+    h+='</div></div>';
+    host.innerHTML=h;
+  }
 
   function pasangOwn(sym){
     var host=document.getElementById('secMilik'); if(!host) return;

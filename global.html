@@ -298,6 +298,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .gd-em{display:flex;flex-wrap:wrap;gap:4px;min-width:26ch}
 .gd-e{font-size:10.5px;padding:2px 6px;border-radius:4px;background:var(--panel2);white-space:nowrap}
 .gd-e.pos{color:var(--up)}.gd-e.neg{color:var(--down)}
+.gd-e u{display:block;text-decoration:none;font-size:10px;letter-spacing:.02em;opacity:.65;margin-top:1px}
 .gd-e i{font-style:normal;opacity:.6;font-size:9.5px}
 .gd-up{color:var(--up)}.gd-dn{color:var(--down)}.gd-mu{color:var(--muted)}
 .gd-kosong{padding:20px;text-align:center;color:var(--muted);font-size:13px}
@@ -308,11 +309,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 <header class="top">
   <div class="top-in">
     <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
-    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv on" href="global.html">Global</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
+    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>822</b></a><a class="nv" href="scanner.html">Uang masuk<b>828</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv on" href="global.html">Global</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
-    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-22 10:15</b> <i class="wr">bursa masih buka</i></span><span class="st old" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-21</b> <i class="wr">kemarin</i></span></div>
+    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-22 18:28</b></span><span class="st" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-22</b></span></div>
     <button type="button" class="tema" id="temaBtn" title="Ganti tema"><span id="temaVal">terang</span></button>
   </div>
 </header>
@@ -323,42 +324,45 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     tetap keputusan Decision Orchestrator, bukan halaman ini.</p>
     <p>Yang disebut <b>katalis</b> cuma yang geraknya <b>di luar kebiasaan dirinya sendiri</b>
     (|z| ≥ 1 simpangan baku) <i>dan</i> sedang di ujung rentang 60 harinya. Hari ini
-    1 dari 32. Sisanya gerak biasa — tidak usah dibesarkan.</p>
+    2 dari 32. Sisanya gerak biasa — tidak usah dibesarkan.</p>
     <div class="gd-warn"><b>Baca ini dulu.</b> Ikatan penggerak dunia ke saham IDX sudah pernah
     diuji di sistem ini: emas naik semalam memang menarik emiten emas (beta 0,40), <b>tapi 87%-nya
     sudah habis di gap pembukaan dan tidak nyisa buat besok</b>. Sinyal beli berbasis |z| penggerak
     juga <b>kalah dari nebak hari acak</b>. Jadi halaman ini buat <b>tahu kenapa sesuatu gerak</b>,
     bukan buat cari entry. Kalau sebuah saham menarik, alasannya harus dari chartnya sendiri.</div>
     <div class="gd-fresh">
-      <div class="gd-f">Harga IDX (screener) · kurang dari 1 jam<b>2026-09-22 03:15</b></div><div class="gd-f lag">Penggerak dunia · 17 jam<b>2026-09-21 10:17</b></div><div class="gd-f lag">Bar 5 menit · 16 jam<b>2026-09-21 11:01</b></div><div class="gd-f lag">Peta paparan · 16 jam<b>2026-09-21 10:48</b></div><div class="gd-f lag">Lead/lag · 16 jam<b>2026-09-21 11:03</b></div><div class="gd-f lag">Buku paper · 16 jam<b>2026-09-21 11:03</b></div><div class="gd-f">Data resmi bursa<b>2026-09-21</b></div>
+      <div class="gd-f">Harga IDX (screener) · kurang dari 1 jam<b>2026-09-22 11:28</b></div><div class="gd-f">Penggerak dunia · kurang dari 1 jam<b>2026-09-22 11:09</b></div><div class="gd-f lag">Peta paparan · 25 jam<b>2026-09-21 10:48</b></div><div class="gd-f">Lead/lag · 1 jam LEBIH BARU dari acuan<b>2026-09-22 12:06</b></div><div class="gd-f">Buku paper · 1 jam LEBIH BARU dari acuan<b>2026-09-22 12:08</b></div><div class="gd-f">Data resmi bursa<b>2026-09-22</b></div>
     </div>
   </div><div class="gd-sec"><h3>Yang kena sentimen hari ini</h3>
     <p>Cuma saham yang kena penggerak berkatalis. Dibaca kiri ke kanan: ada anginnya, chartnya
     sedang apa, konfirmasinya sudah ada belum, lalu boleh masuk atau tidak. Kolom terakhir bisa
     beda dari kolom sebelumnya — buku boleh menahan eksekusi tanpa mengubah kondisi pasarnya.</p></div><div class="gd-scroll"><table class="gd-t gd-rantai"><thead><tr>
       <th>Saham</th><th class="n">Harga</th><th>Anginnya dari</th><th>Arah angin</th>
-      <th>Chart</th><th>Uang 5 mnt</th><th class="n">Konfirmasi</th><th class="n">U:R</th>
+      <th>Chart</th><th>Uang EOD</th><th title="sesi bursa IDX pertama yang boleh memakai penggerak ini">Berlaku sesi</th>
+      <th class="n">Konfirmasi</th><th class="n">U:R</th>
       <th>Boleh masuk?</th></tr></thead><tbody><tr>
-        <td class="gd-nm"><a href="scope.html?q=COIN">COIN</a></td>
-        <td class="n">845</td>
-        <td><div class="gd-em"><span class="gd-e pos">Bitcoin <i>+10.0%</i></span></div></td>
+        <td class="gd-nm"><a href="scope.html?q=BUKA">BUKA</a></td>
+        <td class="n">106</td>
+        <td><div class="gd-em"><span class="gd-e pos">Nasdaq <i>+3.6%</i><u>2026-09-21 · Amerika</u></span></div></td>
         <td><span class="gd-lab up">TAILWIND</span></td>
         <td class="gd-mu">LONG_TERM_BEARISH<span class="gd-kls">PULLBACK</span></td>
-        <td class="gd-mu">BUYER_CONFIRMATION</td>
-        <td class="n">7/7 · 100%</td>
-        <td class="n gd-mu">1 : 1.67</td>
-        <td class="st">POTENTIAL<span class="gd-kls">belum tembus pemicu · slot penuh · kas tipis · risiko buku mentok</span></td>
-      </tr><tr>
-        <td class="gd-nm"><a href="scope.html?q=DEFI">DEFI</a></td>
-        <td class="n">105</td>
-        <td><div class="gd-em"><span class="gd-e pos">Bitcoin <i>+10.0%</i></span></div></td>
-        <td><span class="gd-lab up">TAILWIND</span></td>
-        <td class="gd-mu">LONG_TERM_BEARISH<span class="gd-kls">RECLAIM_ATTEMPT</span></td>
-        <td class="gd-mu">NO_SIGNIFICANT_ACTIVITY</td>
-        <td class="n">3/6 · 23%</td>
-        <td class="n gd-mu">1 : 1.11</td>
+        <td class="gd-mu">DISTRIBUTION<span class="gd-kls">MEMBURUK</span></td>
+        <td class="gd-mu">2026-09-22</td>
+        <td class="n">4/10 · 0%</td>
+        <td class="n gd-mu">1 : 1.64</td>
         <td class="st">QUALIFIED<span class="gd-kls">belum tembus pemicu · konfirmasi kurang · slot penuh · kas tipis · risiko buku mentok</span></td>
-      </tr></tbody></table></div><div class="gd-sec"><h3>Yang gerak di luar kebiasaan (1)</h3>
+      </tr><tr>
+        <td class="gd-nm"><a href="scope.html?q=EMTK">EMTK</a></td>
+        <td class="n">448</td>
+        <td><div class="gd-em"><span class="gd-e pos">Nasdaq <i>+3.6%</i><u>2026-09-21 · Amerika</u></span></div></td>
+        <td><span class="gd-lab up">TAILWIND</span></td>
+        <td class="gd-mu">LONG_TERM_BEARISH<span class="gd-kls">BREAKDOWN</span></td>
+        <td class="gd-mu">DISTRIBUTION<span class="gd-kls">MEMBURUK</span></td>
+        <td class="gd-mu">2026-09-22</td>
+        <td class="n">3/10 · 0%</td>
+        <td class="n gd-mu">1 : 2.32</td>
+        <td class="st">QUALIFIED<span class="gd-kls">belum tembus pemicu · konfirmasi kurang · slot penuh · kas tipis · risiko buku mentok</span></td>
+      </tr></tbody></table></div><div class="gd-sec"><h3>Yang gerak di luar kebiasaan (2)</h3>
     <p>Gerak di luar kebiasaan dirinya <i>dan</i> sedang di ujung rentang 60 hari. Saham bertanda
     <b>−</b> artinya kena kebalikannya — komoditas itu biaya buat dia, bukan pendapatan. Tunjuk
     kodenya buat lihat jalur paparannya, seberapa yakin, beta terukur, dan apakah tanda terukurnya
@@ -366,128 +370,102 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <th class="n">5H</th><th class="n">20H</th><th class="n" title="gerak 1 hari dalam simpangan baku gerak hariannya sendiri">z</th>
     <th class="n" title="volatilitas tahunan">Vol</th><th>Posisi 60 hari</th><th>Bacaan</th>
     <th class="n">Kena</th><th>Saham IDX yang kena</th></tr></thead><tbody><tr class="kat">
-      <td class="gd-nm">Bitcoin<span class="gd-kls">kripto</span></td>
-      <td class="n">83.891</td>
-      <td class="n gd-up">+3.3</td>
-      <td class="n gd-up">+3.8</td>
-      <td class="n gd-up">+10.0</td>
-      <td class="n gd-up">+8.3</td>
-      <td class="n">+1.55</td>
-      <td class="n gd-mu">33.6%</td>
+      <td class="gd-nm">S&amp;P 500<span class="gd-kls">ekuitas</span></td>
+      <td class="n">7.764,7</td>
+      <td class="n gd-up">+1.5</td>
+      <td class="n gd-up">+2.8</td>
+      <td class="n gd-up">+1.9</td>
+      <td class="n gd-up">+1.2</td>
+      <td class="n">+2.08</td>
+      <td class="n gd-mu">11.3%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab up">Impuls naik kuat</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr class="kat">
+      <td class="gd-nm">Nasdaq<span class="gd-kls">ekuitas</span></td>
+      <td class="n">27.122,09</td>
+      <td class="n gd-up">+2.3</td>
+      <td class="n gd-up">+4.4</td>
+      <td class="n gd-up">+3.6</td>
+      <td class="n gd-up">+3.6</td>
+      <td class="n">+2.00</td>
+      <td class="n gd-mu">17.7%</td>
       <td class="gd-mu">breakout<span class="gd-kls">tren naik</span></td>
-      <td><span class="gd-lab up">Breakout</span></td>
+      <td><span class="gd-lab up">Breakout kuat</span></td>
       <td class="n gd-mu">2</td>
-      <td><div class="gd-em"><span class="gd-e pos" title="SENTIMENT_PROXY · keyakinan tinggi · beta 0.07 · tanda terukur TIDAK cocok">COIN</span><span class="gd-e pos" title="SENTIMENT_PROXY · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">DEFI</span></div></td>
-    </tr></tbody></table></div><div class="gd-sec"><h3>Sisanya (31)</h3>
+      <td><div class="gd-em"><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta -0.4 · tanda terukur TIDAK cocok">EMTK</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.1 · tanda terukur TIDAK cocok">BUKA</span></div></td>
+    </tr></tbody></table></div><div class="gd-sec"><h3>Sisanya (30)</h3>
     <p>Gerak, tapi masih wajar buat ukuran dirinya. Ditaruh di sini biar kelihatan, bukan biar
     ditindaklanjuti.</p></div>
     <div class="gd-scroll"><table class="gd-t"><thead><tr><th>Penggerak</th><th class="n">Harga</th><th class="n">1H</th><th class="n">3H</th>
     <th class="n">5H</th><th class="n">20H</th><th class="n" title="gerak 1 hari dalam simpangan baku gerak hariannya sendiri">z</th>
     <th class="n" title="volatilitas tahunan">Vol</th><th>Posisi 60 hari</th><th>Bacaan</th>
     <th class="n">Kena</th><th>Saham IDX yang kena</th></tr></thead><tbody><tr>
-      <td class="gd-nm">USD/IDR<span class="gd-kls">makro</span></td>
-      <td class="n">17.834,5</td>
-      <td class="n gd-up">+0.4</td>
-      <td class="n gd-up">+0.5</td>
-      <td class="n gd-up">+0.8</td>
-      <td class="n gd-up">+0.7</td>
-      <td class="n">+1.49</td>
-      <td class="n gd-mu">4.6%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
-      <td><span class="gd-lab nt">Impuls naik</span></td>
-      <td class="n gd-mu">40</td>
-      <td><div class="gd-em"><span class="gd-e neg" title="FX · keyakinan tinggi · beta -1.79 · tanda terukur cocok">GIAA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -1.3 · tanda terukur cocok">CPIN <i>−</i></span><span class="gd-e pos" title="FX · keyakinan tinggi · beta 0.89 · tanda terukur cocok">ADRO</span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.7 · tanda terukur TIDAK cocok">KLBF <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.67 · tanda terukur TIDAK cocok">ERAA <i>−</i></span><span class="gd-e pos" title="FX · keyakinan tinggi · beta 0.62 · tanda terukur TIDAK cocok">ITMG</span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.52 · tanda terukur TIDAK cocok">ICBP <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.21 · tanda terukur TIDAK cocok">JPFA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.11 · tanda terukur TIDAK cocok">TSPC <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">GJTL <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -2.96 · tanda terukur cocok">MLPT <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -1.68 · tanda terukur TIDAK cocok">TKIM</span><span class="gd-e pos" title="FX · keyakinan sedang · beta 1.61 · tanda terukur cocok">MEDC</span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.42 · tanda terukur cocok">MAPA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.29 · tanda terukur TIDAK cocok">MEDS <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.09 · tanda terukur cocok">KRAS <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.93 · tanda terukur TIDAK cocok">INKP</span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.89 · tanda terukur TIDAK cocok">ISAT <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.7 · tanda terukur cocok">ACES <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.61 · tanda terukur TIDAK cocok">LPKR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.6 · tanda terukur cocok">BMRI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.52 · tanda terukur TIDAK cocok">TLKM <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.47 · tanda terukur TIDAK cocok">MAPI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.36 · tanda terukur TIDAK cocok">MSTI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.35 · tanda terukur TIDAK cocok">MTDL <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.3 · tanda terukur TIDAK cocok">BBRI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.26 · tanda terukur TIDAK cocok">PYFA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.24 · tanda terukur TIDAK cocok">ASII <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.18 · tanda terukur TIDAK cocok">MYOR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">EXCL <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SMDR</span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.09 · tanda terukur TIDAK cocok">UNVR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">BBCA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">AUTO <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.05 · tanda terukur TIDAK cocok">SMSM</span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.04 · tanda terukur TIDAK cocok">PTBA</span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.65 · tanda terukur cocok">SIDO <i>−</i></span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.48 · tanda terukur TIDAK cocok">HEAL <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.03 · tanda terukur TIDAK cocok">DMAS</span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.02 · tanda terukur TIDAK cocok">MIKA <i>−</i></span></div></td>
-    </tr><tr>
-      <td class="gd-nm">DAX<span class="gd-kls">ekuitas</span></td>
-      <td class="n">25.552,92</td>
-      <td class="n gd-up">+1.0</td>
-      <td class="n gd-up">+0.1</td>
-      <td class="n gd-up">+0.4</td>
-      <td class="n gd-dn">-2.1</td>
-      <td class="n">+1.18</td>
-      <td class="n gd-mu">13.1%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
-      <td><span class="gd-lab nt">Impuls naik</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Hang Seng<span class="gd-kls">ekuitas</span></td>
-      <td class="n">25.042,71</td>
-      <td class="n gd-up">+1.2</td>
-      <td class="n gd-up">+1.3</td>
-      <td class="n gd-up">+0.5</td>
+      <td class="gd-nm">IHSG<span class="gd-kls">acuan</span></td>
+      <td class="n">6.264,49</td>
       <td class="n gd-dn">-1.9</td>
-      <td class="n">+1.15</td>
-      <td class="n gd-mu">16.2%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
-      <td><span class="gd-lab nt">Impuls naik</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Timah<span class="gd-kls">komoditas</span></td>
-      <td class="n">53.026</td>
-      <td class="n gd-up">+1.4</td>
-      <td class="n gd-up">+2.5</td>
-      <td class="n gd-dn">-1.9</td>
-      <td class="n gd-dn">-4.5</td>
-      <td class="n">+1.13</td>
-      <td class="n gd-mu">20.2%</td>
+      <td class="n gd-dn">-3.1</td>
+      <td class="n gd-dn">-3.0</td>
+      <td class="n gd-dn">-3.6</td>
+      <td class="n">-1.68</td>
+      <td class="n gd-mu">18%</td>
       <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
       <td><span class="gd-lab nt">Impuls turun</span></td>
-      <td class="n gd-mu">1</td>
-      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.22 · tanda terukur cocok">TINS</span></div></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">SOX semikonduktor<span class="gd-kls">ekuitas</span></td>
+      <td class="n">12.433,17</td>
+      <td class="n gd-up">+4.3</td>
+      <td class="n gd-up">+10.6</td>
+      <td class="n gd-up">+11.7</td>
+      <td class="n gd-up">+8.8</td>
+      <td class="n">+1.33</td>
+      <td class="n gd-mu">50.2%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Impuls naik</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Minyak WTI<span class="gd-kls">komoditas</span></td>
+      <td class="n">89,55</td>
+      <td class="n gd-dn">-3.0</td>
+      <td class="n gd-dn">-6.8</td>
+      <td class="n gd-dn">-8.2</td>
+      <td class="n gd-up">+7.2</td>
+      <td class="n">-1.07</td>
+      <td class="n gd-mu">45.8%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Impuls turun</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">US 10Y<span class="gd-kls">makro</span></td>
+      <td class="n">4,93</td>
+      <td class="n gd-dn">-0.7</td>
+      <td class="n gd-dn">-1.4</td>
+      <td class="n gd-dn">-1.6</td>
+      <td class="n gd-up">+6.2</td>
+      <td class="n">-0.89</td>
+      <td class="n gd-mu">13.2%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
       <td class="gd-nm">Tembaga<span class="gd-kls">komoditas</span></td>
-      <td class="n">6,8</td>
-      <td class="n gd-up">+1.3</td>
-      <td class="n gd-up">+2.1</td>
-      <td class="n gd-up">+5.5</td>
-      <td class="n gd-up">+1.5</td>
-      <td class="n">+0.97</td>
+      <td class="n">6,84</td>
+      <td class="n gd-up">+1.2</td>
+      <td class="n gd-up">+2.3</td>
+      <td class="n gd-up">+5.1</td>
+      <td class="n gd-up">+2.3</td>
+      <td class="n">+0.88</td>
       <td class="n gd-mu">21.2%</td>
       <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">2</td>
       <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.26 · tanda terukur cocok">AMMN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.2 · tanda terukur TIDAK cocok">MDKA</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Shanghai Composite<span class="gd-kls">ekuitas</span></td>
-      <td class="n">3.949,91</td>
-      <td class="n gd-up">+1.0</td>
-      <td class="n gd-up">+1.5</td>
-      <td class="n gd-up">+1.7</td>
-      <td class="n gd-up">+1.8</td>
-      <td class="n">+0.95</td>
-      <td class="n gd-mu">16.2%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">MSCI Emerging Markets<span class="gd-kls">ekuitas</span></td>
-      <td class="n">1.735,55</td>
-      <td class="n gd-up">+1.4</td>
-      <td class="n gd-up">+2.9</td>
-      <td class="n gd-up">+2.2</td>
-      <td class="n gd-up">+2.4</td>
-      <td class="n">+0.91</td>
-      <td class="n gd-mu">25%</td>
-      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">SOX semikonduktor<span class="gd-kls">ekuitas</span></td>
-      <td class="n">11.921,69</td>
-      <td class="n gd-up">+2.8</td>
-      <td class="n gd-up">+6.7</td>
-      <td class="n gd-up">+0.8</td>
-      <td class="n gd-up">+1.5</td>
-      <td class="n">+0.86</td>
-      <td class="n gd-mu">50.6%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
       <td class="gd-nm">Nikkei 225<span class="gd-kls">ekuitas</span></td>
       <td class="n">65.018,95</td>
@@ -502,291 +480,317 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
-      <td class="gd-nm">Batu bara Rotterdam<span class="gd-kls">komoditas</span></td>
-      <td class="n">137,05</td>
-      <td class="n gd-dn">-1.1</td>
-      <td class="n gd-dn">-1.4</td>
-      <td class="n gd-dn">-1.4</td>
-      <td class="n gd-up">+10.0</td>
-      <td class="n">-0.72</td>
-      <td class="n gd-mu">25.5%</td>
-      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td class="gd-nm">Minyak Brent<span class="gd-kls">komoditas</span></td>
+      <td class="n">97,85</td>
+      <td class="n gd-dn">-2.5</td>
+      <td class="n gd-dn">-5.8</td>
+      <td class="n gd-dn">-7.5</td>
+      <td class="n gd-up">+12.9</td>
+      <td class="n">-0.82</td>
+      <td class="n gd-mu">48.5%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+      <td class="n gd-mu">16</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.17 · tanda terukur cocok">MEDC</span><span class="gd-e neg" title="DIRECT_COST · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">GIAA <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">BIPI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">ENRG</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.13 · tanda terukur cocok">ELSA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">APEX</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.08 · tanda terukur TIDAK cocok">RATU</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur cocok">AVIA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur cocok">GJTL <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.05 · tanda terukur TIDAK cocok">FPNI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">IMPC <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.03 · tanda terukur TIDAK cocok">BIRD <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.02 · tanda terukur TIDAK cocok">TPIA <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.08 · tanda terukur cocok">AKRA</span><span class="gd-e neg" title="DIRECT_COST · keyakinan rendah · beta -0.05 · tanda terukur TIDAK cocok">ASSA <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan rendah · beta 0.03 · tanda terukur TIDAK cocok">PGEO</span></div></td>
     </tr><tr>
-      <td class="gd-nm">Ethereum<span class="gd-kls">kripto</span></td>
-      <td class="n">2.699,24</td>
-      <td class="n gd-up">+2.0</td>
-      <td class="n gd-up">+3.3</td>
-      <td class="n gd-up">+11.6</td>
-      <td class="n gd-up">+11.6</td>
-      <td class="n">+0.66</td>
-      <td class="n gd-mu">47.9%</td>
-      <td class="gd-mu">breakout<span class="gd-kls">tren naik</span></td>
+      <td class="gd-nm">Nikel<span class="gd-kls">komoditas</span></td>
+      <td class="n">16.475,75</td>
+      <td class="n gd-up">+0.8</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-up">+3.6</td>
+      <td class="n gd-dn">-3.0</td>
+      <td class="n">+0.77</td>
+      <td class="n gd-mu">15.4%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+      <td class="n gd-mu">9</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.35 · tanda terukur cocok">INCO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.33 · tanda terukur cocok">NCKL</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.26 · tanda terukur cocok">MBMA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.47 · tanda terukur cocok">ANTM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.25 · tanda terukur cocok">DKFT</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">NICL</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">HRUM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">MDKA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SMGA</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Timah<span class="gd-kls">komoditas</span></td>
+      <td class="n">53.533</td>
+      <td class="n gd-up">+1.0</td>
+      <td class="n gd-up">+3.3</td>
+      <td class="n gd-up">+0.6</td>
+      <td class="n gd-dn">-3.8</td>
+      <td class="n">+0.75</td>
+      <td class="n gd-mu">20.1%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">1</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.22 · tanda terukur cocok">TINS</span></div></td>
     </tr><tr>
       <td class="gd-nm">US 2Y<span class="gd-kls">makro</span></td>
-      <td class="n">4,72</td>
-      <td class="n gd-dn">-0.7</td>
-      <td class="n gd-up">+0.7</td>
-      <td class="n gd-up">+1.3</td>
-      <td class="n gd-up">+12.6</td>
-      <td class="n">-0.66</td>
+      <td class="n">4,71</td>
+      <td class="n gd-dn">-0.8</td>
+      <td class="n gd-dn">-0.6</td>
+      <td class="n gd-dn">-0.3</td>
+      <td class="n gd-up">+11.6</td>
+      <td class="n">-0.75</td>
       <td class="n gd-mu">16%</td>
       <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
-      <td class="gd-nm">INDO 10Y<span class="gd-kls">makro</span></td>
-      <td class="n">7,12</td>
-      <td class="n gd-dn">-0.5</td>
-      <td class="n gd-dn">-0.3</td>
-      <td class="n gd-dn">-0.5</td>
-      <td class="n gd-up">+2.3</td>
-      <td class="n">-0.66</td>
-      <td class="n gd-mu">12.5%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">27</td>
-      <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.22 · tanda terukur TIDAK cocok">AGRO <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.2 · tanda terukur TIDAK cocok">BBTN <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.18 · tanda terukur TIDAK cocok">PWON <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.17 · tanda terukur TIDAK cocok">PTPP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.15 · tanda terukur TIDAK cocok">TOWR <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">ARTO <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.12 · tanda terukur TIDAK cocok">BMRI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.12 · tanda terukur TIDAK cocok">PNBN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.1 · tanda terukur TIDAK cocok">JSMR <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BFIN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BDMN <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BSDE <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">MTEL <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.07 · tanda terukur TIDAK cocok">BRIS <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta 0.07 · tanda terukur TIDAK cocok">CTRA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">BJBR <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">SMRA <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">PANI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.04 · tanda terukur TIDAK cocok">BNGA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">BJTM <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">BBCA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBRI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBNI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBYB <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">NISP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta - · tanda terukur TIDAK cocok">WIKA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta - · tanda terukur TIDAK cocok">WSKT <i>−</i></span></div></td>
-    </tr><tr>
-      <td class="gd-nm">IHSG<span class="gd-kls">acuan</span></td>
-      <td class="n">6.393,5</td>
-      <td class="n gd-dn">-0.7</td>
-      <td class="n gd-dn">-0.7</td>
-      <td class="n gd-dn">-2.2</td>
-      <td class="n gd-dn">-2.0</td>
-      <td class="n">-0.66</td>
-      <td class="n gd-mu">17.9%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td class="gd-nm">DAX<span class="gd-kls">ekuitas</span></td>
+      <td class="n">25.722,68</td>
+      <td class="n gd-up">+0.6</td>
+      <td class="n gd-up">+0.0</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-dn">-2.1</td>
+      <td class="n">+0.71</td>
+      <td class="n gd-mu">12.9%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
       <td class="gd-nm">Gandum<span class="gd-kls">komoditas</span></td>
-      <td class="n">723,4</td>
-      <td class="n gd-up">+1.3</td>
-      <td class="n gd-dn">-1.0</td>
-      <td class="n gd-up">+0.2</td>
-      <td class="n gd-up">+3.4</td>
-      <td class="n">+0.59</td>
+      <td class="n">716,9</td>
+      <td class="n gd-dn">-1.4</td>
+      <td class="n gd-dn">-1.4</td>
+      <td class="n gd-dn">-1.6</td>
+      <td class="n gd-up">+1.9</td>
+      <td class="n">-0.64</td>
       <td class="n gd-mu">34%</td>
       <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">4</td>
       <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan tinggi · beta -0.11 · tanda terukur cocok">ICBP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.1 · tanda terukur TIDAK cocok">CPIN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.01 · tanda terukur TIDAK cocok">JPFA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.01 · tanda terukur TIDAK cocok">INDF <i>−</i></span></div></td>
     </tr><tr>
-      <td class="gd-nm">CSI 300<span class="gd-kls">ekuitas</span></td>
-      <td class="n">4.539,57</td>
-      <td class="n gd-up">+0.7</td>
-      <td class="n gd-up">+1.3</td>
-      <td class="n gd-up">+1.3</td>
-      <td class="n gd-dn">-0.5</td>
-      <td class="n">+0.54</td>
-      <td class="n gd-mu">20.7%</td>
+      <td class="gd-nm">USD/CNY<span class="gd-kls">makro</span></td>
+      <td class="n">6,7</td>
+      <td class="n gd-up">+0.0</td>
+      <td class="n gd-dn">-0.1</td>
+      <td class="n gd-dn">-0.2</td>
+      <td class="n gd-dn">-0.3</td>
+      <td class="n">+0.52</td>
+      <td class="n gd-mu">1.3%</td>
       <td class="gd-mu">dekat dasar<span class="gd-kls">tren turun</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
-      <td class="gd-nm">US 10Y<span class="gd-kls">makro</span></td>
-      <td class="n">4,96</td>
-      <td class="n gd-dn">-0.4</td>
-      <td class="n gd-up">+0.3</td>
-      <td class="n gd-dn">-0.7</td>
-      <td class="n gd-up">+5.4</td>
-      <td class="n">-0.51</td>
-      <td class="n gd-mu">13%</td>
+      <td class="gd-nm">MSCI Emerging Markets<span class="gd-kls">ekuitas</span></td>
+      <td class="n">1.746,29</td>
+      <td class="n gd-up">+0.7</td>
+      <td class="n gd-up">+3.5</td>
+      <td class="n gd-up">+3.9</td>
+      <td class="n gd-up">+2.5</td>
+      <td class="n">+0.46</td>
+      <td class="n gd-mu">24.9%</td>
       <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
-      <td class="gd-nm">Minyak WTI<span class="gd-kls">komoditas</span></td>
-      <td class="n">94,41</td>
-      <td class="n gd-dn">-1.3</td>
-      <td class="n gd-dn">-2.9</td>
-      <td class="n gd-dn">-6.3</td>
+      <td class="gd-nm">Ethereum<span class="gd-kls">kripto</span></td>
+      <td class="n">2.747,86</td>
+      <td class="n gd-dn">-1.0</td>
+      <td class="n gd-up">+4.4</td>
+      <td class="n gd-up">+12.3</td>
       <td class="n gd-up">+14.8</td>
-      <td class="n">-0.47</td>
-      <td class="n gd-mu">44.6%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Minyak Brent<span class="gd-kls">komoditas</span></td>
-      <td class="n">102,08</td>
-      <td class="n gd-dn">-1.3</td>
-      <td class="n gd-dn">-2.6</td>
-      <td class="n gd-dn">-6.1</td>
-      <td class="n gd-up">+17.0</td>
-      <td class="n">-0.43</td>
-      <td class="n gd-mu">47.9%</td>
+      <td class="n">-0.34</td>
+      <td class="n gd-mu">48.6%</td>
       <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">16</td>
-      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.17 · tanda terukur cocok">MEDC</span><span class="gd-e neg" title="DIRECT_COST · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">GIAA <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">BIPI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">ENRG</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.13 · tanda terukur cocok">ELSA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">APEX</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.08 · tanda terukur TIDAK cocok">RATU</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur cocok">AVIA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur cocok">GJTL <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.05 · tanda terukur TIDAK cocok">FPNI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">IMPC <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.03 · tanda terukur TIDAK cocok">BIRD <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.02 · tanda terukur TIDAK cocok">TPIA <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.08 · tanda terukur cocok">AKRA</span><span class="gd-e neg" title="DIRECT_COST · keyakinan rendah · beta -0.05 · tanda terukur TIDAK cocok">ASSA <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan rendah · beta 0.03 · tanda terukur TIDAK cocok">PGEO</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Nikel<span class="gd-kls">komoditas</span></td>
-      <td class="n">16.288,75</td>
-      <td class="n gd-up">+0.4</td>
-      <td class="n gd-up">+1.1</td>
-      <td class="n gd-dn">-0.5</td>
-      <td class="n gd-dn">-4.4</td>
-      <td class="n">+0.38</td>
-      <td class="n gd-mu">16.4%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">9</td>
-      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.35 · tanda terukur cocok">INCO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.33 · tanda terukur cocok">NCKL</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.26 · tanda terukur cocok">MBMA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.47 · tanda terukur cocok">ANTM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.25 · tanda terukur cocok">DKFT</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">NICL</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">HRUM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">MDKA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SMGA</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">USD/CNY<span class="gd-kls">makro</span></td>
-      <td class="n">6,7</td>
-      <td class="n gd-dn">-0.0</td>
-      <td class="n gd-dn">-0.2</td>
-      <td class="n gd-dn">-0.2</td>
-      <td class="n gd-dn">-0.4</td>
-      <td class="n">-0.37</td>
-      <td class="n gd-mu">1.3%</td>
-      <td class="gd-mu">breakdown<span class="gd-kls">tren turun</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Bitcoin<span class="gd-kls">kripto</span></td>
+      <td class="n">86.056</td>
+      <td class="n gd-dn">-0.7</td>
+      <td class="n gd-up">+6.0</td>
+      <td class="n gd-up">+12.6</td>
+      <td class="n gd-up">+11.2</td>
+      <td class="n">-0.29</td>
+      <td class="n gd-mu">35.2%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">2</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="SENTIMENT_PROXY · keyakinan tinggi · beta 0.07 · tanda terukur TIDAK cocok">COIN</span><span class="gd-e pos" title="SENTIMENT_PROXY · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">DEFI</span></div></td>
     </tr><tr>
       <td class="gd-nm">Emas<span class="gd-kls">komoditas</span></td>
-      <td class="n">4.389,55</td>
-      <td class="n gd-dn">-0.5</td>
-      <td class="n gd-dn">-0.2</td>
-      <td class="n gd-up">+1.3</td>
-      <td class="n gd-dn">-5.7</td>
-      <td class="n">-0.36</td>
-      <td class="n gd-mu">21.6%</td>
+      <td class="n">4.368,4</td>
+      <td class="n gd-dn">-0.3</td>
+      <td class="n gd-dn">-1.3</td>
+      <td class="n gd-dn">-0.4</td>
+      <td class="n gd-dn">-6.3</td>
+      <td class="n">-0.26</td>
+      <td class="n gd-mu">21.5%</td>
       <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">11</td>
       <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.62 · tanda terukur cocok">ARCI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.6 · tanda terukur cocok">HRTA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.5 · tanda terukur cocok">EMAS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.42 · tanda terukur cocok">MDKA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.41 · tanda terukur cocok">ANTM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.38 · tanda terukur cocok">PSAB</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.3 · tanda terukur cocok">BRMS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.23 · tanda terukur cocok">AMMN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SQMI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.01 · tanda terukur TIDAK cocok">UNTR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan rendah · beta 0.19 · tanda terukur cocok">SRTG</span></div></td>
     </tr><tr>
-      <td class="gd-nm">Nasdaq<span class="gd-kls">ekuitas</span></td>
-      <td class="n">26.522,54</td>
-      <td class="n gd-up">+0.4</td>
-      <td class="n gd-up">+2.1</td>
-      <td class="n gd-up">+0.7</td>
-      <td class="n gd-up">+1.8</td>
-      <td class="n">+0.36</td>
-      <td class="n gd-mu">17.2%</td>
-      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td class="gd-nm">Perak<span class="gd-kls">komoditas</span></td>
+      <td class="n">66,03</td>
+      <td class="n gd-dn">-0.6</td>
+      <td class="n gd-dn">-1.7</td>
+      <td class="n gd-up">+1.7</td>
+      <td class="n gd-dn">-6.0</td>
+      <td class="n">-0.26</td>
+      <td class="n gd-mu">36.1%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">2</td>
-      <td><div class="gd-em"><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta -0.4 · tanda terukur TIDAK cocok">EMTK</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.1 · tanda terukur TIDAK cocok">BUKA</span></div></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Hang Seng<span class="gd-kls">ekuitas</span></td>
+      <td class="n">25.087,75</td>
+      <td class="n gd-up">+0.2</td>
+      <td class="n gd-up">+2.0</td>
+      <td class="n gd-up">+1.7</td>
+      <td class="n gd-dn">-1.7</td>
+      <td class="n">+0.18</td>
+      <td class="n gd-mu">15.9%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
       <td class="gd-nm">CPO Malaysia<span class="gd-kls">komoditas</span></td>
-      <td class="n">4.898</td>
-      <td class="n gd-up">+0.3</td>
-      <td class="n gd-up">+0.3</td>
+      <td class="n">4.889</td>
+      <td class="n gd-dn">-0.2</td>
+      <td class="n gd-up">+1.6</td>
       <td class="n gd-dn">-1.6</td>
-      <td class="n gd-up">+4.7</td>
-      <td class="n">+0.24</td>
-      <td class="n gd-mu">19.2%</td>
+      <td class="n gd-up">+3.0</td>
+      <td class="n">-0.16</td>
+      <td class="n gd-mu">18.2%</td>
       <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">16</td>
       <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.37 · tanda terukur cocok">STAA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.29 · tanda terukur TIDAK cocok">NSSS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.26 · tanda terukur cocok">TAPG</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.24 · tanda terukur TIDAK cocok">DSNG</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.14 · tanda terukur TIDAK cocok">SSMS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta -0.03 · tanda terukur TIDAK cocok">AALI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">LSIP</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.36 · tanda terukur cocok">UNVR <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.23 · tanda terukur TIDAK cocok">GZCO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.21 · tanda terukur TIDAK cocok">SIMP</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.14 · tanda terukur cocok">MGRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">TLDN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.09 · tanda terukur TIDAK cocok">BWPT</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.09 · tanda terukur TIDAK cocok">JARR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.02 · tanda terukur TIDAK cocok">INDF</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan rendah · beta 0.36 · tanda terukur TIDAK cocok">OILS</span></div></td>
     </tr><tr>
-      <td class="gd-nm">S&amp;P 500<span class="gd-kls">ekuitas</span></td>
-      <td class="n">7.650,5</td>
-      <td class="n gd-up">+0.2</td>
-      <td class="n gd-up">+0.8</td>
-      <td class="n gd-dn">-0.1</td>
-      <td class="n gd-up">+0.1</td>
-      <td class="n">+0.24</td>
-      <td class="n gd-mu">10.9%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Batu bara Newcastle<span class="gd-kls">komoditas</span></td>
-      <td class="n">144</td>
-      <td class="n gd-dn">-0.5</td>
-      <td class="n gd-dn">-0.4</td>
-      <td class="n gd-dn">-1.9</td>
-      <td class="n gd-up">+9.5</td>
-      <td class="n">-0.23</td>
-      <td class="n gd-mu">30.8%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">29</td>
-      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.31 · tanda terukur cocok">BUMI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.19 · tanda terukur cocok">ITMG</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.18 · tanda terukur cocok">AADI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta -0.09 · tanda terukur TIDAK cocok">BYAN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">ADRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">INDY</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">BSSR</span><span class="gd-e pos" title="DEMAND · keyakinan tinggi · beta -0.02 · tanda terukur TIDAK cocok">HEXA</span><span class="gd-e pos" title="DEMAND · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">UNTR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.44 · tanda terukur cocok">CUAN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.38 · tanda terukur TIDAK cocok">SRTG</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.34 · tanda terukur cocok">DEWA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.24 · tanda terukur TIDAK cocok">DSSA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.23 · tanda terukur cocok">PTBA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.23 · tanda terukur TIDAK cocok">ALII</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.23 · tanda terukur cocok">INTP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.2 · tanda terukur cocok">CMNT <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.15 · tanda terukur TIDAK cocok">TOBA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta -0.14 · tanda terukur TIDAK cocok">TPMA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.14 · tanda terukur cocok">ASII</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.1 · tanda terukur TIDAK cocok">SMGR <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.08 · tanda terukur TIDAK cocok">ABMM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.07 · tanda terukur TIDAK cocok">SGER</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">PTRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">HRUM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">ADMR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.03 · tanda terukur TIDAK cocok">SMGA</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.13 · tanda terukur TIDAK cocok">TCPI</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.04 · tanda terukur TIDAK cocok">RMKE</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">VIX<span class="gd-kls">makro</span></td>
-      <td class="n">14,98</td>
-      <td class="n gd-up">+1.1</td>
-      <td class="n gd-dn">-15.4</td>
-      <td class="n gd-dn">-12.4</td>
-      <td class="n gd-dn">-5.5</td>
-      <td class="n">+0.18</td>
-      <td class="n gd-mu">101.4%</td>
-      <td class="gd-mu">dekat dasar<span class="gd-kls">tren turun</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Aluminium<span class="gd-kls">komoditas</span></td>
-      <td class="n">3.301,55</td>
-      <td class="n gd-up">+0.1</td>
+      <td class="gd-nm">USD/IDR<span class="gd-kls">makro</span></td>
+      <td class="n">17.845,5</td>
+      <td class="n gd-dn">-0.0</td>
+      <td class="n gd-up">+0.6</td>
       <td class="n gd-up">+0.9</td>
-      <td class="n gd-up">+1.6</td>
-      <td class="n gd-up">+1.6</td>
-      <td class="n">+0.15</td>
-      <td class="n gd-mu">16.1%</td>
+      <td class="n gd-up">+0.8</td>
+      <td class="n">-0.14</td>
+      <td class="n gd-mu">4.6%</td>
       <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">–</td>
-      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
-    </tr><tr>
-      <td class="gd-nm">Gas alam<span class="gd-kls">komoditas</span></td>
-      <td class="n">2,88</td>
-      <td class="n gd-dn">-0.3</td>
-      <td class="n gd-dn">-0.8</td>
-      <td class="n gd-dn">-1.4</td>
-      <td class="n gd-up">+0.1</td>
-      <td class="n">-0.14</td>
-      <td class="n gd-mu">31.2%</td>
-      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
-      <td><span class="gd-lab nt">Bergerak biasa</span></td>
-      <td class="n gd-mu">3</td>
-      <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">ESSA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">ARNA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan rendah · beta 0.01 · tanda terukur TIDAK cocok">PGAS <i>−</i></span></div></td>
+      <td class="n gd-mu">40</td>
+      <td><div class="gd-em"><span class="gd-e neg" title="FX · keyakinan tinggi · beta -1.79 · tanda terukur cocok">GIAA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -1.3 · tanda terukur cocok">CPIN <i>−</i></span><span class="gd-e pos" title="FX · keyakinan tinggi · beta 0.89 · tanda terukur cocok">ADRO</span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.7 · tanda terukur TIDAK cocok">KLBF <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.67 · tanda terukur TIDAK cocok">ERAA <i>−</i></span><span class="gd-e pos" title="FX · keyakinan tinggi · beta 0.62 · tanda terukur TIDAK cocok">ITMG</span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.52 · tanda terukur TIDAK cocok">ICBP <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.21 · tanda terukur TIDAK cocok">JPFA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.11 · tanda terukur TIDAK cocok">TSPC <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">GJTL <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -2.96 · tanda terukur cocok">MLPT <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -1.68 · tanda terukur TIDAK cocok">TKIM</span><span class="gd-e pos" title="FX · keyakinan sedang · beta 1.61 · tanda terukur cocok">MEDC</span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.42 · tanda terukur cocok">MAPA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.29 · tanda terukur TIDAK cocok">MEDS <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.09 · tanda terukur cocok">KRAS <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.93 · tanda terukur TIDAK cocok">INKP</span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.89 · tanda terukur TIDAK cocok">ISAT <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.7 · tanda terukur cocok">ACES <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.61 · tanda terukur TIDAK cocok">LPKR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.6 · tanda terukur cocok">BMRI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.52 · tanda terukur TIDAK cocok">TLKM <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.47 · tanda terukur TIDAK cocok">MAPI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.36 · tanda terukur TIDAK cocok">MSTI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.35 · tanda terukur TIDAK cocok">MTDL <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.3 · tanda terukur TIDAK cocok">BBRI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.26 · tanda terukur TIDAK cocok">PYFA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.24 · tanda terukur TIDAK cocok">ASII <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.18 · tanda terukur TIDAK cocok">MYOR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">EXCL <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SMDR</span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.09 · tanda terukur TIDAK cocok">UNVR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">BBCA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">AUTO <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.05 · tanda terukur TIDAK cocok">SMSM</span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.04 · tanda terukur TIDAK cocok">PTBA</span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.65 · tanda terukur cocok">SIDO <i>−</i></span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.48 · tanda terukur TIDAK cocok">HEAL <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.03 · tanda terukur TIDAK cocok">DMAS</span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.02 · tanda terukur TIDAK cocok">MIKA <i>−</i></span></div></td>
     </tr><tr>
       <td class="gd-nm">DXY<span class="gd-kls">makro</span></td>
-      <td class="n">100,32</td>
-      <td class="n gd-up">+0.0</td>
+      <td class="n">100,39</td>
+      <td class="n gd-dn">-0.0</td>
+      <td class="n gd-up">+0.2</td>
       <td class="n gd-up">+0.1</td>
-      <td class="n gd-up">+0.7</td>
-      <td class="n gd-up">+1.4</td>
-      <td class="n">+0.13</td>
+      <td class="n gd-up">+1.2</td>
+      <td class="n">-0.13</td>
       <td class="n gd-mu">4.8%</td>
       <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
     </tr><tr>
-      <td class="gd-nm">Perak<span class="gd-kls">komoditas</span></td>
-      <td class="n">66,68</td>
+      <td class="gd-nm">Batu bara Rotterdam<span class="gd-kls">komoditas</span></td>
+      <td class="n">137,1</td>
+      <td class="n gd-dn">-0.1</td>
+      <td class="n gd-dn">-1.1</td>
+      <td class="n gd-dn">-1.4</td>
+      <td class="n gd-up">+9.9</td>
+      <td class="n">-0.12</td>
+      <td class="n gd-mu">19.6%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">CSI 300<span class="gd-kls">ekuitas</span></td>
+      <td class="n">4.544,59</td>
+      <td class="n gd-up">+0.1</td>
+      <td class="n gd-up">+1.9</td>
+      <td class="n gd-up">+2.1</td>
       <td class="n gd-dn">-0.2</td>
-      <td class="n gd-up">+0.9</td>
-      <td class="n gd-up">+4.4</td>
-      <td class="n gd-dn">-2.0</td>
-      <td class="n">-0.10</td>
-      <td class="n gd-mu">36.1%</td>
+      <td class="n">+0.09</td>
+      <td class="n gd-mu">20.6%</td>
+      <td class="gd-mu">dekat dasar<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Shanghai Composite<span class="gd-kls">ekuitas</span></td>
+      <td class="n">3.952,13</td>
+      <td class="n gd-up">+0.1</td>
+      <td class="n gd-up">+2.0</td>
+      <td class="n gd-up">+2.3</td>
+      <td class="n gd-up">+1.6</td>
+      <td class="n">+0.06</td>
+      <td class="n gd-mu">16.2%</td>
       <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
       <td><span class="gd-lab nt">Bergerak biasa</span></td>
       <td class="n gd-mu">–</td>
       <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">VIX<span class="gd-kls">makro</span></td>
+      <td class="n">14,82</td>
+      <td class="n gd-dn">-0.3</td>
+      <td class="n gd-dn">-4.0</td>
+      <td class="n gd-dn">-13.8</td>
+      <td class="n gd-dn">-4.1</td>
+      <td class="n">-0.05</td>
+      <td class="n gd-mu">100.3%</td>
+      <td class="gd-mu">dekat dasar<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Batu bara Newcastle<span class="gd-kls">komoditas</span></td>
+      <td class="n">144,05</td>
+      <td class="n gd-up">+0.0</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-dn">-1.9</td>
+      <td class="n gd-up">+9.5</td>
+      <td class="n">+0.03</td>
+      <td class="n gd-mu">19.1%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">29</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.31 · tanda terukur cocok">BUMI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.19 · tanda terukur cocok">ITMG</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.18 · tanda terukur cocok">AADI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta -0.09 · tanda terukur TIDAK cocok">BYAN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">ADRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">INDY</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">BSSR</span><span class="gd-e pos" title="DEMAND · keyakinan tinggi · beta -0.02 · tanda terukur TIDAK cocok">HEXA</span><span class="gd-e pos" title="DEMAND · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">UNTR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.44 · tanda terukur cocok">CUAN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.38 · tanda terukur TIDAK cocok">SRTG</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.34 · tanda terukur cocok">DEWA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.24 · tanda terukur TIDAK cocok">DSSA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.23 · tanda terukur cocok">PTBA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.23 · tanda terukur TIDAK cocok">ALII</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.23 · tanda terukur cocok">INTP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.2 · tanda terukur cocok">CMNT <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.15 · tanda terukur TIDAK cocok">TOBA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta -0.14 · tanda terukur TIDAK cocok">TPMA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.14 · tanda terukur cocok">ASII</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.1 · tanda terukur TIDAK cocok">SMGR <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.08 · tanda terukur TIDAK cocok">ABMM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.07 · tanda terukur TIDAK cocok">SGER</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">PTRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">HRUM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">ADMR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.03 · tanda terukur TIDAK cocok">SMGA</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.13 · tanda terukur TIDAK cocok">TCPI</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.04 · tanda terukur TIDAK cocok">RMKE</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Aluminium<span class="gd-kls">komoditas</span></td>
+      <td class="n">3.266</td>
+      <td class="n gd-up">+0.0</td>
+      <td class="n gd-dn">-1.0</td>
+      <td class="n gd-up">+0.4</td>
+      <td class="n gd-up">+1.5</td>
+      <td class="n">+0.00</td>
+      <td class="n gd-mu">14.8%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Gas alam<span class="gd-kls">komoditas</span></td>
+      <td class="n">2,84</td>
+      <td class="n gd-up">+0.0</td>
+      <td class="n gd-dn">-2.6</td>
+      <td class="n gd-dn">-1.9</td>
+      <td class="n gd-dn">-2.7</td>
+      <td class="n">+0.00</td>
+      <td class="n gd-mu">31.1%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">3</td>
+      <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">ESSA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">ARNA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan rendah · beta 0.01 · tanda terukur TIDAK cocok">PGAS <i>−</i></span></div></td>
+    </tr><tr>
+      <td class="gd-nm">INDO 10Y<span class="gd-kls">makro</span></td>
+      <td class="n">7,12</td>
+      <td class="n gd-up">+0.0</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-up">+1.1</td>
+      <td class="n">+0.00</td>
+      <td class="n gd-mu">12.5%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">27</td>
+      <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.22 · tanda terukur TIDAK cocok">AGRO <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.2 · tanda terukur TIDAK cocok">BBTN <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.18 · tanda terukur TIDAK cocok">PWON <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.17 · tanda terukur TIDAK cocok">PTPP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.15 · tanda terukur TIDAK cocok">TOWR <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">ARTO <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.12 · tanda terukur TIDAK cocok">BMRI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.12 · tanda terukur TIDAK cocok">PNBN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.1 · tanda terukur TIDAK cocok">JSMR <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BFIN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BDMN <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BSDE <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">MTEL <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.07 · tanda terukur TIDAK cocok">BRIS <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta 0.07 · tanda terukur TIDAK cocok">CTRA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">BJBR <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">SMRA <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">PANI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.04 · tanda terukur TIDAK cocok">BNGA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">BJTM <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">BBCA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBRI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBNI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBYB <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">NISP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta - · tanda terukur TIDAK cocok">WIKA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta - · tanda terukur TIDAK cocok">WSKT <i>−</i></span></div></td>
     </tr></tbody></table></div><div class="gd-sec"><h3>Peta paparannya dari mana</h3>
     <p>Dari klasifikasi usaha resmi IDX (<code>lini_usaha.json</code>), bukan dari hafalan. Lalu
     diperiksa balik ke korelasi terukur — itulah <b>tanda terukur</b> di tooltip: kalau di atas
