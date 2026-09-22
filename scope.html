@@ -285,7 +285,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .sq-chip.on{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
 
 /* ── kerangka dua kolom ────────────────────────────────────────────────────── */
-.sq-wrap{display:grid;grid-template-columns:330px minmax(0,1fr);gap:22px;align-items:start}
+/* 300px untuk konsol keputusan, sisanya untuk chart. Konsol adalah tempat mengambil keputusan;
+   chart adalah buktinya — dan bukti butuh ruang. */
+.sq-wrap{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
 .sq-rail{position:sticky;top:calc(var(--tbh) + 68px);display:flex;flex-direction:column;gap:10px;
   max-height:calc(100vh - var(--tbh) - 84px);overflow-y:auto;scrollbar-width:thin}
 .sq-panel{min-width:0;display:flex;flex-direction:column;gap:34px}
@@ -323,18 +325,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .sq-tag.a{background:var(--accent-soft);color:var(--link);border-color:transparent}
 .sq-tag.g{background:var(--warn-soft);color:var(--warn);border-color:transparent}
 .sq-tag.d{background:var(--down-soft);color:var(--down);border-color:transparent}
-
-/* ── tangga harga ──────────────────────────────────────────────────────────── */
-.sq-ladder{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
-.sq-ladder .lh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px}
-.sq-ladder .lh h3{margin:0;font:600 10.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.sq-ladder .lh em{font-style:normal;font:600 12px/1 var(--sans);font-variant-numeric:tabular-nums}
-.sq-ladder svg{display:block;width:100%;height:auto}
-.sq-rr{display:flex;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line2)}
-.sq-rr div{flex:1;min-width:0}
-.sq-rr span{display:block;font:600 9.5px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.sq-rr b{display:block;margin-top:5px;font:600 15px/1 var(--sans);font-variant-numeric:tabular-nums}
-.sq-rr .u b{color:var(--up)}.sq-rr .d b{color:var(--down)}
 
 /* ── navigasi lompat ───────────────────────────────────────────────────────── */
 .sq-nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
@@ -418,6 +408,129 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .sq-chart .wick{stroke-width:1}.sq-chart .wick.up,.sq-chart .body.up{stroke:var(--up)}.sq-chart .wick.dn,.sq-chart .body.dn{stroke:var(--down)}
 .sq-chart .body{stroke-width:.8}.sq-chart .body.up{fill:var(--up)}.sq-chart .body.dn{fill:var(--down)}
 .sq-chart .vol.up{fill:var(--up);opacity:.4}.sq-chart .vol.dn{fill:var(--down);opacity:.4}
+/* ══ ANOTASI MESIN NEGARA ══════════════════════════════════════════════════
+   Latar negara sengaja SANGAT tipis: ia konteks, bukan isi. Lilin dan MA tetap yang menonjol.
+   Warna mengikuti arti, bukan selera: hijau = struktur naik bekerja, merah = rusak,
+   oranye = sedang diuji, biru = menunggu, abu = tak ada arah. */
+.sq-chart .ng{stroke:none}
+.sq-chart .ng-markup{fill:var(--up);opacity:.06}
+.sq-chart .ng-breakout{fill:var(--up);opacity:.10}
+.sq-chart .ng-reclaim{fill:var(--up);opacity:.045}
+.sq-chart .ng-markdown{fill:var(--down);opacity:.06}
+.sq-chart .ng-breakdown{fill:var(--down);opacity:.11}
+.sq-chart .ng-supply_rejection{fill:var(--down);opacity:.09}
+.sq-chart .ng-distribusi{fill:var(--warn);opacity:.08}
+.sq-chart .ng-pullback{fill:var(--warn);opacity:.055}
+.sq-chart .ng-demand_test{fill:var(--warn);opacity:.09}
+.sq-chart .ng-akumulasi{fill:var(--info);opacity:.055}
+.sq-chart .ng-konsolidasi{fill:var(--muted);opacity:.05}
+.sq-chart .ng-t{font:9.5px var(--sans);letter-spacing:.03em;opacity:.8}
+.sq-chart .ng-t-markup,.sq-chart .ng-t-breakout,.sq-chart .ng-t-reclaim{fill:var(--up)}
+.sq-chart .ng-t-markdown,.sq-chart .ng-t-breakdown,.sq-chart .ng-t-supply_rejection{fill:var(--down)}
+.sq-chart .ng-t-distribusi,.sq-chart .ng-t-pullback,.sq-chart .ng-t-demand_test{fill:var(--warn)}
+.sq-chart .ng-t-akumulasi{fill:var(--info)}
+.sq-chart .ng-t-konsolidasi{fill:var(--muted)}
+
+/* Zona: pita, bukan garis — harga menghormati area, bukan angka */
+.sq-chart .zn{stroke:none}
+.sq-chart .zn-demand{fill:var(--up);opacity:.13}
+.sq-chart .zn-reclaim{fill:var(--info);opacity:.11}
+.sq-chart .zn-supply{fill:var(--down);opacity:.12}
+.sq-chart .zn-ref{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 5;opacity:.6}
+.sq-chart .zn-t{font:600 9px var(--sans);letter-spacing:.02em}
+.sq-chart .zn-t-demand{fill:var(--up)}
+.sq-chart .zn-t-reclaim{fill:var(--info)}
+.sq-chart .zn-t-supply{fill:var(--down)}
+.sq-chart .zn-t-bawah{fill:var(--muted)}
+
+/* Penanda impulse: PENUH = searah tren (terbukti menambah +1,88% di atas breakout),
+   BERONGGA = lawan tren (terbantah: -1,93%, 1/7 tahun) — digambar sebagai peringatan. */
+.sq-chart .imp{stroke-width:1.1}
+.sq-chart .imp-beli.imp-searah{fill:var(--up);stroke:var(--up)}
+.sq-chart .imp-jual.imp-searah{fill:var(--down);stroke:var(--down)}
+.sq-chart .imp-beli.imp-lawan{fill:none;stroke:var(--up)}
+.sq-chart .imp-jual.imp-lawan{fill:none;stroke:var(--down)}
+.sq-chart .imp-tak{fill:none;stroke:var(--muted)}
+.sq-chart .imp-abs{fill:none;stroke:var(--warn);stroke-width:1.2}
+
+/* Label peristiwa & panah skenario */
+.sq-chart .an-bg{fill:var(--panel);opacity:.82;stroke:none}
+.sq-chart .an-ev{font:8.5px var(--sans)}
+.sq-chart .an-pv{font:8.5px var(--sans)}
+.sq-chart .an-ev-l{stroke-width:1;opacity:.5}
+.sq-chart .an-ev-baik,.sq-chart line.an-ev-baik{fill:var(--up);stroke:var(--up)}
+.sq-chart .an-ev-buruk,.sq-chart line.an-ev-buruk{fill:var(--down);stroke:var(--down)}
+.sq-chart .an-ev-waspada,.sq-chart line.an-ev-waspada{fill:var(--warn);stroke:var(--warn)}
+.sq-chart .an-ev-netral,.sq-chart line.an-ev-netral{fill:var(--muted);stroke:var(--muted)}
+.sq-chart .an-sk{stroke-width:1.2;stroke-dasharray:4 4;opacity:.75}
+.sq-chart .an-sk-confirmed{stroke-dasharray:none;opacity:.95}
+.sq-chart .an-sk-naik{stroke:var(--up)}
+.sq-chart .an-sk-datar{stroke:var(--muted)}
+.sq-chart .an-sk-turun{stroke:var(--down)}
+.sq-chart .an-sk-t{font:600 8.5px var(--sans)}
+.sq-chart .an-sk-t-naik{fill:var(--up)}
+.sq-chart .an-sk-t-datar{fill:var(--muted)}
+.sq-chart .an-sk-t-turun{fill:var(--down)}
+.sq-chart .an-now rect{fill:var(--panel);stroke:var(--line);stroke-width:1;opacity:.6}
+.sq-chart .an-now:hover rect{opacity:.92}
+.sq-chart .an-now-t{font:600 10.5px var(--sans);fill:var(--ink)}
+.sq-chart .an-now-s{font:9px var(--sans);fill:var(--muted)}
+
+/* ══ KONSOL KEPUTUSAN (rel kiri) ═══════════════════════════════════════════
+   Terasa seperti konsol dagang, bukan artikel: label/nilai dan JIKA→MAKA, bukan paragraf.
+   Dua kartu bersambung — .an-state (dari mesin negara) lalu .an-act (statis) — dibuat
+   menyatu secara visual supaya terbaca sebagai SATU panel, bukan dua kotak berbeda. */
+.an-state,.an-act{border:1px solid var(--line);background:var(--panel);width:100%;box-sizing:border-box;padding:11px 13px}
+.an-state{border-radius:10px 10px 0 0;border-bottom:0}
+.an-act{border-radius:0 0 10px 10px}
+.an-state:empty{display:none}
+.an-state:empty + .an-act{border-radius:10px;border-top:1px solid var(--line)}
+.an-hd{font:600 15px var(--sans);letter-spacing:-.01em;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.an-sub{font:600 9.5px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:11px 0 5px}
+.an-next{font-size:10px;line-height:1.45;color:var(--ink);margin:6px 0 0}
+.an-next span{display:block;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.an-bacaan{margin:0;padding:0;list-style:none}
+.an-bacaan li{font-size:11px;line-height:1.5;margin-bottom:5px;padding-left:9px;position:relative}
+.an-bacaan li:last-child{margin-bottom:0}
+.an-bacaan li:before{content:"";position:absolute;left:0;top:6px;width:3px;height:3px;border-radius:50%;background:var(--muted)}
+.an-ar{display:flex;justify-content:space-between;gap:10px;font-size:11px;line-height:1.75}
+.an-ar .an-k{color:var(--muted);flex:0 0 auto}
+.an-ar .an-v{font-variant-numeric:tabular-nums;text-align:right;font-weight:600}
+.an-pos{color:var(--up)}
+.an-neg{color:var(--down)}
+.an-st{display:flex;flex-direction:column;gap:1px;margin:4px 0 7px;padding:6px 8px;border-radius:4px;font-size:10.5px;line-height:1.45}
+.an-st b{font:600 11px var(--sans);letter-spacing:.03em}
+.an-st span{color:var(--muted)}
+.an-st-no{background:rgba(198,40,40,.08);border-left:2px solid var(--down)}
+.an-sec{margin-top:4px}
+.an-foot{font-size:9.5px;line-height:1.5;color:var(--muted);margin:10px 0 0;padding-top:8px;border-top:1px solid var(--line)}
+.an-tangga{margin:0 0 9px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.an-tg{display:flex;gap:8px;align-items:baseline;font-size:10.5px;line-height:1.7;padding-left:7px;border-left:2px solid var(--line)}
+.an-tg-h{font-variant-numeric:tabular-nums;font-weight:600;min-width:58px}
+.an-tg-l{color:var(--muted)}
+.an-tg-supply{border-left-color:var(--down)}
+.an-tg-reclaim{border-left-color:var(--info)}
+.an-tg-kini{border-left-color:var(--ink)}
+.an-tg-kini .an-tg-l{color:var(--ink);font-weight:600}
+.an-tg-demand{border-left-color:var(--up)}
+.an-tg-bawah{border-left-color:var(--muted)}
+.an-row{display:flex;justify-content:space-between;gap:10px;font-size:11px;line-height:1.7}
+.an-k{color:var(--muted);flex:0 0 auto}
+.an-v{font-variant-numeric:tabular-nums;text-align:right}
+.an-dz{margin:9px 0 0;padding-top:8px;border-top:1px solid var(--line)}
+.an-dz-h{font:600 9.5px var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.an-dz-r{display:flex;flex-direction:column;gap:1px;font-size:10.5px;line-height:1.45;margin-bottom:7px;padding-left:7px;border-left:2px solid var(--line)}
+.an-dz-r:last-child{margin-bottom:0}
+.an-dz-r span{color:var(--muted)}
+.an-dz-naik{border-left-color:var(--up)}
+.an-dz-datar{border-left-color:var(--muted)}
+.an-dz-turun{border-left-color:var(--down)}
+.an-tahap{font-style:normal;font-size:8.5px;letter-spacing:.06em;align-self:flex-start;margin-top:2px;padding:0 4px;border-radius:2px;border:1px solid var(--line);color:var(--muted)}
+.an-tahap-confirmed{color:var(--up);border-color:var(--up)}
+.an-tahap-attempt{color:var(--warn);border-color:var(--warn)}
+.an-catat{font-size:10px;line-height:1.5;color:var(--muted);margin:7px 0 0}
+.an-judul{font:600 13px var(--sans);margin:0 0 1px}
+.an-subjudul{font-size:11px;color:var(--muted);margin:0 0 10px}
 .sq-chart .ma{fill:none;stroke-width:1.4}.sq-chart .ma20{stroke:var(--warn)}.sq-chart .ma50{stroke:var(--info)}.sq-chart .ma200{stroke:var(--ink);opacity:.7}
 .sq-chart .bb{fill:var(--info);opacity:.07}
 .sq-chart .srsi{fill:none;stroke-width:1.2}.sq-chart .srsi.k{stroke:var(--ink)}.sq-chart .srsi.d{stroke:var(--warn)}
@@ -506,16 +619,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 <header class="top">
   <div class="top-in">
     <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
-    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>823</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="gerak.html">Kenapa bergerak</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a></nav>
+    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv on" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="gerak.html">Kenapa bergerak</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
-    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-21 17:27</b></span><span class="st" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-21</b></span></div>
+    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-22 10:15</b> <i class="wr">bursa masih buka</i></span><span class="st old" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-21</b> <i class="wr">kemarin</i></span></div>
     <button type="button" class="tema" id="temaBtn" title="Ganti tema"><span id="temaVal">terang</span></button>
   </div>
 </header>
 <main class="content lebar"><div class="sq-top">
-    <div><h1>Per saham</h1><p class="h1-sub">823 saham · harga per 2026-09-21. Ketik kode, atau klik kode saham di halaman mana pun.</p></div>
+    <div><h1>Per saham</h1><p class="h1-sub">816 saham · harga per 2026-09-22. Ketik kode, atau klik kode saham di halaman mana pun.</p></div>
   </div>
   <div class="sq-tools">
     <div class="sq-find"><input id="sqIn" placeholder="Ketik kode…" autocomplete="off" spellcheck="false" aria-label="Cari emiten"></div>
@@ -606,7 +719,6 @@ document.addEventListener('DOMContentLoaded',function(){
       chips=document.getElementById('sqChips'), cock=document.getElementById('sqCock'), lhn=document.getElementById('sqLhn');
   var fR='', fF='', aktif=null;
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
-  var fm=function(v){ return (Math.round(Number(v)*100)/100).toLocaleString('id-ID'); };
 
   function saring(){
     var q=inp.value.trim().toUpperCase();
@@ -625,43 +737,6 @@ document.addEventListener('DOMContentLoaded',function(){
         +'<span class="r2">'+esc(kond(d.ra))+' '+d.k.toFixed(2)+(d.ex?' · naik jauh':'')+(d.am?' · dua bacaan':'')+'</span></button>';
     }).join('')||'<div class="sq-empty" style="border:0;padding:20px">Tidak ada yang cocok.</div>';
     return r; }
-
-  /* ── TANGGA HARGA ────────────────────────────────────────────────────────────
-     Jarak ke stop dan ke target pada SATU skala, jadi untung:rugi terlihat sebagai
-     panjang pita, bukan cuma angka. Level yang nol/tak masuk akal dilewati. */
-  function tangga(d){
-    var px=Number(d.h)||0, L=d.lv||{};
-    var titik=[]; var tambah=function(v,t,c){ v=Number(v); if(v>0) titik.push({v:v,t:t,c:c}); };
-    tambah(L.R2,'T2','up'); tambah(L.R1,'T1','up'); tambah(L.trigger,'Pemicu','trig');
-    tambah(L.S1,'S1','sup'); tambah(L.SL,'Stop','down'); tambah(L.S2,'S2','sup');
-    if(!px||titik.length<2) return '';
-    var nilai=titik.map(function(t){return t.v}).concat([px]);
-    var lo=Math.min.apply(null,nilai), hi=Math.max.apply(null,nilai);
-    if(hi===lo) return '';
-    var pad=(hi-lo)*0.10; lo-=pad; hi+=pad;
-    var W=300,H=268,PT=16,PB=16,LX=112,RX=196;
-    var y=function(v){ return PT+(H-PT-PB)*(1-(v-lo)/(hi-lo)); };
-    var s='', t1=Number(L.R1)||0, sl=Number(L.SL)||0;
-    if(t1>px) s+='<rect x="'+LX+'" y="'+y(t1).toFixed(1)+'" width="14" height="'+(y(px)-y(t1)).toFixed(1)+'" fill="var(--up-soft)"/>'
-      +'<line x1="'+(LX+7)+'" x2="'+(LX+7)+'" y1="'+y(t1).toFixed(1)+'" y2="'+y(px).toFixed(1)+'" stroke="var(--up)" stroke-width="2"/>';
-    if(sl>0&&sl<px) s+='<rect x="'+LX+'" y="'+y(px).toFixed(1)+'" width="14" height="'+(y(sl)-y(px)).toFixed(1)+'" fill="var(--down-soft)"/>'
-      +'<line x1="'+(LX+7)+'" x2="'+(LX+7)+'" y1="'+y(px).toFixed(1)+'" y2="'+y(sl).toFixed(1)+'" stroke="var(--down)" stroke-width="2"/>';
-    titik.forEach(function(L2){
-      var col=L2.c==='up'?'var(--up)':L2.c==='down'?'var(--down)':L2.c==='trig'?'var(--warn)':'var(--muted)';
-      var yy=y(L2.v), dash=(L2.c==='sup')?' stroke-dasharray="3 3"':'';
-      s+='<line x1="'+(LX+14)+'" x2="'+RX+'" y1="'+yy.toFixed(1)+'" y2="'+yy.toFixed(1)+'" stroke="'+col+'" stroke-width="1"'+dash+' opacity=".75"/>'
-       + '<text x="'+(RX+6)+'" y="'+(yy+3.6).toFixed(1)+'" font-size="11" font-weight="600" fill="'+col+'" style="font-variant-numeric:tabular-nums">'+fm(L2.v)+'</text>'
-       + '<text x="'+(LX-8)+'" y="'+(yy+3.6).toFixed(1)+'" text-anchor="end" font-size="10.5" font-weight="600" fill="'+col+'">'+L2.t+'</text>';
-    });
-    var yh=y(px);
-    s+='<line x1="6" x2="'+RX+'" y1="'+yh.toFixed(1)+'" y2="'+yh.toFixed(1)+'" stroke="var(--ink)" stroke-width="1.5"/>'
-     + '<rect x="6" y="'+(yh-11).toFixed(1)+'" width="84" height="22" rx="5" fill="var(--ink)"/>'
-     + '<text x="48" y="'+(yh+4.4).toFixed(1)+'" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--panel)" style="font-variant-numeric:tabular-nums">'+fm(px)+'</text>';
-    var imb=t1>px?((t1/px-1)*100):null, ris=(sl>0&&sl<px)?((1-sl/px)*100):null;
-    return '<div class="sq-ladder"><div class="lh"><h3>Tangga harga</h3><em'+(d.lv.rr>=1.5?' style="color:var(--up)"':' style="color:var(--down)"')+'>1 : '+d.lv.rr.toFixed(1)+'</em></div>'
-      +'<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Tangga harga '+d.s+'">'+s+'</svg>'
-      +'<div class="sq-rr"><div class="u"><span>Imbalan ke T1</span><b>'+(imb==null?'–':'+'+imb.toFixed(1)+'%')+'</b></div>'
-      +'<div class="d"><span>Risiko ke stop</span><b>'+(ris==null?'–':'−'+ris.toFixed(1)+'%')+'</b></div></div></div>'; }
 
   var muat = {};
   function muatBerkas(nama, src, siap, lalu){
@@ -694,6 +769,35 @@ document.addEventListener('DOMContentLoaded',function(){
       var awalBar=(typeof innerWidth!=='undefined'&&innerWidth<700)?60:170;
       var gambarHarian=function(i0,end){ return chartSVG({sym:sym,level:dd.lv},bars,{W:lebarSVG(b2),bars:end-i0,end:end}); };
       if(typeof pasangZoom==='function') pasangZoom(b2,bars.length,awalBar,gambarHarian,typeof ketRentang==='function'?ketRentang(bars,false):null); else b2.innerHTML=gambarHarian(Math.max(0,bars.length-awalBar),bars.length);
+      // Kotak ringkasan anotasi: HTML di samping chart, bukan di dalam SVG. Teksnya panjang dan
+      // perlu membungkus baris — dua hal yang buruk dilakukan SVG, terutama di ponsel.
+      // Dihitung SEKALI di sini, tidak ikut digambar ulang tiap zoom: isinya soal keadaan
+      // TERKINI, jadi tidak berubah ketika jendela tampilan digeser.
+      try{
+        if(typeof anotasi==='function'&&typeof gambarAnotasi==='function'&&typeof kotakRingkasHTML==='function'){
+          var AN=anotasi(bars,dd.lv||{});
+          if(AN){
+            var gg=gambarAnotasi(AN,{x:function(){return 0},yP:function(){return NaN},yV:function(){return 0},yS:function(){return 0},
+              i0:0,END:1,PADL:54,PADR:78,PADT:16,W:1060,Hp:320,bw:1,vTop:0,Hv:0,sTop:0,Hs:0,f:function(v){return String(v)}});
+            // Kotak ringkasan ditaruh di REL KIRI (#sqCock), di bawah tangga harga — BUKAN di
+            // samping chart. Versi pertama menaruhnya di kanan chart, dan itu memakan 250-320 px
+            // dari lebar chart, bagian yang paling perlu ruang. Di rel kiri ia menempati kolom
+            // yang sudah ada dan sudah menempel saat digulir, jadi chart mendapat lebar penuh.
+            var judul=b2.parentNode;
+            if(judul&&!judul.querySelector('.an-judul')){
+              var jud=document.createElement('div');
+              jud.innerHTML='<p class="an-judul">Impulse Momentum Correlation with Structural Price Action</p>'
+                +'<p class="an-subjudul">Anotasi siklus pasar: struktur, momentum, dan jalur skenario</p>';
+              judul.insertBefore(jud,b2);
+            }
+            // Masuk ke SLOT #sqState, bukan ditempel di ekor rel: urutan konsol sudah
+            // ditentukan (keadaan -> level -> bacaan -> pohon -> action), dan menempel di ekor
+            // akan menaruh keadaan sekarang di BAWAH blok action.
+            var slot=document.getElementById('sqState');
+            if(slot) slot.innerHTML=kotakRingkasHTML(gg.kotak);
+          }
+        }
+      }catch(e){ /* anotasi gagal tidak boleh menjatuhkan chart */ }
       pasangIntra(sym, dd);
       pasangOwn(sym);
     }); }
@@ -732,6 +836,54 @@ document.addEventListener('DOMContentLoaded',function(){
       w.innerHTML=ownerHTML(sym, (typeof SO!=='undefined'&&SO[sym])||null, typeof SOM!=='undefined'?SOM:[]);
     }); }); }
 
+  /* KONSOL KEPUTUSAN — bagian statis di rel kiri.
+     Yang dinamis (keadaan, key levels, current reading, decision tree) datang dari mesin negara
+     lewat #sqState; bagian ini melengkapinya dengan ACTION, bacaan kedua, dan catatan metode.
+     ATURAN: kalau sebuah informasi tidak menjawab salah satu dari enam pertanyaan —
+     kondisi apa · harga di mana · level berikutnya apa · apa yang membuat bullish ·
+     apa yang membatalkan · layak action atau cuma pantau — ia tidak tampil di sini. */
+  function konsol(d,rg){
+    var L=d.lv||{}, rr=L.rr;
+    var n=function(v){ return v>0 ? Math.round(v).toLocaleString('id-ID') : '–'; };
+    var layak = rr>=1.5;
+    var px=d.h, t1=L.R1, sl=L.SL;
+    var imb = (t1>0 && px>0 && t1>px) ? (t1/px-1)*100 : null;
+    var ris = (sl>0 && px>0 && sl<px) ? (1-sl/px)*100 : null;
+    var out='<div class="an-act">';
+    // STATUS lebih dulu kalau aturan internal tidak lolos: jangan menawarkan eksekusi
+    // ketika saringan buku sendiri menolaknya.
+    out += layak
+      ? '<div class="an-sub">Action</div>'
+      : '<div class="an-sub">Action</div><div class="an-st an-st-no"><b>WATCH ONLY</b>'
+        +'<span>Untung : rugi 1 : '+(rr!=null?rr.toFixed(1):'–')+' — di bawah minimum 1 : 1,5 aturan buku sendiri.</span></div>';
+    out += '<div class="an-ar"><span class="an-k">Entry</span><span class="an-v">'
+      + (L.trigger>0 ? '&gt; '+n(L.trigger)+' + volume ≥1,3x' : '–') + '</span></div>'
+      + '<div class="an-ar"><span class="an-k">Watch</span><span class="an-v">'
+      + (L.SL>0&&L.S1>0 ? n(L.SL)+'–'+n(L.S1) : n(L.S1)) + '</span></div>'
+      + '<div class="an-ar"><span class="an-k">Invalidation</span><span class="an-v an-neg">'
+      + (L.SL>0 ? '&lt; '+n(L.SL) : '–') + '</span></div>'
+      + '<div class="an-ar"><span class="an-k">Next target</span><span class="an-v">'
+      + (L.R1>0 ? n(L.R1)+(L.R2>0?' → '+n(L.R2):'') : '–') + '</span></div>'
+      // Imbalan & risiko: satu-satunya angka dari TANGGA HARGA lama yang tidak diulang
+      // KEY LEVELS, jadi dipindah ke sini alih-alih dibuang bersama grafiknya.
+      + '<div class="an-ar"><span class="an-k">Imbalan ke T1</span><span class="an-v an-pos">'
+      + (imb==null?'–':'+'+imb.toFixed(1)+'%') + '</span></div>'
+      + '<div class="an-ar"><span class="an-k">Risiko ke stop</span><span class="an-v an-neg">'
+      + (ris==null?'–':'−'+ris.toFixed(1)+'%') + '</span></div>';
+    if(d.ex) out += '<div class="an-st an-st-no"><b>SUDAH NAIK JAUH</b><span>Skor '
+      +(d.rg&&d.rg['Overextended']!=null?d.rg['Overextended'].toFixed(2):'–')+'. Bukan titik beli, apa pun kondisinya.</span></div>';
+    out += '</div>';
+    // BACAAN KEDUA hanya kalau memang ambigu — kalau tidak, bagian ini tidak muncul sama sekali
+    if(d.am && rg[1]){
+      out += '<div class="an-sec"><div class="an-sub">Secondary reading</div>'
+        +'<div class="an-ar"><span class="an-k">'+esc(kond(rg[1][0]))+'</span><span class="an-v">'+rg[1][1].toFixed(2)+'</span></div>'
+        +'<div class="an-ar"><span class="an-k">Primary · '+esc(kond(rg[0][0]))+'</span><span class="an-v">'+rg[0][1].toFixed(2)+'</span></div></div>';
+    }
+    out += '<p class="an-foot">ⓘ Skor model mengukur kecocokan terhadap aturan internal, '
+      +'<b>bukan peluang harga naik</b>. Label kondisi di sini aturan buatan sendiri dan belum diuji.</p>';
+    return out;
+  }
+
   function shd(no,judul,ket){ return '<div class="sq-shd"><span class="no">'+no+'</span><h2>'+judul+'</h2>'
     +(ket?'<p>'+ket+'</p>':'')+'<span class="ln"></span></div>'; }
 
@@ -751,37 +903,27 @@ document.addEventListener('DOMContentLoaded',function(){
       +(d.am?'<span class="sq-tag g">Dua bacaan</span>':'')
       +(d.fca?'<span class="sq-tag g" title="Papan Pemantauan Khusus — lelang penuh">FCA</span>':'')
       +'</div></div>'
-      + tangga(d);
+      // slot untuk keluaran mesin negara: keadaan -> key levels -> current reading -> decision tree
+      + '<div id="sqState"></div>'
+      + konsol(d,rg);
 
     /* KOLOM KANAN */
     panel.innerHTML=
       '<nav class="sq-nav" id="sqNav">'
-      +'<a href="#secBacaan" class="on"><i>01</i>Bacaan</a><a href="#secHarian"><i>02</i>Chart harian</a>'
-      +'<a href="#secLimaW"><i>03</i>Bar 5 menit</a><a href="#secMilikW"><i>04</i>Kepemilikan</a>'
-      +'<a href="#secKondisi"><i>05</i>Level &amp; kondisi</a></nav>'
+      +'<a href="#secHarian" class="on"><i>01</i>Chart harian</a>'
+      +'<a href="#secLimaW"><i>02</i>Bar 5 menit</a><a href="#secMilikW"><i>03</i>Kepemilikan</a>'
+      +'<a href="#secKondisi"><i>04</i>Level &amp; kondisi</a></nav>'
 
-      +'<section class="sq-sec" id="secBacaan">'+shd('01','Bacaan','')
-      +'<div class="sq-read"><div class="sq-kick">Ringkas</div>'
-      +(d.it.length?'<p class="sq-lead">'+esc(d.it[0])+'</p>':'<p class="sq-lead">'+esc(d.kt)+'</p>')
-      +d.it.slice(1).map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('')
-      +(d.st.length?'<div class="cut"><div class="sq-kick">Strategi</div><ul>'+d.st.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></div>':'')
-      +'</div>'
-      +(d.lv.rr<1.5?'<div class="sq-flag d"><span class="k">Catatan<br>risiko</span><span class="t"><b>Untung : rugi 1 : '+d.lv.rr.toFixed(1)+'.</b> Di bawah 1 : 1,5 tidak lolos saringan buku sendiri, jadi ini kategori amati, bukan eksekusi.</span></div>':'')
-      +(d.ex?'<div class="sq-flag d"><span class="k">Sudah<br>naik jauh</span><span class="t">Skor '+d.rg['Overextended'].toFixed(2)+'. Bukan titik beli, apa pun kondisinya.</span></div>':'')
-      +(d.am?'<div class="sq-flag"><span class="k">Dua<br>bacaan</span><span class="t">Dua kondisi hampir sama kuat — yang kedua: <b>'+esc(kond(rg[1]?rg[1][0]:'-'))+'</b>. Label utama bukan satu-satunya jawaban.</span></div>':'')
-      +'<div class="sq-flag"><span class="k">Batas<br>metode</span><span class="t">Label kondisi chart di sini <b>aturan buatan sendiri dan belum diuji</b>. Skornya mengukur seberapa cocok dengan definisi, bukan peluang naik.</span></div>'
-      +'</section>'
-
-      +'<section class="sq-sec" id="secHarian">'+shd('02','Chart harian','')
+      +'<section class="sq-sec" id="secHarian">'+shd('01','Chart harian','')
       +'<div class="sq-chart" data-s="'+d.s+'"><div class="sq-cload">memuat chart…</div></div></section>'
 
-      +'<section class="sq-sec" id="secLimaW">'+shd('03','Bar 5 menit','600 bar, sekitar 10 sesi.')
+      +'<section class="sq-sec" id="secLimaW">'+shd('02','Bar 5 menit','600 bar, sekitar 10 sesi.')
       +'<div id="secLima"></div></section>'
 
-      +'<section class="sq-sec" id="secMilikW">'+shd('04','Orang dalam &amp; kepemilikan','KSEI akhir bulan; laporan POJK tertinggal 1–4 minggu.')
+      +'<section class="sq-sec" id="secMilikW">'+shd('03','Orang dalam &amp; kepemilikan','KSEI akhir bulan; laporan POJK tertinggal 1–4 minggu.')
       +'<div id="secMilik"></div></section>'
 
-      +'<section class="sq-sec" id="secKondisi">'+shd('05','Level &amp; kondisi','Rincian di balik tangga harga di kiri.')
+      +'<section class="sq-sec" id="secKondisi">'+shd('04','Level &amp; kondisi','Rincian di balik konsol keputusan di kiri.')
       +'<div class="sq-two">'
       +'<div class="sq-card"><div class="hd"><h3>Skor kecocokan kondisi</h3><span class="meta">'+rg.length+' kondisi</span></div><div class="bd">'
       +rg.map(function(p){ return '<div class="sq-rrow'+(p[0]===d.ra?' on':'')+'"><span class="t">'+esc(kond(p[0]))+'</span><span class="bar"><i style="width:'+(p[1]/mx*100).toFixed(0)+'%"></i></span><em>'+p[1].toFixed(2)+'</em></div>'; }).join('')
