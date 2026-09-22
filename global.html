@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global · IDX Swing</title>
+<meta name="color-scheme" content="light dark">
+<style>
+:root{color-scheme:light;
+ --bg:#f6f6f6;--panel:#ffffff;--panel2:#f4f4f4;--panel3:#ebebeb;--zebra:#fafafa;
+ --ink:#111;--ink2:#444;--muted:#7a7a7a;--line:#dcdcdc;--line2:#ececec;
+ --accent:#2a78d6;--link:#1a5fb4;--accent-soft:#e8f1fc;
+ --up:#0a7d1e;--up-soft:#e3f4e6;--down:#c62828;--down-soft:#fbe6e6;--warn:#8a5f13;--warn-soft:#fbf1dc;--info:#2a78d6;
+ --buy:var(--up);--avoid:var(--down);--watch:var(--warn);
+ /* Satu keluarga huruf untuk seluruh situs: IBM Plex Serif, di-host sendiri di fonts/.
+    Angka tetap sejajar lewat font-variant-numeric:tabular-nums di body (Plex punya tabular figures),
+    jadi --mono tidak lagi perlu huruf monospace terpisah. */
+ /* tinggi bar atas yang lengket — dipakai halaman lain untuk offset sticky.
+    SEBELUM 15 Sep 2026 variabel ini TIDAK PERNAH didefinisikan, jadi calc(var(--tbh) + …) tidak sah
+    dan seluruh aturan top-nya dibuang peramban: daftar Scope yang "sticky" sebenarnya ikut tergulir. */
+ --tbh:44px;
+ --sans:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+ --mono:"IBM Plex Serif",Georgia,"Times New Roman",serif;--r:4px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+ --bg:#111;--panel:#1a1a19;--panel2:#212120;--panel3:#2a2a28;--zebra:#1e1e1d;--ink:#f1f1ee;--ink2:#c6c5bd;--muted:#8c8b85;--line:#2f2f2d;--line2:#262624;
+ --accent:#3987e5;--link:#7fb0e6;--accent-soft:#16284a;--up:#3cb83c;--up-soft:#11260f;--down:#e66767;--down-soft:#3a1616;--warn:#e0ae55;--warn-soft:#332811;--info:#3987e5}}
+:root[data-theme="dark"]{color-scheme:dark;
+ --bg:#111;--panel:#1a1a19;--panel2:#212120;--panel3:#2a2a28;--zebra:#1e1e1d;--ink:#f1f1ee;--ink2:#c6c5bd;--muted:#8c8b85;--line:#2f2f2d;--line2:#262624;
+ --accent:#3987e5;--link:#7fb0e6;--accent-soft:#16284a;--up:#3cb83c;--up-soft:#11260f;--down:#e66767;--down-soft:#3a1616;--warn:#e0ae55;--warn-soft:#332811;--info:#3987e5}
+@font-face{font-family:"IBM Plex Serif";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/plex-serif-400-italic.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Serif";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/plex-serif-400.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Serif";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/plex-serif-600.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Serif";font-style:normal;font-weight:700;font-display:swap;src:url("fonts/plex-serif-700.woff2") format("woff2")}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:12.5px/1.5 var(--sans);
+  font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:2px}
+button{font:inherit;color:inherit}
+/* ── top nav ── */
+.top{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.top-in{max-width:1560px;margin:0 auto;padding:0 14px;height:44px;display:flex;align-items:center;gap:14px;min-width:0}
+.nav{min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
+.stempel{min-width:0;overflow:hidden;flex-shrink:1}
+.brand{display:flex;align-items:center;gap:7px;font-weight:800;font-size:14px;color:var(--ink);letter-spacing:-.01em}
+.brand:hover{text-decoration:none}
+.logo{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:5px;background:var(--accent);color:#fff;font:800 10px/1 var(--sans)}
+.nav{display:flex;gap:2px;align-items:center;height:100%}
+.nv{display:flex;align-items:center;gap:5px;height:44px;padding:0 10px;color:var(--ink2);font-weight:600;font-size:12.5px;border-bottom:2px solid transparent;white-space:nowrap}
+.nv:hover{color:var(--ink);text-decoration:none}.nv.on{color:var(--ink);border-bottom-color:var(--accent)}
+.nv.soon{color:var(--muted);font-weight:500;cursor:default}
+.nv b{font:600 10px/1 var(--mono);color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 5px}
+.cari{margin-left:auto;display:flex;align-items:center;gap:6px;height:28px;width:min(300px,30vw);padding:0 8px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg)}
+.cari:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.cari input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:12px}
+.cari kbd{font:600 10px/1 var(--mono);border:1px solid var(--line);border-radius:3px;padding:2px 5px;color:var(--muted)}
+.stempel{display:flex;gap:6px;align-items:center}
+.st{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:var(--r);padding:3px 7px;white-space:nowrap;background:var(--panel)}
+.st b{color:var(--ink);font-family:var(--mono);font-size:10.5px;font-weight:600}.st i{font-style:normal}.st.old{border-color:var(--warn)}
+.wr{color:var(--warn);font-weight:600;font-style:normal}
+.env-f{display:inline-block;margin-right:8px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);
+  background:var(--panel);font-size:10.5px;font-weight:600;color:var(--ink2)}
+.env-f.netlify{color:#0e7490;border-color:#0e7490}
+:root[data-theme="dark"] .env-f.netlify,@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .env-f.netlify{color:#67d3e8;border-color:#2b5a66}}
+.env-f.lokal{color:var(--warn);border-color:var(--warn)}
+.env-f.pages{color:var(--down);border-color:var(--down)}
+.env-l{margin-right:8px;font-size:10.5px;font-weight:600}
+.tema{height:28px;padding:0 9px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);cursor:pointer;font-size:11px;color:var(--ink2)}
+.tema:hover{border-color:var(--muted)}
+.content{max-width:1560px;margin:0 auto;padding:12px 14px 30px}
+.ft{border-top:1px solid var(--line);margin-top:20px}.ft-in{max-width:1560px;margin:0 auto;padding:10px 14px 18px;color:var(--muted);font-size:11px}
+/* ── tipografi & blok ── */
+h1{font-size:17px;margin:2px 0 0;font-weight:700}
+.h1-sub{color:var(--muted);font-size:11.5px;margin:0 0 10px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:16px 0 6px}
+.sec-h h2{font-size:13px;margin:0;font-weight:700}.sec-h p{margin:0;color:var(--muted);font-size:11.5px}
+.sec-r{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.card.tight{overflow:auto}
+.card-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 9px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.card-h h3{margin:0;font-size:12px;font-weight:700}.card-h .more{font-size:11px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:start}
+.note{border-left:3px solid var(--accent);background:var(--panel);border:1px solid var(--line);border-left-width:3px;border-radius:var(--r);padding:7px 10px;font-size:11.5px;color:var(--ink2)}
+.note.warn{border-left-color:var(--warn)}.note.bad{border-left-color:var(--down)}.note.good{border-left-color:var(--up)}.note b{color:var(--ink)}
+.muted{color:var(--muted)}.mono{font-family:var(--mono)}
+.kosong{padding:14px;text-align:center;color:var(--muted);font-size:11.5px}
+/* ── angka & arah ── */
+.num{font-variant-numeric:tabular-nums}
+.pos,.num.pos{color:var(--up)}.neg,.num.neg{color:var(--down)}.flat{color:var(--muted)}.num.hi{font-weight:700;color:var(--ink)}
+/* ── bar statistik pasar (finviz) ── */
+.mkbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.mk{padding:7px 10px;border-right:1px solid var(--line2);min-width:0}.mk:last-child{border-right:0}
+.mk-l{font-size:10.5px;color:var(--muted);white-space:nowrap;display:flex;justify-content:space-between;gap:6px}
+.mk-l b{color:var(--ink);font-family:var(--mono);font-weight:600}
+.mk-m{display:flex;height:6px;border-radius:3px;overflow:hidden;background:var(--panel3);margin:5px 0 4px}
+.mk-m i{display:block;height:100%}.mk-m .a{background:var(--up)}.mk-m .b{background:var(--down)}.mk-m .c{background:var(--accent)}
+.mk-v{display:flex;justify-content:space-between;font-size:11px;font-variant-numeric:tabular-nums}
+/* ── kartu dekomposisi indeks: strip metrik + dua kolom berdampingan ── */
+.idxg{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));border-bottom:1px solid var(--line)}
+.idxg>div{padding:9px 12px;border-right:1px solid var(--line2);min-width:0}
+.idxg>div:last-child{border-right:0}
+.idxg span{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.idxg b{display:block;margin-top:5px;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.idxg em{display:block;margin-top:4px;font-style:normal;font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.idxs{display:grid;grid-template-columns:1fr 1fr}
+.idxs>div{padding:10px 12px;min-width:0}
+.idxs>div+div{border-left:1px solid var(--line2)}
+.idxs h4{margin:0 0 8px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;display:flex;align-items:baseline;gap:6px}
+.idxs h4 i{font-style:normal;font-weight:500;letter-spacing:0;text-transform:none;font-size:10.5px;opacity:.8}
+.idxs .strip{gap:4px}
+@media(max-width:700px){.idxs{grid-template-columns:1fr}.idxs>div+div{border-left:0;border-top:1px solid var(--line2)}}
+/* ── ubin ── */
+.ubin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.ubin{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:8px 10px;min-width:0}
+.ubin-l{font-size:10.5px;color:var(--muted);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ubin-v{font-size:18px;font-weight:600;line-height:1.1}.ubin-v small{font-size:11px;color:var(--muted);font-weight:500;margin-left:3px}
+.ubin-b{display:flex;align-items:center;gap:6px;margin-top:5px;min-height:16px;flex-wrap:wrap}
+.ubin-d{font-size:10.5px;font-weight:600;padding:1px 6px;border-radius:999px;background:var(--panel2)}
+.ubin-d.good{color:var(--up);background:var(--up-soft)}.ubin-d.bad{color:var(--down);background:var(--down-soft)}.ubin-d i{font-style:normal;color:var(--muted);font-weight:500}
+.ubin-s{font-size:10.5px;color:var(--muted)}.ubin-t{margin-left:auto}
+.ubin.on .ubin-v{color:var(--up)}.ubin.off .ubin-v{color:var(--down)}.ubin.trans .ubin-v{color:var(--warn)}
+.spark path{fill:none;stroke:var(--muted);stroke-width:1.3;opacity:.85}.spark circle{fill:var(--accent)}.spark.up path{stroke:var(--up)}.spark.down path{stroke:var(--down)}
+/* ── chip · tag · skor ── */
+.chip{display:inline-block;font-size:10.5px;line-height:1;padding:3px 6px;border-radius:3px;border:1px solid var(--line);background:var(--panel2);color:var(--ink2);white-space:nowrap}
+.chip.good{color:var(--up);background:var(--up-soft);border-color:transparent}.chip.bad{color:var(--down);background:var(--down-soft);border-color:transparent}
+.chip.warn{color:var(--warn);background:var(--warn-soft);border-color:transparent}.chip.info{color:var(--link);background:var(--accent-soft);border-color:transparent}
+.chip.ink{color:var(--bg);background:var(--ink);border-color:transparent}
+.tag{display:inline-block;font-size:10px;font-weight:600;line-height:1;padding:3px 6px;border-radius:3px;background:var(--panel2);color:var(--ink2);white-space:nowrap}
+.tag.t-green,.tag.f-akum,.tag.t-mf,.tag.t-working{color:var(--up);background:var(--up-soft)}
+.tag.t-lpmdiv,.tag.f-distrib,.tag.t-avoid,.tag.t-mf-{color:var(--down);background:var(--down-soft)}
+.tag.f-net,.tag.t-caution{color:var(--warn);background:var(--warn-soft)}.tag.t-held{color:var(--link);background:var(--accent-soft)}
+.skor{display:inline-flex;flex-direction:column;align-items:flex-start;min-width:34px;font-variant-numeric:tabular-nums}
+.skor b{font-weight:700;font-size:12px;line-height:1.1}.skor em{font-style:normal;font-size:9.5px;color:var(--muted);font-weight:600}
+.skor::after{content:"";display:block;width:100%;height:2px;border-radius:1px;margin-top:2px;background:linear-gradient(90deg,var(--accent) var(--v),var(--line2) var(--v))}
+.sym{font-weight:700;font-family:var(--mono);font-size:12px;color:var(--link)}
+.es{font-size:10.5px;font-weight:600;padding:2px 6px;border-radius:3px;background:var(--panel2);color:var(--ink2)}
+.es-trend{color:var(--up);background:var(--up-soft)}.es-pullback{color:var(--link);background:var(--accent-soft)}.es-accum{color:var(--warn);background:var(--warn-soft)}.es-extended{color:var(--muted)}.es-avoid{color:var(--down);background:var(--down-soft)}
+.rd-flag{display:inline-block;font-size:10px;font-weight:600;padding:2px 5px;border-radius:3px;background:var(--panel2);color:var(--ink2);margin:0 2px 0 0}
+.rd-flag.rf-bad{color:var(--down);background:var(--down-soft)}.rd-flag.rf-warn{color:var(--warn);background:var(--warn-soft)}.rd-flag.rf-thin{color:var(--muted)}.rd-flag.rf-good{color:var(--up);background:var(--up-soft)}
+.rd-why{display:inline-block;font-size:10.5px;color:var(--ink2);background:var(--panel2);border-radius:3px;padding:1px 5px;margin:0 2px 1px 0}
+.rd-none{color:var(--muted);font-size:10.5px}
+.flow{font-variant-numeric:tabular-nums;font-weight:600}.fl-in{color:var(--up)}.fl-out{color:var(--down)}
+/* ── tabel padat (finviz) ── */
+.tblwrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.tbl-tools{display:flex;align-items:center;gap:8px;padding:5px 8px;border-bottom:1px solid var(--line);background:var(--panel2);flex-wrap:wrap}
+.tbl-cari{height:26px;width:170px;border:1px solid var(--line);border-radius:var(--r);padding:0 8px;background:var(--panel);color:var(--ink);font:inherit;font-size:11.5px}
+.tbl-cari:focus{outline:0;border-color:var(--accent)}
+.tbl-n{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}.tbl-cat{font-size:11px;color:var(--muted);margin-left:auto}
+.tbl-scroll{overflow-x:auto}
+table.tbl,table.mini{width:100%;border-collapse:collapse;font-size:11.5px}
+.tbl th,.mini th{position:sticky;top:0;z-index:1;background:var(--panel2);text-align:left;font-weight:600;font-size:10.5px;color:var(--ink2);padding:5px 7px;border-bottom:1px solid var(--line);white-space:nowrap;user-select:none}
+.tbl th.r,.tbl td.r,.mini th.r,.mini td.r{text-align:right}
+.tbl th[data-sort]{cursor:pointer}.tbl th[data-sort]:hover{color:var(--link)}
+.tbl th[data-sort].asc::after{content:" ▲";font-size:8px}.tbl th[data-sort].desc::after{content:" ▼";font-size:8px}
+.tbl td,.mini td{padding:4px 7px;border-bottom:1px solid var(--line2);vertical-align:middle;white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1.35}
+.tbl tbody tr:nth-child(even) td,.mini tbody tr:nth-child(even) td{background:var(--zebra)}
+.tbl tbody tr:hover td,.mini tbody tr:hover td{background:var(--accent-soft)}
+.tbl tr.hidden,.tbl tr.pg-hidden{display:none}
+.tbl td.wrap{white-space:normal;min-width:200px}
+.tbl .c-rank,.mini .c-rank{color:var(--muted);font-size:10.5px}
+.pager{display:flex;gap:5px;align-items:center;justify-content:flex-end;padding:5px 8px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);background:var(--panel2)}
+.pg-btn{font:inherit;font-size:11px;padding:2px 8px;border-radius:3px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.pg-btn:disabled{opacity:.4;cursor:default}.pg-btn:not(:disabled):hover{border-color:var(--muted)}
+.pg-info,.pg-pages{font-family:var(--mono);font-size:10.5px}
+.c-num{text-align:right}.c-close{font-weight:600}.cs-s{color:var(--up)}.cs-r{color:var(--link)}.cs-sl{color:var(--down)}
+.c-setup{white-space:normal!important;min-width:160px;color:var(--ink2);font-size:11px}
+.c-bm{white-space:normal!important;min-width:200px;color:var(--ink2);font-size:11px}
+.auto-tag{font-size:9px;color:var(--link);margin-left:4px;font-weight:600}
+.grp{border-left:1px solid var(--line)!important}
+.mp,.mkf,.bmq{font-size:10.5px;font-weight:600}.mp-hi{color:var(--up)}.mp-mid{color:var(--warn)}.mp-awal{color:var(--link)}
+/* ── tab & filter (finviz) ── */
+.tabs{display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.tab{border:0;background:transparent;padding:6px 11px;font-size:12px;font-weight:600;color:var(--ink2);cursor:pointer;display:flex;gap:6px;align-items:center;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab:hover{color:var(--ink)}.tab.on{color:var(--ink);border-bottom-color:var(--accent)}
+.tab .n{font:600 10px/1 var(--mono);color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:2px 5px}
+.tabpane{display:none;margin-top:8px}.tabpane.on{display:block}
+.fbar{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 8px;padding:8px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.f{display:flex;flex-direction:column;gap:2px;min-width:0}
+.f label{font-size:10px;color:var(--muted);white-space:nowrap}
+.f select,.f input{height:26px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink);font:inherit;font-size:11.5px;padding:0 6px;min-width:0}
+.f select:focus,.f input:focus{outline:0;border-color:var(--accent)}
+.fbar .reset{align-self:end;height:26px;border:1px solid var(--line);border-radius:3px;background:var(--panel2);cursor:pointer;font-size:11px;padding:0 9px}
+/* ── kartu aksi (padat) ── */
+.aksi{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--r)}
+.aksi.nihil{border-left-color:var(--muted)}
+.aksi-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:7px 10px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.aksi-h h2{margin:0;font-size:13px}.aksi-h .meta{font-size:11px;color:var(--muted)}
+.ak-cmd{display:inline-flex;gap:5px;align-items:center}
+.ak-cmd code{font:10.5px/1.3 var(--mono);background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:2px 6px;color:var(--ink2);white-space:nowrap;max-width:360px;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle}
+.ak-copy{border:1px solid var(--line);border-radius:3px;background:var(--panel);padding:2px 7px;font-size:10.5px;font-weight:600;cursor:pointer}
+.ak-copy:hover{border-color:var(--accent);color:var(--link)}
+.ak-kosong{padding:10px;color:var(--ink2)}
+.ak-foot{padding:6px 10px;font-size:10.5px;color:var(--muted);border-top:1px solid var(--line2)}
+details.lipat{padding:6px 10px;border-top:1px solid var(--line2)}details.lipat summary{cursor:pointer;font-size:11px;color:var(--link);font-weight:600}
+details.lipat ul{margin:6px 0 0;padding-left:16px;font-size:11.5px;color:var(--ink2)}details.lipat li{margin:2px 0}
+/* ── dinding sinyal (finviz) ── */
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:10px}
+.sig{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.sig h3{margin:0;padding:5px 9px;font-size:11.5px;font-weight:700;background:var(--panel2);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.sig h3 a{font-size:10.5px;font-weight:600}.sig h3 span{font-size:10px;color:var(--muted);font-weight:500}
+.sig table{width:100%;border-collapse:collapse;font-size:11.5px}
+.sig th{text-align:left;font-size:10px;color:var(--muted);font-weight:600;padding:3px 8px;border-bottom:1px solid var(--line2)}
+.sig td{padding:3px 8px;border-bottom:1px solid var(--line2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.sig th.r,.sig td.r{text-align:right}.sig td.s{max-width:200px;overflow:hidden;text-overflow:ellipsis;color:var(--ink2);font-size:11px}
+.sig tbody tr:nth-child(even) td{background:var(--zebra)}.sig tbody tr:hover td{background:var(--accent-soft)}.sig tr:last-child td{border-bottom:0}
+/* ── treemap ── */
+.tm{position:relative;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.tm svg{display:block;width:100%;height:auto}
+.tm text{pointer-events:none;font-family:var(--sans)}
+.tm .tm-s{font-size:11px;font-weight:700;fill:#fff;opacity:.95}
+.tm .tm-t{font-weight:700;fill:#fff}.tm .tm-p{fill:#fff;opacity:.9}
+.tm rect.sec{fill:none;stroke:var(--bg);stroke-width:3}
+.tm rect.it{stroke:var(--bg);stroke-width:1.2;cursor:pointer}.tm rect.it:hover{stroke:var(--ink);stroke-width:1.5}
+.tm-leg{display:flex;gap:2px;align-items:center;font-size:10.5px;color:var(--muted);margin-top:6px}
+.tm-leg i{display:inline-block;width:26px;height:10px}
+/* ── strip ── */
+.strip{display:flex;flex-wrap:wrap;gap:5px}
+.strip .chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px}
+.strip .dot{width:6px;height:6px;border-radius:50%;background:var(--muted)}.strip .on .dot{background:var(--up)}.strip .off .dot{background:var(--down)}
+details.fdet{margin:0}
+details.fdet>summary{display:none}
+details.fdet>summary::-webkit-details-marker{display:none}
+@media (max-width:1100px){.grid3,.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:800px){
+ .grid2,.grid3,.grid4{grid-template-columns:minmax(0,1fr)}
+ .stempel{display:none}
+ .top-in{flex-wrap:wrap;height:auto;padding:5px 10px;gap:8px}
+ .brand{font-size:13px;min-width:0}.logo{width:24px;height:24px;flex:0 0 auto}
+ .cari{margin-left:auto;width:auto;flex:1 1 110px;height:32px}
+ .cari kbd{display:none}
+ .tema{height:32px;padding:0 10px}
+ /* NAVIGASI: baris kedua, digeser ke samping. JANGAN dikembalikan ke display:none — itu cacat yang
+    membuat ponsel kehilangan seluruh menu (diperbaiki 11 Sep 2026, diukur dgn scripts/audit_mobile.mjs). */
+ .nav{order:3;width:100%;height:36px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -10px;padding:0 10px;border-top:1px solid var(--line2)}
+ .nav::-webkit-scrollbar{display:none}
+ .nv{height:36px;padding:0 9px}
+ .content{padding:10px 10px 26px}.ft-in{padding:10px 10px 16px}
+ /* Safari iOS mem-zoom paksa saat input ber-font <16px difokus — di bawah ini semua kendali naik ke 16px. */
+ .cari input,.tbl-cari,.f select,.f input{font-size:16px}
+ .f select,.f input,.tbl-cari{height:32px}
+ .fbar{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));padding:8px}
+ .fbar .reset{height:32px}
+ details.fdet>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);font-weight:700;font-size:12.5px;cursor:pointer;list-style:none}
+ details.fdet[open]>summary{margin-bottom:6px}
+ /* sasaran sentuh minimal ~30px */
+ .pg-btn{min-height:30px;min-width:36px}
+ .ak-copy{min-height:30px;padding:5px 10px}
+ .tab{padding:9px 11px}
+ .ak-cmd code{max-width:100%;white-space:normal;word-break:break-all}
+ .sig td.s{max-width:110px}
+ /* baris tabel ditinggikan supaya tautan kode saham (sasaran sentuh utama) mencapai ~30px */
+ .tbl td,.mini td,.sig td{padding:7px}
+ .tbl th,.mini th,.sig th{padding:7px}
+ .brand{min-height:30px}
+ /* Kotak tautan diperbesar tanpa menambah tinggi baris: padding positif + margin negatif. */
+ .sym{display:inline-block;padding:6px 4px;margin:-6px -4px}
+ .sig h3 a,.card-h .more,.sec-r a{display:inline-block;padding:6px 2px;margin:-6px -2px}
+ details.lipat summary{padding:5px 0}
+ .tbl-tools{gap:6px}
+}
+@media (max-width:430px){
+ /* satu baris untuk merek + cari + tema: kata "Swing" disembunyikan, logo IDX tetap jadi tautan pulang */
+ .brand .bnama{display:none}
+ .cari{flex:1 1 80px}
+ .tema{padding:0 8px;font-size:10.5px}
+ .nv{padding:0 8px;font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+</style><style>
+.gd-hero{padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:16px}
+.gd-hero h2{margin:0 0 7px;font:700 17px/1.2 var(--sans)}
+.gd-hero p{margin:0 0 8px;font-size:13px;line-height:1.6;color:var(--ink2);max-width:76ch}
+.gd-warn{margin-top:10px;padding:10px 12px;background:var(--warn-soft);border-radius:8px;font-size:12px;line-height:1.55;color:var(--ink2)}
+.gd-warn b{color:var(--warn)}
+.gd-fresh{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line2)}
+.gd-f{padding:5px 9px;border-radius:6px;background:var(--panel2);font-size:11px;color:var(--muted);white-space:nowrap}
+.gd-f b{display:block;color:var(--ink);font:600 11.5px/1.3 var(--sans);font-variant-numeric:tabular-nums}
+.gd-f.lag{background:var(--warn-soft)}.gd-f.lag b{color:var(--warn)}
+.gd-f.basi{background:var(--down-soft)}.gd-f.basi b{color:var(--down)}
+.gd-sec{margin:22px 0 9px}
+.gd-sec h3{margin:0 0 4px;font:700 13px/1.2 var(--sans)}
+.gd-sec p{margin:0;font-size:12px;line-height:1.55;color:var(--muted);max-width:76ch}
+.gd-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.gd-t{width:100%;border-collapse:collapse;font-size:12px}
+.gd-t th{position:sticky;top:0;background:var(--panel);text-align:left;padding:8px 10px;white-space:nowrap;
+  font:600 9px/1.3 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+.gd-t td{padding:7px 10px;border-bottom:1px solid var(--line2);vertical-align:top}
+.gd-t tr:last-child td{border-bottom:0}
+.gd-t td.n,.gd-t th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.gd-t tr.kat td{background:var(--warn-soft)}
+.gd-nm{font-weight:600;white-space:nowrap}
+.gd-kls{display:block;margin-top:2px;font-size:10px;color:var(--muted)}
+.gd-lab{font:600 9.5px/1.3 var(--sans);letter-spacing:.03em;padding:2px 6px;border-radius:4px;display:inline-block;white-space:nowrap}
+.gd-lab.up{background:var(--up-soft);color:var(--up)}
+.gd-lab.dn{background:var(--down-soft);color:var(--down)}
+.gd-lab.nt{background:var(--panel3);color:var(--muted)}
+/* Tidak ada max-width: daftar saham dibiarkan penuh. Batas 44ch sebelumnya memaksa
+   pemotongan visual pada penggerak bereksposur lebar seperti USD/IDR (40 saham). */
+.gd-em{display:flex;flex-wrap:wrap;gap:4px;min-width:26ch}
+.gd-e{font-size:10.5px;padding:2px 6px;border-radius:4px;background:var(--panel2);white-space:nowrap}
+.gd-e.pos{color:var(--up)}.gd-e.neg{color:var(--down)}
+.gd-e i{font-style:normal;opacity:.6;font-size:9.5px}
+.gd-up{color:var(--up)}.gd-dn{color:var(--down)}.gd-mu{color:var(--muted)}
+.gd-kosong{padding:20px;text-align:center;color:var(--muted);font-size:13px}
+.gd-rantai td{font-size:11.5px}
+.gd-rantai .st{font:600 9.5px/1.3 var(--sans);letter-spacing:.03em}
+</style>
+</head><body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
+    <nav class="nav" aria-label="Halaman"><a class="nv" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv on" href="global.html">Global</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
+    <form class="cari" id="cariForm" role="search" action="scope.html">
+      <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
+    </form>
+    <div class="stempel"><span class="st" title="Harga & volume terakhir diambil (WIB). Sebelum 16:15 = candle hari itu belum selesai.">Harga <b>2026-09-22 10:15</b> <i class="wr">bursa masih buka</i></span><span class="st old" title="Data resmi bursa (order, frekuensi, asing). Terbit ~17:00 WIB.">Bursa <b>2026-09-21</b> <i class="wr">kemarin</i></span></div>
+    <button type="button" class="tema" id="temaBtn" title="Ganti tema"><span id="temaVal">terang</span></button>
+  </div>
+</header>
+<main class="content lebar"><div class="gd-hero">
+    <h2>Penggerak dunia</h2>
+    <p>Alurnya: <b>ada yang gerak di luar → saham mana yang kena → chartnya sedang apa →
+    konfirmasinya ada belum → buku sanggup belum → boleh masuk atau tidak</b>. Kolom terakhir
+    tetap keputusan Decision Orchestrator, bukan halaman ini.</p>
+    <p>Yang disebut <b>katalis</b> cuma yang geraknya <b>di luar kebiasaan dirinya sendiri</b>
+    (|z| ≥ 1 simpangan baku) <i>dan</i> sedang di ujung rentang 60 harinya. Hari ini
+    1 dari 32. Sisanya gerak biasa — tidak usah dibesarkan.</p>
+    <div class="gd-warn"><b>Baca ini dulu.</b> Ikatan penggerak dunia ke saham IDX sudah pernah
+    diuji di sistem ini: emas naik semalam memang menarik emiten emas (beta 0,40), <b>tapi 87%-nya
+    sudah habis di gap pembukaan dan tidak nyisa buat besok</b>. Sinyal beli berbasis |z| penggerak
+    juga <b>kalah dari nebak hari acak</b>. Jadi halaman ini buat <b>tahu kenapa sesuatu gerak</b>,
+    bukan buat cari entry. Kalau sebuah saham menarik, alasannya harus dari chartnya sendiri.</div>
+    <div class="gd-fresh">
+      <div class="gd-f">Harga IDX (screener) · kurang dari 1 jam<b>2026-09-22 03:15</b></div><div class="gd-f lag">Penggerak dunia · 17 jam<b>2026-09-21 10:17</b></div><div class="gd-f lag">Bar 5 menit · 16 jam<b>2026-09-21 11:01</b></div><div class="gd-f lag">Peta paparan · 16 jam<b>2026-09-21 10:48</b></div><div class="gd-f lag">Lead/lag · 16 jam<b>2026-09-21 11:03</b></div><div class="gd-f lag">Buku paper · 16 jam<b>2026-09-21 11:03</b></div><div class="gd-f">Data resmi bursa<b>2026-09-21</b></div>
+    </div>
+  </div><div class="gd-sec"><h3>Yang kena sentimen hari ini</h3>
+    <p>Cuma saham yang kena penggerak berkatalis. Dibaca kiri ke kanan: ada anginnya, chartnya
+    sedang apa, konfirmasinya sudah ada belum, lalu boleh masuk atau tidak. Kolom terakhir bisa
+    beda dari kolom sebelumnya — buku boleh menahan eksekusi tanpa mengubah kondisi pasarnya.</p></div><div class="gd-scroll"><table class="gd-t gd-rantai"><thead><tr>
+      <th>Saham</th><th class="n">Harga</th><th>Anginnya dari</th><th>Arah angin</th>
+      <th>Chart</th><th>Uang 5 mnt</th><th class="n">Konfirmasi</th><th class="n">U:R</th>
+      <th>Boleh masuk?</th></tr></thead><tbody><tr>
+        <td class="gd-nm"><a href="scope.html?q=COIN">COIN</a></td>
+        <td class="n">845</td>
+        <td><div class="gd-em"><span class="gd-e pos">Bitcoin <i>+10.0%</i></span></div></td>
+        <td><span class="gd-lab up">TAILWIND</span></td>
+        <td class="gd-mu">LONG_TERM_BEARISH<span class="gd-kls">PULLBACK</span></td>
+        <td class="gd-mu">BUYER_CONFIRMATION</td>
+        <td class="n">7/7 · 100%</td>
+        <td class="n gd-mu">1 : 1.67</td>
+        <td class="st">POTENTIAL<span class="gd-kls">belum tembus pemicu · slot penuh · kas tipis · risiko buku mentok</span></td>
+      </tr><tr>
+        <td class="gd-nm"><a href="scope.html?q=DEFI">DEFI</a></td>
+        <td class="n">105</td>
+        <td><div class="gd-em"><span class="gd-e pos">Bitcoin <i>+10.0%</i></span></div></td>
+        <td><span class="gd-lab up">TAILWIND</span></td>
+        <td class="gd-mu">LONG_TERM_BEARISH<span class="gd-kls">RECLAIM_ATTEMPT</span></td>
+        <td class="gd-mu">NO_SIGNIFICANT_ACTIVITY</td>
+        <td class="n">3/6 · 23%</td>
+        <td class="n gd-mu">1 : 1.11</td>
+        <td class="st">QUALIFIED<span class="gd-kls">belum tembus pemicu · konfirmasi kurang · slot penuh · kas tipis · risiko buku mentok</span></td>
+      </tr></tbody></table></div><div class="gd-sec"><h3>Yang gerak di luar kebiasaan (1)</h3>
+    <p>Gerak di luar kebiasaan dirinya <i>dan</i> sedang di ujung rentang 60 hari. Saham bertanda
+    <b>−</b> artinya kena kebalikannya — komoditas itu biaya buat dia, bukan pendapatan. Tunjuk
+    kodenya buat lihat jalur paparannya, seberapa yakin, beta terukur, dan apakah tanda terukurnya
+    cocok dengan yang kita asumsikan.</p></div><div class="gd-scroll"><table class="gd-t"><thead><tr><th>Penggerak</th><th class="n">Harga</th><th class="n">1H</th><th class="n">3H</th>
+    <th class="n">5H</th><th class="n">20H</th><th class="n" title="gerak 1 hari dalam simpangan baku gerak hariannya sendiri">z</th>
+    <th class="n" title="volatilitas tahunan">Vol</th><th>Posisi 60 hari</th><th>Bacaan</th>
+    <th class="n">Kena</th><th>Saham IDX yang kena</th></tr></thead><tbody><tr class="kat">
+      <td class="gd-nm">Bitcoin<span class="gd-kls">kripto</span></td>
+      <td class="n">83.891</td>
+      <td class="n gd-up">+3.3</td>
+      <td class="n gd-up">+3.8</td>
+      <td class="n gd-up">+10.0</td>
+      <td class="n gd-up">+8.3</td>
+      <td class="n">+1.55</td>
+      <td class="n gd-mu">33.6%</td>
+      <td class="gd-mu">breakout<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab up">Breakout</span></td>
+      <td class="n gd-mu">2</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="SENTIMENT_PROXY · keyakinan tinggi · beta 0.07 · tanda terukur TIDAK cocok">COIN</span><span class="gd-e pos" title="SENTIMENT_PROXY · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">DEFI</span></div></td>
+    </tr></tbody></table></div><div class="gd-sec"><h3>Sisanya (31)</h3>
+    <p>Gerak, tapi masih wajar buat ukuran dirinya. Ditaruh di sini biar kelihatan, bukan biar
+    ditindaklanjuti.</p></div>
+    <div class="gd-scroll"><table class="gd-t"><thead><tr><th>Penggerak</th><th class="n">Harga</th><th class="n">1H</th><th class="n">3H</th>
+    <th class="n">5H</th><th class="n">20H</th><th class="n" title="gerak 1 hari dalam simpangan baku gerak hariannya sendiri">z</th>
+    <th class="n" title="volatilitas tahunan">Vol</th><th>Posisi 60 hari</th><th>Bacaan</th>
+    <th class="n">Kena</th><th>Saham IDX yang kena</th></tr></thead><tbody><tr>
+      <td class="gd-nm">USD/IDR<span class="gd-kls">makro</span></td>
+      <td class="n">17.834,5</td>
+      <td class="n gd-up">+0.4</td>
+      <td class="n gd-up">+0.5</td>
+      <td class="n gd-up">+0.8</td>
+      <td class="n gd-up">+0.7</td>
+      <td class="n">+1.49</td>
+      <td class="n gd-mu">4.6%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Impuls naik</span></td>
+      <td class="n gd-mu">40</td>
+      <td><div class="gd-em"><span class="gd-e neg" title="FX · keyakinan tinggi · beta -1.79 · tanda terukur cocok">GIAA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -1.3 · tanda terukur cocok">CPIN <i>−</i></span><span class="gd-e pos" title="FX · keyakinan tinggi · beta 0.89 · tanda terukur cocok">ADRO</span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.7 · tanda terukur TIDAK cocok">KLBF <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.67 · tanda terukur TIDAK cocok">ERAA <i>−</i></span><span class="gd-e pos" title="FX · keyakinan tinggi · beta 0.62 · tanda terukur TIDAK cocok">ITMG</span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.52 · tanda terukur TIDAK cocok">ICBP <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.21 · tanda terukur TIDAK cocok">JPFA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.11 · tanda terukur TIDAK cocok">TSPC <i>−</i></span><span class="gd-e neg" title="FX · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">GJTL <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -2.96 · tanda terukur cocok">MLPT <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -1.68 · tanda terukur TIDAK cocok">TKIM</span><span class="gd-e pos" title="FX · keyakinan sedang · beta 1.61 · tanda terukur cocok">MEDC</span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.42 · tanda terukur cocok">MAPA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.29 · tanda terukur TIDAK cocok">MEDS <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -1.09 · tanda terukur cocok">KRAS <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.93 · tanda terukur TIDAK cocok">INKP</span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.89 · tanda terukur TIDAK cocok">ISAT <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.7 · tanda terukur cocok">ACES <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.61 · tanda terukur TIDAK cocok">LPKR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.6 · tanda terukur cocok">BMRI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.52 · tanda terukur TIDAK cocok">TLKM <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.47 · tanda terukur TIDAK cocok">MAPI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.36 · tanda terukur TIDAK cocok">MSTI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.35 · tanda terukur TIDAK cocok">MTDL <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.3 · tanda terukur TIDAK cocok">BBRI <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.26 · tanda terukur TIDAK cocok">PYFA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.24 · tanda terukur TIDAK cocok">ASII <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.18 · tanda terukur TIDAK cocok">MYOR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">EXCL <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SMDR</span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.09 · tanda terukur TIDAK cocok">UNVR <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">BBCA <i>−</i></span><span class="gd-e neg" title="FX · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">AUTO <i>−</i></span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.05 · tanda terukur TIDAK cocok">SMSM</span><span class="gd-e pos" title="FX · keyakinan sedang · beta -0.04 · tanda terukur TIDAK cocok">PTBA</span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.65 · tanda terukur cocok">SIDO <i>−</i></span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.48 · tanda terukur TIDAK cocok">HEAL <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.03 · tanda terukur TIDAK cocok">DMAS</span><span class="gd-e neg" title="FX · keyakinan rendah · beta -0.02 · tanda terukur TIDAK cocok">MIKA <i>−</i></span></div></td>
+    </tr><tr>
+      <td class="gd-nm">DAX<span class="gd-kls">ekuitas</span></td>
+      <td class="n">25.552,92</td>
+      <td class="n gd-up">+1.0</td>
+      <td class="n gd-up">+0.1</td>
+      <td class="n gd-up">+0.4</td>
+      <td class="n gd-dn">-2.1</td>
+      <td class="n">+1.18</td>
+      <td class="n gd-mu">13.1%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Impuls naik</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Hang Seng<span class="gd-kls">ekuitas</span></td>
+      <td class="n">25.042,71</td>
+      <td class="n gd-up">+1.2</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-up">+0.5</td>
+      <td class="n gd-dn">-1.9</td>
+      <td class="n">+1.15</td>
+      <td class="n gd-mu">16.2%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Impuls naik</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Timah<span class="gd-kls">komoditas</span></td>
+      <td class="n">53.026</td>
+      <td class="n gd-up">+1.4</td>
+      <td class="n gd-up">+2.5</td>
+      <td class="n gd-dn">-1.9</td>
+      <td class="n gd-dn">-4.5</td>
+      <td class="n">+1.13</td>
+      <td class="n gd-mu">20.2%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Impuls turun</span></td>
+      <td class="n gd-mu">1</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.22 · tanda terukur cocok">TINS</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Tembaga<span class="gd-kls">komoditas</span></td>
+      <td class="n">6,8</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-up">+2.1</td>
+      <td class="n gd-up">+5.5</td>
+      <td class="n gd-up">+1.5</td>
+      <td class="n">+0.97</td>
+      <td class="n gd-mu">21.2%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">2</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.26 · tanda terukur cocok">AMMN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.2 · tanda terukur TIDAK cocok">MDKA</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Shanghai Composite<span class="gd-kls">ekuitas</span></td>
+      <td class="n">3.949,91</td>
+      <td class="n gd-up">+1.0</td>
+      <td class="n gd-up">+1.5</td>
+      <td class="n gd-up">+1.7</td>
+      <td class="n gd-up">+1.8</td>
+      <td class="n">+0.95</td>
+      <td class="n gd-mu">16.2%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">MSCI Emerging Markets<span class="gd-kls">ekuitas</span></td>
+      <td class="n">1.735,55</td>
+      <td class="n gd-up">+1.4</td>
+      <td class="n gd-up">+2.9</td>
+      <td class="n gd-up">+2.2</td>
+      <td class="n gd-up">+2.4</td>
+      <td class="n">+0.91</td>
+      <td class="n gd-mu">25%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">SOX semikonduktor<span class="gd-kls">ekuitas</span></td>
+      <td class="n">11.921,69</td>
+      <td class="n gd-up">+2.8</td>
+      <td class="n gd-up">+6.7</td>
+      <td class="n gd-up">+0.8</td>
+      <td class="n gd-up">+1.5</td>
+      <td class="n">+0.86</td>
+      <td class="n gd-mu">50.6%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Nikkei 225<span class="gd-kls">ekuitas</span></td>
+      <td class="n">65.018,95</td>
+      <td class="n gd-up">+1.4</td>
+      <td class="n gd-up">+2.4</td>
+      <td class="n gd-up">+3.1</td>
+      <td class="n gd-dn">-1.9</td>
+      <td class="n">+0.84</td>
+      <td class="n gd-mu">26%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Batu bara Rotterdam<span class="gd-kls">komoditas</span></td>
+      <td class="n">137,05</td>
+      <td class="n gd-dn">-1.1</td>
+      <td class="n gd-dn">-1.4</td>
+      <td class="n gd-dn">-1.4</td>
+      <td class="n gd-up">+10.0</td>
+      <td class="n">-0.72</td>
+      <td class="n gd-mu">25.5%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Ethereum<span class="gd-kls">kripto</span></td>
+      <td class="n">2.699,24</td>
+      <td class="n gd-up">+2.0</td>
+      <td class="n gd-up">+3.3</td>
+      <td class="n gd-up">+11.6</td>
+      <td class="n gd-up">+11.6</td>
+      <td class="n">+0.66</td>
+      <td class="n gd-mu">47.9%</td>
+      <td class="gd-mu">breakout<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">US 2Y<span class="gd-kls">makro</span></td>
+      <td class="n">4,72</td>
+      <td class="n gd-dn">-0.7</td>
+      <td class="n gd-up">+0.7</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-up">+12.6</td>
+      <td class="n">-0.66</td>
+      <td class="n gd-mu">16%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">INDO 10Y<span class="gd-kls">makro</span></td>
+      <td class="n">7,12</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-dn">-0.3</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-up">+2.3</td>
+      <td class="n">-0.66</td>
+      <td class="n gd-mu">12.5%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">27</td>
+      <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.22 · tanda terukur TIDAK cocok">AGRO <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.2 · tanda terukur TIDAK cocok">BBTN <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.18 · tanda terukur TIDAK cocok">PWON <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.17 · tanda terukur TIDAK cocok">PTPP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.15 · tanda terukur TIDAK cocok">TOWR <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">ARTO <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.12 · tanda terukur TIDAK cocok">BMRI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.12 · tanda terukur TIDAK cocok">PNBN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.1 · tanda terukur TIDAK cocok">JSMR <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BFIN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BDMN <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">BSDE <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.08 · tanda terukur TIDAK cocok">MTEL <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.07 · tanda terukur TIDAK cocok">BRIS <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta 0.07 · tanda terukur TIDAK cocok">CTRA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">BJBR <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta -0.06 · tanda terukur TIDAK cocok">SMRA <i>−</i></span><span class="gd-e neg" title="DEMAND · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">PANI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.04 · tanda terukur TIDAK cocok">BNGA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">BJTM <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">BBCA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBRI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBNI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">BBYB <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">NISP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta - · tanda terukur TIDAK cocok">WIKA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta - · tanda terukur TIDAK cocok">WSKT <i>−</i></span></div></td>
+    </tr><tr>
+      <td class="gd-nm">IHSG<span class="gd-kls">acuan</span></td>
+      <td class="n">6.393,5</td>
+      <td class="n gd-dn">-0.7</td>
+      <td class="n gd-dn">-0.7</td>
+      <td class="n gd-dn">-2.2</td>
+      <td class="n gd-dn">-2.0</td>
+      <td class="n">-0.66</td>
+      <td class="n gd-mu">17.9%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Gandum<span class="gd-kls">komoditas</span></td>
+      <td class="n">723,4</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-dn">-1.0</td>
+      <td class="n gd-up">+0.2</td>
+      <td class="n gd-up">+3.4</td>
+      <td class="n">+0.59</td>
+      <td class="n gd-mu">34%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">4</td>
+      <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan tinggi · beta -0.11 · tanda terukur cocok">ICBP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.1 · tanda terukur TIDAK cocok">CPIN <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.01 · tanda terukur TIDAK cocok">JPFA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.01 · tanda terukur TIDAK cocok">INDF <i>−</i></span></div></td>
+    </tr><tr>
+      <td class="gd-nm">CSI 300<span class="gd-kls">ekuitas</span></td>
+      <td class="n">4.539,57</td>
+      <td class="n gd-up">+0.7</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n">+0.54</td>
+      <td class="n gd-mu">20.7%</td>
+      <td class="gd-mu">dekat dasar<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">US 10Y<span class="gd-kls">makro</span></td>
+      <td class="n">4,96</td>
+      <td class="n gd-dn">-0.4</td>
+      <td class="n gd-up">+0.3</td>
+      <td class="n gd-dn">-0.7</td>
+      <td class="n gd-up">+5.4</td>
+      <td class="n">-0.51</td>
+      <td class="n gd-mu">13%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Minyak WTI<span class="gd-kls">komoditas</span></td>
+      <td class="n">94,41</td>
+      <td class="n gd-dn">-1.3</td>
+      <td class="n gd-dn">-2.9</td>
+      <td class="n gd-dn">-6.3</td>
+      <td class="n gd-up">+14.8</td>
+      <td class="n">-0.47</td>
+      <td class="n gd-mu">44.6%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Minyak Brent<span class="gd-kls">komoditas</span></td>
+      <td class="n">102,08</td>
+      <td class="n gd-dn">-1.3</td>
+      <td class="n gd-dn">-2.6</td>
+      <td class="n gd-dn">-6.1</td>
+      <td class="n gd-up">+17.0</td>
+      <td class="n">-0.43</td>
+      <td class="n gd-mu">47.9%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">16</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.17 · tanda terukur cocok">MEDC</span><span class="gd-e neg" title="DIRECT_COST · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">GIAA <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">BIPI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">ENRG</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.13 · tanda terukur cocok">ELSA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">APEX</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.08 · tanda terukur TIDAK cocok">RATU</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur cocok">AVIA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.06 · tanda terukur cocok">GJTL <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.05 · tanda terukur TIDAK cocok">FPNI <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">IMPC <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.03 · tanda terukur TIDAK cocok">BIRD <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.02 · tanda terukur TIDAK cocok">TPIA <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.08 · tanda terukur cocok">AKRA</span><span class="gd-e neg" title="DIRECT_COST · keyakinan rendah · beta -0.05 · tanda terukur TIDAK cocok">ASSA <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan rendah · beta 0.03 · tanda terukur TIDAK cocok">PGEO</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Nikel<span class="gd-kls">komoditas</span></td>
+      <td class="n">16.288,75</td>
+      <td class="n gd-up">+0.4</td>
+      <td class="n gd-up">+1.1</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-dn">-4.4</td>
+      <td class="n">+0.38</td>
+      <td class="n gd-mu">16.4%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">9</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.35 · tanda terukur cocok">INCO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.33 · tanda terukur cocok">NCKL</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.26 · tanda terukur cocok">MBMA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.47 · tanda terukur cocok">ANTM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.25 · tanda terukur cocok">DKFT</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">NICL</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.17 · tanda terukur TIDAK cocok">HRUM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.16 · tanda terukur TIDAK cocok">MDKA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SMGA</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">USD/CNY<span class="gd-kls">makro</span></td>
+      <td class="n">6,7</td>
+      <td class="n gd-dn">-0.0</td>
+      <td class="n gd-dn">-0.2</td>
+      <td class="n gd-dn">-0.2</td>
+      <td class="n gd-dn">-0.4</td>
+      <td class="n">-0.37</td>
+      <td class="n gd-mu">1.3%</td>
+      <td class="gd-mu">breakdown<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Emas<span class="gd-kls">komoditas</span></td>
+      <td class="n">4.389,55</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-dn">-0.2</td>
+      <td class="n gd-up">+1.3</td>
+      <td class="n gd-dn">-5.7</td>
+      <td class="n">-0.36</td>
+      <td class="n gd-mu">21.6%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">11</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.62 · tanda terukur cocok">ARCI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.6 · tanda terukur cocok">HRTA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.5 · tanda terukur cocok">EMAS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.42 · tanda terukur cocok">MDKA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.41 · tanda terukur cocok">ANTM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.38 · tanda terukur cocok">PSAB</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.3 · tanda terukur cocok">BRMS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.23 · tanda terukur cocok">AMMN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.13 · tanda terukur TIDAK cocok">SQMI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.01 · tanda terukur TIDAK cocok">UNTR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan rendah · beta 0.19 · tanda terukur cocok">SRTG</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Nasdaq<span class="gd-kls">ekuitas</span></td>
+      <td class="n">26.522,54</td>
+      <td class="n gd-up">+0.4</td>
+      <td class="n gd-up">+2.1</td>
+      <td class="n gd-up">+0.7</td>
+      <td class="n gd-up">+1.8</td>
+      <td class="n">+0.36</td>
+      <td class="n gd-mu">17.2%</td>
+      <td class="gd-mu">dekat puncak<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">2</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta -0.4 · tanda terukur TIDAK cocok">EMTK</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.1 · tanda terukur TIDAK cocok">BUKA</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">CPO Malaysia<span class="gd-kls">komoditas</span></td>
+      <td class="n">4.898</td>
+      <td class="n gd-up">+0.3</td>
+      <td class="n gd-up">+0.3</td>
+      <td class="n gd-dn">-1.6</td>
+      <td class="n gd-up">+4.7</td>
+      <td class="n">+0.24</td>
+      <td class="n gd-mu">19.2%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">16</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.37 · tanda terukur cocok">STAA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.29 · tanda terukur TIDAK cocok">NSSS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.26 · tanda terukur cocok">TAPG</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.24 · tanda terukur TIDAK cocok">DSNG</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.14 · tanda terukur TIDAK cocok">SSMS</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta -0.03 · tanda terukur TIDAK cocok">AALI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">LSIP</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.36 · tanda terukur cocok">UNVR <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.23 · tanda terukur TIDAK cocok">GZCO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.21 · tanda terukur TIDAK cocok">SIMP</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.14 · tanda terukur cocok">MGRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.14 · tanda terukur TIDAK cocok">TLDN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.09 · tanda terukur TIDAK cocok">BWPT</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.09 · tanda terukur TIDAK cocok">JARR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.02 · tanda terukur TIDAK cocok">INDF</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan rendah · beta 0.36 · tanda terukur TIDAK cocok">OILS</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">S&amp;P 500<span class="gd-kls">ekuitas</span></td>
+      <td class="n">7.650,5</td>
+      <td class="n gd-up">+0.2</td>
+      <td class="n gd-up">+0.8</td>
+      <td class="n gd-dn">-0.1</td>
+      <td class="n gd-up">+0.1</td>
+      <td class="n">+0.24</td>
+      <td class="n gd-mu">10.9%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Batu bara Newcastle<span class="gd-kls">komoditas</span></td>
+      <td class="n">144</td>
+      <td class="n gd-dn">-0.5</td>
+      <td class="n gd-dn">-0.4</td>
+      <td class="n gd-dn">-1.9</td>
+      <td class="n gd-up">+9.5</td>
+      <td class="n">-0.23</td>
+      <td class="n gd-mu">30.8%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">29</td>
+      <td><div class="gd-em"><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.31 · tanda terukur cocok">BUMI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.19 · tanda terukur cocok">ITMG</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.18 · tanda terukur cocok">AADI</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta -0.09 · tanda terukur TIDAK cocok">BYAN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">ADRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">INDY</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan tinggi · beta 0.03 · tanda terukur TIDAK cocok">BSSR</span><span class="gd-e pos" title="DEMAND · keyakinan tinggi · beta -0.02 · tanda terukur TIDAK cocok">HEXA</span><span class="gd-e pos" title="DEMAND · keyakinan tinggi · beta -0.01 · tanda terukur TIDAK cocok">UNTR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.44 · tanda terukur cocok">CUAN</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.38 · tanda terukur TIDAK cocok">SRTG</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.34 · tanda terukur cocok">DEWA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.24 · tanda terukur TIDAK cocok">DSSA</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.23 · tanda terukur cocok">PTBA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.23 · tanda terukur TIDAK cocok">ALII</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.23 · tanda terukur cocok">INTP <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta -0.2 · tanda terukur cocok">CMNT <i>−</i></span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.15 · tanda terukur TIDAK cocok">TOBA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta -0.14 · tanda terukur TIDAK cocok">TPMA</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.14 · tanda terukur cocok">ASII</span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.1 · tanda terukur TIDAK cocok">SMGR <i>−</i></span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.08 · tanda terukur TIDAK cocok">ABMM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.07 · tanda terukur TIDAK cocok">SGER</span><span class="gd-e pos" title="DEMAND · keyakinan sedang · beta 0.06 · tanda terukur TIDAK cocok">PTRO</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">HRUM</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta 0.03 · tanda terukur TIDAK cocok">ADMR</span><span class="gd-e pos" title="DIRECT_REVENUE · keyakinan sedang · beta -0.03 · tanda terukur TIDAK cocok">SMGA</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.13 · tanda terukur TIDAK cocok">TCPI</span><span class="gd-e pos" title="DEMAND · keyakinan rendah · beta 0.04 · tanda terukur TIDAK cocok">RMKE</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">VIX<span class="gd-kls">makro</span></td>
+      <td class="n">14,98</td>
+      <td class="n gd-up">+1.1</td>
+      <td class="n gd-dn">-15.4</td>
+      <td class="n gd-dn">-12.4</td>
+      <td class="n gd-dn">-5.5</td>
+      <td class="n">+0.18</td>
+      <td class="n gd-mu">101.4%</td>
+      <td class="gd-mu">dekat dasar<span class="gd-kls">tren turun</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Aluminium<span class="gd-kls">komoditas</span></td>
+      <td class="n">3.301,55</td>
+      <td class="n gd-up">+0.1</td>
+      <td class="n gd-up">+0.9</td>
+      <td class="n gd-up">+1.6</td>
+      <td class="n gd-up">+1.6</td>
+      <td class="n">+0.15</td>
+      <td class="n gd-mu">16.1%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Gas alam<span class="gd-kls">komoditas</span></td>
+      <td class="n">2,88</td>
+      <td class="n gd-dn">-0.3</td>
+      <td class="n gd-dn">-0.8</td>
+      <td class="n gd-dn">-1.4</td>
+      <td class="n gd-up">+0.1</td>
+      <td class="n">-0.14</td>
+      <td class="n gd-mu">31.2%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren datar</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">3</td>
+      <td><div class="gd-em"><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0.04 · tanda terukur TIDAK cocok">ESSA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan sedang · beta 0 · tanda terukur TIDAK cocok">ARNA <i>−</i></span><span class="gd-e neg" title="DIRECT_COST · keyakinan rendah · beta 0.01 · tanda terukur TIDAK cocok">PGAS <i>−</i></span></div></td>
+    </tr><tr>
+      <td class="gd-nm">DXY<span class="gd-kls">makro</span></td>
+      <td class="n">100,32</td>
+      <td class="n gd-up">+0.0</td>
+      <td class="n gd-up">+0.1</td>
+      <td class="n gd-up">+0.7</td>
+      <td class="n gd-up">+1.4</td>
+      <td class="n">+0.13</td>
+      <td class="n gd-mu">4.8%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr><tr>
+      <td class="gd-nm">Perak<span class="gd-kls">komoditas</span></td>
+      <td class="n">66,68</td>
+      <td class="n gd-dn">-0.2</td>
+      <td class="n gd-up">+0.9</td>
+      <td class="n gd-up">+4.4</td>
+      <td class="n gd-dn">-2.0</td>
+      <td class="n">-0.10</td>
+      <td class="n gd-mu">36.1%</td>
+      <td class="gd-mu">di tengah<span class="gd-kls">tren naik</span></td>
+      <td><span class="gd-lab nt">Bergerak biasa</span></td>
+      <td class="n gd-mu">–</td>
+      <td><div class="gd-em"><span class="gd-mu">belum ada saham terpeta</span></div></td>
+    </tr></tbody></table></div><div class="gd-sec"><h3>Peta paparannya dari mana</h3>
+    <p>Dari klasifikasi usaha resmi IDX (<code>lini_usaha.json</code>), bukan dari hafalan. Lalu
+    diperiksa balik ke korelasi terukur — itulah <b>tanda terukur</b> di tooltip: kalau di atas
+    kertas paparannya positif tapi korelasi parsialnya negatif, jangan dipercaya walau ceritanya
+    masuk akal. Penggerak yang memang belum ada saham terpetanya dibiarkan kosong, tidak diisi
+    tebakan.</p></div></main>
+<footer class="ft"><div class="ft-in"><span id="envFoot"></span>Harga tertunda ±15 menit — cek harga live sebelum eksekusi. Bukan rekomendasi investasi.</div></footer>
+<script>
+(function(){
+  var root=document.documentElement;
+  var tv=document.getElementById('temaVal');
+  function tema(t){ root.setAttribute('data-theme',t); try{localStorage.setItem('idx-theme',t)}catch(e){} if(tv) tv.textContent=t==='dark'?'gelap':'terang'; }
+  var saved=null; try{saved=localStorage.getItem('idx-theme')}catch(e){}
+  tema(saved||'light');
+  var tb=document.getElementById('temaBtn'); if(tb) tb.addEventListener('click',function(){ tema(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
+  // ── Penanda lingkungan & peran ────────────────────────────────────────────
+  // Satu berkas melayani tiga tempat; nama host yang menentukan. PERAN (21 Sep 2026):
+  //   Netlify      = SATU-SATUNYA alamat aktif
+  //   GitHub Pages = DIMATIKAN 21 Sep 2026 (Settings → Pages → Source: None)
+  // Cabang github.io di bawah sengaja DIPERTAHANKAN sebagai jaring pengaman: kalau halaman lama masih
+  // tersaji dari cache peramban atau Pages tak sengaja dihidupkan lagi, pengunjung diberi tahu bahwa
+  // itu arsip dan diarahkan ke Netlify. Push ke repo TETAP jalan — Netlify membangun dari repo itu.
+  (function(){
+    var UTAMA='https://loremipsumidx.netlify.app/';
+    var h=location.hostname||'', nama, peran='', ket, tautan='';
+    if(/netlify.app$/i.test(h)){ nama='Netlify'; ket='netlify'; }
+    else if(/github.io$/i.test(h)){ nama='Arsip'; peran='tidak diperbarui'; ket='pages'; tautan=UTAMA; }
+    else if(!h||h==='localhost'||h==='127.0.0.1'){ nama='Lokal'; ket='lokal'; }
+    else { nama=h; ket='lain'; }
+    // Penanda hanya dipasang kalau keadaannya TIDAK normal: arsip github.io atau berkas lokal.
+    // Saat disajikan dari Netlify (keadaan normal) footer dibiarkan bersih tanpa penanda apa pun.
+    var fo=document.getElementById('envFoot');
+    if(fo && ket!=='netlify'){
+      var label=nama+(peran?' · '+peran:'');
+      fo.innerHTML='<span class="env-f '+ket+'">'+label+'</span>'
+        + (tautan?' <a class="env-l" href="'+tautan+'">pindah ke alamat aktif →</a>':'');
+    }
+  })();
+  var ci=document.getElementById('cariIn');
+  if(ci){ addEventListener('keydown',function(e){ if(e.key==='/'&&document.activeElement!==ci&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){ e.preventDefault(); ci.focus(); } });
+    document.getElementById('cariForm').addEventListener('submit',function(e){ var q=ci.value.trim().toUpperCase(); if(!q){e.preventDefault();return;} ci.value=q; if(window.__scopeBuka){ e.preventDefault(); window.__scopeBuka(q); } }); }
+  document.querySelectorAll('[data-tabs]').forEach(function(box){
+    var btns=[].slice.call(box.querySelectorAll('.tab')), panes=[].slice.call(document.querySelectorAll('.tabpane[data-of="'+box.id+'"]'));
+    function pilih(id){ btns.forEach(function(b){b.classList.toggle('on',b.dataset.tab===id)}); panes.forEach(function(p){p.classList.toggle('on',p.id===id)}); try{history.replaceState(null,'','#'+id)}catch(e){} }
+    btns.forEach(function(b){ b.addEventListener('click',function(){ pilih(b.dataset.tab); }); });
+    var h=location.hash.slice(1); pilih(btns.some(function(b){return b.dataset.tab===h})?h:(btns[0]&&btns[0].dataset.tab));
+  });
+  // tabel statis: sortir · saring · paging (tabel screener punya mesinnya sendiri)
+  document.querySelectorAll('.tblwrap:not([data-manual])').forEach(function(w){
+    var table=w.querySelector('table.tbl'); if(!table||!table.tBodies[0]) return;
+    var tbody=table.tBodies[0], rows=[].slice.call(tbody.rows), per=+w.dataset.per||25, page=1, q='';
+    var pager=document.createElement('div'); pager.className='pager'; w.appendChild(pager);
+    function vis(){ return rows.filter(function(r){ return !q || (r.dataset.sym||r.cells[1]&&r.cells[1].textContent||'').toUpperCase().indexOf(q)>-1; }); }
+    function render(){ var el=vis(), pages=Math.max(1,Math.ceil(el.length/per)); if(page>pages)page=pages; if(page<1)page=1;
+      rows.forEach(function(r){ r.classList.add('pg-hidden'); }); var s=(page-1)*per; el.slice(s,s+per).forEach(function(r){ r.classList.remove('pg-hidden'); });
+      var n=w.querySelector('.tbl-n'); if(n) n.textContent=el.length+' baris';
+      if(el.length<=per){ pager.innerHTML=''; pager.style.display='none'; return; } pager.style.display='';
+      pager.innerHTML='<button class="pg-btn" data-d="-1"'+(page<=1?' disabled':'')+'>‹</button><span class="pg-pages">'+page+' / '+pages+'</span><button class="pg-btn" data-d="1"'+(page>=pages?' disabled':'')+'>›</button><span class="pg-info">'+(s+1)+'–'+Math.min(s+per,el.length)+' dari '+el.length+'</span>';
+      [].forEach.call(pager.querySelectorAll('.pg-btn'),function(b){ b.onclick=function(){ page+=+b.dataset.d; render(); }; }); }
+    var cari=w.querySelector('.tbl-cari'); if(cari) cari.addEventListener('input',function(){ q=cari.value.trim().toUpperCase(); page=1; render(); });
+    [].forEach.call(table.tHead.rows[table.tHead.rows.length-1].cells,function(th,ci){ if(!th.dataset.sort) return;
+      th.addEventListener('click',function(){ var dir=th.classList.contains('desc')?1:-1;
+        [].forEach.call(table.tHead.querySelectorAll('th'),function(x){x.classList.remove('asc','desc')}); th.classList.add(dir<0?'desc':'asc');
+        var num=th.dataset.sort==='num';
+        rows.sort(function(a,b){ var ca=a.cells[ci], cb=b.cells[ci]; var va=ca.dataset.v!=null?ca.dataset.v:ca.textContent.trim(), vb=cb.dataset.v!=null?cb.dataset.v:cb.textContent.trim();
+          if(num){ va=parseFloat(String(va).replace(/[^0-9.\-−]/g,'').replace('−','-')); vb=parseFloat(String(vb).replace(/[^0-9.\-−]/g,'').replace('−','-')); if(isNaN(va))va=-Infinity; if(isNaN(vb))vb=-Infinity; return (va-vb)*dir; }
+          return String(va).localeCompare(String(vb))*dir; });
+        rows.forEach(function(r){ tbody.appendChild(r); }); page=1; render(); }); });
+    render();
+  });
+  document.addEventListener('click',function(e){ var b=e.target.closest('.ak-copy'); if(!b) return; var code=b.parentNode.querySelector('code'); if(!code) return;
+    var ok=function(){ var t=b.textContent; b.textContent='tersalin'; setTimeout(function(){b.textContent=t},1200); };
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(code.getAttribute('data-cmd')||code.textContent).then(ok,ok); else ok(); });
+})();
+</script>
+</body></html>

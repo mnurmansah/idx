@@ -277,12 +277,55 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .eks span{display:block;margin-top:5px;font-size:11.5px;color:var(--ink2)}
 .eks-ok{background:var(--up-soft);color:var(--up)}
 .eks-blok{background:var(--down-soft);color:var(--down)}
+
+/* ── kesegaran sumber: dipasang paling atas, karena keputusan yang dibaca dari data basi
+   adalah keputusan yang salah tanpa terlihat salah ─────────────────────────────── */
+.fr{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+.fr-i{padding:5px 9px;border-radius:6px;background:var(--panel2);font-size:10.5px;color:var(--muted);white-space:nowrap}
+.fr-i b{display:block;color:var(--ink);font:600 11px/1.3 var(--sans);font-variant-numeric:tabular-nums}
+.fr-i.lag{background:var(--warn-soft)}.fr-i.lag b{color:var(--warn)}
+.fr-i.basi{background:var(--down-soft)}.fr-i.basi b{color:var(--down)}
+/* ── rantai keputusan ── */
+.rt{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.rt table{width:100%;border-collapse:collapse;font-size:12px}
+.rt th{text-align:left;padding:8px 10px;white-space:nowrap;font:600 9px/1.3 var(--sans);
+  letter-spacing:.07em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+.rt td{padding:7px 10px;border-bottom:1px solid var(--line2);vertical-align:top;font-size:11.5px}
+.rt tr:last-child td{border-bottom:0}
+.rt td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rt .sym{font-weight:600;white-space:nowrap}
+.rt .sub{display:block;margin-top:2px;font-size:10px;color:var(--muted)}
+.rt .chip{font:600 9.5px/1.3 var(--sans);letter-spacing:.03em;padding:2px 6px;border-radius:4px;display:inline-block;white-space:nowrap}
+.rt .chip.up{background:var(--up-soft);color:var(--up)}
+.rt .chip.dn{background:var(--down-soft);color:var(--down)}
+.rt .chip.nt{background:var(--panel3);color:var(--muted)}
+/* ── peringatan ── */
+.al{display:grid;gap:6px}
+.al-i{display:grid;grid-template-columns:86px 62px 1fr;gap:10px;padding:8px 11px;border-radius:8px;background:var(--panel);border:1px solid var(--line);font-size:12px}
+.al-i .p{font:700 9.5px/1.4 var(--sans);letter-spacing:.04em}
+.al-i.CRITICAL{border-left:3px solid var(--down)}.al-i.CRITICAL .p{color:var(--down)}
+.al-i.ACTIONABLE{border-left:3px solid var(--up)}.al-i.ACTIONABLE .p{color:var(--up)}
+.al-i.WATCH{border-left:3px solid var(--warn)}.al-i.WATCH .p{color:var(--warn)}
+.al-i.INFO{border-left:3px solid var(--line)}.al-i.INFO .p{color:var(--muted)}
+.al-i .sy{font-weight:600}
+.al-i em{display:block;margin-top:2px;font-style:normal;font-size:10.5px;color:var(--muted);line-height:1.5}
+/* ── eksposur ── */
+.ex{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.ex-c{padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.ex-c h4{margin:0 0 8px;font:600 10px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ex-r{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px solid var(--line2);font-size:11.5px}
+.ex-r:last-child{border-bottom:0}
+.ex-r span{color:var(--muted);min-width:0}
+.ex-r b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.ex-r i{font-style:normal;font-size:10px;color:var(--muted);display:block}
+.ex-bad b{color:var(--down)}
+.ex-note{margin:9px 0 0;font-size:10.5px;line-height:1.5;color:var(--muted)}
 </style>
 </head><body>
 <header class="top">
   <div class="top-in">
     <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
-    <nav class="nav" aria-label="Halaman"><a class="nv on" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="gerak.html">Kenapa bergerak</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
+    <nav class="nav" aria-label="Halaman"><a class="nv on" href="index.html">Ringkasan</a><a class="nv" href="screener.html">Saring</a><a class="nv" href="peta.html">Peta</a><a class="nv" href="scope.html">Per saham<b>816</b></a><a class="nv" href="scanner.html">Uang masuk<b>829</b></a><a class="nv" href="sektor.html">Sektor</a><a class="nv" href="global.html">Global</a><a class="nv" href="jurnal.html">Jurnal</a><a class="nv" href="riset.html">Riset<b>1</b></a><a class="nv" href="lab.html">Validasi</a></nav>
     <form class="cari" id="cariForm" role="search" action="scope.html">
       <input id="cariIn" name="q" type="search" placeholder="Ketik kode saham…" autocomplete="off" spellcheck="false" aria-label="Cari kode emiten"><kbd>/</kbd>
     </form>
@@ -341,6 +384,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <div class="ubin-b"><span class="ubin-s">Tren besar &amp; jangka pendek sama-sama positif. Boleh masuk lebih agresif, tetap pakai stop.</span></div>
   </div>
   </div>
+  <div class="fr"><div class="fr-i">Harga IDX (screener) · kurang dari 1 jam<b>2026-09-22 03:15</b></div><div class="fr-i lag">Penggerak dunia · 17 jam<b>2026-09-21 10:17</b></div><div class="fr-i lag">Bar 5 menit · 16 jam<b>2026-09-21 11:01</b></div><div class="fr-i lag">Buku paper · 16 jam<b>2026-09-21 11:03</b></div><div class="fr-i">Data resmi bursa<b>2026-09-21</b></div></div>
   <div style="height:10px"></div><section class="aksi">
     <div class="aksi-h"><h2>Qualified setup <span class="muted" style="font-weight:500">1 saham</span></h2><span class="meta">2026-09-22 · pasar <b>naik</b> · <span class="wr">model belum sepakat 3/5</span> · modal Rp 105 jt (buku paper) · posisi 10/10 · omzet ≥ Rp 1 M/hari · jual paksa hari ke-5</span></div>
     <div class="eks eks-blok"><b>EXECUTION BLOCKED</b> — slot portofolio 10/10 terisi · kas Rp 4.724.053 di bawah nilai posisi terkecil Rp 19.075.000.
@@ -351,6 +395,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     
     <div class="ak-foot">Syarat: tembus tertinggi 10 hari · volume ≥1,5× · tutup di atas range · di atas MA20 · order rata-rata ≥2× biasanya. Stop 2,2×ATR · maks 10 posisi · rugi maks 1% modal per posisi · yang sudah naik &gt;60% dalam 20 hari dilewati · jual paksa hari ke-14 (pasar naik) / ke-5 (pasar turun).</div>
   </section>
+  <div class="sec-h"><div><h2></h2></div></div><section class="blok"><div class="blok-h"><h2>Kena sentimen hari ini</h2><span class="meta">ada anginnya → chartnya sedang apa → konfirmasi → buku sanggup → boleh masuk</span></div><div class="rt"><table><thead><tr><th>Saham</th><th class="n">Harga</th><th>Anginnya dari</th><th>Arah</th><th>Chart</th><th class="n">Konfirmasi</th><th>Boleh masuk?</th></tr></thead><tbody><tr><td class="sym"><a class="sym" href="scope.html?q=COIN">COIN</a></td><td class="n">845</td><td>Bitcoin +10.03%</td><td><span class="chip up">TAILWIND</span></td><td>PULLBACK<span class="sub">LONG_TERM_BEARISH</span></td><td class="n">7/7 · 100%</td><td>POTENTIAL<span class="sub">belum tembus pemicu · slot penuh · kas tipis · risiko buku mentok</span></td></tr><tr><td class="sym"><a class="sym" href="scope.html?q=DEFI">DEFI</a></td><td class="n">105</td><td>Bitcoin +10.03%</td><td><span class="chip up">TAILWIND</span></td><td>RECLAIM_ATTEMPT<span class="sub">LONG_TERM_BEARISH</span></td><td class="n">3/6 · 23%</td><td>QUALIFIED<span class="sub">belum tembus pemicu · konfirmasi kurang · slot penuh · kas tipis · risiko buku mentok</span></td></tr></tbody></table></div></section>
+  <section class="blok"><div class="blok-h"><h2>Peringatan</h2><span class="meta">7 kejadian · satu baris per saham, yang paling penting</span></div><div class="al"><div class="al-i WATCH"><span class="p">WATCH</span><span class="sy"><a class="sym" href="scope.html?q=AGII">AGII</a></span><span>Aliran intraday: FRESH ACCUMULATION<em>ada transaksi besar beli dalam 60 menit terakhir. · diuji: negara aliran sebagian besar cermin gerak hari itu, bukan ramalan · keadaan: IN_POSITION · POTENTIAL</em></span></div><div class="al-i WATCH"><span class="p">WATCH</span><span class="sy"><a class="sym" href="scope.html?q=COIN">COIN</a></span><span>Aliran intraday: FRESH ACCUMULATION<em>ada transaksi besar beli dalam 60 menit terakhir. · diuji: negara aliran sebagian besar cermin gerak hari itu, bukan ramalan · keadaan: WAITING_FOR_TRIGGER · POTENTIAL</em></span></div><div class="al-i WATCH"><span class="p">WATCH</span><span class="sy"><a class="sym" href="scope.html?q=DEFI">DEFI</a></span><span>TAILWIND: Bitcoin +10.03% 5 hari<em>Breakout · paparan SENTIMENT_PROXY POSITIVE (tanda terukur TIDAK cocok — paparan diragukan) · struktur lokal RECLAIM_ATTEMPT · keadaan: WAITING_FOR_TRIGGER · QUALIFIED</em></span></div><div class="al-i WATCH"><span class="p">WATCH</span><span class="sy"><a class="sym" href="scope.html?q=MARK">MARK</a></span><span>Aliran intraday: FRESH DISTRIBUTION<em>ada transaksi besar jual yang lolos ambang dalam 60 menit terakhir — jualnya masih berjalan sekarang, bukan cuma riwayat. · diuji: negara aliran sebagian besar cermin gerak hari itu, bukan ramalan · keadaan: IN_POSITION · BLOCKED_EXPOSURE</em></span></div><div class="al-i WATCH"><span class="p">WATCH</span><span class="sy">buku</span><span>Konsentrasi risiko: risiko terbuka 6.65%<em>melewati batas 6% · SGER MARK TUGU MMIX VISI HBAT UVCR AGII TEBE MAPI · batas ini belum diuji</em></span></div><div class="al-i WATCH"><span class="p">WATCH</span><span class="sy"><a class="sym" href="scope.html?q=TEBE">TEBE</a></span><span>Aliran intraday: FRESH DISTRIBUTION<em>ada transaksi besar jual yang lolos ambang dalam 60 menit terakhir — jualnya masih berjalan sekarang, bukan cuma riwayat. · diuji: negara aliran sebagian besar cermin gerak hari itu, bukan ramalan · keadaan: IN_POSITION · POTENTIAL</em></span></div><div class="al-i WATCH"><span class="p">WATCH</span><span class="sy"><a class="sym" href="scope.html?q=VISI">VISI</a></span><span>Aliran intraday: FRESH DISTRIBUTION<em>ada transaksi besar jual yang lolos ambang dalam 60 menit terakhir — jualnya masih berjalan sekarang, bukan cuma riwayat. · diuji: negara aliran sebagian besar cermin gerak hari itu, bukan ramalan · keadaan: IN_POSITION · POTENTIAL</em></span></div></div></section>
+  <section class="blok"><div class="blok-h"><h2>Eksposur portofolio</h2><span class="meta">dihitung dari nilai posisi, bukan dari banyaknya nama · 10 posisi = 95.18% · kas 4.82%</span></div><div class="ex"><div class="ex-c"><h4>Risiko</h4><div class="ex-r ex-bad"><span>kalau semua stop kena</span><b>6.65%</b></div><div class="ex-r"><span>batas</span><b>6%</b></div></div><div class="ex-c"><h4>Per sektor</h4><div class="ex-r"><span>indust<i>MARK VISI</i></span><b>30.59%</b></div><div class="ex-r"><span>health<i>MMIX</i></span><b>17.05%</b></div><div class="ex-r"><span>finance<i>TUGU</i></span><b>16.62%</b></div><div class="ex-r"><span>cyclic<i>MAPI</i></span><b>13.74%</b></div><div class="ex-r"><span>basic<i>AGII</i></span><b>9.08%</b></div><div class="ex-r"><span>energy<i>SGER TEBE</i></span><b>8.05%</b></div><div class="ex-r"><span>propert<i>HBAT</i></span><b>0.03%</b></div></div><div class="ex-c"><h4>Per tema</h4><div class="ex-r"><span>Kurs<i>MAPI</i></span><b>13.74%</b></div><div class="ex-r"><span>Batu bara<i>SGER</i></span><b>7.86%</b></div><p class="ex-note">8 dari 10 posisi belum ada paparannya (MARK TUGU MMIX VISI HBAT UVCR AGII TEBE), jadi kolom ini cuma menghitung sisanya.</p></div><div class="ex-c"><h4>Numpuk di tema yang sama</h4><div class="ex-r"><span>tidak ada dua posisi yang satu tema</span><b>–</b></div></div><div class="ex-c"><h4>Yang sudah kelewat batas</h4><div class="ex-r ex-bad"><span>risiko risiko terbuka<i>SGER MARK TUGU MMIX VISI HBAT UVCR AGII TEBE MAPI</i></span><b>6.65% / 6%</b></div><p class="ex-note">Batas-batas ini belum pernah diuji. Dasarnya hitungan slot × risiko, bukan backtest — anggap rambu, bukan aturan yang sudah terbukti.</p></div></div></section>
   <div class="sec-h"><div><h2>Yang terjadi hari ini</h2><p>Klik "semua →" untuk daftar lengkapnya.</p></div></div>
   <div class="wall">
     <div class="sig"><h3>Naik paling tinggi<a href="screener.html#sinyal=gainers">semua →</a></h3>
