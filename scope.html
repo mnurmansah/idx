@@ -555,7 +555,82 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--warn)}
 .sq-vonis.bad{border-left-color:var(--down)}
 .sq-vonis b{color:var(--ink)}
-.sq-intra .iw{margin:12px 0 0;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+/* ── panel aliran intraday (konsol, bukan paragraf) ─────────────────────────── */
+.fl{margin:12px 0 0;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.fl-eye{font:600 9.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.fl-eye b{color:var(--ink2)}
+.fl-st{margin:7px 0 0;font:700 19px/1.15 var(--sans);letter-spacing:-.01em}
+.fl-arti{margin:6px 0 0;font-size:13px;line-height:1.55;color:var(--ink2)}
+.fl-kecil{font-size:11.5px;color:var(--muted);line-height:1.5}
+.fl-kecil b{color:var(--ink2)}
+.fl-sub{margin:16px 0 7px;padding-top:11px;border-top:1px solid var(--line2);
+  font:600 9.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.fl-key{display:grid;gap:1px}
+.fl-r{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:4px 0;
+  border-bottom:1px solid var(--line2);font-size:12.5px}
+.fl-r:last-child{border-bottom:0}
+.fl-k{color:var(--muted)}
+.fl-v{font-weight:600;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.fl-v i{font-style:normal;opacity:.75}
+.fl-v em{font-style:normal;font-weight:400;color:var(--muted);font-size:11.5px}
+.fl-up{color:var(--up)}.fl-dn{color:var(--down)}.fl-nt{color:var(--ink)}.fl-wr{color:var(--warn)}
+/* dua keadaan berdampingan: latar redup (konteks), terkini tegas (yang ditindaklanjuti) */
+.fl-2{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px;align-items:start}
+.fl-b{min-width:0}
+.fl-b-lalu{padding:11px 13px;background:var(--panel2);border-radius:8px}
+.fl-st2{margin:6px 0 8px;font:700 13px/1.2 var(--sans);letter-spacing:.01em}
+.fl-mini{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:11.5px;color:var(--muted);padding:2px 0}
+.fl-mini b{font-variant-numeric:tabular-nums}
+.fl-t th.c,.fl-t td.c{text-align:center}
+.fl-t td em{font-style:normal;color:var(--muted);font-size:11px}
+.fl-bc{padding:12px 14px;background:var(--panel2);border-radius:8px}
+.fl-bc p{margin:0 0 7px;font-size:12.5px;line-height:1.6;color:var(--ink2)}
+.fl-status{margin-top:4px;padding:8px 10px;background:var(--panel);border-radius:6px;
+  font:700 11.5px/1.35 var(--sans);letter-spacing:.03em}
+.fl-zn{margin:9px 0 0!important;padding-top:9px;border-top:1px solid var(--line2);
+  font-size:11.5px!important;color:var(--muted)!important}
+@media(max-width:700px){.fl-2{grid-template-columns:1fr;gap:10px}}
+.fl-sp{height:11px}
+.fl-scroll{overflow-x:auto}
+.fl-t{width:100%;border-collapse:collapse;font-size:12px}
+.fl-t th{text-align:left;padding:5px 8px;font:600 9px/1.25 var(--sans);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);white-space:nowrap}
+.fl-t td{padding:6px 8px;border-bottom:1px solid var(--line2);white-space:nowrap}
+.fl-t th.n,.fl-t td.n{text-align:right;font-variant-numeric:tabular-nums}
+.fl-t tr.on td{background:var(--warn-soft)}
+.fl-t td.fl-kosong{color:var(--muted)}
+.fl-t td.fl-q{font:600 10px/1.25 var(--sans);letter-spacing:.04em}
+.fl-now{color:var(--warn);font-weight:700;font-size:10px;white-space:nowrap}
+.fl-chk{margin:0;padding:0;list-style:none;display:grid;gap:1px}
+.fl-chk li{display:flex;gap:8px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line2);font-size:12.5px;color:var(--muted)}
+.fl-chk li:last-child{border-bottom:0}
+.fl-chk li.ok{color:var(--ink)}
+.fl-chk li b{font-size:13px;color:var(--muted)}
+.fl-chk li.ok b{color:var(--up)}
+.fl-chk li span{display:block}
+.fl-chk li em{display:block;margin-top:1px;font-style:normal;font-size:11px;color:var(--muted)}
+.fl-if{display:grid;gap:7px}
+.fl-ib{padding:8px 10px;border-left:3px solid var(--line);background:var(--panel2);border-radius:0 6px 6px 0}
+.fl-ib-naik{border-left-color:var(--up)}.fl-ib-turun{border-left-color:var(--down)}
+.fl-ij{display:block;font-size:12px;color:var(--ink2);line-height:1.5}
+.fl-im{display:block;margin-top:3px;font:600 11.5px/1 var(--sans);letter-spacing:.03em}
+.fl-ib-naik .fl-im{color:var(--up)}.fl-ib-turun .fl-im{color:var(--down)}
+.fl-taf{margin:14px 0 0;padding:10px 12px;background:var(--panel2);border-radius:8px;
+  font-size:12.5px;line-height:1.55;color:var(--ink2)}
+/* penanda peristiwa aliran di chart */
+.sq-intra .fl-vl{stroke:var(--muted);stroke-width:.8;stroke-dasharray:2 4;opacity:.5}
+.sq-intra .fl-m.fl-m-up{fill:var(--up)}
+.sq-intra .fl-m.fl-m-dn{fill:var(--down)}
+.sq-intra text.fl-mt{font:600 8.5px var(--sans)}
+.sq-intra text.fl-mt.fl-m-up{fill:var(--up)}
+.sq-intra text.fl-mt.fl-m-dn{fill:var(--down)}
+/* dokumentasi metode: terlipat, isinya tidak dipangkas */
+.sq-intra .iw{margin:12px 0 0;padding:0;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.sq-intra .iw>summary{padding:11px 16px;cursor:pointer;font:600 11px/1 var(--sans);letter-spacing:.04em;color:var(--muted);list-style:none}
+.sq-intra .iw>summary::-webkit-details-marker{display:none}
+.sq-intra .iw>summary:hover{color:var(--ink)}
+.sq-intra .iw[open]>summary{border-bottom:1px solid var(--line2);color:var(--ink)}
+.sq-intra .iw-isi{padding:14px 16px 16px}
 .sq-intra .iw h4{margin:0 0 10px;font:600 10.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .sq-intra .iw p{margin:0 0 10px;font-size:13.5px;line-height:1.6;color:var(--ink2)}
 .sq-intra .iw ul{margin:0 0 10px;padding-left:18px;font-size:13.5px;line-height:1.6;color:var(--ink2)}
@@ -815,13 +890,32 @@ document.addEventListener('DOMContentLoaded',function(){
       var ib=siBars(sym);
       if(!ib||ib.length<3){ zc.innerHTML='<div class="sq-cload">belum ada bar 5 menit untuk '+esc(sym)+'</div>'; return; }
       var meta=(typeof SIM!=='undefined'&&SIM[sym])||['5',''], ires=meta[0];
-      var gambarIntra=function(i0,end){ return intradaySVG(sym,ib,{W:lebarSVG(zc),lv:dd.lv,res:ires,bars:end-i0,end:end}); };
+      // Aliran dihitung SEKALI, lalu dipakai dua kali: penandanya masuk ke chart, angkanya ke
+      // panel. Menghitungnya di dalam gambarIntra akan mengulangnya tiap kali di-zoom.
+      // Penanda peristiwa aliran di chart (usul 7) sudah jadi dan teruji — 5 penanda, 3 label,
+      // maksimum 2 per jenis, yang bertabrakan dibuang. DITAHAN dulu: user minta meninjau usul
+      // nomor 1 lebih dulu. Nyalakan dengan mengubah satu nilai ini jadi true.
+      var TANDA_ALIRAN=false;
+      var al=(typeof aliranIntraday==='function')?aliranIntraday(ib,{lv:dd.lv}):null;
+      var gambarIntra=function(i0,end){ return intradaySVG(sym,ib,{W:lebarSVG(zc),lv:dd.lv,res:ires,bars:end-i0,end:end,tanda:TANDA_ALIRAN?(al?al.tanda:null):null}); };
       var awalIntra=(typeof innerWidth!=='undefined'&&innerWidth<700)?Math.min(ib.length,90):ib.length;
       if(typeof pasangZoom==='function') pasangZoom(zc,ib.length,awalIntra,gambarIntra,typeof ketRentang==='function'?ketRentang(ib,true):null); else zc.innerHTML=gambarIntra(Math.max(0,ib.length-awalIntra),ib.length);
       var k2=document.createElement('div'); k2.className='sq-cload'; k2.textContent='Bar '+ires+' menit · diambil '+meta[1]+' UTC'; w.appendChild(k2);
-      if(typeof bacaIntraday==='function'&&typeof penjelasanIntraday==='function'){ var bc=bacaIntraday(ib), teks=document.createElement('div');
-        teks.innerHTML=(bc?'<div class="sq-vonis'+(/KELUAR|TANPA UANG/.test(bc.vonis)?' bad':'')+'"><b>Bacaan sepertiga terakhir:</b> harga '+bc.arahPx+' ('+bc.dHarga+'%), uang pemain besar '+bc.arahLP+'. '+bc.vonis+'</div>':'')+penjelasanIntraday(bc);
-        host.appendChild(teks); }
+      // BAGIAN YANG DITAMPILKAN.
+      //   latar   = dua keadaan berdampingan (latar 600 bar vs kondisi 2 jam terakhir)
+      //   jendela = tabel aliran per jendela bergulir + kolom perubahan
+      //   bacaan  = bacaan terkini + STATUS
+      // Yang masih ditahan: 'kunci' (angka kunci + percepatan), 'norma' (z-skor & persentil),
+      // 'konfirm' (daftar periksa 5 syarat), 'jika' (cabang bersyarat), 'keadaan' (kepala
+      // satu-label versi lama). Semuanya sudah jalan; menyalakan = menambah namanya di sini.
+      //
+      // Vonis "sepertiga terakhir" DICABUT dari tampilan (user 22 Sep: jendela bergulir sudah
+      // lebih presisi). Fungsi bacaIntraday TETAP hidup karena willain_jendela.mjs dan
+      // semesta.mjs memakainya — yang dicabut cuma tampilannya di sini.
+      var teks=document.createElement('div'), isi='';
+      if(al&&typeof panelAliran==='function') isi+=panelAliran(al,['latar','jendela','bacaan']);
+      if(typeof penjelasanIntraday==='function'&&typeof bacaIntraday==='function') isi+=penjelasanIntraday(bacaIntraday(ib));
+      teks.innerHTML=isi; host.appendChild(teks);
     }); }); }
 
   function pasangOwn(sym){

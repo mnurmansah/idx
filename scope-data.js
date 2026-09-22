@@ -1383,6 +1383,32 @@ function intradaySVG(sym, bars, opt) {
       sesi += '<text class="ax" x="' + f(x(i)) + '" y="' + (totalH - 8) + '" text-anchor="start">' + dd + ' ' + bln[dt.getUTCMonth()] + '</text>';
     }
   }
+  // ── penanda peristiwa aliran (opt.tanda dari aliranIntraday) ──
+  // Garis tegak tipis menembus semua panel supaya pertanyaan "waktu aliran berubah, lilinnya
+  // sedang apa?" bisa dijawab dengan melihat, bukan menebak. Sengaja sedikit: aliranIntraday
+  // sudah membatasi 6 penanda, maksimum 2 per jenis.
+  var tandaSVG = '';
+  if (opt.tanda && opt.tanda.length) {
+    var escT = function (t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var xLabel = -1e9;
+    for (k = 0; k < opt.tanda.length; k++) {
+      var td = opt.tanda[k];
+      if (!(td.i >= i0 && td.i < END)) continue;
+      var xt = x(td.i), naikT = td.arah === 'naik';
+      var yt = naikT ? yP(L[td.i]) + 13 : yP(H[td.i]) - 9;
+      tandaSVG += '<line class="fl-vl" x1="' + f(xt) + '" x2="' + f(xt) + '" y1="' + PADT + '" y2="' + (bTop + Hb) + '"/>'
+        + '<path class="fl-m fl-m-' + (naikT ? 'up' : 'dn') + '" d="' + (naikT
+          ? 'M' + f(xt - 4.5) + ' ' + f(yt) + 'L' + f(xt + 4.5) + ' ' + f(yt) + 'L' + f(xt) + ' ' + f(yt - 6.5) + 'Z'
+          : 'M' + f(xt - 4.5) + ' ' + f(yt) + 'L' + f(xt + 4.5) + ' ' + f(yt) + 'L' + f(xt) + ' ' + f(yt + 6.5) + 'Z') + '">'
+        + '<title>' + escT(td.label) + '</title></path>';
+      // tulisan hanya kalau ada ruang; yang tidak kebagian DIBUANG, tidak digeser
+      var wT = td.pendek.length * 4.3 + 6;
+      if (xt - wT / 2 > xLabel && xt + wT / 2 < W - PADR) {
+        xLabel = xt + wT / 2 + 6;
+        tandaSVG += '<text class="fl-mt fl-m-' + (naikT ? 'up' : 'dn') + '" x="' + f(xt) + '" y="' + f(naikT ? yt + 11 : yt - 9) + '" text-anchor="middle">' + escT(td.pendek) + '</text>';
+      }
+    }
+  }
   var judul = function (top, t) { return '<text class="panel-t" x="' + PADL + '" y="' + (top - 7) + '">' + t + '</text>'; };
   // Di lebar ponsel judul panjang keluar dari bingkai SVG lalu terpotong (svg memangkas isi di luar viewBox).
   // Jadi di bawah 620px judulnya dipendekkan, bukan dibiarkan hilang separuh. Diukur 11 Sep 2026.
@@ -1394,7 +1420,7 @@ function intradaySVG(sym, bars, opt) {
   var Z = END - 1;   // indeks bar terakhir yang tampil, utk label nilai di kanan
 
   return '<svg class="sc-svg" viewBox="0 0 ' + W + ' ' + totalH + '" width="100%" role="img" aria-label="Effective volume intraday ' + sym + '">'
-    + gridY + sesi + candles + levels
+    + gridY + sesi + tandaSVG + candles + levels
     + '<text class="panel-t" x="' + PADL + '" y="' + (PADT - 4) + '">' + pilih(sym + ' · ' + (opt.res || 5) + ' menit · ' + n + ' bar · terakhir ' + jam + ' WIB · ' + akhir + ' (' + (chg >= 0 ? '+' : '') + chg.toFixed(1) + '% sejak awal jendela)', sym + ' · ' + n + ' bar · ' + akhir + ' (' + (chg >= 0 ? '+' : '') + chg.toFixed(1) + '%)') + '</text>'
     // panel 2: effective volume flow — garis di atas (skala jendela), batang per-bar di pita bawah
     + judul(evTop, pilih('Volume yang menggeser harga — total berjalan (garis) · di tampilan ini ' + delta(EVF) + ' · per bar (pita bawah)', 'Volume yang menggeser harga · ' + delta(EVF)))
@@ -1451,8 +1477,12 @@ function penjelasanIntraday(b) {
   for (var i = 0; i < baris.length; i++) {
     tr += '<tr' + (i === aktif ? ' class="on"' : '') + '><td>' + esc(baris[i][0]) + '</td><td>' + esc(baris[i][1]) + '</td><td><b>' + esc(baris[i][2]) + '</b>' + (i === aktif ? ' <span class="iw-now">← sekarang</span>' : '') + '</td><td>' + esc(baris[i][3]) + '</td></tr>';
   }
-  return '<div class="iw">'
-    + '<h4>Cara membaca panel ini</h4>'
+  // DILIPAT (user 22 Sep 2026): "user yang sudah mengerti tidak perlu melihat dokumentasi itu
+  // setiap kali buka saham. Gunakan space-nya untuk data yang actionable." Isinya tidak dipangkas
+  // — yang berubah cuma keadaan awalnya tertutup, karena isi ini masih satu-satunya tempat yang
+  // menyebutkan batas metodenya.
+  return '<details class="iw"><summary>ⓘ Cara membaca panel ini · batas metodenya</summary>'
+    + '<div class="iw-isi">'
     + '<p>Dari seluruh volume, yang dihitung di sini hanya bagian yang <b>benar-benar menggeser harga</b> — volume yang lewat tanpa memindahkan harga dianggap derau. Volume itu lalu dipisah jadi <b>pemain besar</b> (bar bervolume besar) dan <b>pemain kecil</b>, karena keduanya jarang bergerak bersamaan: pemain besar mengumpulkan pelan dan biasanya <b>bergerak lebih dulu</b>, pemain kecil mengikuti harga. Yang dicari bukan angkanya, tapi <b>arah garis emas dibanding arah harga</b>. (Metodenya dari Pascal Willain, <i>Value in Time</i>.)</p>'
     + '<ul>'
     + '<li><b>Candle 5 menit + level harian</b> — di mana harga sekarang dibanding level tembus, support, dan stop.</li>'
@@ -1463,7 +1493,463 @@ function penjelasanIntraday(b) {
     + '<table class="iw-t"><thead><tr><th>Harga</th><th>Pemain besar</th><th>Bacaan</th><th>Tindakan</th></tr></thead><tbody>' + tr + '</tbody></table>'
     + '<p class="iw-fit"><b>Dipakai untuk apa:</b> menentukan <b>waktu masuk</b> pada saham yang sudah lolos saringan harian — bukan untuk mencari saham. Aturannya tetap: <i>harga menentukan beli atau tidak, uang menentukan seberapa besar.</i> Pemain besar keluar saat harga turun → kecilkan atau lewati. Pemain besar menyerap saat harga turun → boleh masuk di koreksi, dengan stop yang sama (2,2×ATR).</p>'
     + '<p class="iw-lim"><b>Batasnya:</b> "pemain besar" di sini berarti <b>bar dengan volume besar</b>, bukan ukuran order yang sebenarnya — TradingView tidak menyediakan itu. Jumlah transaksi per bar juga tidak ada, jadi frekuensi hanya tersedia harian. Dan yang terpenting: cara baca ini <b>belum diuji</b> di sistem kita — untuk membaca, bukan menyaring. Kalau dipakai untuk masuk atau keluar, catat di Jurnal supaya suatu hari bisa dibuktikan atau dibantah.</p>'
-    + '</div>';
+    + '</div></details>';
+}
+function aliranIntraday(bars, opt) {
+  opt = opt || {};
+  var N = bars.length;
+  if (N < 30) return null;
+  var lv = opt.lv || null;
+  var i, k, j;
+  var T = [], H = [], L = [], C = [], V = [];
+  for (i = 0; i < N; i++) { T.push(bars[i][0]); H.push(bars[i][2]); L.push(bars[i][3]); C.push(bars[i][4]); V.push(bars[i][5] || 0); }
+  var tick = function (p) { return p < 200 ? 1 : p < 500 ? 2 : p < 2000 ? 5 : p < 5000 ? 10 : 25; };
+
+  // effective volume + beli/jual agresif per bar — RUMUS SAMA dengan panel grafik, supaya angka
+  // di teks dan angka di grafik tidak pernah berselisih
+  var ev = [0], bud = [0];
+  for (i = 1; i < N; i++) {
+    var pc = C[i - 1], hi = H[i] > pc ? H[i] : pc, lo = L[i] < pc ? L[i] : pc;
+    var sp = hi - lo + tick(C[i]);
+    ev.push(sp > 0 ? V[i] * (C[i] - pc) / sp : 0);
+    bud.push(C[i] > pc ? V[i] : C[i] < pc ? -V[i] : 0);
+  }
+  var urut = V.slice().sort(function (a, b) { return b - a; }), tot = 0, akum = 0, sep = 0;
+  for (k = 0; k < urut.length; k++) tot += urut[k];
+  for (k = 0; k < urut.length; k++) { akum += urut[k]; if (akum >= tot / 2) { sep = urut[k]; break; } }
+  var evB = [], adaB = [];
+  for (i = 0; i < N; i++) { adaB.push(V[i] >= sep ? 1 : 0); evB.push(V[i] >= sep ? ev[i] : 0); }
+
+  var jum = function (arr, a, b) { var s = 0; for (var q = Math.max(0, a); q < Math.min(N, b); q++) s += arr[q]; return s; };
+  var akhir = function (arr, n) { return jum(arr, N - n, N); };
+
+  // batas sesi terakhir (WIB = UTC+7). Kalau sesi terakhir masih pendek (bursa baru buka),
+  // jendela "sesi" otomatis pendek — itu memang keadaannya, jangan ditambal bar hari lain.
+  var hariWIB = function (t) { var d = new Date((t + 7 * 3600) * 1000); return d.getUTCFullYear() * 10000 + (d.getUTCMonth() + 1) * 100 + d.getUTCDate(); };
+  var hAkhir = hariWIB(T[N - 1]), mulaiSesi = N - 1;
+  while (mulaiSesi > 0 && hariWIB(T[mulaiSesi - 1]) === hAkhir) mulaiSesi--;
+  var nSesi = N - mulaiSesi;
+
+  // z-skor & persentil terhadap semua jendela bergulir sepanjang n di riwayat saham INI SENDIRI.
+  // Inilah yang membuat −30 jt bisa dibandingkan antar saham: yang dibandingkan bukan rupiahnya,
+  // melainkan seberapa tidak biasa angka itu untuk saham tersebut.
+  var statJendela = function (arr, n) {
+    if (n < 2 || n > N) return null;
+    var s = 0, v = [], q, z;
+    for (q = 0; q < n; q++) s += arr[q];
+    v.push(s);
+    for (q = n; q < N; q++) { s += arr[q] - arr[q - n]; v.push(s); }
+    var kini = v[v.length - 1], mn = 0, sd = 0, lebihKecil = 0;
+    for (z = 0; z < v.length; z++) mn += v[z];
+    mn /= v.length;
+    for (z = 0; z < v.length; z++) sd += (v[z] - mn) * (v[z] - mn);
+    sd = Math.sqrt(sd / v.length);
+    for (z = 0; z < v.length; z++) if (v[z] < kini) lebihKecil++;
+    // MIN_SAMPEL: di bawah ini z-skor dan persentil tidak punya arti. Jendela 599-bar dari 600
+    // bar hanya menghasilkan 2 sampel; reratanya nyaris dirinya sendiri.
+    if (v.length < 30 || !(sd > 0)) return null;
+    var zz = (kini - mn) / sd;
+    return {
+      kini: Math.round(kini), z: +zz.toFixed(2), persentil: Math.round(lebihKecil / v.length * 100),
+      jml: v.length, bar: n,
+      kuat: Math.abs(zz) >= 2 ? 'Kuat' : Math.abs(zz) >= 1 ? 'Di atas normal' : 'Normal'
+    };
+  };
+
+  var arahNil = function (v, ada) { return !ada ? 'tidakAda' : v > 0 ? 'naik' : v < 0 ? 'turun' : 'datar'; };
+  var kuadranDari = function (aHarga, aBesar) {
+    if (aBesar === 'tidakAda') return { kode: 'sepi', nama: 'NO QUALIFYING BIG-PLAYER PRINTS', nada: 'netral' };
+    if (aHarga === 'datar' || aBesar === 'datar') return { kode: 'belum', nama: 'NO CLEAR DIVERGENCE', nada: 'netral' };
+    if (aHarga === 'naik' && aBesar === 'naik') return { kode: 'sehat', nama: 'HEALTHY ACCUMULATION', nada: 'baik' };
+    if (aHarga === 'turun' && aBesar === 'naik') return { kode: 'serap', nama: 'HIDDEN ACCUMULATION', nada: 'baik' };
+    if (aHarga === 'naik' && aBesar === 'turun') return { kode: 'waspada', nama: 'DISTRIBUTION WARNING', nada: 'buruk' };
+    return { kode: 'distribusi', nama: 'ACTIVE DISTRIBUTION', nada: 'buruk' };
+  };
+
+  var jendela = [];
+  var def = [['m30', '30 menit terakhir', 6], ['m60', '60 menit terakhir', 12], ['j2', '2 jam terakhir', 24], ['sesi', 'Sesi terakhir', nSesi], ['semua', 'Seluruh jendela', N - 1]];
+  for (k = 0; k < def.length; k++) {
+    var n = Math.min(def[k][2], N - 1);
+    if (n < 2) continue;
+    var kembar = false;
+    for (j = 0; j < jendela.length; j++) if (jendela[j].bar === n) { kembar = true; break; }
+    if (kembar) continue;   // buang HANYA yang panjangnya persis sama, bukan yang lebih pendek:
+    // sesi yang baru buka (mis. 10 bar) lebih pendek dari jendela 2 jam, dan justru baris itu
+    // yang paling ingin dilihat pagi-pagi.
+    var hAwal = C[N - 1 - n], dH = hAwal ? (C[N - 1] - hAwal) / hAwal * 100 : 0;
+    var bs = akhir(evB, n), ag = akhir(bud, n), nb = akhir(adaB, n);
+    var aH = dH > 0.3 ? 'naik' : dH < -0.3 ? 'turun' : 'datar';
+    var aB = arahNil(bs, nb > 0);
+    // jendela sepanjang sama TEPAT SEBELUMNYA, untuk arah perubahan
+    var bsP = jum(evB, N - 2 * n, N - n), agP = jum(bud, N - 2 * n, N - n), nbP = jum(adaB, N - 2 * n, N - n);
+    // pakai pemain besar kalau salah satu jendela punya transaksi lolos ambang; kalau dua-duanya
+    // kosong, yang tersisa cuma agresif — dan itu disebutkan lewat kolom bar besar
+    var pakaiBesar = (nb > 0 || nbP > 0);
+    var cur = pakaiBesar ? bs : ag, prev = pakaiBesar ? bsP : agP;
+    var tol = Math.abs(prev) * 0.2;
+    var ubah = cur > prev + tol ? 'naik' : cur < prev - tol ? 'turun' : 'datar';
+    var kondisi;
+    if (!pakaiBesar) {
+      if (ag < 0 && ubah === 'naik') kondisi = 'Jual mereda';
+      else if (ag < 0) kondisi = 'Jual kecil berjalan';
+      else if (ag > 0 && ubah === 'naik') kondisi = 'Beli kecil masuk';
+      else kondisi = 'Sepi';
+    } else if (bs > 0) kondisi = ubah === 'naik' ? 'Mulai membaik' : ubah === 'turun' ? 'Beli mereda' : 'Beli bertahan';
+    else if (bs < 0) kondisi = ubah === 'naik' ? 'Jual mereda' : ubah === 'turun' ? 'Distribusi' : 'Jual bertahan';
+    else kondisi = prev < 0 ? 'Jual berhenti' : prev > 0 ? 'Beli berhenti' : 'Sepi';
+    jendela.push({
+      kode: def[k][0], nama: def[k][1], bar: n, barBesar: nb,
+      besar: Math.round(bs), agresif: Math.round(ag), dHarga: +dH.toFixed(2),
+      arahHarga: aH, arahBesar: aB, arahAgresif: arahNil(ag, true),
+      ubah: ubah, ubahBesar: pakaiBesar, kondisi: kondisi,
+      kuadran: kuadranDari(aH, aB)
+    });
+  }
+
+  // ── KEADAAN: jendela TERPENDEK yang benar-benar memuat aktivitas pemain besar ──
+  // Bukan jendela tetap yang dipilih di muka. Kalau 30 menit terakhir sudah memuat >=2 bar besar,
+  // itulah yang dipakai; kalau sepi, naik ke jendela berikutnya. Jendela terpilih disebutkan.
+  // Syaratnya DUA, bukan satu: ada aktivitas pemain besar (>=2 bar) DAN arah harga terbaca
+  // (|gerak| > 0,3%). Versi sebelumnya hanya menuntut yang pertama, dan di BBCA itu memilih
+  // jendela 30 menit yang harganya persis datar -> vonis "NO CLEAR DIVERGENCE", padahal jendela
+  // 60 menit, 2 jam, dan sesi semuanya berkata ACTIVE DISTRIBUTION. Jendela terpendek adalah
+  // yang paling berderau untuk harga; menuntut kedua sisi terbaca yang membuatnya berguna.
+  var jw = null;
+  for (k = 0; k < jendela.length; k++) if (jendela[k].barBesar >= 2 && jendela[k].arahHarga !== 'datar') { jw = jendela[k]; break; }
+  if (!jw) for (k = 0; k < jendela.length; k++) if (jendela[k].barBesar >= 2) { jw = jendela[k]; break; }
+  var negara, negaraArti, nada, negaraJendela;
+  if (!jw) {
+    negara = 'NO BIG-PLAYER ACTIVITY';
+    negaraArti = 'tidak ada satu pun bar bervolume besar di seluruh jendela — tidak ada yang bisa dibaca dari sisi pemain besar. Yang tersisa hanya beli/jual agresif.';
+    nada = 'netral'; negaraJendela = 'tidak ada';
+  } else {
+    negara = jw.kuadran.nama; nada = jw.kuadran.nada; negaraJendela = jw.nama.toLowerCase();
+    if (jw.kuadran.kode === 'sehat') negaraArti = 'harga naik dan pemain besar ikut masuk. Bukan sinyal beli baru, tapi tidak ada alasan keluar.';
+    else if (jw.kuadran.kode === 'serap') negaraArti = 'harga turun tapi pemain besar menyerap. Ini yang dicari: kandidat masuk di koreksi, menunggu konfirmasi.';
+    else if (jw.kuadran.kode === 'waspada') negaraArti = 'harga naik tapi pemain besar keluar — biasanya ritel yang mengejar. Jangan dikejar; kalau pegang, siapkan jual.';
+    else if (jw.kuadran.kode === 'distribusi') negaraArti = 'harga dan aliran pemain besar turun bersama, tekanan jual masih memegang kendali.';
+    else negaraArti = 'harga atau aliran pemain besar belum bergerak cukup jauh untuk dibaca sebagai divergensi.';
+  }
+
+  // LATAR = jendela terpanjang (seluruh riwayat yang dimuat). Ini yang dulu keliru dicetak
+  // sebagai "keadaan sekarang".
+  var jFull = jendela.length ? jendela[jendela.length - 1] : null;
+  var latar = jFull ? { negara: jFull.kuadran.nama, nada: jFull.kuadran.nada, bar: jFull.bar, besar: jFull.besar, agresif: jFull.agresif, dHarga: jFull.dHarga } : null;
+
+  // KINI = hanya dari jendela pendek. Urutan pemeriksaan: yang paling baru dan paling tegas
+  // lebih dulu.
+  var jSesi = null, j2j = null;
+  for (k = 0; k < jendela.length; k++) { if (jendela[k].kode === 'sesi') jSesi = jendela[k]; if (jendela[k].kode === 'j2') j2j = jendela[k]; }
+  var b2j = akhir(evB, 24), nb2j = akhir(adaB, 24);
+  var nbSesi = jSesi ? jSesi.barBesar : 0, bsSesi = jSesi ? jSesi.besar : 0;
+  var kini = {};
+  if (akhir(adaB, 12) > 0 && akhir(evB, 12) < 0) { kini = { negara: 'FRESH DISTRIBUTION', nada: 'buruk', arti: 'ada transaksi besar jual yang lolos ambang dalam 60 menit terakhir — jualnya masih berjalan sekarang, bukan cuma riwayat.' }; }
+  else if (akhir(adaB, 12) > 0 && akhir(evB, 12) > 0) { kini = { negara: 'FRESH ACCUMULATION', nada: 'baik', arti: 'ada transaksi besar beli dalam 60 menit terakhir.' }; }
+  else if (nb2j === 0 && nbSesi > 0 && bsSesi > 0) { kini = { negara: 'SELLING STABILIZING', nada: 'netral', arti: 'tidak ada transaksi besar jual baru dalam 2 jam terakhir, dan sesi terakhir justru mencatat pemain besar masuk. Jualnya mereda — bukan berarti pembeli sudah mengambil kendali.' }; }
+  else if (nb2j === 0 && nbSesi > 0 && bsSesi < 0) { kini = { negara: 'DISTRIBUTION PAUSED', nada: 'netral', arti: 'sesi terakhir masih jual bersih dari pemain besar, tapi 2 jam terakhir tidak ada transaksi besar baru. Berhenti sebentar, belum berbalik.' }; }
+  else if (nb2j === 0 && nbSesi === 0) { kini = { negara: 'QUIET', nada: 'netral', arti: 'tidak ada satu pun transaksi yang lolos ambang sepanjang sesi terakhir. Tidak ada yang bisa dibaca dari sisi pemain besar.' }; }
+  else { var a2 = b2j > 0 ? 'naik' : b2j < 0 ? 'turun' : 'datar'; kini = a2 === 'turun' ? { negara: 'SELLING FADING', nada: 'netral', arti: 'ada transaksi besar jual dalam 2 jam terakhir tapi tidak dalam 60 menit terakhir.' } : { negara: 'BUYING FADING', nada: 'netral', arti: 'ada transaksi besar beli dalam 2 jam terakhir tapi tidak dalam 60 menit terakhir.' }; }
+
+  // ── percepatan: 60 menit terakhir vs 60 menit sebelumnya ──
+  // Kalau kedua jendela itu tidak punya bar besar, JANGAN menyebut "jual melambat" — yang benar
+  // adalah tidak ada datanya. Dalam hal itu percepatan dibaca dari beli/jual agresif, dan
+  // sumbernya disebutkan.
+  var b60 = akhir(evB, 12), p60 = jum(evB, N - 24, N - 12);
+  var a60 = akhir(bud, 12), pa60 = jum(bud, N - 24, N - 12);
+  var nb60 = akhir(adaB, 12), np60 = jum(adaB, N - 24, N - 12);
+  var tekanan, tekananArti, tekananNada, tekananSumber;
+  var laju, lajuLalu;
+  if (nb60 + np60 > 0) { laju = b60; lajuLalu = p60; tekananSumber = 'pemain besar'; }
+  else { laju = a60; lajuLalu = pa60; tekananSumber = 'beli/jual agresif (tidak ada transaksi besar yang lolos ambang dalam 2 jam)'; }
+  if (lajuLalu < 0 && laju > 0) { tekanan = 'FLOW REVERSAL UP'; tekananArti = 'aliran berbalik positif dibanding sejam sebelumnya'; tekananNada = 'baik'; }
+  else if (lajuLalu > 0 && laju < 0) { tekanan = 'FLOW REVERSAL DOWN'; tekananArti = 'aliran berbalik negatif dibanding sejam sebelumnya'; tekananNada = 'buruk'; }
+  else if (laju === 0 && lajuLalu === 0) { tekanan = 'NO FLOW'; tekananArti = 'dua jendela terakhir sama-sama kosong'; tekananNada = 'netral'; }
+  else if (laju <= 0 && lajuLalu <= 0) {
+    if (Math.abs(laju) < Math.abs(lajuLalu) * 0.8) { tekanan = 'SELLING DECELERATING'; tekananArti = 'jual masih ada tapi melambat — tekanan mulai habis'; tekananNada = 'baik'; }
+    else if (Math.abs(laju) > Math.abs(lajuLalu) * 1.2) { tekanan = 'SELLING ACCELERATING'; tekananArti = 'jual makin cepat dibanding sejam sebelumnya'; tekananNada = 'buruk'; }
+    else { tekanan = 'SELLING STEADY'; tekananArti = 'jual berjalan dengan kecepatan yang sama'; tekananNada = 'netral'; }
+  } else {
+    if (laju > lajuLalu * 1.2) { tekanan = 'BUYING ACCELERATING'; tekananArti = 'beli makin cepat dibanding sejam sebelumnya'; tekananNada = 'baik'; }
+    else if (laju < lajuLalu * 0.8) { tekanan = 'BUYING DECELERATING'; tekananArti = 'beli masih ada tapi melambat'; tekananNada = 'buruk'; }
+    else { tekanan = 'BUYING STEADY'; tekananArti = 'beli berjalan dengan kecepatan yang sama'; tekananNada = 'netral'; }
+  }
+
+  // ── konfirmasi pembeli: lima syarat, DIHITUNG bukan dikira ──
+  // Harga mantul saja TIDAK cukup disebut pembalikan — itu justru yang mau dihindari.
+  var minL = function (a, b) { var m = Infinity; for (var q = Math.max(0, a); q < Math.min(N, b); q++) if (L[q] < m) m = L[q]; return m; };
+  var maxH = function (a, b) { var m = -Infinity; for (var q = Math.max(0, a); q < Math.min(N, b); q++) if (H[q] > m) m = H[q]; return m; };
+  var rerata = function (arr, a, b) { var s = 0, c = 0; for (var q = Math.max(0, a); q < Math.min(N, b); q++) { s += arr[q]; c++; } return c ? s / c : 0; };
+  var resIntra = maxH(N - 30, N - 6);
+  var volBaru = rerata(V, N - 6, N), volLama = rerata(V, N - 30, N - 6);
+  var syarat = [
+    { t: 'Harga berhenti membuat terendah baru', ok: minL(N - 6, N) >= minL(N - 18, N - 6), ket: '30 menit terakhir tidak menembus terendah 60 menit sebelumnya' },
+    { t: 'Aliran pemain besar berbalik positif', ok: nb60 > 0 && b60 > 0, ket: nb60 > 0 ? 'jumlah 60 menit di atas nol' : 'tidak ada bar pemain besar dalam 60 menit' },
+    { t: 'Beli agresif membaik', ok: a60 > pa60, ket: '60 menit terakhir lebih baik dari 60 menit sebelumnya' },
+    { t: 'Volume mengembang', ok: volLama > 0 && volBaru > volLama * 1.3, ket: 'rata-rata 30 menit terakhir >1,3x dua jam sebelumnya' },
+    { t: 'Resistensi intraday direbut', ok: isFinite(resIntra) && C[N - 1] > resIntra, ket: 'penutupan di atas ' + (isFinite(resIntra) ? Math.round(resIntra) : '-') }
+  ];
+  var skor = 0;
+  for (k = 0; k < syarat.length; k++) if (syarat[k].ok) skor++;
+  var skorLabel = skor === 0 ? 'NO CONFIRMATION' : skor <= 2 ? 'WEAK' : skor === 3 ? 'PARTIAL' : 'EARLY BUYER CONTROL';
+
+  // ── hubungan dengan zona keputusan harian ──
+  var px = C[N - 1], zona = null;
+  if (lv && lv.SL > 0 && lv.S1 > 0 && lv.SL < lv.S1) zona = { lo: lv.SL, hi: lv.S1 };
+  var zonaTeks = null, zonaJarak = null;
+  if (zona) {
+    if (px >= zona.lo && px <= zona.hi) zonaTeks = 'Harga DI DALAM zona keputusan harian';
+    else if (px > zona.hi) { zonaJarak = +((px / zona.hi - 1) * 100).toFixed(1); zonaTeks = 'Mendekati zona keputusan harian dari atas, jarak ' + zonaJarak + '%'; }
+    else { zonaJarak = +((1 - px / zona.lo) * 100).toFixed(1); zonaTeks = 'Sudah DI BAWAH zona keputusan harian, ' + zonaJarak + '% di bawah batasnya'; }
+  }
+  var tafsir;
+  if (zona && px > zona.hi && skor <= 1) tafsir = zonaTeks + ' tanpa konfirmasi pembeli (' + skor + '/5). Yang ditunggu di zona itu bukan mantulnya harga, melainkan aliran pemain besar berbalik positif.';
+  else if (zona && px >= zona.lo && px <= zona.hi && skor >= 3) tafsir = zonaTeks + ' DAN konfirmasi pembeli mulai terkumpul (' + skor + '/5) — ini gabungan yang dicari.';
+  else if (zona && px >= zona.lo && px <= zona.hi) tafsir = zonaTeks + ', konfirmasi pembeli masih ' + skor + '/5. Zona sendiri bukan alasan beli.';
+  else if (zona && px < zona.lo) tafsir = zonaTeks + '. Acuan struktur harian yang lebih rendah yang berlaku sekarang.';
+  else tafsir = (zonaTeks ? zonaTeks + '. ' : '') + 'Konfirmasi pembeli ' + skor + '/5.';
+
+  // ── skenario bersyarat, berlabuh di level harian yang nyata ──
+  var jk = [];
+  if (zona) {
+    jk.push({ jika: 'Aliran pemain besar berbalik naik + harga bertahan ' + Math.round(zona.hi) + ' + beli agresif membaik', maka: 'Potential Absorption', kelas: 'naik' });
+    jk.push({ jika: Math.round(zona.lo) + ' ditembus + aliran tetap negatif', maka: 'Distribution Continuation', kelas: 'turun' });
+  } else {
+    jk.push({ jika: 'Aliran pemain besar berbalik naik + beli agresif membaik', maka: 'Potential Absorption', kelas: 'naik' });
+    jk.push({ jika: 'Aliran tetap negatif + terendah baru', maka: 'Distribution Continuation', kelas: 'turun' });
+  }
+
+  // Normalisasi: coba jendela keadaan dulu; kalau sampelnya kurang, turun ke jendela terpanjang
+  // yang masih punya >=30 pembanding. Yang dipakai SELALU disebutkan di keluaran, supaya tidak ada
+  // angka yang sumbernya tidak jelas.
+  var normaPilih = { stat: null, bar: jw ? jw.bar : 12 };
+  var urutBar = [];
+  for (k = 0; k < jendela.length; k++) urutBar.push(jendela[k].bar);
+  if (jw) urutBar.unshift(jw.bar);
+  urutBar.sort(function (a, b) { return b - a; });
+  var coba = jw ? [jw.bar] : [];
+  for (k = 0; k < urutBar.length; k++) if (coba.indexOf(urutBar[k]) < 0) coba.push(urutBar[k]);
+  for (k = 0; k < coba.length; k++) {
+    var st = statJendela(evB, coba[k]);
+    if (st) { normaPilih = { stat: st, bar: coba[k] }; break; }
+  }
+
+  // ── penanda peristiwa besar untuk chart: sedikit saja, yang benar-benar besar ──
+  var sdB = 0, cB = 0;
+  for (i = 0; i < N; i++) if (adaB[i]) { sdB += evB[i] * evB[i]; cB++; }
+  sdB = cB ? Math.sqrt(sdB / cB) : 0;
+  var kand = [];
+  if (sdB > 0) {
+    for (i = 12; i < N; i++) {
+      if (!adaB[i]) continue;
+      var lowBaru = L[i] <= minL(i - 12, i), hiBaru = H[i] >= maxH(i - 12, i);
+      if (lowBaru && evB[i] >= 1.5 * sdB) kand.push({ i: i, jenis: 'serap', pendek: 'Buyer Absorption', label: 'Buyer Absorption — terendah baru tapi pemain besar membeli', arah: 'naik', bobot: evB[i] / sdB + 1 });
+      else if (hiBaru && evB[i] <= -1.5 * sdB) kand.push({ i: i, jenis: 'distribusi', pendek: 'Distribution', label: 'Distribution — tertinggi baru tapi pemain besar menjual', arah: 'turun', bobot: -evB[i] / sdB + 1 });
+      else if (evB[i] <= -2.5 * sdB) kand.push({ i: i, jenis: 'jual', pendek: 'Large Seller', label: 'Large Seller — satu bar jual pemain besar yang luar biasa', arah: 'turun', bobot: -evB[i] / sdB });
+      else if (evB[i] >= 2.5 * sdB) kand.push({ i: i, jenis: 'beli', pendek: 'Large Buyer', label: 'Large Buyer — satu bar beli pemain besar yang luar biasa', arah: 'naik', bobot: evB[i] / sdB });
+    }
+    // balik arah aliran: jumlah 60 menit menyeberangi nol
+    for (i = 24; i < N; i++) {
+      var s1 = jum(evB, i - 11, i + 1), s0 = jum(evB, i - 23, i - 11);
+      if (s0 < 0 && s1 > 0 && Math.abs(s1) > sdB * 2) kand.push({ i: i, jenis: 'balik', pendek: 'Flow Reversal', label: 'Flow Reversal — aliran 60 menit menyeberang dari jual ke beli', arah: 'naik', bobot: Math.abs(s1) / sdB });
+    }
+    // reclaim resistensi intraday
+    for (i = 30; i < N; i++) {
+      var r = maxH(i - 30, i - 6);
+      // Bobot reclaim = seberapa jauh di atas resistensi, DIBAGI simpangan bar besar. Versi
+      // sebelumnya memberi bobot tetap 2, dan di BBCA reclaim memenuhi 5 dari 6 penanda —
+      // peristiwa aliran yang sebenarnya justru terbuang. Sekarang reclaim harus bersaing.
+      if (isFinite(r) && C[i] > r && C[i - 1] <= r) kand.push({ i: i, jenis: 'reclaim', pendek: 'Reclaim', label: 'Reclaim — penutupan di atas resistensi intraday', arah: 'naik', bobot: 1 + (C[i] - r) / (r || 1) * 20 });
+    }
+  }
+  // yang terbesar menang; yang terlalu berdekatan DIBUANG, tidak digeser — aturan yang sama
+  // dengan anotasi chart harian
+  kand.sort(function (a, b) { return b.bobot - a.bobot; });
+  var tanda = [], perJenis = {};
+  for (k = 0; k < kand.length && tanda.length < 6; k++) {
+    // maksimum 2 per jenis: enam penanda yang semuanya "Reclaim" tidak memberi tahu apa pun
+    // yang tidak sudah terlihat dari satu penanda Reclaim.
+    var jn = kand[k].jenis;
+    if ((perJenis[jn] || 0) >= 2) continue;
+    var bentrok = false;
+    for (j = 0; j < tanda.length; j++) if (Math.abs(tanda[j].i - kand[k].i) < 6) { bentrok = true; break; }
+    if (bentrok) continue;
+    perJenis[jn] = (perJenis[jn] || 0) + 1;
+    tanda.push(kand[k]);
+  }
+  tanda.sort(function (a, b) { return a.i - b.i; });
+
+  // ── BACAAN: dua kalimat, disusun dari angka — bukan template yang diisi kata sifat ──
+  var rkT = function (v) {
+    var nn = Number(v) || 0, sg = nn < 0 ? '−' : '+', bb = Math.abs(nn);
+    if (bb >= 1e8) return sg + (bb / 1e6).toFixed(0) + ' jt';
+    if (bb >= 1e6) return sg + (bb / 1e6).toFixed(1) + ' jt';
+    if (bb >= 1e3) return sg + (bb / 1e3).toFixed(0) + ' rb';
+    return sg + bb.toFixed(0);
+  };
+  var bacaan = [];
+  if (latar) bacaan.push('Latar masih ' + latar.negara + ': sepanjang ' + latar.bar + ' bar pemain besar ' + rkT(latar.besar) + ' dan beli/jual agresif ' + rkT(latar.agresif) + ', dengan harga ' + (latar.dHarga > 0 ? '+' : '') + latar.dHarga + '%.');
+  if (nb2j === 0) bacaan.push('Tapi 2 jam terakhir tidak memuat satu pun transaksi yang lolos ambang ' + rkT(sep).replace('+', '') + ' lembar' + (nbSesi > 0 ? ', dan sesi terakhir mencatat pemain besar ' + rkT(bsSesi) + '.' : '.'));
+  else bacaan.push('Dalam 2 jam terakhir pemain besar ' + rkT(b2j) + ' dari ' + nb2j + ' transaksi yang lolos ambang.');
+  var status = kini.negara + ' — ' + (skor >= 4 ? 'BUYER CONFIRMATION PRESENT' : skor === 3 ? 'BUYER CONFIRMATION PARTIAL' : 'BUYER CONFIRMATION NOT YET PRESENT');
+
+  return {
+    px: px, bar: N, sesiBar: nSesi, pemisah: Math.round(sep), barBesarTotal: jum(adaB, 0, N),
+    latar: latar, kini: kini, bacaan: bacaan, status: status, b2j: Math.round(b2j), nb2j: nb2j,
+    jendela: jendela, negara: negara, negaraArti: negaraArti, nada: nada, negaraJendela: negaraJendela,
+    tekanan: tekanan, tekananArti: tekananArti, tekananNada: tekananNada, tekananSumber: tekananSumber,
+    b60: Math.round(b60), p60: Math.round(p60), a60: Math.round(a60), pa60: Math.round(pa60), nb60: nb60,
+    norma: normaPilih.stat, normaBar: normaPilih.bar,
+    besarTotal: Math.round(jum(evB, 0, N)), agresifTotal: Math.round(jum(bud, 0, N)),
+    syarat: syarat, skor: skor, skorLabel: skorLabel,
+    zona: zona, zonaTeks: zonaTeks, tafsir: tafsir, jika: jk, tanda: tanda
+  };
+}
+function panelAliran(a, bagian) {
+  if (!a) return '';
+  // BAGIAN yang ditampilkan. Semua mesinnya sudah jalan; yang diatur di sini hanya apa yang
+  // dicetak, supaya bisa ditinjau satu per satu tanpa membongkar kode.
+  //   latar     = DUA keadaan berdampingan: latar vs terkini (koreksi 22 Sep)
+  //   bacaan     = bacaan terkini + STATUS                    (usul 8)
+  //   jendela   = tabel aliran per jendela bergulir          (usul 1)
+  //   keadaan   = kepala divergensi harga vs pemain besar    (usul 2, versi satu-label)
+  //   kunci     = baris angka kunci + tekanan/percepatan     (usul 3, 5)
+  //   norma     = z-skor & persentil                         (usul 4)
+  //   konfirm   = daftar periksa konfirmasi pembeli          (usul 6)
+  //   jika      = cabang bersyarat                           (usul 5)
+  var B = bagian || ['jendela'];
+  var pakai = function (k) { return B.indexOf(k) >= 0; };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var rk = function (v) {
+    var n = Number(v) || 0, s = n < 0 ? '−' : '', b = Math.abs(n);
+    if (b >= 1e8) return s + (b / 1e6).toFixed(0) + ' jt';
+    if (b >= 1e6) return s + (b / 1e6).toFixed(1) + ' jt';
+    if (b >= 1e3) return s + (b / 1e3).toFixed(0) + ' rb';
+    return s + b.toFixed(0);
+  };
+  var ph = { naik: '↑', turun: '↓', datar: '→', tidakAda: '—' };
+  var kls = function (nada) { return nada === 'baik' ? 'fl-up' : nada === 'buruk' ? 'fl-dn' : 'fl-nt'; };
+  var arahKls = function (ar) { return ar === 'naik' ? 'fl-up' : ar === 'turun' ? 'fl-dn' : 'fl-nt'; };
+  var i, o = '';
+
+  // ── DUA KEADAAN BERDAMPINGAN ──
+  // Koreksi user 22 Sep: "jangan pakai satu label untuk seluruh timeframe." Latar dan kondisi
+  // terkini bisa berbeda arah pada saat yang sama, dan justru SELISIHNYA yang informatif:
+  // ACTIVE DISTRIBUTION di 600 bar + SELLING STABILIZING di 2 jam = jualnya mereda, bukan
+  // berbalik. Latar dibuat redup dengan sengaja — ia konteks, bukan pemicu tindakan.
+  if (pakai('latar') && a.latar && a.kini) {
+    o += '<div class="fl-2">'
+      + '<div class="fl-b fl-b-lalu"><div class="fl-eye">Latar · ' + a.latar.bar + ' bar</div>'
+      + '<div class="fl-st2 ' + kls(a.latar.nada) + '">' + esc(a.latar.negara) + '</div>'
+      + '<div class="fl-mini"><span>Pemain besar</span><b class="' + arahKls(a.latar.besar > 0 ? 'naik' : a.latar.besar < 0 ? 'turun' : 'datar') + '">' + rk(a.latar.besar) + '</b></div>'
+      + '<div class="fl-mini"><span>Agresif</span><b class="' + arahKls(a.latar.agresif > 0 ? 'naik' : a.latar.agresif < 0 ? 'turun' : 'datar') + '">' + rk(a.latar.agresif) + '</b></div></div>'
+      + '<div class="fl-b fl-b-kini"><div class="fl-eye">Kondisi terkini · 2 jam terakhir</div>'
+      + '<div class="fl-st ' + kls(a.kini.nada) + '">' + esc(a.kini.negara) + '</div>'
+      + '<p class="fl-arti">' + esc(a.kini.arti) + '</p></div>'
+      + '</div>';
+  }
+
+  // ── keadaan (versi satu label; ditinggalkan, disimpan untuk pembanding) ──
+  if (pakai('keadaan')) o += '<div class="fl-hd">'
+    + '<div class="fl-eye">Flow state bar 5 menit · dibaca di <b>' + esc(a.negaraJendela) + '</b></div>'
+    + '<div class="fl-st ' + kls(a.nada) + '">' + esc(a.negara) + '</div>'
+    + '<p class="fl-arti">' + esc(a.negaraArti) + '</p></div>';
+
+  // ── angka kunci: enam baris yang menjawab "sekarang bagaimana" ──
+  var jw = null, j30 = null;
+  for (i = 0; i < a.jendela.length; i++) {
+    if (a.jendela[i].nama.toLowerCase() === a.negaraJendela) jw = a.jendela[i];
+    if (a.jendela[i].kode === 'm30') j30 = a.jendela[i];
+  }
+  var bar = function (k, v, c) { return '<div class="fl-r"><span class="fl-k">' + k + '</span><span class="fl-v ' + (c || '') + '">' + v + '</span></div>'; };
+  if (pakai('kunci')) {
+  o += '<div class="fl-key">';
+  o += bar('Harga', esc(String(a.px)) + ' <i>' + (jw ? ph[jw.arahHarga] : '') + '</i>', jw ? arahKls(jw.arahHarga) : '');
+  o += bar('Zona harian', a.zona ? Math.round(a.zona.lo) + '–' + Math.round(a.zona.hi) : '–', '');
+  if (jw) o += bar('Pemain besar · ' + esc(jw.nama.toLowerCase()), rk(jw.besar) + ' <i>' + ph[jw.arahBesar] + '</i>', arahKls(jw.arahBesar));
+  o += bar('Pemain besar · 60 menit', a.nb60 > 0 ? rk(a.b60) : '<em>tidak ada bar besar</em>', a.nb60 > 0 ? arahKls(a.b60 > 0 ? 'naik' : a.b60 < 0 ? 'turun' : 'datar') : 'fl-nt');
+  if (j30) o += bar('Beli − jual agresif · 30 menit', rk(j30.agresif) + ' <i>' + ph[j30.arahAgresif] + '</i>', arahKls(j30.arahAgresif));
+  o += bar('Tekanan', esc(a.tekanan), kls(a.tekananNada));
+  o += bar('Konfirmasi pembeli', a.skor + ' / 5 · ' + esc(a.skorLabel), a.skor >= 4 ? 'fl-up' : a.skor === 0 ? 'fl-dn' : 'fl-nt');
+  o += '</div>';
+  o += '<p class="fl-arti fl-kecil">Tekanan diukur dari ' + esc(a.tekananSumber) + ': ' + esc(a.tekananArti) + '.</p>';
+  }
+
+  // ── per jendela: inti keluhan "kumulatif 600 bar mendominasi" ──
+  if (pakai('jendela')) {
+  o += (pakai('keadaan')
+    ? '<div class="fl-sub">Aliran per jendela</div>'
+    : '<div class="fl-eye">Aliran uang bar 5 menit per jendela bergulir</div><div class="fl-sp"></div>')
+    + '<div class="fl-scroll"><table class="fl-t"><thead><tr><th>Jendela</th><th class="n">Bar</th>'
+    + '<th class="n" title="Jumlah bar yang volumenya melewati ambang transaksi besar">Lolos ambang</th>'
+    + '<th class="n">Pemain besar</th><th class="n">Agresif</th><th class="n">Harga</th>'
+    + '<th class="c" title="Arah jendela ini dibanding jendela sepanjang sama tepat sebelumnya">Perubahan</th>'
+    + '<th>Kondisi</th></tr></thead><tbody>';
+  for (i = 0; i < a.jendela.length; i++) {
+    var w = a.jendela[i], ini = pakai('keadaan') && w.nama.toLowerCase() === a.negaraJendela;
+    o += '<tr' + (ini ? ' class="on"' : '') + '><td>' + esc(w.nama) + (ini ? ' <span class="fl-now">← dipakai</span>' : '') + '</td>'
+      + '<td class="n">' + w.bar + '</td>'
+      + '<td class="n' + (w.barBesar === 0 ? ' fl-kosong' : '') + '">' + w.barBesar + '</td>'
+      + '<td class="n ' + arahKls(w.arahBesar) + '"' + (w.barBesar === 0 ? ' title="Belum ada transaksi besar terdeteksi. Ambang transaksi besar: ≥' + rk(a.pemisah) + ' lembar per bar."' : '') + '>'
+      + (w.barBesar === 0 ? '<em>belum ada</em>' : rk(w.besar)) + '</td>'
+      + '<td class="n ' + arahKls(w.arahAgresif) + '">' + rk(w.agresif) + '</td>'
+      + '<td class="n ' + arahKls(w.arahHarga) + '">' + (w.dHarga > 0 ? '+' : '') + w.dHarga + '%</td>'
+      + '<td class="c ' + arahKls(w.ubah) + '" title="' + (w.ubahBesar ? 'Dihitung dari aliran pemain besar' : 'Dihitung dari beli/jual agresif — kedua jendela tidak punya transaksi yang lolos ambang') + '">'
+      + (w.ubah === 'naik' ? '↑' : w.ubah === 'turun' ? '↓' : '→') + '</td>'
+      + '<td class="fl-q">' + esc(w.kondisi) + '</td></tr>';
+  }
+  o += '</tbody></table></div>'
+    + '<p class="fl-arti fl-kecil">Bar disebut <b>besar</b> kalau volumenya ≥ ' + rk(a.pemisah) + ' lembar — ambang yang membelah total volume jendela jadi dua paruh. '
+    + 'Di saham ini hanya ' + a.barBesarTotal + ' dari ' + a.bar + ' bar yang melewatinya. '
+    + '<b>&ldquo;Belum ada&rdquo; berarti tidak ada transaksi yang lolos ambang itu</b> — bukan berarti pemain besarnya tidak ada, dan bukan berarti seimbang.</p>';
+  }
+
+  // ── normalisasi ──
+  if (pakai('norma') && a.norma) {
+    o += '<div class="fl-sub">Seberapa tidak biasa</div><div class="fl-key">'
+      + bar('Jendela diukur', a.normaBar + ' bar', '')
+      + bar('Z-skor', (a.norma.z > 0 ? '+' : '') + a.norma.z, a.norma.z <= -1 ? 'fl-dn' : a.norma.z >= 1 ? 'fl-up' : 'fl-nt')
+      + bar('Persentil', a.norma.persentil + '%', '')
+      + bar('Dibanding biasanya', esc(a.norma.kuat), Math.abs(a.norma.z) >= 2 ? 'fl-wr' : 'fl-nt')
+      + '</div>'
+      + '<p class="fl-arti fl-kecil">Dibandingkan ' + a.norma.jml + ' jendela ' + a.normaBar + '-bar lain di riwayat saham ini sendiri. '
+      + 'Persentil ' + a.norma.persentil + '% berarti ' + a.norma.persentil + '% jendela lain lebih menjual daripada sekarang. '
+      + 'Inilah yang membuat angka FUTR bisa dibandingkan dengan saham bertransaksi miliaran lembar: yang dibandingkan bukan jumlah lembarnya, melainkan seberapa ganjil angka itu untuk saham tersebut.</p>';
+  }
+
+  // ── konfirmasi pembeli ──
+  if (pakai('konfirm')) {
+  o += '<div class="fl-sub">Konfirmasi pembeli · ' + a.skor + '/5 ' + esc(a.skorLabel) + '</div><ul class="fl-chk">';
+  for (i = 0; i < a.syarat.length; i++) {
+    o += '<li class="' + (a.syarat[i].ok ? 'ok' : '') + '"><b>' + (a.syarat[i].ok ? '☑' : '☐') + '</b>'
+      + '<span>' + esc(a.syarat[i].t) + '<em>' + esc(a.syarat[i].ket) + '</em></span></li>';
+  }
+  o += '</ul><p class="fl-arti fl-kecil">Harga mantul saja tidak dihitung sebagai pembalikan. Lima syarat ini dihitung dari bar, bukan ditafsirkan.</p>';
+  }
+
+  // ── jika/maka ──
+  if (pakai('jika')) {
+  o += '<div class="fl-sub">Jika</div><div class="fl-if">';
+  for (i = 0; i < a.jika.length; i++) {
+    o += '<div class="fl-ib fl-ib-' + a.jika[i].kelas + '"><span class="fl-ij">' + esc(a.jika[i].jika) + '</span>'
+      + '<span class="fl-im">→ ' + esc(a.jika[i].maka) + '</span></div>';
+  }
+  o += '</div>';
+  }
+
+  // ── BACAAN TERKINI ──
+  // Pengganti vonis "sepertiga terakhir" (batas yang sembarang, dan sekarang jendela bergulir
+  // sudah lebih presisi). STATUS menggabungkan kondisi terkini dengan konfirmasi pembeli,
+  // karena "jual mereda" dan "pembeli sudah masuk" adalah dua hal yang berbeda.
+  if (pakai('bacaan') && a.bacaan && a.bacaan.length) {
+    o += '<div class="fl-sub">Bacaan terkini</div><div class="fl-bc">';
+    for (i = 0; i < a.bacaan.length; i++) o += '<p>' + esc(a.bacaan[i]) + '</p>';
+    o += '<div class="fl-status ' + kls(a.kini ? a.kini.nada : 'netral') + '">' + esc(a.status) + '</div>';
+    if (a.zonaTeks) o += '<p class="fl-zn">' + esc(a.tafsir) + '</p>';
+    o += '</div>';
+  }
+
+  if (pakai('kunci') || pakai('konfirm')) o += '<p class="fl-taf">' + esc(a.tafsir) + '</p>';
+  return o ? '<div class="fl">' + o + '</div>' : '';
 }
 function pasangZoom(box, total, awalN, gambar, ket) {
   var MINN = 12, end = total, n = Math.min(awalN || total, total);
