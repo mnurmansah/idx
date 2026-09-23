@@ -553,6 +553,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   .sq-read{padding:16px}.sq-lead{font-size:17px}.sq-read p{font-size:14px}
 }
 
+/* ── layar penuh chart ─────────────────────────────────────────────────────
+   Wadah zoom yang di-fullscreen harus memenuhi layar DAN memberi latar sendiri: elemen
+   fullscreen dilepas dari aliran halaman, jadi latar halaman tidak ikut. Tanpa background
+   di sini, peramban memberi hitam pekat dan chart tema terang jadi tak terbaca. */
+:fullscreen .zb-isi,.zb-penuh .zb-isi{display:flex;align-items:center;justify-content:center}
+.zb-penuh{background:var(--bg);width:100vw;height:100vh;display:flex;flex-direction:column;padding:0}
+.zb-penuh .zb{flex:0 0 auto}
+.zb-penuh .zb-isi{flex:1;min-height:0;overflow:hidden}
+.zb-penuh .zb-isi svg{max-height:100%}
+
 /* ── chart (kelas dari scope_chart / scope_intraday / scope_zoom) ──────────── */
 .sq-chart{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
 .sq-chart .sc-svg{display:block;width:100%}
@@ -721,6 +731,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .pd-note{margin:8px 0 0;font-size:10.5px;line-height:1.5;color:var(--muted)}
 /* ── panel aliran uang EOD ──────────────────────────────────────────────────── */
 .sq-intra .fl-wrap{padding:16px}
+/* chart aliran harian */
+.sq-intra .fb-w{margin:14px 0 4px}
+.sq-intra .fb-h{font:600 10.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+.sq-intra .fb-h i{font-style:normal;text-transform:none;letter-spacing:0;font-weight:400;margin-left:7px}
+.sq-intra .fb{display:block;width:100%;height:146px}
+.sq-intra .fb-up{fill:var(--up);opacity:.42}
+.sq-intra .fb-dn{fill:var(--down);opacity:.42}
+/* Jendela 5 hari dibedakan dgn KEPEKATAN, bukan warna lain: warnanya sudah dipakai untuk arah
+   (hijau masuk / merah keluar), jadi warna ketiga akan dibaca sebagai arah ketiga. */
+.sq-intra .fb-up.fb-on,.sq-intra .fb-dn.fb-on{opacity:1}
+.sq-intra .fb-pita{fill:var(--emas-soft)}
+.sq-intra .fb-nol{stroke:var(--ink2);stroke-width:1}
+.sq-intra .fb-sep{stroke:var(--line);stroke-width:1}
+.sq-intra .fk-line{fill:none;stroke:var(--ink2);stroke-width:1.4;vector-effect:non-scaling-stroke}
+.sq-intra .fb-x{fill:var(--muted);font:10px var(--sans)}
+.sq-intra .fb-ket{margin:6px 0 0;font-size:11.5px;line-height:1.55;color:var(--muted)}
 .sq-intra .fl-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin:0 0 4px}
 .sq-intra .fl-st{font:700 15px/1.2 var(--sans);letter-spacing:.02em}
 .sq-intra .fl-st.fl-up{color:var(--up)}
@@ -728,6 +754,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .sq-intra .fl-st.fl-nt{color:var(--ink)}
 .sq-intra .fl-sub{font:600 11.5px/1.3 var(--sans);letter-spacing:.04em;color:var(--muted)}
 .sq-intra .fl-src{margin:0 0 12px;font-size:12px;color:var(--muted)}
+/* dua lensa berdampingan — bukan satu judul yang menutupi yang lain */
+.sq-intra .fl-lensa{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:10px 0 12px}
+.sq-intra .fl-l{padding:11px 13px;border:1px solid var(--line);border-radius:var(--r-s);background:var(--panel2)}
+.sq-intra .fl-l i{display:block;font-style:normal;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sq-intra .fl-l b{display:block;margin:3px 0 1px;font-size:13.5px;font-weight:650}
+.sq-intra .fl-l u{display:block;text-decoration:none;font-size:11.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.sq-intra .fl-uji{display:block;margin:6px 0 0;font-style:normal;font-size:10.5px;line-height:1.4}
+.sq-intra .fl-uji.ok{color:var(--up)}
+.sq-intra .fl-uji.nol{color:var(--muted)}
+.sq-intra .fl-awas{margin:0 0 12px;padding:11px 13px;border-radius:var(--r-s);background:var(--down-soft);border-left:3px solid var(--down)}
+.sq-intra .fl-awas b{display:block;font-size:11px;letter-spacing:.04em;color:var(--down)}
+.sq-intra .fl-awas span{display:block;margin:4px 0 0;font-size:12.5px;line-height:1.55;color:var(--ink)}
+.sq-intra .fl-awas i{display:block;margin:4px 0 0;font-style:normal;font-size:10.5px;color:var(--muted)}
 .sq-intra .fl-chg{margin:2px 0 10px;padding:9px 12px;border-radius:8px;font-size:13px;background:var(--panel);border:1px solid var(--line)}
 .sq-intra .fl-chg.fl-up{border-left:3px solid var(--up)}
 .sq-intra .fl-chg.fl-dn{border-left:3px solid var(--down)}
@@ -1059,7 +1098,22 @@ document.addEventListener('DOMContentLoaded',function(){
     if(typeof innerWidth==='undefined'||innerWidth>=700||typeof IntersectionObserver!=='function'){ fn(); return; }
     var sudah=false, io=new IntersectionObserver(function(es){ for(var i=0;i<es.length;i++){ if(es[i].isIntersecting&&!sudah){ sudah=true; io.disconnect(); fn(); } } },{rootMargin:'300px'});
     io.observe(el); }
-  function lebarSVG(el){ var w=(el&&el.clientWidth)||0; if(!w) w=((typeof innerWidth!=='undefined'?innerWidth:1060)-28); return Math.max(320,Math.min(1060,Math.round(w-8))); }
+  // Batas 1060px ada supaya chart tidak melar aneh di layar lebar. Batas itu DILEPAS saat
+  // layar penuh — di sanalah justru seluruh lebar layar yang diminta.
+  function penuhkah(el){ try{ return !!(document.fullscreenElement && el && document.fullscreenElement.contains(el)); }catch(e){ return false; } }
+  function lebarSVG(el){ var w=(el&&el.clientWidth)||0; if(!w) w=((typeof innerWidth!=='undefined'?innerWidth:1060)-28);
+    var maks=penuhkah(el)?Math.max(640,(typeof innerWidth!=='undefined'?innerWidth:1400)-16):1060;
+    return Math.max(320,Math.min(maks,Math.round(w-8))); }
+  // Tinggi panel harga. Di luar layar penuh tetap 360 (bentuk yang sudah dipakai selama ini).
+  // Di layar penuh dihitung dari tinggi jendela dikurangi ongkos tetap chart: bilah kendali,
+  // jarak antar panel, panel volume & stokastik, dan sumbu bawah. Angka 274 itu jumlah
+  // PADT+GAP+Hv+GAP+Hs+sumbu pada skala 1 — dipakai sebagai patokan, lalu diselesaikan
+  // proporsional oleh chartSVG sendiri.
+  function tinggiSVG(el){
+    if(!penuhkah(el)) return 360;
+    var h=(typeof innerHeight!=='undefined'?innerHeight:900)-46;   // 46 = bilah kendali zoom
+    return Math.max(320, Math.round((h-40)/(1+274/360)));
+  }
 
   function pasangChart(sym){
     var box=panel.querySelector('.sq-chart[data-s]'); if(!box||box.getAttribute('data-s')!==sym) return;
@@ -1072,7 +1126,7 @@ document.addEventListener('DOMContentLoaded',function(){
       if(!bars||!dd){ if(ket) ket.textContent='bar tidak tersedia untuk nama ini'; return; }
       // Lebar gambar = lebar wadah sebenarnya; di layar sempit jumlah bar awal dikurangi.
       var awalBar=(typeof innerWidth!=='undefined'&&innerWidth<700)?60:170;
-      var gambarHarian=function(i0,end){ return chartSVG({sym:sym,level:dd.lv},bars,{W:lebarSVG(b2),bars:end-i0,end:end}); };
+      var gambarHarian=function(i0,end){ return chartSVG({sym:sym,level:dd.lv},bars,{W:lebarSVG(b2),Hp:tinggiSVG(b2),bars:end-i0,end:end}); };
       if(typeof pasangZoom==='function') pasangZoom(b2,bars.length,awalBar,gambarHarian,typeof ketRentang==='function'?ketRentang(bars,false):null); else b2.innerHTML=gambarHarian(Math.max(0,bars.length-awalBar),bars.length);
       // Kotak ringkasan anotasi: HTML di samping chart, bukan di dalam SVG. Teksnya panjang dan
       // perlu membungkus baris — dua hal yang buruk dilakukan SVG, terutama di ponsel.
@@ -1126,6 +1180,64 @@ document.addEventListener('DOMContentLoaded',function(){
 
      TANPA PEMUATAN MALAS. Datanya sudah ada di muatan halaman (bidang af): lima baris angka,
      bukan 600 bar. Tidak ada scope-intra.js yang perlu ditarik, jadi tidak ada keadaan "memuat". */
+  /* Chart batang aliran harian. ES5, tanpa dependensi, dipanggil dari pasangIntra.
+     a.s = 40 nilai harian sumber aktif · a.q = 40 nilai nilai-transaksi · SAL = 40 tanggal. */
+  function rupiahJt(v){ var x=Math.abs(v);
+    if(x>=1e6) return (v/1e6).toFixed(2)+' T';
+    if(x>=1e3) return (v/1e3).toFixed(1)+' M';
+    return Math.round(v)+' jt'; }
+  function chartAliran(a){
+    var S=a.s||[], Q=a.q||[], T=(typeof SAL!=="undefined"?SAL:[]);
+    var n=S.length; if(n<5) return "";
+    var W=700, PL=6, PR=6, HB=92, HK=38, GAP=10, HX=16;
+    var innerW=W-PL-PR, bw=innerW/n;
+    // skala batang: simetris di sekitar nol supaya tinggi batang +100 dan -100 sama
+    var maks=1; for(var i=0;i<n;i++) if(Math.abs(S[i])>maks) maks=Math.abs(S[i]);
+    var y0=HB/2, yB=function(v){ return y0 - (v/maks)*(HB/2-4); };
+    // kumulatif: skala sendiri di strip bawah
+    var kum=[], akum=0; for(i=0;i<n;i++){ akum+=S[i]; kum.push(akum); }
+    var kMin=0,kMax=0; for(i=0;i<n;i++){ if(kum[i]<kMin)kMin=kum[i]; if(kum[i]>kMax)kMax=kum[i]; }
+    if(kMax===kMin) kMax=kMin+1;
+    var kTop=HB+GAP, yK=function(v){ return kTop+HK-4-((v-kMin)/(kMax-kMin))*(HK-8); };
+    var f=function(v){ return v.toFixed(1); };
+
+    var batang="", judul="";
+    for(i=0;i<n;i++){
+      var v=S[i], x=PL+i*bw, ya=yB(v), h=Math.abs(ya-y0); if(h<0.8) h=0.8;
+      var sorot=(i>=n-5);
+      var kls=(v>=0?"fb-up":"fb-dn")+(sorot?" fb-on":"");
+      var pct=(Q[i]>0)?((v/Q[i])*100).toFixed(1)+"%":"–";
+      var tgl=T[i]||"";
+      batang+="<rect class='"+kls+"' x='"+f(x+bw*0.16)+"' y='"+f(Math.min(ya,y0))+"' width='"+f(bw*0.68)+"' height='"+f(h)+"'>"
+        +"<title>"+tgl+" · "+(v>=0?"+":"−")+rupiahJt(Math.abs(v))+" · "+pct+" dari nilai transaksi</title></rect>";
+    }
+    // pita jendela 5 hari
+    var xJ=PL+(n-5)*bw, wJ=5*bw;
+    var pita="<rect class='fb-pita' x='"+f(xJ)+"' y='0' width='"+f(wJ)+"' height='"+(HB)+"'/>";
+
+    var garis=""; for(i=0;i<n;i++){ garis+=(i?" L":"M")+f(PL+i*bw+bw/2)+" "+f(yK(kum[i])); }
+    var kumPath="<path class='fk-line' d='"+garis+"'/>";
+
+    // label sumbu-x: awal, batas jendela 5 hari, akhir
+    var tx=""; var tandai=[[0,T[0]],[n-5,T[n-5]],[n-1,T[n-1]]];
+    for(i=0;i<tandai.length;i++){ if(!tandai[i][1]) continue;
+      var xx=PL+tandai[i][0]*bw+bw/2, anchor=(i===0?"start":(i===2?"end":"middle"));
+      tx+="<text class='fb-x' x='"+f(xx)+"' y='"+(kTop+HK+12)+"' text-anchor='"+anchor+"'>"+esc(String(tandai[i][1]).slice(5))+"</text>";
+    }
+
+    var H=kTop+HK+HX;
+    return "<div class='fb-w'>"
+      +"<div class='fb-h'>Aliran bersih per hari <i>40 hari terakhir · jendela 5 hari disorot</i></div>"
+      +"<svg class='fb' viewBox='0 0 "+W+" "+H+"' preserveAspectRatio='none' role='img' aria-label='aliran bersih harian'>"
+      +pita+batang
+      +"<line class='fb-nol' x1='"+PL+"' x2='"+(W-PR)+"' y1='"+y0+"' y2='"+y0+"'/>"
+      +"<line class='fb-sep' x1='"+PL+"' x2='"+(W-PR)+"' y1='"+(kTop-GAP/2)+"' y2='"+(kTop-GAP/2)+"'/>"
+      +kumPath+tx+"</svg>"
+      +"<div class='fb-ket'>Batang = aliran bersih hari itu. Garis bawah = jumlah berjalan sejak 40 hari lalu, "
+      +"dengan skalanya sendiri — bukan sumbu kedua di panel yang sama. Lima batang tersorot itulah yang dijumlah jadi angka 5D di tabel.</div>"
+      +"</div>";
+  }
+
   function pasangIntra(sym, dd){
     var host=document.getElementById('secLima'); if(!host) return;
     var a=dd.af;
@@ -1134,12 +1246,29 @@ document.addEventListener('DOMContentLoaded',function(){
     var pos=function(v){ return v==null?'':(v>=0?'pos':'neg'); };
     var h='<div class="sq-chart sq-intra"><div class="fl-wrap">';
 
-    // kepala: keadaan + sumber + tanggal data
+    // ── DUA LENSA BERDAMPINGAN ────────────────────────────────────────────
+    // Uji walk-forward 23 Sep 2026 membalik urutan lensa: uang penggerak harga lolos dua
+    // periode (+0,49 / +0,26), sedangkan akumulasi asing BERDIRI SENDIRI memuat nol di
+    // 2020-2023. Jadi yang jadi judul adalah uang penggerak; asing di sebelahnya.
+    //
+    // Status uji dicetak DI KARTUNYA masing-masing, bukan di catatan kaki — kalau ia jauh dari
+    // angkanya, pembaca membaca angkanya dan melewatkan statusnya.
+    var kelasArah=function(n){ return (n==='ACCUMULATION'||n==='BUYING_PRESSURE_IMPROVING')?'up':(n==='DISTRIBUTION'?'dn':'nt'); };
     h+='<div class="fl-head">'
-      +'<div class="fl-st fl-'+(a.ada?(a.n==='ACCUMULATION'||a.n==='BUYING_PRESSURE_IMPROVING'?'up':(a.n==='DISTRIBUTION'?'dn':'nt')):'nt')+'">'+esc(a.n)+'</div>'
+      +'<div class="fl-st fl-'+(a.ada?kelasArah(a.n):'nt')+'">'+esc(a.n)+'</div>'
       +'<div class="fl-sub">'+esc(a.r||'')+'</div>'
       +'</div>';
-    h+='<p class="fl-src">Sumber: '+esc(a.sn||'—')+(a.tg?' · data '+esc(a.tg):'')+'</p>';
+    h+='<div class="fl-lensa">'
+      +'<div class="fl-l"><i>Uang penggerak harga</i><b>'+esc(a.n)+'</b>'
+      +'<u>'+(a.pd!=null?((a.pd>=0?'+':'')+a.pd+'% nilai transaksi &middot; 5 hari'):'&mdash;')+'</u>'
+      +'<em class="fl-uji ok">diuji 2 periode &middot; +0,49 / +0,26 &middot; keduanya di atas nol</em></div>'
+      +'<div class="fl-l"><i>Asing bersih</i><b>'+esc(a.as?a.as.n:'—')+'</b>'
+      +'<u>'+((a.as&&a.as.pd!=null)?((a.as.pd>=0?'+':'')+a.as.pd+'% nilai transaksi &middot; 5 hari'):'tidak ada asing di papan ini')+'</u>'
+      +'<em class="fl-uji nol">berdiri sendiri: selangnya memuat nol sepanjang 2020-2023</em></div>'
+      +'</div>';
+    if(a.pr) h+='<div class="fl-awas"><b>PERHATIAN &middot; asing beli tapi harga tidak bergerak</b>'
+      +'<span>'+esc(a.pr.teks)+'</span><i>'+esc(a.pr.uji)+'</i></div>';
+    h+='<p class="fl-src">Angka dari nilai &amp; volume resmi bursa'+(a.tg?' &middot; data '+esc(a.tg):'')+'</p>';
 
     // lima horizon
     h+='<table class="iw-t"><thead><tr><th>Horizon</th><th style="text-align:right">Aliran bersih</th>'
@@ -1150,6 +1279,9 @@ document.addEventListener('DOMContentLoaded',function(){
         +'<td style="text-align:right" class="'+pos(r[2])+'">'+(r[3]?((r[2]>=0?'+':'')+r[2]+'%'):'—')+'</td></tr>';
     }
     h+='</tbody></table>';
+    // Chart ditaruh TEPAT di bawah tabel supaya hubungan angka-dan-batang terbaca berdampingan;
+    // ditaruh di atas tabel, ia jadi gambar pembuka yang tidak menjelaskan apa pun.
+    h+=chartAliran(a);
 
     // pergeseran — inilah yang ditindaklanjuti, bukan keadaannya
     if(a.ub){
