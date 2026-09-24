@@ -1384,9 +1384,12 @@ function bacaOwner(rec, months) {
   let vonis = 'BELUM ADA BACAAN', tone = '', alasan = [];
   const uangBesarMasuk = (dAsing != null && dAsing >= 0.3) || (dInst != null && dInst >= 0.3);
   const uangBesarKeluar = (dAsing != null && dAsing <= -0.3) || (dInst != null && dInst <= -0.3);
-  if (beli.length && !jual.length) { vonis = 'ORANG DALAM BELI'; tone = 'good'; alasan.push(`${beli.length} laporan beli dari direksi/komisaris dalam 90 hari, tanpa jual`); }
-  else if (jual.length && !beli.length) { vonis = 'ORANG DALAM JUAL'; tone = 'bad'; alasan.push(`${jual.length} laporan jual dari direksi/komisaris dalam 90 hari, tanpa beli`); }
-  else if (beli.length && jual.length) { vonis = nilai(beli) > nilai(jual) ? 'ORANG DALAM LEBIH BANYAK BELI' : 'ORANG DALAM LEBIH BANYAK JUAL'; tone = nilai(beli) > nilai(jual) ? 'good' : 'warn'; alasan.push(`${beli.length} beli vs ${jual.length} jual dari direksi/komisaris dalam 90 hari`); }
+  // VONIS ORANG DALAM DICABUT 24 Sep 2026. Ia dihitung dari rec.t dengan pencocokan teks mentah:
+  // tanpa deduplikasi laporan ganda, tanpa memisahkan buyback emiten dari pembelian pribadi, dan
+  // tanpa membedakan hibah dari pembelian di pasar. Bagian "Keterbukaan kepemilikan" di bawah
+  // memakai klasifikasi resmi domain/keterbukaan.mjs, dan dua pembacaan yang berbeda cara atas
+  // pertanyaan yang sama akan saling bertentangan di halaman yang sama. Hitungannya (beli/jual)
+  // tetap dikembalikan untuk keterangan, tapi tidak lagi menjadi VONIS.
   if (uangBesarMasuk) { alasan.push(`porsi ${dAsing != null && dAsing >= 0.3 ? 'asing' : 'institusi lokal'} naik ${(Math.max(dAsing || 0, dInst || 0)).toFixed(2)} poin sebulan`); if (!tone) { vonis = 'UANG BESAR MASUK'; tone = 'good'; } }
   if (uangBesarKeluar) { alasan.push(`porsi ${dAsing != null && dAsing <= -0.3 ? 'asing' : 'institusi lokal'} turun ${Math.abs(Math.min(dAsing || 0, dInst || 0)).toFixed(2)} poin sebulan`); if (!tone) { vonis = 'UANG BESAR KELUAR'; tone = 'bad'; } }
   if (dRitel != null && dRitel >= 0.5 && !tone) { vonis = 'RITEL MENAMPUNG'; tone = 'warn'; alasan.push(`porsi ritel lokal naik ${dRitel.toFixed(2)} poin: yang beli kebanyakan perorangan`); }
@@ -1464,25 +1467,55 @@ function ownerHTML(sym, rec, months) {
     + `<div><span>Asing</span><b>${k ? k.asing.toFixed(1) + '%' : '–'}</b><i>${pp(b.dAsing)} sebulan · ${pp(b.dAsing3)} 3 bln</i></div>`
     + `<div><span>Institusi lokal</span><b>${k ? k.inst.toFixed(1) + '%' : '–'}</b><i>${pp(b.dInst)} sebulan · ${pp(b.dInst3)} 3 bln</i></div>`
     + `<div><span>Ritel lokal</span><b>${k ? k.ritel.toFixed(1) + '%' : '–'}</b><i>${pp(b.dRitel)} sebulan</i></div>`
-    + `<div><span>Direksi/komisaris 90 hari</span><b>${b.beli || 0} beli · ${b.jual || 0} jual</b><i>Rp ${rp(b.nilaiBeli)} vs Rp ${rp(b.nilaiJual)}</i></div>`
-    + `<div><span>Pemegang ≥5% 90 hari</span><b>${b.besarBeli || 0} beli · ${b.besarJual || 0} jual</b><i>institusi / holding yang wajib lapor</i></div>`
+    + (() => {
+      // Angka ini datang dari daftar keterbukaan yang SUDAH dideduplikasi dan diklasifikasikan,
+      // bukan dari hitungan mentah — supaya ubin di atas dan bagian di bawah tidak pernah berselisih.
+      const kt = rec.ktb || [];
+      const nb = kt.reduce((a, x) => a + (x[3] || 0), 0), nj = kt.reduce((a, x) => a + (x[4] || 0), 0);
+      const vx = kt.reduce((a, x) => a + (x[13] || 0), 0);
+      return `<div><span>Keterbukaan 90 hari</span><b>${kt.length ? nb + ' beli · ' + nj + ' jual' : '–'}</b><i>${kt.length ? kt.length + ' pihak melapor · bersih Rp ' + rp(Math.abs(vx)) + (vx < 0 ? ' keluar' : ' masuk') : 'tidak ada laporan'}</i></div>`;
+    })()
     + '</div>';
   if (b.vonis && b.vonis !== 'BELUM ADA BACAAN') h += `<div class="sq-vonis${b.tone === 'bad' ? ' bad' : b.tone === 'warn' ? ' warn' : ''}"><b>${esc(b.vonis)}.</b> ${esc(b.alasan.join('; '))}.</div>`;
   // grafik
   const lebarOw = (typeof innerWidth !== 'undefined' && innerWidth < 700) ? Math.max(320, innerWidth - 44) : 1060;
   h += `<div class="ow-chart">${ownerSVG(rec, months, { W: lebarOw, H: lebarOw < 700 ? 200 : 220 })}</div>`;
   h += '<div class="ow-legend"><i class="ow-ritel"></i>ritel lokal <i class="ow-inst"></i>institusi lokal (asuransi, dana pensiun, bank, reksa dana, korporasi, sekuritas, yayasan) <i class="ow-asing"></i>asing <i class="ow-rd-l"></i>reksa dana lokal · KSEI, akhir bulan' + (k ? ` · terakhir ${tgl(k.m)}` : '') + '</div>';
-  // tabel transaksi
-  const t = (rec.t || []).slice(0, 14);
-  if (t.length) {
-    h += '<table class="iw-t ow-t"><thead><tr><th>Lapor</th><th>Siapa</th><th>Jenis</th><th class="r">Lembar</th><th class="r">Harga</th><th class="r">Nilai</th><th class="r">Sebelum → sesudah</th><th>Tgl transaksi</th></tr></thead><tbody>';
-    for (const x of t) {
-      const jenis = x[4] || '–', beli = /Pembelian|Purchase/i.test(jenis), jual = /Penjualan|Sale/i.test(jenis);
-      h += `<tr class="${x[2] ? 'ow-ins' : ''}"><td class="mono muted">${tgl(x[0])}</td><td><b>${esc(x[1])}</b>${x[2] ? `<span class="ow-tag">${esc(x[3] || 'direksi/komisaris')}</span>` : '<span class="ow-tag lg">≥5%</span>'}${x[10] ? '<span class="ow-tag lg">pengendali</span>' : ''}</td><td class="${beli ? 'pos' : jual ? 'neg' : ''}">${esc(jenis)}</td><td class="r mono">${lembar(x[5])}</td><td class="r mono">${x[6] != null ? Math.round(x[6]).toLocaleString('id-ID') : '–'}</td><td class="r mono">${x[5] && x[6] ? 'Rp ' + rp(x[5] * x[6]) : '–'}</td><td class="r mono">${x[8] != null ? x[8].toFixed(x[8] < 0.1 ? 4 : 2) : '–'}% → ${x[9] != null ? x[9].toFixed(x[9] < 0.1 ? 4 : 2) : '–'}%</td><td class="mono muted">${tgl(x[7])}</td></tr>`;
+  // ── KETERBUKAAN, bentuk ringkas ──
+  // Dulu di sini ada 14 baris transaksi mentah. Yang dicari pembaca di halaman per-saham bukan
+  // daftar itu, melainkan KESIMPULANNYA: siapa, berulang atau tidak, porsinya berubah berapa,
+  // dan kapan pasar tahu. Daftar transaksinya utuh di halaman Keterbukaan.
+  const LPK = {CONTROLLING_SHAREHOLDER:'Pengendali',PRESIDENT_DIRECTOR:'Direktur Utama',DIRECTOR:'Direksi',
+    PRESIDENT_COMMISSIONER:'Komisaris Utama',INDEPENDENT_COMMISSIONER:'Komisaris Independen',COMMISSIONER:'Komisaris',
+    MAJOR_SHAREHOLDER:'Pemegang saham utama',AFFILIATED_PARTY:'Pihak terafiliasi',INSTITUTION:'Institusi',OTHER:'Lainnya'};
+  const LPP = {SINGLE_BUY:'Beli sekali',REPEATED_ACCUMULATION:'Akumulasi berulang',STRONG_REPEATED_ACCUMULATION:'Akumulasi berulang kuat',
+    SINGLE_SALE:'Jual sekali',REPEATED_DISTRIBUTION:'Distribusi berulang',STRONG_REPEATED_DISTRIBUTION:'Distribusi berulang kuat',
+    MIXED:'Beli dan jual bercampur',NON_MARKET:'Bukan transaksi pasar',NONE:'Tidak ada aktivitas pasar'};
+  const AKUM = {SINGLE_BUY:1,REPEATED_ACCUMULATION:1,STRONG_REPEATED_ACCUMULATION:1};
+  const DIST = {SINGLE_SALE:1,REPEATED_DISTRIBUTION:1,STRONG_REPEATED_DISTRIBUTION:1};
+  const ktb = rec.ktb || [];
+  h += '<div class="ow-ktb"><h5>Keterbukaan kepemilikan <a href="keterbukaan.html?q=' + encodeURIComponent(sym) + '">lihat detail &rarr;</a></h5>';
+  if (!ktb.length) h += '<div class="ow-more">Tidak ada laporan perubahan kepemilikan dalam 90 hari terakhir sejak keterbukaan.</div>';
+  else {
+    for (const x of ktb) {
+      const [nama, peran, pola, nb, nj, p0, p1, tl, t0, t1, lag, mat, pe] = x;
+      const kls = AKUM[pola] ? 'naik' : DIST[pola] ? 'turun' : 'diam';
+      h += '<div class="owk">';
+      h += '<div class="owk-h"><b>' + esc(nama || '–') + '</b><span>' + esc((peran || []).map(p => LPK[p] || p).join(' / ')) + '</span></div>';
+      h += '<div class="owk-b"><span class="owk-p ' + kls + '">' + esc(LPP[pola] || pola) + '</span>';
+      h += '<span class="owk-n">' + (nb ? nb + ' beli' : '') + (nb && nj ? ' &middot; ' : '') + (nj ? nj + ' jual' : '') + '</span>';
+      if (p0 != null && p1 != null) h += '<span class="owk-o">' + p0.toFixed(2) + '% &rarr; <b>' + p1.toFixed(2) + '%</b></span>';
+      if (mat) h += '<span class="owk-m ' + esc(mat) + '">' + esc(String(mat).replace('_',' ')) + '</span>';
+      h += '</div>';
+      // DUA tanggal selalu berdampingan: transaksinya kapan, dan kapan publik bisa tahu.
+      h += '<div class="owk-t">transaksi ' + tgl(t0) + (t1 && t1 !== t0 ? ' &ndash; ' + tgl(t1) : '')
+        + ' &middot; keterbukaan ' + tgl(tl)
+        + (lag >= 14 ? '<span class="owk-lag">terlambat ' + lag + ' hari</span>' : '') + '</div>';
+      h += '</div>';
     }
-    h += '</tbody></table>';
-    if ((rec.t || []).length > 14) h += `<div class="ow-more">${(rec.t || []).length - 14} laporan lebih lama tidak ditampilkan.</div>`;
-  } else h += '<div class="ow-more">Belum ada laporan perubahan kepemilikan yang tertangkap untuk nama ini.</div>';
+    if (rec.ktbSisa) h += '<div class="ow-more">' + rec.ktbSisa + ' pihak lain tidak ditampilkan &mdash; ada di halaman Keterbukaan.</div>';
+  }
+  h += '</div>';
   // pemegang & pengurus
   const p = rec.p || [], d = rec.d || [], km = rec.k || [];
   h += '<div class="ow-two">';

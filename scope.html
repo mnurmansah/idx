@@ -901,6 +901,36 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .ow-tag{display:inline-block;font:600 9.5px/1 var(--sans);border:1px solid var(--line);border-radius:4px;
   padding:3px 6px;margin-left:6px;color:var(--ink2);background:var(--panel2)}.ow-tag.lg{color:var(--muted)}
 .ow-more{font-size:11.5px;color:var(--muted);margin:6px 0 10px}
+/* Bagian Keterbukaan di halaman per-saham: KESIMPULAN per pihak, bukan daftar transaksi.
+   Daftar lengkapnya sengaja ada di halaman Keterbukaan — 14 baris mentah di sini dulu
+   memanjangkan halaman tanpa menjawab pertanyaan yang sebenarnya dibawa pembaca. */
+.ow-ktb{margin:10px 0 14px}
+.ow-ktb h5{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 8px;
+  font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ow-ktb h5 a{font-size:11px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--link)}
+.owk{padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-s);background:var(--panel2)}
+.owk+.owk{margin-top:8px}
+.owk-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.owk-h b{font-size:13px;font-weight:650}
+.owk-h span{font-size:10.5px;color:var(--muted)}
+.owk-b{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:6px 0 0}
+/* Warna menandai ARAH kepemilikan, bukan penilaian bagus-buruk. */
+.owk-p{padding:2px 7px;border-radius:999px;font-size:10px;font-weight:600;white-space:nowrap}
+.owk-p.naik{background:var(--up-soft);color:var(--up)}
+.owk-p.turun{background:var(--down-soft);color:var(--down)}
+.owk-p.diam{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
+.owk-n{font-size:11.5px;color:var(--ink2)}
+.owk-o{font-size:11.5px;font-variant-numeric:tabular-nums}
+.owk-o b{font-weight:650}
+.owk-m{padding:1px 6px;border-radius:var(--r-xs);font-size:9px;font-weight:700;letter-spacing:.04em;
+  background:var(--panel);border:1px solid var(--line);color:var(--muted)}
+.owk-m.VERY_HIGH{background:var(--down-soft);color:var(--down);border-color:transparent}
+.owk-m.HIGH{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+/* Dua tanggal selalu berdampingan: seluruh gunanya mencegah pembaca mengira transaksi terjadi
+   pada tanggal keterbukaannya. */
+.owk-t{margin:6px 0 0;font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.owk-lag{margin-left:6px;padding:1px 5px;border-radius:var(--r-xs);font-size:9px;font-weight:700;
+  background:var(--warn-soft);color:var(--warn)}
 .ow-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:6px 0 12px}
 .ow-two ul{list-style:none;margin:0;padding:0;font-size:12.5px}
 .ow-two li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;padding:6px 0;
@@ -917,7 +947,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
       <a class="brand" href="index.html" aria-label="IDX Swing — ke Ringkasan"><span class="logo">IDX</span><span class="bnama">Swing</span></a>
       <button type="button" class="side-t" id="relBtn" aria-label="Lipat / buka menu" title="Lipat menu">‹</button>
     </div>
-    <nav class="nav"><a class="nv" href="index.html" title="Ringkasan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4v5H3zM10 8h4v10h-4zM17 4h4v14h-4z"/></svg><span>Ringkasan</span></a><a class="nv" href="screener.html" title="Saring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg><span>Saring</span></a><a class="nv" href="peta.html" title="Peta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14"/></svg><span>Peta</span></a><a class="nv on" href="scope.html" title="Per saham" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M11 8v6M8 11h6"/></svg><span>Per saham</span><b>826</b></a><a class="nv" href="scanner.html" title="Uang masuk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 7l5-4 5 4M5 12h14M7 17l5 4 5-4"/></svg><span>Uang masuk</span><b>832</b></a><a class="nv" href="sektor.html" title="Sektor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9l7 4"/><circle cx="12" cy="12" r="9"/></svg><span>Sektor</span></a><a class="nv" href="global.html" title="Global"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18a15 15 0 010-18"/></svg><span>Global</span></a><a class="nv" href="jurnal.html" title="Jurnal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h11l3 3v15H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><span>Jurnal</span></a><a class="nv" href="riset.html" title="Riset"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3z"/><path d="M9 3h6"/></svg><span>Riset</span><b>1</b></a><a class="nv" href="lab.html" title="Validasi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-6 4 3 7-9"/><path d="M20 6h-4M20 6v4"/></svg><span>Validasi</span></a></nav>
+    <nav class="nav"><a class="nv" href="index.html" title="Ringkasan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h4v5H3zM10 8h4v10h-4zM17 4h4v14h-4z"/></svg><span>Ringkasan</span></a><a class="nv" href="screener.html" title="Saring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg><span>Saring</span></a><a class="nv" href="peta.html" title="Peta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14"/></svg><span>Peta</span></a><a class="nv on" href="scope.html" title="Per saham" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M11 8v6M8 11h6"/></svg><span>Per saham</span><b>826</b></a><a class="nv" href="scanner.html" title="Uang masuk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 7l5-4 5 4M5 12h14M7 17l5 4 5-4"/></svg><span>Uang masuk</span><b>832</b></a><a class="nv" href="keterbukaan.html" title="Keterbukaan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v6"/><path d="M14 3v4h4"/><path d="M6 3v18h6"/><circle cx="17" cy="18" r="3.2"/><path d="M17 16.4v1.6l1.1.9"/></svg><span>Keterbukaan</span><b>199</b></a><a class="nv" href="sektor.html" title="Sektor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v9l7 4"/><circle cx="12" cy="12" r="9"/></svg><span>Sektor</span></a><a class="nv" href="global.html" title="Global"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18a15 15 0 010-18"/></svg><span>Global</span></a><a class="nv" href="jurnal.html" title="Jurnal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h11l3 3v15H5z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><span>Jurnal</span></a><a class="nv" href="riset.html" title="Riset"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3z"/><path d="M9 3h6"/></svg><span>Riset</span><b>1</b></a><a class="nv" href="lab.html" title="Validasi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-6 4 3 7-9"/><path d="M20 6h-4M20 6v4"/></svg><span>Validasi</span></a></nav>
     <div class="side-f">created by : nurboy</div>
   </aside>
   <div class="wrap">
@@ -1039,6 +1069,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
       pager.innerHTML='<button class="pg-btn" data-d="-1"'+(page<=1?' disabled':'')+'>‹</button><span class="pg-pages">'+page+' / '+pages+'</span><button class="pg-btn" data-d="1"'+(page>=pages?' disabled':'')+'>›</button><span class="pg-info">'+(s+1)+'–'+Math.min(s+per,el.length)+' dari '+el.length+'</span>';
       [].forEach.call(pager.querySelectorAll('.pg-btn'),function(b){ b.onclick=function(){ page+=+b.dataset.d; render(); }; }); }
     var cari=w.querySelector('.tbl-cari'); if(cari) cari.addEventListener('input',function(){ q=cari.value.trim().toUpperCase(); page=1; render(); });
+    // Tabel yang kepalanya diisi belakangan oleh skrip halaman punya <thead> KOSONG saat ini
+    // berjalan. Tanpa penjaga ini, barisnya melempar dan MEMBUNUH SELURUH BLOK SKRIP halaman —
+    // termasuk kode halaman yang belum sempat jalan, karena shell dan halaman berbagi satu
+    // <script>. Halaman Keterbukaan mati total karena ini (24 Sep 2026), dan matinya senyap.
+    if(!table.tHead||!table.tHead.rows.length) return;
     [].forEach.call(table.tHead.rows[table.tHead.rows.length-1].cells,function(th,ci){ if(!th.dataset.sort) return;
       th.addEventListener('click',function(){ var dir=th.classList.contains('desc')?1:-1;
         [].forEach.call(table.tHead.querySelectorAll('th'),function(x){x.classList.remove('asc','desc')}); th.classList.add(dir<0?'desc':'asc');
