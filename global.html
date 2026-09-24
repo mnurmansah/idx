@@ -494,14 +494,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 // Dijalankan SEBELUM isi digambar: tanpa ini, isi halaman sempat terlihat sekejap sebelum modal
 // muncul — dan seluruh guna gerbang ini justru supaya isinya tidak langsung terpampang.
 // sessionStorage, bukan localStorage: sekali per sesi peramban, tidak menempel selamanya.
-(function(){try{if(sessionStorage.getItem('idxbuka')!=='1')document.documentElement.className+=' terkunci';}catch(e){document.documentElement.className+=' terkunci';}})();
+// Yang disimpan adalah CAP WAKTU masuk, bukan penanda "sudah masuk". Penanda tanpa waktu tidak
+// bisa kedaluwarsa; dengan cap waktu, setiap halaman yang dibuka menghitung sendiri apakah
+// jendelanya masih berlaku. Tidak ada yang perlu dipercaya selain jam peramban itu sendiri.
+(function(){
+  var kunci=true;
+  try{
+    var t=+sessionStorage.getItem('idxbuka')||0;
+    var lewat=Date.now()-t;
+    if(t>0&&lewat<3600000) kunci=false;
+    // Sesi yang sudah lewat dibersihkan DI SINI, bukan dibiarkan jadi sampah yang menipu
+    // pemeriksaan berikutnya.
+    else if(t>0){ sessionStorage.removeItem('idxbuka'); sessionStorage.setItem('idxhabis','1'); }
+  }catch(e){}
+  if(kunci) document.documentElement.className+=' terkunci';
+})();
 </script>
 </head><body>
 <div class="gerbang" id="gerbang" role="dialog" aria-modal="true" aria-labelledby="gerbang-j">
   <form class="gerbang-k" id="gerbangF" autocomplete="off">
     <span class="logo">IDX</span>
     <h1 id="gerbang-j">IDX Swing</h1>
-    <p>Dasbor pribadi. Masukkan kata sandi untuk melanjutkan.</p>
+    <p id="gerbangSub">Dasbor pribadi. Masukkan kata sandi untuk melanjutkan.</p>
     <input type="password" id="gerbangP" placeholder="Kata sandi" aria-label="Kata sandi" autocomplete="off" autofocus>
     <button type="submit">Masuk</button>
     <em id="gerbangE" hidden>Kata sandi salah.</em>
@@ -997,15 +1011,44 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   // bukan keamanan, dan berpura-pura sebaliknya (mis. dengan hash) justru menyesatkan pembaca
   // kode berikutnya, karena hash di sisi peramban sama mudahnya dilewati.
   var SANDI='123';
+  // Jendela sesi. Dihitung dari saat MASUK, bukan dari aktivitas terakhir: "logout tiap 1 jam"
+  // berarti satu jam sejak masuk, bukan satu jam menganggur. Jendela bergulir akan membuat sesi
+  // yang dipakai terus-menerus tidak pernah berakhir sama sekali.
+  var SESI_MS=3600000;
   var g=document.getElementById('gerbangF');
   if(g){
     var inp=document.getElementById('gerbangP'), err=document.getElementById('gerbangE');
+    var sub=document.getElementById('gerbangSub'), jam=null;
+    function kunci(sebab){
+      if(document.documentElement.className.indexOf('terkunci')>=0) return;
+      document.documentElement.className+=' terkunci';
+      try{sessionStorage.removeItem('idxbuka');}catch(e3){}
+      if(sub&&sebab) sub.textContent=sebab;
+      try{inp.focus();}catch(e4){}
+    }
+    // Kalau halaman dibiarkan terbuka melewati jendelanya, ia ikut terkunci. Tanpa ini aturannya
+    // cuma berlaku saat berpindah halaman, dan satu tab yang dibiarkan terbuka semalaman tetap
+    // memperlihatkan isinya.
+    function pasangJam(sisa){
+      if(jam) clearTimeout(jam);
+      jam=setTimeout(function(){ kunci('Sesi 1 jam berakhir. Masukkan kata sandi lagi.'); }, Math.max(1000,sisa));
+    }
+    try{
+      if(sessionStorage.getItem('idxhabis')==='1'){
+        sessionStorage.removeItem('idxhabis');
+        if(sub) sub.textContent='Sesi 1 jam berakhir. Masukkan kata sandi lagi.';
+      }
+      var t0=+sessionStorage.getItem('idxbuka')||0;
+      if(t0>0) pasangJam(t0+SESI_MS-Date.now());
+    }catch(e5){}
     g.addEventListener('submit',function(e){
       e.preventDefault();
       if(inp.value===SANDI){
-        try{sessionStorage.setItem('idxbuka','1');}catch(err2){}
+        try{sessionStorage.setItem('idxbuka',String(Date.now()));}catch(err2){}
         document.documentElement.className=document.documentElement.className.replace(/\bterkunci\b/,'').trim();
-        inp.value='';
+        inp.value=''; err.hidden=true;
+        if(sub) sub.textContent='Dasbor pribadi. Masukkan kata sandi untuk melanjutkan.';
+        pasangJam(SESI_MS);
       } else {
         err.hidden=false;
         g.classList.remove('salah'); void g.offsetWidth; g.classList.add('salah');
