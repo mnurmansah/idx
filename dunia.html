@@ -3,6 +3,38 @@
 <title>Penggerak dunia · IDX Swing</title>
 <meta name="color-scheme" content="light dark">
 <style>
+/* ── GERBANG FORMALITAS ────────────────────────────────────────────────────
+   Ini BUKAN keamanan. Kata sandinya ada di dalam berkas yang dikirim ke peramban,
+   jadi siapa pun yang membuka view-source bisa membacanya. Gunanya cuma satu:
+   isi dasbor tidak langsung terpampang begitu tautannya dibuka. Jangan pernah
+   menaruh sesuatu yang benar-benar rahasia di belakang gerbang seperti ini. */
+html.terkunci body{overflow:hidden}
+/* Isi diburamkan, bukan disembunyikan: yang dituju adalah "tidak terbaca", bukan
+   "tidak ada". Halaman kosong terbaca seperti situs rusak. */
+html.terkunci .app{filter:blur(9px);pointer-events:none;user-select:none}
+html:not(.terkunci) .gerbang{display:none}
+.gerbang{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;
+  padding:20px;background:color-mix(in srgb,var(--bg) 55%,transparent);backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px)}
+.gerbang-k{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:310px;
+  padding:26px 24px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:0 18px 50px rgba(0,0,0,.18)}
+.gerbang-k .logo{width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  border-radius:9px;background:var(--emas);color:#fff;font:700 11px/1 var(--sans);letter-spacing:.02em}
+.gerbang-k h1{margin:2px 0 0;font-size:17px;font-weight:650;letter-spacing:-.01em}
+.gerbang-k p{margin:0 0 4px;font-size:12px;line-height:1.5;color:var(--muted);text-align:center}
+/* 16px supaya iOS tidak memperbesar halaman saat kolom disentuh. */
+.gerbang-k input{width:100%;height:40px;padding:0 12px;border:1px solid var(--line);
+  border-radius:var(--r-s);background:var(--panel2);color:var(--ink);font:inherit;font-size:16px}
+.gerbang-k input:focus{outline:0;border-color:var(--emas-line);box-shadow:0 0 0 3px var(--emas-soft)}
+.gerbang-k button{width:100%;height:40px;border:0;border-radius:var(--r-s);background:var(--emas);
+  color:#fff;font:600 13px/1 var(--sans);cursor:pointer}
+.gerbang-k button:hover{filter:brightness(.96)}
+.gerbang-k em{font-style:normal;font-size:11.5px;color:var(--down)}
+.gerbang-k.salah{animation:goyang .3s}
+@keyframes goyang{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@media (prefers-reduced-motion:reduce){.gerbang-k.salah{animation:none}}
+
 :root{color-scheme:light;
  /* Krem hangat, bukan abu netral. Perbedaannya kecil di satu petak warna dan besar di seluruh
     layar: abu membuat kartu putih terlihat kotor, krem membuatnya terlihat terangkat. */
@@ -435,7 +467,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 .dw-met p:last-child{margin-bottom:0}
 @media (max-width:640px){.dw-p,.dw-met p{max-width:none}}
 </style>
+<script>
+// Dijalankan SEBELUM isi digambar: tanpa ini, isi halaman sempat terlihat sekejap sebelum modal
+// muncul — dan seluruh guna gerbang ini justru supaya isinya tidak langsung terpampang.
+// sessionStorage, bukan localStorage: sekali per sesi peramban, tidak menempel selamanya.
+(function(){try{if(sessionStorage.getItem('idxbuka')!=='1')document.documentElement.className+=' terkunci';}catch(e){document.documentElement.className+=' terkunci';}})();
+</script>
 </head><body>
+<div class="gerbang" id="gerbang" role="dialog" aria-modal="true" aria-labelledby="gerbang-j">
+  <form class="gerbang-k" id="gerbangF" autocomplete="off">
+    <span class="logo">IDX</span>
+    <h1 id="gerbang-j">IDX Swing</h1>
+    <p>Dasbor pribadi. Masukkan kata sandi untuk melanjutkan.</p>
+    <input type="password" id="gerbangP" placeholder="Kata sandi" aria-label="Kata sandi" autocomplete="off" autofocus>
+    <button type="submit">Masuk</button>
+    <em id="gerbangE" hidden>Kata sandi salah.</em>
+  </form>
+</div>
 <div class="app" id="app">
   <aside class="side" aria-label="Navigasi utama">
     <div class="side-h">
@@ -1114,6 +1162,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 </div>
 <script>
 (function(){
+  // GERBANG. Kata sandinya sengaja ditulis apa adanya — lihat catatan di CSS: ini formalitas,
+  // bukan keamanan, dan berpura-pura sebaliknya (mis. dengan hash) justru menyesatkan pembaca
+  // kode berikutnya, karena hash di sisi peramban sama mudahnya dilewati.
+  var SANDI='123';
+  var g=document.getElementById('gerbangF');
+  if(g){
+    var inp=document.getElementById('gerbangP'), err=document.getElementById('gerbangE');
+    g.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(inp.value===SANDI){
+        try{sessionStorage.setItem('idxbuka','1');}catch(err2){}
+        document.documentElement.className=document.documentElement.className.replace(/\bterkunci\b/,'').trim();
+        inp.value='';
+      } else {
+        err.hidden=false;
+        g.classList.remove('salah'); void g.offsetWidth; g.classList.add('salah');
+        inp.select();
+      }
+    });
+    // Fokus otomatis: autofocus tidak selalu jalan kalau elemennya baru terlihat sesudah CSS.
+    if(document.documentElement.className.indexOf('terkunci')>=0) setTimeout(function(){try{inp.focus();}catch(e2){}},60);
+  }
   var root=document.documentElement;
   var TEMA=['light','azure','slate','indigo'];
   var menu=document.getElementById('temaMenu'), tb=document.getElementById('temaBtn');
