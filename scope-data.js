@@ -1455,25 +1455,11 @@ function pemegangHTML(rec) {
   const ph = (rec && rec.ph) || [];
   const fmtN = v => Math.round(v).toLocaleString('id-ID');
   const akhirBulan = ym => { const [y, m] = ym.split('-').map(Number); return new Date(Date.UTC(y, m, 0)).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }); };
-  let h = '<div class="ow-ph"><h5>Jumlah pemegang saham <span>pemilik SID · laporan registrasi bulanan IDX</span></h5>';
-  if (!ph.length) return h + '<div class="ow-more">Belum ada laporan registrasi bulanan yang terbaca untuk nama ini.</div></div>';
-  const tot = ph.map(x => ({ m: x[0], n: x[1], src: x[2] }));
-  const kini = tot[tot.length - 1], ke = k => tot.length > k ? tot[tot.length - 1 - k] : null;
-  const ubah = k => { const a = ke(k); return a && a.n ? (kini.n / a.n - 1) * 100 : null; };
-  const d1 = ubah(1), d3 = ubah(3), d6 = ubah(6);
-  const pc = v => v == null ? '–' : `<span class="${v > 0 ? 'pos' : v < 0 ? 'neg' : ''}">${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(1).replace('.', ',')}%</span>`;
-  h += `<div class="ow-ph-k"><b>${fmtN(kini.n)}</b> pemegang per ${akhirBulan(kini.m)} · ${pc(d1)} sebulan · ${pc(d3)} 3 bln · ${pc(d6)} 6 bln</div>`;
-  const acuan = d3 != null ? d3 : d1;
-  if (acuan != null && acuan <= -10) h += `<div class="ow-ph-v turun"><b>MENYUSUT.</b> Pemegang turun ${Math.abs(acuan).toFixed(0)}% dalam ${d3 != null ? '3 bulan' : 'sebulan'} — barang terkumpul ke lebih sedikit pihak. Label, belum diuji sebagai sinyal.</div>`;
-  else if (acuan != null && acuan >= 10) h += `<div class="ow-ph-v naik"><b>MEMBENGKAK.</b> Pemegang naik ${acuan.toFixed(0)}% dalam ${d3 != null ? '3 bulan' : 'sebulan'} — barang menyebar ke banyak pihak (ritel). Label, belum diuji sebagai sinyal.</div>`;
-  const mx = Math.max(...tot.map(x => x.n)) || 1;
-  const baris = tot.slice().reverse().map((x, i, a) => {
-    const prev = a[i + 1], d = prev ? x.n - prev.n : null;
-    return `<li><span class="t">${akhirBulan(x.m)}</span><i style="width:${(x.n / mx * 100).toFixed(1)}%"></i><b${x.src === 'x' ? ' title="dari formulir X.H.1-2 BAE (pemegang &gt;5% + &lt;5%)"' : ''}>${fmtN(x.n)}</b><em class="${d > 0 ? 'pos' : d < 0 ? 'neg' : ''}">${d == null ? '' : '(' + (d > 0 ? '+' : d < 0 ? '−' : '') + fmtN(Math.abs(d)) + ')'}</em></li>`;
-  });
-  h += '<ul class="ow-ph-l">' + baris.slice(0, 12).join('') + '</ul>';
-  if (baris.length > 12) h += '<details class="ow-ph-more"><summary>' + (baris.length - 12) + ' bulan sebelumnya</summary><ul class="ow-ph-l">' + baris.slice(12).join('') + '</ul></details>';
-  return h + '</div>';
+  let h = '<div class="ow-ph"><h5>Jumlah Pemegang Saham</h5>';
+  if (!ph.length) return h + '<div class="ow-more">Belum ada data jumlah pemegang saham untuk nama ini.</div></div>';
+  const baris = ph.map((x, i) => { const prev = ph[i - 1], d = prev ? x[1] - prev[1] : null;
+    return `<li><span class="t">${akhirBulan(x[0])}</span><b>${fmtN(x[1])}</b><em class="${d > 0 ? 'pos' : d < 0 ? 'neg' : 'nol'}">${d == null ? '' : '(' + (d > 0 ? '+' : d < 0 ? '−' : '') + fmtN(Math.abs(d)) + ')'}</em></li>`; });
+  return h + '<ul class="ow-ph-l">' + baris.slice(-6).reverse().join('') + '</ul></div>';
 }
 function ownerHTML(sym, rec, months) {
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
