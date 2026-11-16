@@ -3850,7 +3850,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   if(ci){ addEventListener('keydown',function(e){ if(e.key==='/'&&document.activeElement!==ci&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){ e.preventDefault(); ci.focus(); } });
     document.getElementById('cariForm').addEventListener('submit',function(e){ var q=ci.value.trim().toUpperCase(); if(!q){e.preventDefault();return;} ci.value=q; if(window.__scopeBuka){ e.preventDefault(); window.__scopeBuka(q); } }); }
   document.querySelectorAll('[data-tabs]').forEach(function(box){
-    var btns=[].slice.call(box.querySelectorAll('.tab')), panes=[].slice.call(document.querySelectorAll('.tabpane[data-of="'+box.id+'"]'));
+    // only boxes whose buttons carry data-tab (the index page's tabs use data-p + their own handler in index.js;
+    // without this guard the URL became "#undefined" and every button got .on)
+    var btns=[].slice.call(box.querySelectorAll('.tab')).filter(function(b){return b.dataset.tab}), panes=[].slice.call(document.querySelectorAll('.tabpane[data-of="'+box.id+'"]'));
+    if(!btns.length) return;
     function pilih(id){ btns.forEach(function(b){b.classList.toggle('on',b.dataset.tab===id)}); panes.forEach(function(p){p.classList.toggle('on',p.id===id)}); try{history.replaceState(null,'','#'+id)}catch(e){} }
     btns.forEach(function(b){ b.addEventListener('click',function(){ pilih(b.dataset.tab); }); });
     var h=location.hash.slice(1); pilih(btns.some(function(b){return b.dataset.tab===h})?h:(btns[0]&&btns[0].dataset.tab));
